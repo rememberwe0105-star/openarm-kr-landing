@@ -34,7 +34,7 @@
       },
       {
         "title": "1kHz CAN-FD Control",
-        "desc": "Proprietary high-speed communication protocol realizes ultra-precise real-time motion control."
+        "desc": "High-speed communication protocol developed based on CAN-FD realizes ultra-precise real-time motion control."
       },
       {
         "title": "Affordable Platform",
