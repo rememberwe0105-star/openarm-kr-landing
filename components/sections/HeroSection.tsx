@@ -57,10 +57,10 @@ export default function HeroSection() {
           className="hero-bg absolute inset-[-10%] w-[120%] h-[120%] bg-cover bg-center"
           style={{ backgroundImage: "url('https://openarm.dev/images/img_introducing.webp')" }}
         />
-        {/* Subtle overlay */}
-        <div className="absolute inset-0 bg-background-main/30 backdrop-blur-[2px]" />
+        {/* Cinematic dark overlay for text readability */}
+        <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />
         {/* Gradient fade to bottom */}
-        <div className="absolute inset-0 bg-gradient-to-t from-background-main to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background-main via-background-main/50 to-transparent" />
       </div>
 
       <div className="relative z-10 text-center px-6 md:px-12 flex flex-col items-center pt-24 md:pt-32 lg:pt-40">
@@ -69,19 +69,19 @@ export default function HeroSection() {
             <span className="bg-gradient-to-r from-purple-600 via-fuchsia-500 to-pink-500 bg-clip-text text-transparent font-black tracking-tighter text-[4rem] md:text-[7rem] lg:text-[9rem] leading-none drop-shadow-sm">
               OpenArm
             </span>
-            <span className="text-xl md:text-3xl lg:text-4xl font-bold tracking-tight text-foreground-main/90 mt-2">
+            <span className="text-xl md:text-3xl lg:text-4xl font-bold tracking-tight text-white/95 drop-shadow-md mt-2">
               {t("hero.built_in_korea")}
             </span>
           </h1>
         </div>
         
-        <p className="hero-subtitle text-base md:text-lg lg:text-xl text-foreground-sub/80 font-medium tracking-wide max-w-2xl mb-12 leading-relaxed">
-          <span className="text-foreground-main/90 font-semibold">{t("hero.subtitle")}</span><br />
+        <p className="hero-subtitle text-base md:text-lg lg:text-xl text-white/80 font-medium tracking-wide max-w-2xl mb-12 leading-relaxed drop-shadow-md">
+          <span className="text-white font-semibold">{t("hero.subtitle")}</span><br />
           {t("hero.subtitle_desc")}
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center mt-4">
-          <Link href="/products" className="hero-cta bg-foreground-main text-background-main px-8 py-4 rounded-full text-lg font-bold hover:bg-point hover:text-white transition-all duration-300 text-center">
+          <Link href="/products" className="hero-cta bg-white text-black px-8 py-4 rounded-full text-lg font-bold hover:bg-point hover:text-white transition-all duration-300 text-center shadow-xl">
             {t("hero.cta")}
           </Link>
         </div>
