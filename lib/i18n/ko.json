@@ -67,7 +67,7 @@
     }
   },
   "why_korea": {
-    "title": "왜 <span className=\"text-point\">리버트론</span>에서<br className=\"md:hidden\" /> 구매해야 할까요?",
+    "title": "왜 <a href=\"https://libertron.com/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-point font-black px-1 border-b-4 border-point/30 hover:border-point hover:text-blue-600 transition-all duration-300\">리버트론</a>에서<br class=\"md:hidden\" /> 구매해야 할까요?",
     "subtitle": "(주)리버트론은 다양한 하드웨어 및 소프트웨어 설계 경험을 기반으로<br className=\"hidden md:block\"/>신뢰할 수 있는 구매 경험을 제공합니다.",
     "items": [
       {

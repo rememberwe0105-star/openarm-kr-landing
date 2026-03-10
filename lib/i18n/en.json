@@ -67,7 +67,7 @@
     }
   },
   "why_korea": {
-    "title": "Why buy from <span className=\"text-point\">Libertron</span>?<br className=\"md:hidden\" />",
+    "title": "Why buy from <a href=\"https://libertron.com/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-point font-black px-1 border-b-4 border-point/30 hover:border-point hover:text-blue-600 transition-all duration-300\">Libertron</a>?<br class=\"md:hidden\" />",
     "subtitle": "Libertron Co., Ltd. provides a reliable purchasing experience<br className=\"hidden md:block\"/>based on extensive hardware and software design expertise.",
     "items": [
       {
