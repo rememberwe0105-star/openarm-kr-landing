@@ -6,10 +6,11 @@ import { useGSAPAnimation } from "@/hooks/useGSAPAnimation";
 
 export default function StatsSection() {
   const containerRef = useRef<HTMLElement>(null);
-  const { staggerFadeIn } = useGSAPAnimation();
+  useGSAPAnimation();
 
   // Define specs data
-  const stats = [
+  type Stat = { label: string; value: number; suffix: string; prefix?: string; decimals?: number; modifier?: string };
+  const stats: Stat[] = [
     { label: "Bimanual Arms", value: 7, suffix: "DOF" },
     { label: "Arm Reach", value: 633, suffix: "mm" },
     { label: "Weight per Arm", value: 5.5, suffix: "kg", decimals: 1 },
@@ -47,7 +48,7 @@ export default function StatsSection() {
                 duration={2 + (idx * 0.2)} 
               />
               {stat.suffix && <span className="text-lg md:text-xl font-bold font-mono text-point ml-1">{stat.suffix}</span>}
-              {(stat as any).modifier && <span className="text-sm md:text-base font-bold text-foreground-sub ml-1 mt-auto pb-1">{(stat as any).modifier}</span>}
+              {stat.modifier && <span className="text-sm md:text-base font-bold text-foreground-sub ml-1 mt-auto pb-1">{stat.modifier}</span>}
             </div>
             <p className="text-sm md:text-base font-medium text-foreground-sub">
               {stat.label}

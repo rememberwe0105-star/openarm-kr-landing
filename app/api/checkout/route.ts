@@ -18,7 +18,7 @@ export async function POST(req: Request) {
     // Prepare email content
     const itemsHtml = cartItems
       .map(
-        (item: any) =>
+        (item: { name: string; quantity: number; price: number }) =>
           `<li>
             <strong>${item.name}</strong> (x${item.quantity}) - $${(
             item.price * item.quantity

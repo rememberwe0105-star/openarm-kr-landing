@@ -1,14 +1,14 @@
 "use client";
 
 import { useRef } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+
 import { useGSAPAnimation } from "@/hooks/useGSAPAnimation";
 
 const VIDEO = { id: "6ZLM6f8kF4Q", title: "OpenArm Offical Reveal" };
 
 export default function VideoCarouselSection() {
   const containerRef = useRef<HTMLElement>(null);
-  const { fadeIn } = useGSAPAnimation();
+  useGSAPAnimation();
 
   return (
     <section 
