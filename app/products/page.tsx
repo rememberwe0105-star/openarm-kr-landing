@@ -70,7 +70,7 @@ export default function ProductsPage() {
   const cartItemsCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
-    <main className="min-h-screen bg-background-main pb-24">
+    <main className="min-h-screen bg-background-main">
       <ScrollProgress />
       <Navbar />
       
@@ -114,7 +114,7 @@ export default function ProductsPage() {
       </button>
 
       {/* Featured Products Layout */}
-      <section className="py-16 px-6 md:px-12 lg:px-24 max-w-[1400px] mx-auto">
+      <section className="py-16 pb-32 px-6 md:px-12 lg:px-24 max-w-[1400px] mx-auto">
         <div ref={containerRef} className="flex flex-col gap-24">
           {products.map((product) => (
             <div 
