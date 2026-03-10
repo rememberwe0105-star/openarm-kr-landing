@@ -132,5 +132,13 @@
     "addr_2": "Business Registration No.: 105-86-32887",
     "addr_3": "Address: Room 1111, SK V1 Center W Building, 11 Dangsan-ro 41-gil, Yeongdeungpo-gu, Seoul",
     "copyright": "© 2024 Enactic AI & OpenArm Korea. All rights reserved."
+  },
+  "products_page": {
+    "title_1": "Featured ",
+    "title_2": "Devkits",
+    "subtitle": "The moment vision becomes reality. OpenArm Official Integration Kit.",
+    "cart": "Cart",
+    "add_to_cart": "Add To Cart",
+    "custom_order": "Add Custom Order"
   }
 }

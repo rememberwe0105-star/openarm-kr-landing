@@ -10,12 +10,14 @@ import ScrollProgress from "@/components/ui/ScrollProgress";
 import CartDrawer, { CartItem } from "@/components/ui/CartDrawer";
 import CheckoutModal from "@/components/ui/CheckoutModal";
 import { ShoppingBag } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export default function ProductsPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const { t } = useLanguage();
 
   useGSAP(() => {
     gsap.fromTo(
@@ -76,10 +78,10 @@ export default function ProductsPage() {
       <section className="pt-32 pb-12 px-6 md:px-12 lg:px-24 max-w-[1400px] mx-auto flex items-end justify-between border-b border-border-light">
         <div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter text-foreground-main mb-4">
-            Featured <span className="text-point">Devkits</span>
+            {t("products_page.title_1")} <span className="text-point">{t("products_page.title_2")}</span>
           </h1>
           <p className="text-foreground-sub text-lg lg:text-xl max-w-2xl font-medium">
-            비전이 현실이 되는 순간. 오픈암 공식 통합 키트.
+            {t("products_page.subtitle")}
           </p>
         </div>
         
@@ -89,7 +91,7 @@ export default function ProductsPage() {
           className="hidden md:flex items-center gap-2 bg-background-sub border border-border-light text-foreground-main px-6 py-3 rounded-full hover:border-point transition-colors group relative"
         >
           <ShoppingBag size={20} className="group-hover:text-point transition-colors" />
-          <span className="font-bold">Cart</span>
+          <span className="font-bold">{t("products_page.cart")}</span>
           {cartItemsCount > 0 && (
             <span className="absolute -top-2 -right-2 bg-point text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full shadow-lg">
               {cartItemsCount}
@@ -159,14 +161,14 @@ export default function ProductsPage() {
                     onClick={() => handleAddToCart(product)}
                     className="w-full bg-foreground-main text-background-main py-4 rounded-xl font-bold text-lg hover:bg-foreground-main/80 transition-all duration-300 shadow-xl"
                   >
-                    주문 제작 담기
+                    {t("products_page.custom_order")}
                   </button>
                 ) : (
                   <button 
                     onClick={() => handleAddToCart(product)}
                     className="w-full bg-transparent border-2 border-foreground-main text-foreground-main py-4 rounded-xl font-bold text-lg hover:bg-foreground-main hover:text-background-main transition-all duration-300"
                   >
-                    Add To Cart
+                    {t("products_page.add_to_cart")}
                   </button>
                 )}
               </div>
