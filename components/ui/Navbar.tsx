@@ -21,9 +21,19 @@ export default function Navbar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    
+    // Evaluate scroll position immediately on mount or route change
+    handleScroll();
+    
+    // Fallback for delayed browser hash jump scrolls
+    const timer = setTimeout(handleScroll, 150);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearTimeout(timer);
+    };
+  }, [pathname]);
 
   useEffect(() => {
     gsap.to(".navbar", {
