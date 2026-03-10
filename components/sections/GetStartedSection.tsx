@@ -63,15 +63,15 @@ export default function GetStartedSection() {
             >
               <div>
                 <h3 className="text-xl font-bold text-foreground-main mb-2">
-                  {link.title}
+                  {t(`get_started.items.${idx}.title`)}
                 </h3>
                 <p className="text-foreground-sub text-sm mb-8">
-                  {link.desc}
+                  {t(`get_started.items.${idx}.desc`)}
                 </p>
               </div>
               
               <div className="flex items-center text-point font-semibold group-hover:gap-2 transition-all duration-300">
-                <span className="group-hover:underline">{link.btnText}</span>
+                <span className="group-hover:underline">{t(`get_started.items.${idx}.btnText`)}</span>
               <svg 
                 className="w-4 h-4 ml-1 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" 
                 fill="none" 

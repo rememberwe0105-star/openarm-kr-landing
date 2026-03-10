@@ -86,7 +86,24 @@
   },
   "get_started": {
     "title": "Resources",
-    "subtitle": "Start developing with the open source ecosystem"
+    "subtitle": "Start developing with the open source ecosystem",
+    "items": [
+      {
+        "title": "Documentation",
+        "desc": "API References and Tutorials (English)",
+        "btnText": "Read Docs"
+      },
+      {
+        "title": "GitHub Repo",
+        "desc": "Open Source Hardware and Software",
+        "btnText": "View Code"
+      },
+      {
+        "title": "Discord Community",
+        "desc": "Join the Global Developer Community",
+        "btnText": "Join server"
+      }
+    ]
   },
   "contact": {
     "title": "Ready to<br />\n<span className=\"text-point\">innovate?</span>",
