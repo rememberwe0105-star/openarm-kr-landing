@@ -109,6 +109,9 @@
     "title": "Ready to<br />\n<span className=\"text-point\">innovate?</span>",
     "subtitle": "도입 문의 및 견적 상담을 남겨주시면<br />\n담당자가 빠르게 연락 드리겠습니다.",
     "button": "문의 접수하기",
+    "button_sending": "전송 중...",
+    "success": "문의가 성공적으로 전달되었습니다.",
+    "error": "오류가 발생했습니다. 다시 시도해주세요.",
     "form": {
       "name_label": "이름 / 소속",
       "name_placeholder": "홍길동 / (주)리버트론",

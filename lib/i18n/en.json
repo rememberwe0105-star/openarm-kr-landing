@@ -109,6 +109,9 @@
     "title": "Ready to<br />\n<span className=\"text-point\">innovate?</span>",
     "subtitle": "Leave an inquiry or request a quote,<br />\nand a representative will contact you shortly.",
     "button": "Submit Inquiry",
+    "button_sending": "Sending...",
+    "success": "Your inquiry has been successfully submitted.",
+    "error": "An error occurred. Please try again later.",
     "form": {
       "name_label": "Name / Company",
       "name_placeholder": "e.g., John Doe / Libertron",

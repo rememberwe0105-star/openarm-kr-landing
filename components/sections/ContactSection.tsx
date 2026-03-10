@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useGSAPAnimation } from "@/hooks/useGSAPAnimation";
 import { useGSAP } from "@gsap/react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
@@ -9,6 +9,32 @@ export default function ContactSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { fadeIn } = useGSAPAnimation();
   const { t } = useLanguage();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      const data = await response.json();
+      if (response.ok) {
+        alert(t("contact.success"));
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        alert(data.message || t("contact.error"));
+      }
+    } catch (error) {
+      console.error(error);
+      alert(t("contact.error"));
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   useGSAP(() => {
     fadeIn(".contact-content", {
@@ -47,15 +73,18 @@ export default function ContactSection() {
         </div>
 
         <div className="md:w-1/2 bg-background-sub p-8 rounded-3xl border border-border-light shadow-sm">
-          <form className="flex flex-col gap-5" onSubmit={(e) => e.preventDefault()}>
+          <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-foreground-sub mb-1">{t("contact.form.name_label")}</label>
               <input 
                 type="text" 
                 id="name" 
-                className="w-full px-4 py-3 rounded-xl border border-border-light bg-background-main focus:outline-none focus:ring-2 focus:ring-point/50 focus:border-point transition-all"
+                value={formData.name}
+                onChange={(e) => setFormData({...formData, name: e.target.value})}
+                className="w-full px-4 py-3 rounded-xl border border-border-light bg-background-main focus:outline-none focus:ring-2 focus:ring-point/50 focus:border-point transition-all disabled:opacity-50"
                 placeholder={t("contact.form.name_placeholder")}
                 required
+                disabled={isSubmitting}
               />
             </div>
             
@@ -64,9 +93,12 @@ export default function ContactSection() {
               <input 
                 type="email" 
                 id="email" 
-                className="w-full px-4 py-3 rounded-xl border border-border-light bg-background-main focus:outline-none focus:ring-2 focus:ring-point/50 focus:border-point transition-all"
+                value={formData.email}
+                onChange={(e) => setFormData({...formData, email: e.target.value})}
+                className="w-full px-4 py-3 rounded-xl border border-border-light bg-background-main focus:outline-none focus:ring-2 focus:ring-point/50 focus:border-point transition-all disabled:opacity-50"
                 placeholder={t("contact.form.email_placeholder")}
                 required
+                disabled={isSubmitting}
               />
             </div>
             
@@ -75,17 +107,21 @@ export default function ContactSection() {
               <textarea 
                 id="message" 
                 rows={4}
-                className="w-full px-4 py-3 rounded-xl border border-border-light bg-background-main focus:outline-none focus:ring-2 focus:ring-point/50 focus:border-point transition-all resize-none"
+                value={formData.message}
+                onChange={(e) => setFormData({...formData, message: e.target.value})}
+                className="w-full px-4 py-3 rounded-xl border border-border-light bg-background-main focus:outline-none focus:ring-2 focus:ring-point/50 focus:border-point transition-all resize-none disabled:opacity-50"
                 placeholder={t("contact.form.message_placeholder")}
                 required
+                disabled={isSubmitting}
               />
             </div>
 
             <button 
               type="submit" 
-              className="mt-2 w-full py-4 rounded-xl bg-foreground-main text-background-main font-bold text-lg hover:bg-point hover:text-white transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg"
+              disabled={isSubmitting}
+              className="mt-2 w-full py-4 rounded-xl bg-foreground-main text-background-main font-bold text-lg hover:bg-point hover:text-white transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg disabled:opacity-70 disabled:hover:translate-y-0 disabled:hover:shadow-none"
             >
-              {t("contact.button")}
+              {isSubmitting ? t("contact.button_sending") : t("contact.button")}
             </button>
           </form>
         </div>
