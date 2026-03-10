@@ -66,7 +66,7 @@ export default function HeroSection() {
       <div className="relative z-10 text-center px-6 md:px-12 flex flex-col items-center pt-24 md:pt-32 lg:pt-40">
         <div className="mb-8">
           <h1 className="hero-title flex flex-col items-center gap-2 md:gap-3">
-            <span className="text-point font-black tracking-tighter text-[4rem] md:text-[7rem] lg:text-[9rem] leading-none drop-shadow-sm">
+            <span className="bg-gradient-to-r from-purple-600 via-fuchsia-500 to-pink-500 bg-clip-text text-transparent font-black tracking-tighter text-[4rem] md:text-[7rem] lg:text-[9rem] leading-none drop-shadow-sm">
               OpenArm
             </span>
             <span className="text-xl md:text-3xl lg:text-4xl font-bold tracking-tight text-foreground-main/90 mt-2">
