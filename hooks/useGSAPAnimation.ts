@@ -18,7 +18,7 @@ export function useGSAPAnimation() {
         scrollTrigger: {
           trigger: target,
           start: "top 85%",
-          ...vars?.scrollTrigger,
+          ...(typeof vars?.scrollTrigger === "object" ? vars.scrollTrigger : {}),
         },
         ...vars,
       }
@@ -38,7 +38,7 @@ export function useGSAPAnimation() {
         scrollTrigger: {
           trigger: targets as any, // typically passing the parent container for staggered lists
           start: "top 80%",
-          ...vars?.scrollTrigger,
+          ...(typeof vars?.scrollTrigger === "object" ? vars.scrollTrigger : {}),
         },
         ...vars,
       }
