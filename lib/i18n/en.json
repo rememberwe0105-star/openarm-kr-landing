@@ -110,7 +110,12 @@
     "subtitle": "Leave an inquiry or request a quote,<br />\nand a representative will contact you shortly.",
     "button": "Submit Inquiry",
     "button_sending": "Sending...",
-    "success": "Your inquiry has been successfully submitted.",
+    "success_popup": [
+      "Your inquiry has been successfully submitted.",
+      "A representative will review it and reply shortly.",
+      "Thank you."
+    ],
+    "success_btn": "OK",
     "error": "An error occurred. Please try again later.",
     "form": {
       "name_label": "Name / Company",

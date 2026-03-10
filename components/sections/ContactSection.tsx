@@ -10,6 +10,7 @@ export default function ContactSection() {
   const { fadeIn } = useGSAPAnimation();
   const { t } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -23,8 +24,8 @@ export default function ContactSection() {
       });
       const data = await response.json();
       if (response.ok) {
-        alert(t("contact.success"));
         setFormData({ name: "", email: "", message: "" });
+        setShowSuccessPopup(true);
       } else {
         alert(data.message || t("contact.error"));
       }
@@ -75,42 +76,42 @@ export default function ContactSection() {
         <div className="md:w-1/2 bg-background-sub p-8 rounded-3xl border border-border-light shadow-sm">
           <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-foreground-sub mb-1">{t("contact.form.name_label")}</label>
+              <label htmlFor="name" className="block text-sm font-medium text-foreground-sub mb-1">{t<string>("contact.form.name_label")}</label>
               <input 
                 type="text" 
                 id="name" 
                 value={formData.name}
                 onChange={(e) => setFormData({...formData, name: e.target.value})}
                 className="w-full px-4 py-3 rounded-xl border border-border-light bg-background-main focus:outline-none focus:ring-2 focus:ring-point/50 focus:border-point transition-all disabled:opacity-50"
-                placeholder={t("contact.form.name_placeholder")}
+                placeholder={t<string>("contact.form.name_placeholder")}
                 required
                 disabled={isSubmitting}
               />
             </div>
             
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-foreground-sub mb-1">{t("contact.form.email_label")}</label>
+              <label htmlFor="email" className="block text-sm font-medium text-foreground-sub mb-1">{t<string>("contact.form.email_label")}</label>
               <input 
                 type="email" 
                 id="email" 
                 value={formData.email}
                 onChange={(e) => setFormData({...formData, email: e.target.value})}
                 className="w-full px-4 py-3 rounded-xl border border-border-light bg-background-main focus:outline-none focus:ring-2 focus:ring-point/50 focus:border-point transition-all disabled:opacity-50"
-                placeholder={t("contact.form.email_placeholder")}
+                placeholder={t<string>("contact.form.email_placeholder")}
                 required
                 disabled={isSubmitting}
               />
             </div>
             
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-foreground-sub mb-1">{t("contact.form.message_label")}</label>
+              <label htmlFor="message" className="block text-sm font-medium text-foreground-sub mb-1">{t<string>("contact.form.message_label")}</label>
               <textarea 
                 id="message" 
                 rows={4}
                 value={formData.message}
                 onChange={(e) => setFormData({...formData, message: e.target.value})}
                 className="w-full px-4 py-3 rounded-xl border border-border-light bg-background-main focus:outline-none focus:ring-2 focus:ring-point/50 focus:border-point transition-all resize-none disabled:opacity-50"
-                placeholder={t("contact.form.message_placeholder")}
+                placeholder={t<string>("contact.form.message_placeholder")}
                 required
                 disabled={isSubmitting}
               />
@@ -127,6 +128,31 @@ export default function ContactSection() {
         </div>
 
       </div>
+
+      {showSuccessPopup && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
+          <div className="bg-background-main max-w-sm w-full p-8 rounded-3xl shadow-2xl border border-border-light text-center">
+            <div className="w-16 h-16 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            
+            <div className="space-y-2 mb-8 text-foreground-main font-medium leading-relaxed">
+              {t<string[]>("contact.success_popup").map((line, idx) => (
+                <p key={idx}>{line}</p>
+              ))}
+            </div>
+
+            <button
+              onClick={() => setShowSuccessPopup(false)}
+              className="w-full py-4 rounded-xl bg-point text-white font-bold text-lg hover:bg-point-dark transition-all duration-300 shadow-md hover:shadow-lg"
+            >
+              {t("contact.success_btn")}
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

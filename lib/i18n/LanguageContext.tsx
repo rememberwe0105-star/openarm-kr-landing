@@ -9,7 +9,7 @@ type Language = "en" | "ko";
 interface LanguageContextType {
   lang: Language;
   toggleLanguage: () => void;
-  t: (key: string) => string;
+  t: <T extends string | string[] = string>(key: string) => T;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -35,7 +35,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     });
   };
 
-  const t = useCallback((key: string): string => {
+  const t = useCallback(<T extends string | string[] = string>(key: string): T => {
     const translations = lang === "en" ? enTranslations : koTranslations;
     
     // Support nested keys like "hero.title"
@@ -57,7 +57,10 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       value = fallbackValue;
     }
 
-    return typeof value === "string" ? value : key;
+    if (typeof value === "string") return value as T;
+    if (Array.isArray(value) && value.every(item => typeof item === "string")) return value as T;
+    
+    return key as unknown as T;
   }, [lang]);
 
   // We still provide the context so `useLanguage` does not crash during SSR
