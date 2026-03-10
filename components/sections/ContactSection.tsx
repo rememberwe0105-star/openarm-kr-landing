@@ -3,10 +3,12 @@
 import { useRef } from "react";
 import { useGSAPAnimation } from "@/hooks/useGSAPAnimation";
 import { useGSAP } from "@gsap/react";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export default function ContactSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { fadeIn } = useGSAPAnimation();
+  const { t } = useLanguage();
 
   useGSAP(() => {
     fadeIn(".contact-content", {
@@ -23,12 +25,10 @@ export default function ContactSection() {
         
         <div className="md:w-1/2 flex flex-col justify-center">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-foreground-main mb-6">
-            Ready to<br />
-            <span className="text-point">innovate?</span>
+            {t("contact.title")}
           </h2>
-          <p className="text-foreground-sub text-lg mb-8">
-            도입 문의 및 견적 상담을 남겨주시면<br />
-            담당자가 빠르게 연락 드리겠습니다.
+          <p className="text-foreground-sub text-lg mb-8 whitespace-pre-line">
+            {t("contact.subtitle")}
           </p>
           <div className="flex flex-col gap-4 mt-8">
             <div className="flex items-center gap-4 text-foreground-main font-semibold">
@@ -89,7 +89,7 @@ export default function ContactSection() {
               type="submit" 
               className="mt-2 w-full py-4 rounded-xl bg-foreground-main text-background-main font-bold text-lg hover:bg-point hover:text-white transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg"
             >
-              문의 접수하기
+              {t("contact.button")}
             </button>
           </form>
         </div>

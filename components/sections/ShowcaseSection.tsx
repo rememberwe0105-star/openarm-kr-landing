@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 const images = [
   {
@@ -40,6 +41,7 @@ const images = [
 export default function ShowcaseSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollWrapperRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
 
   useGSAP(() => {
     const ctx = gsap.context(() => {
@@ -103,7 +105,7 @@ export default function ShowcaseSection() {
                 {images[0].title}
               </h3>
               <p className="text-white/80 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                {images[0].description}
+                {t("showcase.images.0.desc")}
               </p>
             </div>
           </div>
@@ -150,7 +152,7 @@ export default function ShowcaseSection() {
                   {img.title}
                 </h3>
                 <p className="text-white/80 text-sm md:text-base font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                  {img.description}
+                  {t(`showcase.images.${idx + 1}.desc`)}
                 </p>
               </div>
             </div>

@@ -4,9 +4,11 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
 import Link from "next/link";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLElement>(null);
+  const { t } = useLanguage();
 
   useGSAP(() => {
     const tl = gsap.timeline();
@@ -68,19 +70,19 @@ export default function HeroSection() {
               OpenArm
             </span>
             <span className="text-xl md:text-3xl lg:text-4xl font-bold tracking-tight text-foreground-main/90 mt-2">
-              한국에서 조립되고 전세계로 배송됩니다
+              {t("hero.built_in_korea")}
             </span>
           </h1>
         </div>
         
         <p className="hero-subtitle text-base md:text-lg lg:text-xl text-foreground-sub/80 font-medium tracking-wide max-w-2xl mb-12 leading-relaxed">
-          <span className="text-foreground-main/90 font-semibold">100% 오픈소스 기반의 피지컬 AI 휴머노이드 로봇암</span><br />
-          합리적인 가격, 쉽고 빠른 구매
+          <span className="text-foreground-main/90 font-semibold">{t("hero.subtitle")}</span><br />
+          {t("hero.subtitle_desc")}
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center mt-4">
           <Link href="/products" className="hero-cta bg-foreground-main text-background-main px-8 py-4 rounded-full text-lg font-bold hover:bg-point hover:text-white transition-all duration-300 text-center">
-            제품 보러가기
+            {t("hero.cta")}
           </Link>
         </div>
       </div>

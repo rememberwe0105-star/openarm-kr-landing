@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { useGSAPAnimation } from "@/hooks/useGSAPAnimation";
 import { useGSAP } from "@gsap/react";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 const links = [
   {
@@ -28,6 +29,7 @@ const links = [
 export default function GetStartedSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { staggerFadeIn } = useGSAPAnimation();
+  const { t } = useLanguage();
 
   useGSAP(() => {
     staggerFadeIn(".link-card", {
@@ -42,33 +44,34 @@ export default function GetStartedSection() {
     <section id="get-started" className="section-padding bg-background-sub">
       <div className="text-center mb-16">
         <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-foreground-main mb-4">
-          Resources
+          {t("get_started.title")}
         </h2>
         <p className="text-foreground-sub text-lg">
-          오픈소스 생태계와 함께 개발을 시작하세요
+          {t("get_started.subtitle")}
         </p>
       </div>
 
       <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-        {links.map((link, idx) => (
-          <a
-            key={idx}
-            href={link.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="link-card flex flex-col justify-between p-8 bg-background-main rounded-2xl border border-border-light hover:border-point group transition-all duration-300"
-          >
-            <div>
-              <h3 className="text-xl font-bold text-foreground-main mb-2">
-                {link.title}
-              </h3>
-              <p className="text-foreground-sub text-sm mb-8">
-                {link.desc}
-              </p>
-            </div>
-            
-            <div className="flex items-center text-point font-semibold group-hover:gap-2 transition-all duration-300">
-              <span className="group-hover:underline">{link.btnText}</span>
+        {links.map((link, idx) => {
+          return (
+            <a
+              key={idx}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-card flex flex-col justify-between p-8 bg-background-main rounded-2xl border border-border-light hover:border-point group transition-all duration-300"
+            >
+              <div>
+                <h3 className="text-xl font-bold text-foreground-main mb-2">
+                  {link.title}
+                </h3>
+                <p className="text-foreground-sub text-sm mb-8">
+                  {link.desc}
+                </p>
+              </div>
+              
+              <div className="flex items-center text-point font-semibold group-hover:gap-2 transition-all duration-300">
+                <span className="group-hover:underline">{link.btnText}</span>
               <svg 
                 className="w-4 h-4 ml-1 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" 
                 fill="none" 
@@ -79,7 +82,8 @@ export default function GetStartedSection() {
               </svg>
             </div>
           </a>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

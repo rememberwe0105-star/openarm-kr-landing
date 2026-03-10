@@ -1,6 +1,10 @@
+"use client";
+
 import Link from "next/link";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export default function Footer() {
+  const { t } = useLanguage();
   return (
     <footer className="bg-background-sub border-t border-border-light">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 py-12 flex flex-col md:flex-row justify-between items-center gap-6">
@@ -9,10 +13,10 @@ export default function Footer() {
             OpenArm<span className="text-point">.</span>
           </h2>
           <div className="text-foreground-sub text-sm space-y-1">
-            <p className="font-semibold text-foreground-main mb-2">한국 공식 판매 및 지원 | (주)리버트론</p>
-            <p>대표번호: 02-3486-5278</p>
-            <p>사업자등록번호: 105-86-32887</p>
-            <p>주소: 서울 영등포구 당산로41길 11 SK V1 Center W동 1111호</p>
+            <p className="font-semibold text-foreground-main mb-2">Libertron Co., Ltd.</p>
+            <p>{t("contact.location.addr_1")}</p>
+            <p>{t("contact.location.addr_2")}</p>
+            <p>{t("contact.location.addr_3")}</p>
           </div>
         </div>
         
@@ -22,8 +26,10 @@ export default function Footer() {
           <Link href="https://discord.gg/FsZaZ4z3We" target="_blank" rel="noopener noreferrer" className="hover:text-point transition-colors">Discord</Link>
         </div>
       </div>
-      <div className="bg-foreground-main text-background-main/50 text-xs text-center py-4">
-        &copy; {new Date().getFullYear()} Enactic AI & OpenArm Korea. All rights reserved.
+      <div className="bg-foreground-main text-background-main/50 text-xs text-center py-4 flex flex-col md:flex-row justify-center items-center gap-2 md:gap-4">
+        <span>{t("footer.copyright")}</span>
+        <span className="hidden md:inline">|</span>
+        <span>{t("footer.description")}</span>
       </div>
     </footer>
   );

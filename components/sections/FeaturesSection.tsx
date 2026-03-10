@@ -3,6 +3,7 @@
 import { useGSAPAnimation } from "@/hooks/useGSAPAnimation";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 const features = [
   {
@@ -40,6 +41,7 @@ const features = [
 export default function FeaturesSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { staggerFadeIn } = useGSAPAnimation();
+  const { t } = useLanguage();
 
   useGSAP(() => {
     staggerFadeIn(".feature-card");
@@ -49,35 +51,39 @@ export default function FeaturesSection() {
     <section id="features" className="section-padding bg-background-main">
       <div className="text-center mb-16">
         <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-foreground-main mb-4">
-          Key Features
+          {t("features.title")}
         </h2>
         <p className="text-foreground-sub text-lg max-w-2xl mx-auto">
-          연구부터 양산까지, 혁신을 앞당기는 핵심 기능들
+          {t("features.subtitle")}
         </p>
       </div>
 
       <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {features.map((feature, idx) => (
-          <div 
-            key={idx} 
-            className="feature-card group flex flex-col bg-background-sub rounded-3xl overflow-hidden border border-border-light hover:border-point transition-colors duration-300"
-          >
-            <div className="relative w-full aspect-video overflow-hidden bg-gray-200">
-              <div 
-                className="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                style={{ backgroundImage: `url('${feature.imgUrl}')` }}
-              />
+        {features.map((feature, idx) => {
+          const keys = ["opensource", "affordable", "ai_ready", "bimanual", "lightweight", "can_fd"];
+          const key = keys[idx];
+          return (
+            <div 
+              key={idx} 
+              className="feature-card group flex flex-col bg-background-sub rounded-3xl overflow-hidden border border-border-light hover:border-point transition-colors duration-300"
+            >
+              <div className="relative w-full aspect-video overflow-hidden bg-gray-200">
+                <div 
+                  className="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                  style={{ backgroundImage: `url('${feature.imgUrl}')` }}
+                />
+              </div>
+              <div className="p-8 flex-1 flex flex-col">
+                <h3 className="text-xl font-bold text-foreground-main mb-3 group-hover:text-point transition-colors duration-300">
+                  {t(`features.${key}.title`)}
+                </h3>
+                <p className="text-foreground-sub leading-relaxed">
+                  {t(`features.${key}.desc`)}
+                </p>
+              </div>
             </div>
-            <div className="p-8 flex-1 flex flex-col">
-              <h3 className="text-xl font-bold text-foreground-main mb-3 group-hover:text-point transition-colors duration-300">
-                {feature.title}
-              </h3>
-              <p className="text-foreground-sub leading-relaxed">
-                {feature.description}
-              </p>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

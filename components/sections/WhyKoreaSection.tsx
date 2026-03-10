@@ -3,6 +3,7 @@
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import { gsap } from "@/lib/gsap";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 const reasons = [
   {
@@ -24,6 +25,7 @@ const reasons = [
 
 export default function WhyKoreaSection() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
 
   useGSAP(() => {
     // Pop-in stagger animation for the cards
@@ -52,32 +54,36 @@ export default function WhyKoreaSection() {
 
       <div className="text-left md:text-center mb-16 md:mb-24">
         <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-foreground-main mb-6">
-          왜 <span className="text-point">리버트론</span>에서<br className="md:hidden" /> 구매해야 할까요?
+          {t("why_korea.title")}
         </h2>
         <p className="text-foreground-sub text-lg md:text-xl max-w-2xl md:mx-auto">
-          (주)리버트론은 다양한 하드웨어 및 소프트웨어 설계 경험을 기반으로<br className="hidden md:block"/>신뢰할 수 있는 구매 경험을 제공합니다.
+          {t("why_korea.subtitle")}
         </p>
       </div>
 
       <div ref={containerRef} className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {reasons.map((reason, idx) => (
-          <div 
-            key={idx} 
-            className="reason-card relative p-10 bg-background-main border-2 border-border-light rounded-[2rem] hover:border-point transition-colors duration-500 shadow-sm hover:shadow-xl hover:shadow-point/5 group"
-          >
-            <div className="text-6xl font-mono font-black text-border-light group-hover:text-point/20 transition-colors duration-500 mb-6 absolute top-8 right-8">
-              {reason.id}
+        {reasons.map((reason, idx) => {
+          const keys = ["manufacturing", "shipping", "support"];
+          const key = keys[idx];
+          return (
+            <div 
+              key={idx} 
+              className="reason-card relative p-10 bg-background-main border-2 border-border-light rounded-[2rem] hover:border-point transition-colors duration-500 shadow-sm hover:shadow-xl hover:shadow-point/5 group"
+            >
+              <div className="text-6xl font-mono font-black text-border-light group-hover:text-point/20 transition-colors duration-500 mb-6 absolute top-8 right-8">
+                {reason.id}
+              </div>
+              <div className="relative z-10 pt-8">
+                <h3 className="text-2xl font-bold text-foreground-main mb-4 group-hover:text-point transition-colors">
+                  {t(`why_korea.${key}.title`)}
+                </h3>
+                <p className="text-foreground-sub text-lg leading-relaxed">
+                  {t(`why_korea.${key}.desc`)}
+                </p>
+              </div>
             </div>
-            <div className="relative z-10 pt-8">
-              <h3 className="text-2xl font-bold text-foreground-main mb-4 group-hover:text-point transition-colors">
-                {reason.title}
-              </h3>
-              <p className="text-foreground-sub text-lg leading-relaxed">
-                {reason.desc}
-              </p>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

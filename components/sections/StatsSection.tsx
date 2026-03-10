@@ -3,20 +3,22 @@
 import { useRef } from "react";
 import AnimatedCounter from "../ui/AnimatedCounter";
 import { useGSAPAnimation } from "@/hooks/useGSAPAnimation";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export default function StatsSection() {
   const containerRef = useRef<HTMLElement>(null);
   useGSAPAnimation();
+  const { t } = useLanguage();
 
   // Define specs data
-  type Stat = { label: string; value: number; suffix: string; prefix?: string; decimals?: number; modifier?: string };
+  type Stat = { labelKey: string; value: number; suffix: string; prefix?: string; decimals?: number; modifier?: string };
   const stats: Stat[] = [
-    { label: "Bimanual Arms", value: 7, suffix: "DOF" },
-    { label: "Arm Reach", value: 633, suffix: "mm" },
-    { label: "Weight per Arm", value: 5.5, suffix: "kg", decimals: 1 },
-    { label: "Peak Payload per Arm", value: 6.0, suffix: "kg", decimals: 1 },
-    { label: "CAN-FD Control", value: 1, suffix: "kHz" },
-    { label: "Bill of Materials Cost", prefix: "$", value: 6500, suffix: "" }
+    { labelKey: "dof", value: 7, suffix: "DOF" },
+    { labelKey: "reach", value: 633, suffix: "mm" },
+    { labelKey: "weight", value: 5.5, suffix: "kg", decimals: 1 },
+    { labelKey: "payload", value: 6.0, suffix: "kg", decimals: 1 },
+    { labelKey: "control", value: 1, suffix: "kHz" },
+    { labelKey: "cost", prefix: "$", value: 6500, suffix: "" }
   ];
 
   return (
@@ -27,10 +29,10 @@ export default function StatsSection() {
     >
       <div className="text-center mb-16">
         <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-foreground-main mb-4">
-          Core Specifications
+          {t("stats.title")}
         </h2>
         <p className="text-foreground-sub text-lg">
-          리버트론은 오픈암의 표준 스펙을 준수합니다
+          {t("stats.subtitle")}
         </p>
       </div>
 
@@ -51,7 +53,7 @@ export default function StatsSection() {
               {stat.modifier && <span className="text-sm md:text-base font-bold text-foreground-sub ml-1 mt-auto pb-1">{stat.modifier}</span>}
             </div>
             <p className="text-sm md:text-base font-medium text-foreground-sub">
-              {stat.label}
+              {t(`stats.labels.${stat.labelKey}`)}
             </p>
           </div>
         ))}

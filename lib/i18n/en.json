@@ -1,0 +1,105 @@
+{
+  "nav": {
+    "specs": "Specs",
+    "features": "Features",
+    "resources": "Resources",
+    "about": "Libertron",
+    "store": "Store"
+  },
+  "hero": {
+    "built_in_korea": "Assembled in Korea, Shipped Worldwide",
+    "subtitle": "100% Open source based Physical AI Humanoid Robot Arm",
+    "subtitle_desc": "Reasonable price, Easy and fast purchase",
+    "cta": "Go to Store"
+  },
+  "showcase": {
+    "title": "Bimanual AI Ready",
+    "subtitle": "Beyond Single Arm, Expand to Dual Arm Operations",
+    "desc_1": "OpenArm is perfectly designed to be used in pairs.",
+    "desc_2": "Utilize bimanual configuration to reproduce human-like complex tasks.",
+    "ideal_for": "Ideal for reinforcement learning data collection and imitation learning research."
+  },
+  "features": {
+    "title": "Why Choose OpenArm?",
+    "subtitle": "Key technology combined into an open ecosystem",
+    "opensource": {
+      "title": "100% Open Source Ecosystem",
+      "desc": "Join our GitHub community. Explore and modify all hardware designs, firmware, and software stacks freely."
+    },
+    "affordable": {
+      "title": "Ultimate Affordability",
+      "desc": "Built with high-quality mass-produced components. Dramatically lowering the entry barrier for robotics research and education."
+    },
+    "ai_ready": {
+      "title": "AI & Teleoperation Ready",
+      "desc": "Optimized protocols for seamless integration with reinforcement learning environments and imitation learning."
+    },
+    "bimanual": {
+      "title": "Optimized for Bimanual",
+      "desc": "Design tailored for dual-arm operation, expanding research possibilities from single-arm to human-like tasks."
+    },
+    "lightweight": {
+      "title": "Incredibly Lightweight",
+      "desc": "The 5.5kg carbon fiber and aluminum structure ensures high payload while allowing easy movement by a single person."
+    },
+    "can_fd": {
+      "title": "CAN-FD Real-time Control",
+      "desc": "1kHz high-speed communication guarantees precise synchronization and instantaneous response for multi-joint control."
+    }
+  },
+  "stats": {
+    "title": "Core Specifications",
+    "subtitle": "Libertron complies with the OpenArm standard specifications.",
+    "labels": {
+      "dof": "Bimanual Arms",
+      "reach": "Arm Reach",
+      "weight": "Weight per Arm",
+      "payload": "Peak Payload per Arm",
+      "control": "CAN-FD Control",
+      "cost": "Bill of Materials Cost"
+    }
+  },
+  "videos": {
+    "title": "OpenArm in Action"
+  },
+  "why_korea": {
+    "title": "Why Libertron?",
+    "subtitle": "Fastest shipping, most reliable technical support in Korea",
+    "manufacturing": {
+      "title": "Domestic Manufacturing & QA",
+      "desc": "We directly inspect all parts, assemble, and conduct rigorous quality testing in Korea."
+    },
+    "shipping": {
+      "title": "Immediate Shipping Available",
+      "desc": "No overseas shipping delays. We operate a local inventory for fast delivery within Korea."
+    },
+    "support": {
+      "title": "Direct Technical Support",
+      "desc": "Say goodbye to frustrating English emails. We provide prompt A/S and technical support directly in Korean."
+    }
+  },
+  "get_started": {
+    "title": "Start Creating with OpenArm",
+    "subtitle": "Everything you need to build the future of AI robotics is ready.",
+    "buttons": {
+      "github": "View GitHub Repository",
+      "store": "Buy Components Now"
+    }
+  },
+  "contact": {
+    "title": "Require a Custom Quote?",
+    "subtitle": "For laboratories, corporate research centers, and B2B orders, please request a quote directly from our official distributor, Libertron.",
+    "button": "Request a Quote",
+    "location": {
+      "title": "Libertron Co., Ltd.",
+      "addr_1": "Level 11, Fastfive Yeouido",
+      "addr_2": "83 Uisadang-daero, Yeongdeungpo-gu",
+      "addr_3": "Seoul, Republic of Korea (07325)"
+    }
+  },
+  "footer": {
+    "copyright": "© 2024 Libertron / OpenArm. All rights reserved.",
+    "description": "OpenArm is an open-source project. Libertron is the official distributor in Korea.",
+    "privacy": "Privacy Policy"
+  }
+}
