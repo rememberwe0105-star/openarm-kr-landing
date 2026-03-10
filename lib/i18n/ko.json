@@ -13,39 +13,46 @@
     "cta": "제품 보러가기"
   },
   "showcase": {
-    "title": "Bimanual AI Ready",
-    "subtitle": "단일 팔을 넘어 양팔 제어의 영역으로",
-    "desc_1": "오픈암은 두 대를 동시에 사용할 때 완벽한 시너지를 내도록 설계되었습니다.",
-    "desc_2": "강화학습 및 모방학습 연구를 위해 사람과 유사한 형태의 양팔(Bimanual) 작업을 완벽하게 재현할 수 있습니다.",
-    "ideal_for": "알룸(ALOHA) 스타일의 데이터 수집과 로봇 원격 조작 연구에 최적화된 플랫폼입니다."
+    "title": "Discover Detail",
+    "subtitle": "OpenArm의 정교한 하드웨어 설계와 혁신적인 기능들을 사진과 영상으로 직접 확인하세요.",
+    "dynamic_motion_subtitle": "실제 조작시의 부드럽고 정밀한 움직임",
+    "images": [
+      { "desc": "인간의 양팔을 완벽하게 모사한 구조" },
+      { "desc": "직관적이고 정밀한 원격 조종" },
+      { "desc": "데스크탑 환경에 최적화된 하드웨어" },
+      { "desc": "다양한 물체를 정교하게 파지하는 그리퍼" },
+      { "desc": "작업의 감각을 전달하는 포스 피드백" }
+    ]
   },
   "features": {
-    "title": "Why Choose OpenArm?",
-    "subtitle": "가장 앞서가는 기술이 하나로 통합된 오픈 생태계",
-    "opensource": {
-      "title": "100% 오픈소스 생태계",
-      "desc": "GitHub 커뮤니티에 합류하세요. 모든 하드웨어 설계, 펌웨어, 소프트웨어 스택을 자유롭게 탐구하고 수정할 수 있습니다."
-    },
-    "affordable": {
-      "title": "궁극의 합리적인 가격",
-      "desc": "고품질의 대량 생산 부품들로 구성되어 로봇 연구와 교육의 진입 장벽을 획기적으로 낮췄습니다."
-    },
-    "ai_ready": {
-      "title": "AI & 원격 조작 최적화",
-      "desc": "강화학습 환경 연동 및 모방학습 데이터 수집을 위한 최단 경로(Low-latency) 통신 프로토콜을 지원합니다."
-    },
-    "bimanual": {
-      "title": "양팔 제어에 최적화된 설계",
-    "desc": "단일 모드를 넘어 사람과 같은 작업을 수행할 수 있도록 듀얼 암(Dual-arm) 구성에 맞춰 설계되었습니다."
-    },
-    "lightweight": {
-      "title": "놀랍도록 가벼운 무게",
-      "desc": "카본 파이버와 알루미늄 구조체로 5.5kg의 초경량을 달성해 한 사람도 쉽게 이동 및 설치가 가능합니다."
-    },
-    "can_fd": {
-      "title": "CAN-FD 실시간 제어",
-      "desc": "1kHz의 초고속 통신 주기로 다관절 동기화 제어 시 완벽한 실시간성과 즉각적인 반응을 보장합니다."
-    }
+    "title": "Key Features",
+    "subtitle": "연구부터 양산까지, 혁신을 앞당기는 핵심 기능들",
+    "items": [
+      {
+        "title": "Bimanual System",
+        "desc": "완벽히 동기화된 양팔 14DOF 제어로 인간 수준의 복잡한 작업 수행이 가능합니다."
+      },
+      {
+        "title": "1kHz CAN-FD Control",
+        "desc": "독자 개발된 초고속 통신 프로토콜로 실시간 초정밀 모션 제어를 실현합니다."
+      },
+      {
+        "title": "Affordable Platform",
+        "desc": "$6,500(USD)의 합리적인 가격. 연구 및 산업 현장의 도입 장벽을 획기적으로 낮췄습니다."
+      },
+      {
+        "title": "Lightweight & Powerful",
+        "desc": "5.5kg의 가벼운 암 무게에도 불구하고 최대 6kg의 강력한 페이로드를 자랑합니다."
+      },
+      {
+        "title": "Open Source Ecosystem",
+        "desc": "ROS2 완벽 호환 및 풍부한 오픈소스 커뮤니티 지원으로 빠른 개발이 가능합니다."
+      },
+      {
+        "title": "Built for AI",
+        "desc": "Sim-to-Real 강화학습 모델 배포에 최적화된 하드웨어 아키텍처를 제공합니다."
+      }
+    ]
   },
   "stats": {
     "title": "Core Specifications",
@@ -59,47 +66,38 @@
       "cost": "Bill of Materials Cost"
     }
   },
-  "videos": {
-    "title": "OpenArm in Action"
-  },
   "why_korea": {
-    "title": "Why Libertron?",
-    "subtitle": "한국에서 만나는 가장 빠르고 확실한 지원",
-    "manufacturing": {
-      "title": "국내 검수 및 조립 품질 보장",
-      "desc": "부품들을 단순 수입하는 것을 넘어 한국에서 직접 전수 검사하고 핵심 조립 및 테스트를 거쳐 출고합니다."
-    },
-    "shipping": {
-      "title": "기다림 없는 쾌속 배송",
-      "desc": "한두달 걸리는 해외 직구의 스트레스는 그만. 리버트론에서 재고를 확보하여 국내에서 바로 배송됩니다."
-    },
-    "support": {
-      "title": "가장 가까운 기술 지원",
-      "desc": "답답한 영어 이메일 대신 국내 기술진과 한국어로 직접 소통하며 신속한 A/S 및 지원을 받을 수 있습니다."
-    }
+    "title": "왜 <span className=\"text-point\">리버트론</span>에서<br className=\"md:hidden\" /> 구매해야 할까요?",
+    "subtitle": "(주)리버트론은 다양한 하드웨어 및 소프트웨어 설계 경험을 기반으로<br className=\"hidden md:block\"/>신뢰할 수 있는 구매 경험을 제공합니다.",
+    "items": [
+      {
+        "title": "유연한 판매 방식",
+        "desc": "연구용 및 맞춤형 목적을 위한 완제품, 조립 키트, 그리고 B2B 견적 문의형 판매 방식을 지원합니다."
+      },
+      {
+        "title": "직접 배송 및 설치 시연",
+        "desc": "한국내 배송의 경우 상품을 안전하게 직접 배송해드리며, 오픈암 설치에 필요한 내용을 지원합니다."
+      },
+      {
+        "title": "투명하고 합리적인 가격",
+        "desc": "오픈암의 기본 취지를 지지하며 최선의 품질과 합리적인 가격 체계를 보장합니다. (국내 A/S 정책은 제품별 상세페이지 참조)"
+      }
+    ]
   },
   "get_started": {
-    "title": "Start Creating with OpenArm",
-    "subtitle": "AI 로봇의 미래를 직접 만들 준비가 되셨습니까?",
-    "buttons": {
-      "github": "GitHub 저장소 방문하기",
-      "store": "부품 키트 구매하기"
-    }
+    "title": "Resources",
+    "subtitle": "오픈소스 생태계와 함께 개발을 시작하세요"
   },
   "contact": {
-    "title": "맞춤형 견적이 필요하신가요?",
-    "subtitle": "대학교 연구실, 기업 부설 연구소 및 B2B 대량 주문 건의 경우 공식 디스트리뷰터인 리버트론에게 직접 견적을 요청해주세요.",
-    "button": "견적 요청하기",
-    "location": {
-      "title": "(주) 리버트론",
-      "addr_1": "서울특별시 영등포구 의사당대로 83",
-      "addr_2": "패스트파이브 여의도점 11층",
-      "addr_3": "(07325)"
-    }
+    "title": "Ready to<br />\n<span className=\"text-point\">innovate?</span>",
+    "subtitle": "도입 문의 및 견적 상담을 남겨주시면<br />\n담당자가 빠르게 연락 드리겠습니다.",
+    "button": "문의 접수하기"
   },
   "footer": {
-    "copyright": "© 2024 Libertron / OpenArm. All rights reserved.",
-    "description": "OpenArm은 오픈소스 프로젝트이며, 리버트론은 한국 공식 협력 파트너입니다.",
-    "privacy": "개인정보처리방침"
+    "corp": "한국 공식 판매 및 지원 | (주)리버트론",
+    "addr_1": "대표번호: 02-3486-5278",
+    "addr_2": "사업자등록번호: 105-86-32887",
+    "addr_3": "주소: 서울 영등포구 당산로41길 11 SK V1 Center W동 1111호",
+    "copyright": "© 2024 Enactic AI & OpenArm Korea. All rights reserved."
   }
 }

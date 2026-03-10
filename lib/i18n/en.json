@@ -13,43 +13,50 @@
     "cta": "Go to Store"
   },
   "showcase": {
-    "title": "Bimanual AI Ready",
-    "subtitle": "Beyond Single Arm, Expand to Dual Arm Operations",
-    "desc_1": "OpenArm is perfectly designed to be used in pairs.",
-    "desc_2": "Utilize bimanual configuration to reproduce human-like complex tasks.",
-    "ideal_for": "Ideal for reinforcement learning data collection and imitation learning research."
+    "title": "Discover Detail",
+    "subtitle": "Experience OpenArm's elaborate hardware design and innovative features in photos and videos.",
+    "dynamic_motion_subtitle": "Smooth and precise movement during operation",
+    "images": [
+      { "desc": "Structure flawlessly mimicking human arms" },
+      { "desc": "Intuitive and precise teleoperation" },
+      { "desc": "Hardware optimized for desktop environments" },
+      { "desc": "Dexterous gripper for precise object handling" },
+      { "desc": "Force feedback conveying operational senses" }
+    ]
   },
   "features": {
-    "title": "Why Choose OpenArm?",
-    "subtitle": "Key technology combined into an open ecosystem",
-    "opensource": {
-      "title": "100% Open Source Ecosystem",
-      "desc": "Join our GitHub community. Explore and modify all hardware designs, firmware, and software stacks freely."
-    },
-    "affordable": {
-      "title": "Ultimate Affordability",
-      "desc": "Built with high-quality mass-produced components. Dramatically lowering the entry barrier for robotics research and education."
-    },
-    "ai_ready": {
-      "title": "AI & Teleoperation Ready",
-      "desc": "Optimized protocols for seamless integration with reinforcement learning environments and imitation learning."
-    },
-    "bimanual": {
-      "title": "Optimized for Bimanual",
-      "desc": "Design tailored for dual-arm operation, expanding research possibilities from single-arm to human-like tasks."
-    },
-    "lightweight": {
-      "title": "Incredibly Lightweight",
-      "desc": "The 5.5kg carbon fiber and aluminum structure ensures high payload while allowing easy movement by a single person."
-    },
-    "can_fd": {
-      "title": "CAN-FD Real-time Control",
-      "desc": "1kHz high-speed communication guarantees precise synchronization and instantaneous response for multi-joint control."
-    }
+    "title": "Key Features",
+    "subtitle": "Core features accelerating innovation from research to mass production",
+    "items": [
+      {
+        "title": "Bimanual System",
+        "desc": "Perfectly synchronized bimanual 14DOF control enables human-level complex task execution."
+      },
+      {
+        "title": "1kHz CAN-FD Control",
+        "desc": "Proprietary high-speed communication protocol realizes ultra-precise real-time motion control."
+      },
+      {
+        "title": "Affordable Platform",
+        "desc": "Reasonably priced at $6,500(USD). Dramatically lowers the barrier to entry for research and industrial applications."
+      },
+      {
+        "title": "Lightweight & Powerful",
+        "desc": "Despite its light 5.5kg arm weight, it boasts a powerful peak payload of up to 6kg."
+      },
+      {
+        "title": "Open Source Ecosystem",
+        "desc": "Fully compatible with ROS2 and supported by a rich open-source community for rapid development."
+      },
+      {
+        "title": "Built for AI",
+        "desc": "Provides a hardware architecture optimized for deploying Sim-to-Real reinforcement learning models."
+      }
+    ]
   },
   "stats": {
     "title": "Core Specifications",
-    "subtitle": "Libertron complies with the OpenArm standard specifications.",
+    "subtitle": "Libertron complies with the OpenArm standard specifications",
     "labels": {
       "dof": "Bimanual Arms",
       "reach": "Arm Reach",
@@ -59,47 +66,38 @@
       "cost": "Bill of Materials Cost"
     }
   },
-  "videos": {
-    "title": "OpenArm in Action"
-  },
   "why_korea": {
-    "title": "Why Libertron?",
-    "subtitle": "Fastest shipping, most reliable technical support in Korea",
-    "manufacturing": {
-      "title": "Domestic Manufacturing & QA",
-      "desc": "We directly inspect all parts, assemble, and conduct rigorous quality testing in Korea."
-    },
-    "shipping": {
-      "title": "Immediate Shipping Available",
-      "desc": "No overseas shipping delays. We operate a local inventory for fast delivery within Korea."
-    },
-    "support": {
-      "title": "Direct Technical Support",
-      "desc": "Say goodbye to frustrating English emails. We provide prompt A/S and technical support directly in Korean."
-    }
+    "title": "Why buy from <span className=\"text-point\">Libertron</span>?<br className=\"md:hidden\" />",
+    "subtitle": "Libertron Co., Ltd. provides a reliable purchasing experience<br className=\"hidden md:block\"/>based on extensive hardware and software design expertise.",
+    "items": [
+      {
+        "title": "Flexible Sales Options",
+        "desc": "We support fully assembled products for research and custom purposes, assembly kits, and B2B quote-based sales methods."
+      },
+      {
+        "title": "Direct Delivery & Installation Demo",
+        "desc": "For domestic deliveries within Korea, we deliver the product safely in person and support the necessary steps for OpenArm installation."
+      },
+      {
+        "title": "Transparent & Reasonable Pricing",
+        "desc": "We support the founding principles of OpenArm, guaranteeing the best quality and a reasonable pricing system. (Refer to the product details page for the domestic A/S policy.)"
+      }
+    ]
   },
   "get_started": {
-    "title": "Start Creating with OpenArm",
-    "subtitle": "Everything you need to build the future of AI robotics is ready.",
-    "buttons": {
-      "github": "View GitHub Repository",
-      "store": "Buy Components Now"
-    }
+    "title": "Resources",
+    "subtitle": "Start developing with the open source ecosystem"
   },
   "contact": {
-    "title": "Require a Custom Quote?",
-    "subtitle": "For laboratories, corporate research centers, and B2B orders, please request a quote directly from our official distributor, Libertron.",
-    "button": "Request a Quote",
-    "location": {
-      "title": "Libertron Co., Ltd.",
-      "addr_1": "Level 11, Fastfive Yeouido",
-      "addr_2": "83 Uisadang-daero, Yeongdeungpo-gu",
-      "addr_3": "Seoul, Republic of Korea (07325)"
-    }
+    "title": "Ready to<br />\n<span className=\"text-point\">innovate?</span>",
+    "subtitle": "Leave an inquiry or request a quote,<br />\nand a representative will contact you shortly.",
+    "button": "Submit Inquiry"
   },
   "footer": {
-    "copyright": "© 2024 Libertron / OpenArm. All rights reserved.",
-    "description": "OpenArm is an open-source project. Libertron is the official distributor in Korea.",
-    "privacy": "Privacy Policy"
+    "corp": "Official Sales & Support | Libertron Co., Ltd.",
+    "addr_1": "Main Number: +82-2-3486-5278",
+    "addr_2": "Business Registration No.: 105-86-32887",
+    "addr_3": "Address: Room 1111, SK V1 Center W Building, 11 Dangsan-ro 41-gil, Yeongdeungpo-gu, Seoul",
+    "copyright": "© 2024 Enactic AI & OpenArm Korea. All rights reserved."
   }
 }

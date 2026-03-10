@@ -13,10 +13,10 @@ export default function Footer() {
             OpenArm<span className="text-point">.</span>
           </h2>
           <div className="text-foreground-sub text-sm space-y-1">
-            <p className="font-semibold text-foreground-main mb-2">Libertron Co., Ltd.</p>
-            <p>{t("contact.location.addr_1")}</p>
-            <p>{t("contact.location.addr_2")}</p>
-            <p>{t("contact.location.addr_3")}</p>
+            <p className="font-semibold text-foreground-main mb-2">{t("footer.corp")}</p>
+            <p>{t("footer.addr_1")}</p>
+            <p>{t("footer.addr_2")}</p>
+            <p>{t("footer.addr_3")}</p>
           </div>
         </div>
         
@@ -26,10 +26,8 @@ export default function Footer() {
           <Link href="https://discord.gg/FsZaZ4z3We" target="_blank" rel="noopener noreferrer" className="hover:text-point transition-colors">Discord</Link>
         </div>
       </div>
-      <div className="bg-foreground-main text-background-main/50 text-xs text-center py-4 flex flex-col md:flex-row justify-center items-center gap-2 md:gap-4">
-        <span>{t("footer.copyright")}</span>
-        <span className="hidden md:inline">|</span>
-        <span>{t("footer.description")}</span>
+      <div className="bg-foreground-main text-background-main/50 text-xs text-center py-4">
+        {t("footer.copyright")}
       </div>
     </footer>
   );

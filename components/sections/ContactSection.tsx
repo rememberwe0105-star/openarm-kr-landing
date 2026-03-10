@@ -24,12 +24,8 @@ export default function ContactSection() {
       <div ref={containerRef} className="max-w-4xl mx-auto flex flex-col md:flex-row gap-12 contact-content">
         
         <div className="md:w-1/2 flex flex-col justify-center">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-foreground-main mb-6">
-            {t("contact.title")}
-          </h2>
-          <p className="text-foreground-sub text-lg mb-8 whitespace-pre-line">
-            {t("contact.subtitle")}
-          </p>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-foreground-main mb-6" dangerouslySetInnerHTML={{ __html: t("contact.title") }} />
+          <p className="text-foreground-sub text-lg mb-8 whitespace-pre-line" dangerouslySetInnerHTML={{ __html: t("contact.subtitle") }} />
           <div className="flex flex-col gap-4 mt-8">
             <div className="flex items-center gap-4 text-foreground-main font-semibold">
               <svg className="w-6 h-6 text-point shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -60,8 +60,6 @@ export default function FeaturesSection() {
 
       <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {features.map((feature, idx) => {
-          const keys = ["opensource", "affordable", "ai_ready", "bimanual", "lightweight", "can_fd"];
-          const key = keys[idx];
           return (
             <div 
               key={idx} 
@@ -75,10 +73,10 @@ export default function FeaturesSection() {
               </div>
               <div className="p-8 flex-1 flex flex-col">
                 <h3 className="text-xl font-bold text-foreground-main mb-3 group-hover:text-point transition-colors duration-300">
-                  {t(`features.${key}.title`)}
+                  {t(`features.items.${idx}.title`)}
                 </h3>
                 <p className="text-foreground-sub leading-relaxed">
-                  {t(`features.${key}.desc`)}
+                  {t(`features.items.${idx}.desc`)}
                 </p>
               </div>
             </div>

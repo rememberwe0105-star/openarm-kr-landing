@@ -53,18 +53,12 @@ export default function WhyKoreaSection() {
       <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-background-sub to-transparent opcaity-50 -z-10" />
 
       <div className="text-left md:text-center mb-16 md:mb-24">
-        <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-foreground-main mb-6">
-          {t("why_korea.title")}
-        </h2>
-        <p className="text-foreground-sub text-lg md:text-xl max-w-2xl md:mx-auto">
-          {t("why_korea.subtitle")}
-        </p>
+        <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-foreground-main mb-6" dangerouslySetInnerHTML={{ __html: t("why_korea.title") }} />
+        <p className="text-foreground-sub text-lg md:text-xl max-w-2xl md:mx-auto" dangerouslySetInnerHTML={{ __html: t("why_korea.subtitle") }} />
       </div>
 
       <div ref={containerRef} className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {reasons.map((reason, idx) => {
-          const keys = ["manufacturing", "shipping", "support"];
-          const key = keys[idx];
           return (
             <div 
               key={idx} 
@@ -75,10 +69,10 @@ export default function WhyKoreaSection() {
               </div>
               <div className="relative z-10 pt-8">
                 <h3 className="text-2xl font-bold text-foreground-main mb-4 group-hover:text-point transition-colors">
-                  {t(`why_korea.${key}.title`)}
+                  {t(`why_korea.items.${idx}.title`)}
                 </h3>
                 <p className="text-foreground-sub text-lg leading-relaxed">
-                  {t(`why_korea.${key}.desc`)}
+                  {t(`why_korea.items.${idx}.desc`)}
                 </p>
               </div>
             </div>

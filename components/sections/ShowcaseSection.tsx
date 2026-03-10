@@ -79,10 +79,10 @@ export default function ShowcaseSection() {
       
       <div className="px-6 md:px-12 lg:px-24 max-w-[1400px] mx-auto mb-16">
         <h2 className="text-3xl md:text-5xl font-black text-foreground-main tracking-tighter mb-4 text-center md:text-left">
-          Discover <span className="text-point">Detail</span>
+          {t("showcase.title")}
         </h2>
         <p className="text-foreground-sub text-lg max-w-2xl text-center md:text-left font-medium">
-          OpenArm의 정교한 하드웨어 설계와 혁신적인 기능들을 사진과 영상으로 직접 확인하세요.
+          {t("showcase.subtitle")}
         </p>
       </div>
 
@@ -128,7 +128,7 @@ export default function ShowcaseSection() {
                 Dynamic Motion
               </h3>
               <p className="text-white/80 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                실제 조작시의 부드럽고 정밀한 움직임
+                {t("showcase.dynamic_motion_subtitle")}
               </p>
             </div>
           </div>
