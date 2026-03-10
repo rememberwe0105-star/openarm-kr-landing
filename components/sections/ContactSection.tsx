@@ -49,34 +49,34 @@ export default function ContactSection() {
         <div className="md:w-1/2 bg-background-sub p-8 rounded-3xl border border-border-light shadow-sm">
           <form className="flex flex-col gap-5" onSubmit={(e) => e.preventDefault()}>
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-foreground-sub mb-1">이름 / 소속</label>
+              <label htmlFor="name" className="block text-sm font-medium text-foreground-sub mb-1">{t("contact.form.name_label")}</label>
               <input 
                 type="text" 
                 id="name" 
                 className="w-full px-4 py-3 rounded-xl border border-border-light bg-background-main focus:outline-none focus:ring-2 focus:ring-point/50 focus:border-point transition-all"
-                placeholder="홍길동 / (주)리버트론"
+                placeholder={t("contact.form.name_placeholder")}
                 required
               />
             </div>
             
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-foreground-sub mb-1">이메일</label>
+              <label htmlFor="email" className="block text-sm font-medium text-foreground-sub mb-1">{t("contact.form.email_label")}</label>
               <input 
                 type="email" 
                 id="email" 
                 className="w-full px-4 py-3 rounded-xl border border-border-light bg-background-main focus:outline-none focus:ring-2 focus:ring-point/50 focus:border-point transition-all"
-                placeholder="hello@example.com"
+                placeholder={t("contact.form.email_placeholder")}
                 required
               />
             </div>
             
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-foreground-sub mb-1">문의 내용</label>
+              <label htmlFor="message" className="block text-sm font-medium text-foreground-sub mb-1">{t("contact.form.message_label")}</label>
               <textarea 
                 id="message" 
                 rows={4}
                 className="w-full px-4 py-3 rounded-xl border border-border-light bg-background-main focus:outline-none focus:ring-2 focus:ring-point/50 focus:border-point transition-all resize-none"
-                placeholder="도입 수량 및 기타 문의사항을 적어주세요."
+                placeholder={t("contact.form.message_placeholder")}
                 required
               />
             </div>

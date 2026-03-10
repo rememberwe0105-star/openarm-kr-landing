@@ -108,7 +108,15 @@
   "contact": {
     "title": "Ready to<br />\n<span className=\"text-point\">innovate?</span>",
     "subtitle": "도입 문의 및 견적 상담을 남겨주시면<br />\n담당자가 빠르게 연락 드리겠습니다.",
-    "button": "문의 접수하기"
+    "button": "문의 접수하기",
+    "form": {
+      "name_label": "이름 / 소속",
+      "name_placeholder": "홍길동 / (주)리버트론",
+      "email_label": "이메일",
+      "email_placeholder": "hello@example.com",
+      "message_label": "문의 내용",
+      "message_placeholder": "도입 수량 및 기타 문의사항을 적어주세요."
+    }
   },
   "footer": {
     "corp": "한국 공식 판매 및 지원 | (주)리버트론",
