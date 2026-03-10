@@ -22,16 +22,20 @@ export default function Navbar() {
       setIsScrolled(window.scrollY > 50);
     };
     
-    // Evaluate scroll position immediately on mount or route change
+    // Evaluate initially
     handleScroll();
-    
-    // Fallback for delayed browser hash jump scrolls
-    const timer = setTimeout(handleScroll, 150);
 
+    // Standard scroll listener
     window.addEventListener("scroll", handleScroll, { passive: true });
+    
+    // Robust polling to catch smooth-scroll hash jumps where scroll events might misfire
+    const interval = setInterval(handleScroll, 100);
+    const timeout = setTimeout(() => clearInterval(interval), 2500); // Stop polling after jump finishes
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      clearTimeout(timer);
+      clearInterval(interval);
+      clearTimeout(timeout);
     };
   }, [pathname]);
 
