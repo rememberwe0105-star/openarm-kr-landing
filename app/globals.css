@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background-main text-foreground-main font-inter antialiased;
+  }
+}
+
+/* Custom Hide/Show classes for GSAP */
+.hide-for-gsap {
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* Utilities for sections */
+.section-padding {
+  @apply py-20 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto;
+}
