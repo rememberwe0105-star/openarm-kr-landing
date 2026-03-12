@@ -60,9 +60,14 @@ export async function POST(req: Request) {
       transporter = nodemailer.createTransport({
         host: process.env.SMTP_HOST || "smtp.gmail.com",
         port: Number(process.env.SMTP_PORT) || 587,
+        secure: false, // true for 465, false for other ports
         auth: {
           user: process.env.SMTP_USER,
           pass: process.env.SMTP_PASS,
+        },
+        tls: {
+          // do not fail on invalid (like self-signed) certs
+          rejectUnauthorized: false,
         },
       });
     } else {
@@ -81,7 +86,7 @@ export async function POST(req: Request) {
 
     const mailOptions = {
       from: process.env.SMTP_USER || '"OpenArm Store" <noreply@openarm.com>',
-      to: "pocketmagazine@naver.com", // User requested test address
+      to: process.env.CONTACT_EMAIL_TO || "openarm@libertron.com",
       subject: `[OpenArm Store] ${company}님의 새로운 주문 요청`,
       html: htmlContent,
     };
