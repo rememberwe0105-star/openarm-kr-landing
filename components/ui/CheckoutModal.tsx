@@ -44,11 +44,6 @@ export default function CheckoutModal({ isOpen, onClose, items, onOrderComplete 
       if (!response.ok) throw new Error("Network response was not ok");
       
       setIsSuccess(true);
-      setTimeout(() => {
-        setIsSuccess(false);
-        onOrderComplete();
-        onClose();
-      }, 3000); // 3 seconds success message
 
     } catch (error) {
       console.error("Failed to submit order:", error);
@@ -123,7 +118,17 @@ export default function CheckoutModal({ isOpen, onClose, items, onOrderComplete 
             <div className="flex flex-col items-center justify-center py-20 text-center animate-in fade-in zoom-in duration-500">
               <CheckCircle2 size={64} className="text-green-500 mb-4" />
               <h3 className="text-2xl font-bold text-foreground-main mb-2">요청이 성공적으로 접수되었습니다.</h3>
-              <p className="text-foreground-sub">담당자가 내용을 확인한 후 입력하신 연락처로 회신드리겠습니다.</p>
+              <p className="text-foreground-sub mb-8">담당자가 내용을 확인한 후 입력하신 연락처로 회신드리겠습니다.</p>
+              <button
+                onClick={() => {
+                  setIsSuccess(false);
+                  onOrderComplete();
+                  onClose();
+                }}
+                className="w-full max-w-[200px] bg-point text-white py-3 rounded-xl text-[15px] font-bold hover:bg-point/90 transition-colors shadow-sm"
+              >
+                확인
+              </button>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
