@@ -29,7 +29,7 @@ export const products: Product[] = [
   {
     id: "follower-3cam",
     name: "Follower V1.1 with 3 Cameras",
-    price: 6899,
+    price: 6879,
     description: "Follower Dual Arm + Pedestal + Intel RealSense Cameras\nThis is the OpenArm Follower Dual Arm V1.1 equipped with three Intel RealSense cameras.",
     imageUrl: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/690805cb537ce0d0faf4b22e/b102af9b0_follower1_bg.png",
     category: "Robots"
