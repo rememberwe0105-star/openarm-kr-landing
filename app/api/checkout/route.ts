@@ -49,7 +49,7 @@ export async function POST(req: Request) {
     `;
 
     const { data, error } = await resend.emails.send({
-      from: "OpenArm Store <onboarding@resend.dev>",
+      from: "OpenArm Store <noreply@openarm.co.kr>",
       to: process.env.CONTACT_EMAIL_TO || "openarm@libertron.com",
       replyTo: email,
       subject: `[OpenArm Store] ${company}님의 새로운 주문 요청`,

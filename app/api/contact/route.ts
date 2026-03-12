@@ -26,7 +26,7 @@ export async function POST(req: Request) {
     `;
 
     const { data, error } = await resend.emails.send({
-      from: "OpenArm Website <onboarding@resend.dev>",
+      from: "OpenArm Website <noreply@openarm.co.kr>",
       to: process.env.CONTACT_EMAIL_TO || "openarm@libertron.com",
       replyTo: email,
       subject: `[OpenArm 문의] ${name}님의 문의사항이 접수되었습니다.`,
