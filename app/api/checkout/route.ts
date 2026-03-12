@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
   try {
@@ -46,69 +48,24 @@ export async function POST(req: Request) {
       <p><strong>총 결제 예상 금액:</strong> $${subtotal.toLocaleString()}</p>
     `;
 
-    // For testing: Use Ethereal Email if no real SMTP is provided, 
-    // but the user requested an actual email to their address.
-    // Instead of my own credentials, I will use a publicly available free test SMTP setup or tell Nodemailer to generate one.
-    // Actually, Nodemailer's Ethereal test accounts CANNOT send emails to external real addresses (like Naver).
-    // To send a REAL email, a REAL SMTP server is required. 
-    // We will simulate the attempt and create a proper Ethereal URL so the user can see the EXACT email that *would* have been sent.
-    
-    let transporter;
-    let testAccount;
-
-    if (process.env.SMTP_USER && process.env.SMTP_PASS) {
-      transporter = nodemailer.createTransport({
-        host: process.env.SMTP_HOST || "smtp.gmail.com",
-        port: Number(process.env.SMTP_PORT) || 587,
-        secure: false, // true for 465, false for other ports
-        auth: {
-          user: process.env.SMTP_USER,
-          pass: process.env.SMTP_PASS,
-        },
-        tls: {
-          // do not fail on invalid (like self-signed) certs
-          rejectUnauthorized: false,
-        },
-      });
-    } else {
-      // Create a test account dynamically for demonstration
-      testAccount = await nodemailer.createTestAccount();
-      transporter = nodemailer.createTransport({
-        host: "smtp.ethereal.email",
-        port: 587,
-        secure: false,
-        auth: {
-          user: testAccount.user,
-          pass: testAccount.pass,
-        },
-      });
-    }
-
-    const mailOptions = {
-      from: process.env.SMTP_USER || '"OpenArm Store" <noreply@openarm.com>',
+    const { data, error } = await resend.emails.send({
+      from: "OpenArm Store <onboarding@resend.dev>",
       to: process.env.CONTACT_EMAIL_TO || "openarm@libertron.com",
+      replyTo: email,
       subject: `[OpenArm Store] ${company}님의 새로운 주문 요청`,
       html: htmlContent,
-    };
+    });
 
-    const info = await transporter.sendMail(mailOptions);
-    
-    if (testAccount) {
-      console.log("==========================================");
-      console.log("Mock Email sent! Preview URL: %s", nodemailer.getTestMessageUrl(info));
-      console.log("==========================================");
-      
+    if (error) {
+      console.error("Resend Checkout Email Error:", error);
       return NextResponse.json(
-        { 
-          message: "테스트 메일 전송 성공", 
-          previewUrl: nodemailer.getTestMessageUrl(info) 
-        },
-        { status: 200 }
+        { message: "이메일 전송에 실패했습니다." },
+        { status: 500 }
       );
     }
 
     return NextResponse.json(
-      { message: "주문 요청이 성공적으로 전송되었습니다." },
+      { message: "주문 요청이 성공적으로 전송되었습니다.", data },
       { status: 200 }
     );
   } catch (error) {

@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
   try {
@@ -23,54 +25,24 @@ export async function POST(req: Request) {
       <p style="white-space: pre-wrap;">${message}</p>
     `;
 
-    let transporter;
-    let testAccount;
-
-    if (process.env.SMTP_USER && process.env.SMTP_PASS) {
-      transporter = nodemailer.createTransport({
-        host: process.env.SMTP_HOST || "smtp.gmail.com",
-        port: Number(process.env.SMTP_PORT) || 587,
-        secure: false, // true for 465, false for other ports. Not strict true/false for STARTTLS.
-        auth: {
-          user: process.env.SMTP_USER,
-          pass: process.env.SMTP_PASS,
-        },
-        tls: {
-          // do not fail on invalid (like self-signed) certs
-          rejectUnauthorized: false,
-        },
-      });
-    } else {
-      testAccount = await nodemailer.createTestAccount();
-      transporter = nodemailer.createTransport({
-        host: "smtp.ethereal.email",
-        port: 587,
-        secure: false,
-        auth: {
-          user: testAccount.user,
-          pass: testAccount.pass,
-        },
-      });
-    }
-
-    const mailOptions = {
-      from: process.env.SMTP_USER || '"OpenArm Website" <noreply@openarm.com>',
+    const { data, error } = await resend.emails.send({
+      from: "OpenArm Website <onboarding@resend.dev>",
       to: process.env.CONTACT_EMAIL_TO || "openarm@libertron.com",
       replyTo: email,
       subject: `[OpenArm 문의] ${name}님의 문의사항이 접수되었습니다.`,
       html: htmlContent,
-    };
+    });
 
-    const info = await transporter.sendMail(mailOptions);
-    
-    if (testAccount) {
-      console.log("==========================================");
-      console.log("Mock Contact Email sent! Preview URL: %s", nodemailer.getTestMessageUrl(info));
-      console.log("==========================================");
+    if (error) {
+      console.error("Resend Email Error:", error);
+      return NextResponse.json(
+        { message: "이메일 전송에 실패했습니다." },
+        { status: 500 }
+      );
     }
 
     return NextResponse.json(
-      { message: "문의가 성공적으로 전달되었습니다." },
+      { message: "문의가 성공적으로 전달되었습니다.", data },
       { status: 200 }
     );
   } catch (error) {
