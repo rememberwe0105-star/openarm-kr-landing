@@ -124,14 +124,15 @@
       "email_placeholder": "hello@example.com",
       "message_label": "문의 내용",
       "message_placeholder": "도입 수량 및 기타 문의사항을 적어주세요."
-    }
+    },
+    "visit_libertron": "리버트론 홈페이지 방문하기"
   },
   "footer": {
     "corp": "(주)리버트론",
     "addr_1": "대표번호: +82(02)3486-5278",
     "addr_2": "사업자등록번호: 105-86-32887",
     "addr_3": "주소: 서울 영등포구 당산로41길 11 SK V1 Center W동 1111호",
-    "copyright": "© 2024 Enactic AI & OpenArm Korea. All rights reserved."
+    "copyright": "© 2026 Libertron Co., Ltd. All rights reserved."
   },
   "products_page": {
     "title_1": "Featured ",

@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const jetBrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains-mono" });
 
 export const metadata: Metadata = {
-  title: "OpenArm KR | 양팔 협동로봇의 새로운 기준",
+  title: "OpenArm KR",
   description: "합리적인 가격, 압도적인 성능. OpenArm 한국 공식 런칭 페이지",
 };
 

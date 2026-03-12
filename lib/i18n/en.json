@@ -124,14 +124,15 @@
       "email_placeholder": "hello@example.com",
       "message_label": "Message",
       "message_placeholder": "Please describe your required quantity and any other inquiries."
-    }
+    },
+    "visit_libertron": "Visit Libertron Website"
   },
   "footer": {
     "corp": "Libertron Co., Ltd.",
     "addr_1": "Main Number: +82(02)3486-5278",
     "addr_2": "Business Registration No.: 105-86-32887",
     "addr_3": "Address: Room 1111, SK V1 Center W Building, 11 Dangsan-ro 41-gil, Yeongdeungpo-gu, Seoul",
-    "copyright": "© 2024 Enactic AI & OpenArm Korea. All rights reserved."
+    "copyright": "© 2026 Libertron Co., Ltd. All rights reserved."
   },
   "products_page": {
     "title_1": "Featured ",
