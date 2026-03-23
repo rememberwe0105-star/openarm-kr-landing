@@ -149,7 +149,7 @@ export default function ProductsPage() {
                 </h2>
                 
                 <div className="text-2xl font-mono text-point font-bold mb-8 opacity-90">
-                  ${product.price.toLocaleString()}
+                  {product.displayPrice ? product.displayPrice : `$${product.price.toLocaleString()}`}
                 </div>
                 
                 <div className="text-foreground-sub text-base lg:text-lg mb-10 whitespace-pre-line leading-relaxed font-medium">

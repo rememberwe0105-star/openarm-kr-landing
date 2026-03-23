@@ -86,7 +86,7 @@ export default function CheckoutModal({ isOpen, onClose, items, onOrderComplete 
                   <p className="text-xs text-foreground-sub">Qty: {item.quantity}</p>
                 </div>
                 <div className="text-sm font-bold font-mono text-point">
-                  ${(item.price * item.quantity).toLocaleString()}
+                  {item.displayPrice ? item.displayPrice : `$${(item.price * item.quantity).toLocaleString()}`}
                 </div>
               </div>
             ))}

@@ -72,7 +72,7 @@ export default function CartDrawer({
                     {item.name}
                   </h3>
                   <div className="text-point font-mono font-bold text-sm mb-auto">
-                    ${item.price.toLocaleString()}
+                    {item.displayPrice ? item.displayPrice : `$${item.price.toLocaleString()}`}
                   </div>
 
                   {/* Quantity & Delete */}
