@@ -1,9 +1,19 @@
 "use client";
 
+import { useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
 
 export default function ScrollProgress() {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+      }
+      window.scrollTo(0, 0);
+    }
+  }, []);
+
   useGSAP(() => {
     gsap.to(".progress-bar", {
       scaleX: 1,
