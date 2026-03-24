@@ -68,19 +68,19 @@
   },
   "why_korea": {
     "title": "Why buy from <a href=\"https://libertron.com/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-point font-black px-1 border-b-4 border-point/30 hover:border-point hover:text-blue-600 transition-all duration-300\">Libertron</a>?<br class=\"md:hidden\" />",
-    "subtitle": "Libertron Co., Ltd. provides a reliable purchasing experience<br className=\"hidden md:block\"/>based on extensive hardware and software design expertise.",
+    "subtitle": "Libertron has enhanced the OpenArm platform for a more user-friendly experience,<br className=\"hidden md:block\"/>providing comprehensive support from delivery to after-sales service.",
     "items": [
       {
-        "title": "Flexible Sales Options",
-        "desc": "We support fully assembled products for research and educational purposes, assembly kits, and B2B quote-based sales methods."
+        "title": "\"From Delivery to Operation\"\nComprehensive end-to-end support",
+        "desc": "The manufacturer directly provides product delivery, operational demonstrations, technical support, and comprehensive after-sales service."
       },
       {
-        "title": "Direct Delivery & Installation Demo",
-        "desc": "For domestic deliveries within Korea, we deliver the product safely in person and support the necessary steps for OpenArm installation."
+        "title": "\"Enhanced In-House Platform\"\nOptimized for professional use",
+        "desc": "We provide a platform with improved specifications, convenience, and durability compared to similar products in the market."
       },
       {
-        "title": "Transparent & Reasonable Pricing",
-        "desc": "We support the founding principles of OpenArm, guaranteeing the best quality and a reasonable pricing system. (Refer to the product details page for the domestic A/S policy.)"
+        "title": "\"Extensible Solutions\"\nFlexible utilization for R&D and education",
+        "desc": "We offer various options and extensible solutions, including cameras and custom-made grippers."
       }
     ]
   },
