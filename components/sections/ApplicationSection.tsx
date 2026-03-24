@@ -59,7 +59,7 @@ export default function ApplicationSection() {
     <section 
       id="applications" 
       ref={containerRef} 
-      className="py-24 md:py-32 bg-background-sub border-t border-border-light relative z-10"
+      className="py-24 md:py-32 bg-background-main border-t border-border-light relative z-10"
     >
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24">
         <div className="mb-16 text-center md:text-left">

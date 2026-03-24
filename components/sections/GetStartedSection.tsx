@@ -41,7 +41,7 @@ export default function GetStartedSection() {
   }, { scope: containerRef });
 
   return (
-    <section id="get-started" className="section-padding bg-background-sub">
+    <section id="get-started" className="section-padding bg-background-main border-t border-border-light">
       <div className="text-center mb-16">
         <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-foreground-main mb-4">
           {t("get_started.title")}
