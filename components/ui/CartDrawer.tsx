@@ -119,13 +119,13 @@ export default function CartDrawer({
               </span>
             </div>
             <p className="text-xs text-foreground-sub mb-6 text-center">
-              Taxes, discounts and shipping calculated at check out.
+              Taxes, discounts and shipping calculated upon inquiry.
             </p>
             <button 
               onClick={onCheckout}
               className="w-full bg-point text-white py-4 rounded-xl font-bold text-lg hover:bg-point/80 shadow-lg shadow-point/20 transition-all duration-300"
             >
-              Check Out
+              Submit Inquiry
             </button>
             <button 
               onClick={onClose}
