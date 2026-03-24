@@ -30,7 +30,7 @@
     "items": [
       {
         "title": "Bimanual System",
-        "desc": "완벽히 동기화된 양팔 14DOF 제어로 인간 수준의 복잡한 작업 수행이 가능합니다."
+        "desc": "리더와 정밀하게 동기화되는 팔로워는 양팔 14DOF를 기반으로 인간과 동일한 수준의 복잡한 액션을 수행할 수 있습니다."
       },
       {
         "title": "1kHz CAN-FD Control",
