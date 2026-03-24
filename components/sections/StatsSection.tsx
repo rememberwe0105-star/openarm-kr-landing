@@ -25,13 +25,13 @@ export default function StatsSection() {
     <section 
       id="specs" 
       ref={containerRef}
-      className="bg-background-sub border-y border-border-light section-padding"
+      className="bg-gradient-to-b from-[#111] to-[#0a0a0a] text-white section-padding"
     >
       <div className="text-center mb-16">
-        <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-foreground-main mb-4">
+        <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-white mb-4">
           {t("stats.title")}
         </h2>
-        <p className="text-foreground-sub text-lg">
+        <p className="text-white/70 text-lg">
           {t("stats.subtitle")}
         </p>
       </div>
@@ -40,7 +40,7 @@ export default function StatsSection() {
         {stats.map((stat, idx) => (
           <div 
             key={idx} 
-            className="stat-card flex flex-col items-center justify-center p-6 bg-background-main rounded-2xl shadow-sm border border-border-light"
+            className="stat-card flex flex-col items-center justify-center p-6 md:py-8 bg-white/[0.03] backdrop-blur-md rounded-[2rem] shadow-2xl border border-white/[0.08] hover:bg-white/[0.06] hover:border-white/[0.15] transition-all duration-500 hover:-translate-y-1 group"
           >
             <div className="text-4xl md:text-5xl lg:text-6xl mb-2 flex items-baseline">
               {stat.prefix && <span className="text-2xl md:text-3xl font-bold font-mono text-point mr-1">{stat.prefix}</span>}
@@ -50,9 +50,9 @@ export default function StatsSection() {
                 duration={2 + (idx * 0.2)} 
               />
               {stat.suffix && <span className="text-lg md:text-xl font-bold font-mono text-point ml-1">{stat.suffix}</span>}
-              {stat.modifier && <span className="text-sm md:text-base font-bold text-foreground-sub ml-1 mt-auto pb-1">{stat.modifier}</span>}
+              {stat.modifier && <span className="text-sm md:text-base font-bold text-white/40 ml-1 mt-auto pb-1">{stat.modifier}</span>}
             </div>
-            <p className="text-sm md:text-base font-medium text-foreground-sub">
+            <p className="text-sm md:text-base font-medium text-white/60 group-hover:text-white/80 transition-colors duration-300">
               {t(`stats.labels.${stat.labelKey}`)}
             </p>
           </div>
