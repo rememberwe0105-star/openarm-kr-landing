@@ -26,9 +26,7 @@ export default function GetStartedSection() {
         <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-foreground-main mb-4">
           {t("get_started.title")}
         </h2>
-        <p className="text-foreground-sub text-lg">
-          {t("get_started.subtitle")}
-        </p>
+        <p className="text-foreground-sub text-lg" dangerouslySetInnerHTML={{ __html: t("get_started.subtitle") }} />
       </div>
 
       <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-3 gap-6 max-w-5xl mx-auto md:px-6">
