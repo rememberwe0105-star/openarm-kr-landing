@@ -24,8 +24,8 @@ export default function Home() {
       <VideoCarouselSection />
       <ShowcaseSection />
       <FeaturesSection />
-      <WhyKoreaSection />
       <GetStartedSection />
+      <WhyKoreaSection />
       <ContactSection />
 
       <Footer />
