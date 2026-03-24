@@ -4,6 +4,7 @@ import ScrollProgress from "@/components/ui/ScrollProgress";
 
 import HeroSection from "@/components/sections/HeroSection";
 import HeroVideoSection from "@/components/sections/HeroVideoSection";
+import ExplodedViewSection from "@/components/sections/ExplodedViewSection";
 import StatsSection from "@/components/sections/StatsSection";
 import VideoCarouselSection from "@/components/sections/VideoCarouselSection";
 import ShowcaseSection from "@/components/sections/ShowcaseSection";
@@ -20,6 +21,7 @@ export default function Home() {
       
       <HeroSection />
       <HeroVideoSection />
+      <ExplodedViewSection />
       <StatsSection />
       <VideoCarouselSection />
       <ShowcaseSection />
