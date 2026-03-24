@@ -47,7 +47,7 @@ export default function ContactSection() {
   }, { scope: containerRef });
 
   return (
-    <section id="contact" className="section-padding bg-background-main border-t border-border-light relative">
+    <section id="contact" className="section-padding bg-background-main relative">
       <div ref={containerRef} className="max-w-4xl mx-auto flex flex-col md:flex-row gap-12 contact-content">
         
         <div className="md:w-1/2 flex flex-col justify-center">

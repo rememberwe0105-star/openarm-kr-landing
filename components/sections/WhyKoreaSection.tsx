@@ -48,7 +48,7 @@ export default function WhyKoreaSection() {
   }, { scope: containerRef });
 
   return (
-    <section id="why-korea" className="section-padding bg-background-main border-b border-border-light relative overflow-hidden">
+    <section id="why-korea" className="section-padding bg-background-main relative overflow-hidden">
       {/* Decorative background element */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-background-sub to-transparent opcaity-50 -z-10" />
 
