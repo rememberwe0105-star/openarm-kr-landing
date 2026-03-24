@@ -25,9 +25,10 @@ export default function StatsSection() {
     <section 
       id="specs" 
       ref={containerRef}
-      className="bg-gradient-to-b from-[#111] to-[#0a0a0a] text-white section-padding"
+      className="bg-gradient-to-b from-[#111] to-[#0a0a0a] text-white w-full py-24"
     >
-      <div className="text-center mb-16">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+        <div className="text-center mb-16">
         <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-white mb-4">
           {t("stats.title")}
         </h2>

@@ -40,7 +40,7 @@ export default function VideoCarouselSection() {
     <section 
       id="videos" 
       ref={containerRef}
-      className="bg-[#0a0a0a] text-white py-24 overflow-hidden border-y border-border-light/10"
+      className="bg-[#0a0a0a] text-white py-24 overflow-hidden border-b border-border-light/10"
     >
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24">
         
