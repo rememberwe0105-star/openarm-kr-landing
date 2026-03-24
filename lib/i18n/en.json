@@ -63,7 +63,7 @@
       "weight": "Weight per Arm",
       "payload": "Peak Payload per Arm",
       "control": "CAN-FD Control",
-      "cost": "Bill of Materials Cost"
+      "torque": "Peak Torque"
     }
   },
   "why_korea": {

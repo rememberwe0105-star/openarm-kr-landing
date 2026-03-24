@@ -18,7 +18,7 @@ export default function StatsSection() {
     { labelKey: "weight", value: 5.5, suffix: "kg", decimals: 1 },
     { labelKey: "payload", value: 6.0, suffix: "kg", decimals: 1 },
     { labelKey: "control", value: 1, suffix: "kHz" },
-    { labelKey: "cost", prefix: "$", value: 6500, suffix: "" }
+    { labelKey: "torque", value: 54, suffix: "Nm" }
   ];
 
   return (
