@@ -61,6 +61,7 @@ export default function Navbar() {
         <div className="hidden md:flex space-x-8 text-sm font-medium">
           <Link href="/#specs" className="hover:text-point transition-colors">{t("nav.specs")}</Link>
           <Link href="/#features" className="hover:text-point transition-colors">{t("nav.features")}</Link>
+          <Link href="/#applications" className="hover:text-point transition-colors">{t("nav.applications")}</Link>
           <Link href="/#get-started" className="hover:text-point transition-colors">{t("nav.resources")}</Link>
           <Link href="/#why-korea" className="hover:text-point transition-colors">{t("nav.about")}</Link>
         </div>
