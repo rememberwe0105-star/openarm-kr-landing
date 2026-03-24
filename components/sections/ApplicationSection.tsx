@@ -11,7 +11,7 @@ const applications = [
   },
   {
     title: "Human-Robot Interaction (HRI)",
-    image: "https://images.unsplash.com/photo-1546776310-eef45dd6d445?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1589254065878-42c9da997008?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Reinforcement & Imitation Learning for Robotics",
