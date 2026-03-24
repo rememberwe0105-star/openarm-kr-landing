@@ -15,13 +15,13 @@
   "showcase": {
     "title": "Discover Detail",
     "subtitle": "Experience OpenArm's elaborate hardware design and innovative features in photos and videos.",
-    "dynamic_motion_subtitle": "Smooth and precise movement during operation",
+    "dynamic_motion_subtitle": "Complete CAD, firmware, control code, and simulation tools openly available.",
     "images": [
       { "desc": "Structure flawlessly mimicking human arms" },
-      { "desc": "Intuitive and precise teleoperation" },
-      { "desc": "Hardware optimized for desktop environments" },
-      { "desc": "Dexterous gripper for precise object handling" },
-      { "desc": "Force feedback conveying operational senses" }
+      { "desc": "Smooth, human-like control with real-time gravity compensation." },
+      { "desc": "Works with MuJoCo and Isaac Sim for realistic testing and reinforcement learning." },
+      { "desc": "Compliant, backdrivable joints enable safe, practical human-centered interaction." },
+      { "desc": "Two-way force feedback for contact-rich teleoperation and real-world data collection." }
     ]
   },
   "features": {

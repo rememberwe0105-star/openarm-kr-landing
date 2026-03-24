@@ -21,19 +21,19 @@ const images = [
   {
     src: "https://openarm.dev/images/features_fully_opensource_pc.webp",
     alt: "Hardware Profile",
-    title: "Sleek Design",
+    title: "Simulation",
     description: "데스크탑 환경에 최적화된 하드웨어",
   },
   {
     src: "https://openarm.dev/images/features_dexterous_pc.webp",
     alt: "Dexterous Gripper",
-    title: "Dexterity",
+    title: "Dexterous, Powerful & Safe Design",
     description: "다양한 물체를 정교하게 파지하는 그리퍼",
   },
   {
     src: "https://openarm.dev/images/features_bilateral_pc.webp",
     alt: "Bilateral Force Feedback",
-    title: "Force Feedback",
+    title: "Bilateral Force Feedback",
     description: "작업의 감각을 전달하는 포스 피드백",
   },
 ];
@@ -125,7 +125,7 @@ export default function ShowcaseSection() {
             
             <div className="absolute bottom-0 left-0 w-full p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out z-10">
               <h3 className="text-white text-2xl md:text-3xl font-bold mb-2 tracking-tight">
-                Dynamic Motion
+                Fully Open-source
               </h3>
               <p className="text-white/80 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
                 {t("showcase.dynamic_motion_subtitle")}
