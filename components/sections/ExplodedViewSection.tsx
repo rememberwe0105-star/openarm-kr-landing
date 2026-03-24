@@ -33,7 +33,7 @@ export default function ExplodedViewSection() {
       <div className="w-full relative flex items-center justify-center">
         {/* The exploded view image inherently has a dark blue/grey background, filling the container nicely */}
         <img 
-          src="/images/exploded_view.webp" 
+          src="/images/exploded_view.png" 
           alt="OpenArm Hardware Exploded View" 
           className="exploded-image w-full h-full max-h-[90vh] object-cover origin-bottom"
         />
