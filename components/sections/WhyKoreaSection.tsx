@@ -72,7 +72,7 @@ export default function WhyKoreaSection() {
                   {String(t(`why_korea.items.${idx}.title`)).split('\n').map((line, i) => (
                     <span 
                       key={i} 
-                      className={i === 0 ? "block text-2xl mb-2" : "block text-[1.1rem] md:text-[1.15rem] leading-snug tracking-tight text-foreground-main/90"}
+                      className={i === 0 ? "block text-2xl mb-2" : "block text-[1.2rem] md:text-[1.3rem] leading-tight tracking-tight text-foreground-main"}
                     >
                       {line}
                     </span>
