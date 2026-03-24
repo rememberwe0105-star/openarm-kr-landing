@@ -62,7 +62,7 @@ export default function ApplicationSection() {
       className="py-24 md:py-32 bg-background-main relative z-10"
     >
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24">
-        <div className="mb-16 text-center md:text-left">
+        <div className="mb-16 text-center">
           <h2 className="text-3xl md:text-5xl font-black text-foreground-main tracking-tighter mb-4">
             Applications
           </h2>

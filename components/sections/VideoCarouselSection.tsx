@@ -45,7 +45,7 @@ export default function VideoCarouselSection() {
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24">
         
         {/* Header Row */}
-        <div className="mb-12 text-center md:text-left">
+        <div className="mb-12 text-center">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">
             OpenArm in Action
           </h2>

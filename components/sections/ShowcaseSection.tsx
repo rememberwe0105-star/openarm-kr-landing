@@ -77,11 +77,11 @@ export default function ShowcaseSection() {
     >
       <div className="absolute top-0 w-full h-px bg-gradient-to-r from-transparent via-border-light to-transparent" />
       
-      <div className="px-6 md:px-12 lg:px-24 max-w-[1400px] mx-auto mb-16">
-        <h2 className="text-3xl md:text-5xl font-black text-foreground-main tracking-tighter mb-4 text-center md:text-left">
+      <div className="px-6 md:px-12 lg:px-24 max-w-[1400px] mx-auto mb-16 text-center">
+        <h2 className="text-3xl md:text-5xl font-black text-foreground-main tracking-tighter mb-4">
           {t("showcase.title")}
         </h2>
-        <p className="text-foreground-sub text-lg max-w-2xl text-center md:text-left font-medium">
+        <p className="text-foreground-sub text-lg max-w-2xl mx-auto font-medium">
           {t("showcase.subtitle")}
         </p>
       </div>
