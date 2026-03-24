@@ -68,8 +68,15 @@ export default function WhyKoreaSection() {
                 {reason.id}
               </div>
               <div className="relative z-10 pt-8">
-                <h3 className="text-2xl font-bold text-foreground-main mb-4 group-hover:text-point transition-colors whitespace-pre-line">
-                  {t(`why_korea.items.${idx}.title`)}
+                <h3 className="font-bold text-foreground-main mb-4 group-hover:text-point transition-colors">
+                  {String(t(`why_korea.items.${idx}.title`)).split('\n').map((line, i) => (
+                    <span 
+                      key={i} 
+                      className={i === 0 ? "block text-2xl mb-2" : "block text-[1.1rem] md:text-[1.15rem] leading-snug tracking-tight text-foreground-main/90"}
+                    >
+                      {line}
+                    </span>
+                  ))}
                 </h3>
                 <p className="text-foreground-sub text-lg leading-relaxed">
                   {t(`why_korea.items.${idx}.desc`)}
