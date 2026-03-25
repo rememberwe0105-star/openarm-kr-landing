@@ -3,12 +3,13 @@
 import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
-import { products } from "@/data/products";
+import { products, Product, ProductOption } from "@/data/products";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import CartDrawer, { CartItem } from "@/components/ui/CartDrawer";
 import CheckoutModal from "@/components/ui/CheckoutModal";
+import CameraOptionModal from "@/components/ui/CameraOptionModal";
 import { ShoppingBag } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
@@ -16,6 +17,8 @@ export default function ProductsPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const [isOptionModalOpen, setIsOptionModalOpen] = useState(false);
+  const [selectedProductForOptions, setSelectedProductForOptions] = useState<Product | null>(null);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const { t } = useLanguage();
 
@@ -37,15 +40,30 @@ export default function ProductsPage() {
     );
   }, { scope: containerRef });
 
-  const handleAddToCart = (product: typeof products[0]) => {
+  const handleAddToCart = (product: Product, selectedOptions?: ProductOption[]) => {
+    if (product.options && product.options.length > 0 && !selectedOptions) {
+      setSelectedProductForOptions(product);
+      setIsOptionModalOpen(true);
+      return;
+    }
+
+    const cartItemId = selectedOptions && selectedOptions.length > 0 
+      ? `${product.id}-${selectedOptions.map(o => o.id).join('-')}`
+      : product.id;
+      
+    // Format option names for cart display (e.g. Option 1: D435IF -> D435IF)
+    const cartItemName = selectedOptions && selectedOptions.length > 0
+      ? `${product.name.replace('\\n', ' ')} (${selectedOptions.map(o => o.name.split(':')[1]?.split('(')[0]?.trim() || o.name).join(' + ')})`
+      : product.name;
+
     setCartItems((prev) => {
-      const existing = prev.find((item) => item.id === product.id);
+      const existing = prev.find((item) => item.id === cartItemId);
       if (existing) {
         return prev.map((item) =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+          item.id === cartItemId ? { ...item, quantity: item.quantity + 1 } : item
         );
       }
-      return [...prev, { ...product, quantity: 1 }];
+      return [...prev, { ...product, id: cartItemId, name: cartItemName, quantity: 1 }];
     });
     setIsCartOpen(true);
   };
@@ -193,6 +211,13 @@ export default function ProductsPage() {
         onClose={() => setIsCheckoutOpen(false)}
         items={cartItems}
         onOrderComplete={handleOrderComplete}
+      />
+
+      <CameraOptionModal 
+        isOpen={isOptionModalOpen}
+        onClose={() => setIsOptionModalOpen(false)}
+        product={selectedProductForOptions}
+        onAddToCart={(p, opts) => handleAddToCart(p, opts)}
       />
 
       <Footer />
