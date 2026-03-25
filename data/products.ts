@@ -62,7 +62,6 @@ export const products: Product[] = [
     description: "Follower Dual Arm + Pedestal + Intel RealSense Cameras\nThis is the OpenArm Follower Dual Arm V1.1 equipped with three Intel RealSense cameras.",
     imageUrl: "/images/products/follower_3cam_bundle_2.svg",
     category: "Robots",
-    isCustomOrder: true,
     options: [
       {
         id: "d435if",
@@ -137,7 +136,6 @@ export const products: Product[] = [
     description: "You can purchase a separate camera that can be mounted on your follower robot.\nThere are a total of three cameras, one on the chest and one on both arms.\n* The camera mounted on the chest has specifications based on the purpose of the study, so you can choose the right model.",
     imageUrl: "/images/products/d435if_camera.png",
     category: "Accessories",
-    isCustomOrder: true,
     options: [
       {
         id: "d435if",
