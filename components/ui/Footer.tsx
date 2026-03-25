@@ -26,7 +26,7 @@ export default function Footer() {
           <Link href="https://discord.gg/FsZaZ4z3We" target="_blank" rel="noopener noreferrer" className="hover:text-point transition-colors">Discord</Link>
         </div>
       </div>
-      <div className="bg-foreground-main text-background-main/50 text-xs text-center py-4">
+      <div className="text-foreground-sub/60 text-xs text-center pb-8">
         {t("footer.copyright")}
       </div>
     </footer>
