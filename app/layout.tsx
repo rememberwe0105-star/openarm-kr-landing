@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 };
 
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
+import FloatingContactButton from "@/components/ui/FloatingContactButton";
 
 export default function RootLayout({
   children,
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${jetBrainsMono.variable} font-inter bg-background-main text-foreground-main antialiased`}>
         <LanguageProvider>
           {children}
+          <FloatingContactButton />
         </LanguageProvider>
       </body>
     </html>
