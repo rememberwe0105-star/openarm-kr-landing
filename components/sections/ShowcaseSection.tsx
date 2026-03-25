@@ -100,13 +100,17 @@ export default function ShowcaseSection() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
             
-            <div className="absolute bottom-0 left-0 w-full p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+            <div className="absolute bottom-0 left-0 w-full p-8 md:px-8 px-6">
               <h3 className="text-white text-2xl md:text-3xl font-bold mb-2 tracking-tight">
                 {images[0].title}
               </h3>
-              <p className="text-white/80 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                {t("showcase.images.0.desc")}
-              </p>
+              <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-out">
+                <div className="overflow-hidden">
+                  <p className="text-white/80 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 pt-1">
+                    {t("showcase.images.0.desc")}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -123,13 +127,17 @@ export default function ShowcaseSection() {
             </video>
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
             
-            <div className="absolute bottom-0 left-0 w-full p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out z-10">
+            <div className="absolute bottom-0 left-0 w-full p-8 md:px-8 px-6 z-10">
               <h3 className="text-white text-2xl md:text-3xl font-bold mb-2 tracking-tight">
                 Fully Open-source
               </h3>
-              <p className="text-white/80 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                {t("showcase.dynamic_motion_subtitle")}
-              </p>
+              <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-out">
+                <div className="overflow-hidden">
+                  <p className="text-white/80 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 pt-1">
+                    {t("showcase.dynamic_motion_subtitle")}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -147,13 +155,17 @@ export default function ShowcaseSection() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
               
-              <div className="absolute bottom-0 left-0 w-full p-6 lg:p-8 lg:translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+              <div className="absolute bottom-0 left-0 w-full p-6 lg:p-8">
                 <h3 className="text-white text-xl md:text-2xl font-bold mb-2 tracking-tight">
                   {img.title}
                 </h3>
-                <p className="text-white/80 text-sm md:text-base font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                  {t(`showcase.images.${idx + 1}.desc`)}
-                </p>
+                <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-out">
+                  <div className="overflow-hidden">
+                    <p className="text-white/80 text-sm md:text-base font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 pt-1">
+                      {t(`showcase.images.${idx + 1}.desc`)}
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           ))}

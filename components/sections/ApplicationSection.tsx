@@ -7,27 +7,27 @@ import { gsap } from "@/lib/gsap";
 const applications = [
   {
     title: "Robot Manipulation Research",
-    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80",
+    image: "/images/app_robot_manipulation.png",
   },
   {
     title: "Human-Robot Interaction (HRI)",
-    image: "https://images.unsplash.com/photo-1589254065878-42c9da997008?auto=format&fit=crop&w=800&q=80",
+    image: "/images/app_hri_handshake.png",
   },
   {
     title: "Reinforcement & Imitation Learning for Robotics",
-    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80",
+    image: "/images/app_rl_imitation.png",
   },
   {
     title: "Teleoperation & Demonstration-based Learning",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80",
+    image: "/images/app_teleoperation.png",
   },
   {
     title: "AI-driven Humanoid Robot Learning",
-    image: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&w=800&q=80",
+    image: "/images/app_ai_humanoid.png",
   },
   {
     title: "AI Robotics Education",
-    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80",
+    image: "/images/app_ai_education.png",
   },
 ];
 
