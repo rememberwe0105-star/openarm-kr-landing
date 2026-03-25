@@ -63,22 +63,22 @@ export default function CameraOptionModal({ isOpen, onClose, product, onAddToCar
   };
 
   return (
-    <>
+    <div className={`fixed inset-0 z-50 flex items-center justify-center p-4 transition-opacity duration-300 ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
       <div 
-        className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-50 transition-opacity duration-300 ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
         onClick={onClose}
       />
       <div 
-        className={`fixed inset-0 m-auto w-full max-w-4xl max-h-[90vh] h-fit bg-background-main border border-border-light shadow-2xl z-50 rounded-2xl flex flex-col transform transition-all duration-300 md:p-8 p-4 ${isOpen ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"}`}
+        className={`relative w-full max-w-4xl max-h-[90vh] bg-background-main border border-border-light shadow-2xl rounded-2xl flex flex-col transform transition-transform duration-300 md:p-8 p-4 ${isOpen ? "scale-100" : "scale-95"}`}
       >
-        <div className="flex items-center justify-between mb-6 pb-4 border-b border-border-light">
+        <div className="flex items-center justify-between mb-4 md:mb-6 pb-4 border-b border-border-light shrink-0">
           <h2 className="text-2xl md:text-3xl font-bold text-foreground-main">Select Options</h2>
           <button onClick={onClose} className="p-2 text-foreground-sub hover:text-point transition-colors bg-background-sub rounded-full">
             <X size={24} />
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar">
+        <div className="overflow-y-auto pr-2 custom-scrollbar">
           <div className="flex flex-col md:flex-row gap-6 mb-8">
             <div className="w-full md:w-1/3 flex flex-col gap-4">
               {/* Main Large Image */}
@@ -218,7 +218,7 @@ export default function CameraOptionModal({ isOpen, onClose, product, onAddToCar
           </div>
         </div>
 
-        <div className="pt-6 mt-2 border-t border-border-light flex justify-end gap-4">
+        <div className="pt-4 md:pt-6 mt-4 border-t border-border-light flex justify-end gap-4 shrink-0">
           <button onClick={onClose} className="px-6 py-3 rounded-xl border border-border-light font-bold text-foreground-main hover:bg-background-sub transition-colors">
             Cancel
           </button>
@@ -231,6 +231,6 @@ export default function CameraOptionModal({ isOpen, onClose, product, onAddToCar
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 }
