@@ -79,10 +79,10 @@ export default function ApplicationSection() {
                 <img 
                   src={app.image} 
                   alt={app.title} 
-                  className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105 opacity-80 group-hover:opacity-100"
+                  className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
                 />
                 {/* Gradient overlay to make text highly legible */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80 transition-opacity duration-500" />
                 
                 {/* Title perfectly placed over the image */}
                 <div className="absolute bottom-0 left-0 w-full p-6 lg:p-8 translate-y-2 group-hover:translate-y-0 transition-transform duration-500 ease-out">
