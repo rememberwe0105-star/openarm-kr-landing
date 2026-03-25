@@ -6,7 +6,6 @@ import Link from "next/link";
 
 export default function FloatingContactButton() {
   const [isVisible, setIsVisible] = useState(false);
-  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
