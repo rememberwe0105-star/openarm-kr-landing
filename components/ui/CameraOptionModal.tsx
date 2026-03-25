@@ -208,8 +208,8 @@ export default function CameraOptionModal({ isOpen, onClose, product, onAddToCar
                   ].map((row, i) => (
                     <tr key={i} className="hover:bg-background-sub/50 transition-colors">
                       <td className="px-4 py-3 font-bold text-foreground-sub bg-background-sub/30">{row.label}</td>
-                      {chestOptions.map(opt => <td key={opt.id} className="px-4 py-3">{(opt.specs as any)[row.key] || "-"}</td>)}
-                      {armOption && <td className="px-4 py-3">{(armOption.specs as any)[row.key] || "-"}</td>}
+                      {chestOptions.map(opt => <td key={opt.id} className="px-4 py-3">{(opt.specs as unknown as Record<string, string>)[row.key] || "-"}</td>)}
+                      {armOption && <td className="px-4 py-3">{(armOption.specs as unknown as Record<string, string>)[row.key] || "-"}</td>}
                     </tr>
                   ))}
                 </tbody>
