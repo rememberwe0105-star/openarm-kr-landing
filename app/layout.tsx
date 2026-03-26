@@ -26,6 +26,9 @@ export const metadata: Metadata = {
       follow: true,
     },
   },
+  verification: {
+    google: "RfumMM0xS671BdC5hI5aCjkZtTNyiPfIjboU0RsiHtQ",
+  },
 };
 
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
