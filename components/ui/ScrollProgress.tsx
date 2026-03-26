@@ -10,7 +10,15 @@ export default function ScrollProgress() {
       if ("scrollRestoration" in history) {
         history.scrollRestoration = "manual";
       }
+      // 임시로 CSS scroll-smooth를 해제하고 즉시 스크롤
+      const originalScrollBehavior = document.documentElement.style.scrollBehavior;
+      document.documentElement.style.scrollBehavior = 'auto';
       window.scrollTo(0, 0);
+      
+      // 렌더링 사이클 이후에 다시 복구
+      requestAnimationFrame(() => {
+        document.documentElement.style.scrollBehavior = originalScrollBehavior;
+      });
     }
   }, []);
 
