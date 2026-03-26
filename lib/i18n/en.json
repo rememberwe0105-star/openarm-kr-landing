@@ -142,5 +142,32 @@
     "cart": "Cart",
     "add_to_cart": "Add To Cart",
     "custom_order": "Add Custom Order"
+  },
+  "faq": {
+    "title_1": "Frequently Asked ",
+    "title_2": "Questions",
+    "subtitle": "Here are the most common questions about the OpenArm robotic arm.",
+    "items": [
+      {
+        "question": "How is OpenArm different from existing industrial robotic arms?",
+        "answer": "OpenArm is the ultimate starting machine to experience collaborative robots at a reasonable price. Unlike expensive industrial robots, we eliminated price bubbles while keeping research-grade specifications. It is comprehensively designed based on open-source so anyone can easily access and modify it, making it optimized for education, research, and prototyping."
+      },
+      {
+        "question": "Can I control it directly using Python or ROS?",
+        "answer": "Yes, absolutely! OpenArm provides a Python API and can be directly coded and controlled in various environments including C++, ROS, and WebSockets. It is the best platform for robotics students or AI researchers who want to quickly deploy deep learning and reinforcement learning (RL) models onto a physical robot arm."
+      },
+      {
+        "question": "Is it suitable for university labs or high school robotics courses?",
+        "answer": "It is the best choice. With its compact size and light weight, you can safely experiment even in tight spaces. Thanks to its intuitive teaching pendant functionality and open-source nature, it can be utilized in all environments from basic coding education to advanced robotics dynamics research."
+      },
+      {
+        "question": "Can I attach accessories like grippers or cameras?",
+        "answer": "Yes, it supports a plug-and-play ecosystem. You can easily adapt dedicated End Effectors like suction pumps and 2-finger grippers, as well as optional high-performance cameras (like the Intel RealSense D405), to easily implement autonomous pick-and-place tasks based on Vision AI."
+      },
+      {
+        "question": "How does after-sales and technical support work?",
+        "answer": "You can receive fast and reliable supply and technical support within Korea through Libertron Co., Ltd. We can issue tax invoices suitable for your purpose without complicated import procedures, and we support the first step of introducing a new machine most easily with our door-to-door delivery service. (Delivery services are a local service only supported in Korea.)"
+      }
+    ]
   }
 }
