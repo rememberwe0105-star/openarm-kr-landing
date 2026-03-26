@@ -3,9 +3,11 @@
 import { useState, useEffect } from "react";
 import { MessageSquareText } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function FloatingContactButton() {
   const [isVisible, setIsVisible] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,6 +26,10 @@ export default function FloatingContactButton() {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  if (pathname?.startsWith("/products")) {
+    return null;
+  }
 
   return (
     <div 
