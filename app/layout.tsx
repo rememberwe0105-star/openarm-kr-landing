@@ -8,11 +8,11 @@ const jetBrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jet
 export const metadata: Metadata = {
   metadataBase: new URL('https://openarm.co.kr'),
   title: "OpenArm KR | (주)리버트론",
-  description: "합리적인 가격, 압도적인 성능. 오픈소스 로봇팔 OpenArm을 국내에 안정적으로 공급합니다. 교육, 연구, 산업용 로봇팔의 새로운 기준.",
+  description: "오픈소스 로봇암 OpenArm의 한국내 구매 및 서비스 페이지. 교육, 연구, 개발용 양팔 로봇암을 합리적인 가격에 공급합니다. OpenArm KR은 한국에서 조립하여 글로벌로 배송합니다.",
   keywords: ["OpenArm", "오픈암", "로봇팔", "오픈소스 로봇", "리버트론", "Libertron", "협동로봇", "연구용 로봇"],
   openGraph: {
     title: "OpenArm KR | (주)리버트론",
-    description: "합리적인 가격, 압도적인 성능. 오픈소스 로봇팔 OpenArm을 리버트론을 통해 만나보세요.",
+    description: "오픈소스 로봇암 OpenArm의 한국내 구매 및 서비스 페이지. 교육, 연구, 개발용 양팔 로봇암을 합리적인 가격에 공급합니다. OpenArm KR은 한국에서 조립하여 글로벌로 배송합니다.",
     url: 'https://openarm.co.kr',
     siteName: 'OpenArm KR',
     locale: 'ko_KR',
