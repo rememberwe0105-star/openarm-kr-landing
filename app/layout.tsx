@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://openarm.co.kr'),
   title: "OpenArm KR | (주)리버트론",
   description: "오픈소스 로봇암 OpenArm의 한국내 구매 및 서비스 페이지. 교육, 연구, 개발용 양팔 로봇암을 합리적인 가격에 공급합니다. OpenArm KR은 한국에서 조립하여 글로벌로 배송합니다.",
-  keywords: ["OpenArm", "오픈암", "로봇팔", "오픈소스 로봇", "리버트론", "Libertron", "협동로봇", "연구용 로봇"],
+  keywords: ["OpenArm", "오픈암", "로봇팔", "오픈소스 로봇", "리버트론", "Libertron", "협동로봇", "연구용 로봇", "오픈암 구매", "오픈암 사는 법"],
   openGraph: {
     title: "OpenArm KR | (주)리버트론",
     description: "오픈소스 로봇암 OpenArm의 한국내 구매 및 서비스 페이지. 교육, 연구, 개발용 양팔 로봇암을 합리적인 가격에 공급합니다. OpenArm KR은 한국에서 조립하여 글로벌로 배송합니다.",
