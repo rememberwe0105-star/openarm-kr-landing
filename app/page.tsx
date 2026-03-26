@@ -13,6 +13,7 @@ import ApplicationSection from "@/components/sections/ApplicationSection";
 import WhyKoreaSection from "@/components/sections/WhyKoreaSection";
 import GetStartedSection from "@/components/sections/GetStartedSection";
 import ContactSection from "@/components/sections/ContactSection";
+import FAQSection from "@/components/sections/FAQSection";
 
 export default function Home() {
   return (
@@ -30,6 +31,7 @@ export default function Home() {
       <ApplicationSection />
       <GetStartedSection />
       <WhyKoreaSection />
+      <FAQSection />
       <ContactSection />
 
       <Footer />

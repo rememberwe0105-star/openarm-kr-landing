@@ -78,7 +78,7 @@ export default function ApplicationSection() {
               <div className="aspect-[4/3] w-full relative overflow-hidden bg-black flex items-center justify-center">
                 <img 
                   src={app.image} 
-                  alt={app.title} 
+                  alt={`오픈소스 로봇팔 OpenArm 활용 사례: ${app.title} (대학 연구소, 코딩 교육용 협동로봇)`} 
                   className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
                 />
                 {/* Gradient overlay to make text highly legible */}

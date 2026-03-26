@@ -34,7 +34,7 @@ export default function ExplodedViewSection() {
         {/* The exploded view image inherently has a dark blue/grey background, filling the container nicely */}
         <img 
           src="/images/exploded_view.png" 
-          alt="OpenArm Hardware Exploded View" 
+          alt="오픈소스 6축 웹소켓 제어 로봇팔 OpenArm (오픈암) 하드웨어 정밀 분해도 및 투시 구조 (알루미늄 절삭 가공 바디, 교육용 로봇 제작)" 
           className="exploded-image w-full h-full max-h-[90vh] object-cover origin-bottom"
         />
       </div>

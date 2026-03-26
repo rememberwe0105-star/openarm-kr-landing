@@ -66,6 +66,7 @@ export default function HeroSection() {
       <div className="relative z-10 text-center px-6 md:px-12 flex flex-col items-center pt-24 md:pt-32 lg:pt-40">
         <div className="mb-8">
           <h1 className="hero-title flex flex-col items-center gap-2 md:gap-3">
+            <span className="sr-only">리버트론이 제공하는 압도적인 가성비의 파이썬 코딩 6축 로봇팔, 대학 연구소와 산업용 자동화를 위한 최고의 오픈소스 협동로봇 솔루션</span>
             <span className="bg-gradient-to-r from-purple-600 via-fuchsia-500 to-pink-500 bg-clip-text text-transparent font-black tracking-tighter text-[4rem] md:text-[7rem] lg:text-[9rem] leading-none drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)] dark:drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]">
               OpenArm
             </span>

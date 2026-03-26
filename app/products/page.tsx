@@ -220,6 +220,34 @@ export default function ProductsPage() {
         onAddToCart={(p, opts) => handleAddToCart(p, opts)}
       />
 
+      {/* JSON-LD for Products SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "itemListElement": products.map((product, index) => ({
+              "@type": "ListItem",
+              "position": index + 1,
+              "item": {
+                "@type": "Product",
+                "name": product.name,
+                "description": product.description,
+                "image": `https://openarm.co.kr${product.imageUrl}`,
+                "offers": {
+                  "@type": "Offer",
+                  "price": product.price,
+                  "priceCurrency": "USD",
+                  "availability": "https://schema.org/InStock",
+                  "url": "https://openarm.co.kr/products"
+                }
+              }
+            }))
+          })
+        }}
+      />
+
       <Footer />
     </main>
   );

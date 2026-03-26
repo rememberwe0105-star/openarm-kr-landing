@@ -49,6 +49,30 @@ export default function RootLayout({
           {children}
           <FloatingContactButton />
         </LanguageProvider>
+        {/* JSON-LD SEO Schemas */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "리버트론 (Libertron) OpenArm KR",
+              "url": "https://openarm.co.kr",
+              "logo": "https://openarm.co.kr/images/openarm_logo.png"
+            })
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "OpenArm KR",
+              "url": "https://openarm.co.kr"
+            })
+          }}
+        />
       </body>
     </html>
   );
