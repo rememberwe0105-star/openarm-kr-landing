@@ -58,7 +58,7 @@ export default function FAQSection() {
             자주 묻는 질문 <span className="text-point">FAQ</span>
           </h2>
           <p className="text-foreground-sub text-lg md:text-xl font-medium">
-            오픈소스 6축 로봇팔 OpenArm에 대해 가장 많이 들어오는 질문들입니다.
+            OpenArm에 대해 가장 많이 들어오는 질문들입니다.
           </p>
         </div>
 
