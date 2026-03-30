@@ -162,7 +162,7 @@
       },
       {
         "question": "Can I attach accessories like grippers or cameras?",
-        "answer": "Yes, it supports a plug-and-play ecosystem. You can easily adapt dedicated End Effectors like suction pumps and 2-finger grippers, as well as optional high-performance cameras (like the Intel RealSense D405), to easily implement autonomous pick-and-place tasks based on Vision AI."
+        "answer": "Yes, beyond the standard grippers for the Leader and Follower arms, we are expanding our lineup to include custom grippers, suction pumps, and various end effectors. With optional high-performance depth cameras (e.g., Intel RealSense D435i, D455, D405), vision AI-based autonomous pick-and-place tasks can be implemented with ease."
       },
       {
         "question": "How does after-sales and technical support work?",
