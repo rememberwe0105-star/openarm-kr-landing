@@ -19,7 +19,7 @@
     "dynamic_motion_subtitle": "Complete CAD, firmware, control code, and simulation tools openly available.",
     "images": [
       { "desc": "Structure flawlessly mimicking human arms" },
-      { "desc": "Smooth, human-like control with real-time gravity compensation." },
+      { "desc": "Enables intuitive and precise teleoperation of the Follow arm via the Leader arm, providing smooth operation with gravity compensation." },
       { "desc": "Works with MuJoCo and Isaac Sim for realistic testing and reinforcement learning." },
       { "desc": "Compliant, backdrivable joints enable safe, practical human-centered interaction." },
       { "desc": "Two-way force feedback for contact-rich teleoperation and real-world data collection." }
