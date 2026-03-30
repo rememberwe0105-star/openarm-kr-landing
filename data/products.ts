@@ -133,7 +133,7 @@ export const products: Product[] = [
     name: "Additional Camera Package\nfor OpenArm Follower",
     price: 0,
     displayPrice: "Contact us",
-    description: "You can purchase a separate camera that can be mounted on your follower robot.\nThere are a total of three cameras, one on the chest and one on both arms.\n* The camera mounted on the chest has specifications based on the purpose of the study, so you can choose the right model.",
+    description: "An optional camera system can be purchased and mounted on the follower robot.\nUp to three cameras can be installed: one on the chest and one on each arm.\nThe chest-mounted camera can be selected based on the specific requirements of the application.\nMounting brackets required for installation are included with the camera.",
     imageUrl: "/images/products/d435if_camera.png",
     category: "Accessories",
     options: [
