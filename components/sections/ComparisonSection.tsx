@@ -81,7 +81,7 @@ export default function ComparisonSection() {
                   <span className="text-sm font-bold text-foreground-sub/60 uppercase tracking-wider">{t(`comparison.items.${idx}.label`) as string}</span>
                   <div className="flex items-start gap-3">
                     <X className="w-6 h-6 text-red-500 shrink-0 mt-0.5" />
-                    <p className="text-foreground-sub leading-snug break-keep">
+                    <p className="text-foreground-sub leading-snug break-keep whitespace-pre-wrap">
                       <strong className="text-foreground-main">{t(`comparison.items.${idx}.diy_strong`) as string}</strong><br/>
                       {t(`comparison.items.${idx}.diy_desc`) as string}
                     </p>
@@ -104,7 +104,7 @@ export default function ComparisonSection() {
                   <span className="text-sm font-bold text-point/80 uppercase tracking-wider">{t(`comparison.items.${idx}.label`) as string}</span>
                   <div className="flex items-start gap-3">
                     <Check className="w-6 h-6 text-point shrink-0 mt-0.5" />
-                    <p className="text-foreground-main font-medium leading-snug break-keep">
+                    <p className="text-foreground-main font-medium leading-snug break-keep whitespace-pre-wrap">
                       <strong className="text-foreground-main font-black">{t(`comparison.items.${idx}.pro_strong`) as string}</strong><br/>
                       {t(`comparison.items.${idx}.pro_desc`) as string}
                     </p>
