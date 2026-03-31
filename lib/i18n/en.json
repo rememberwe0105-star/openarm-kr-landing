@@ -67,6 +67,46 @@
       "torque": "Peak Torque"
     }
   },
+  "comparison": {
+    "title_main": "Not a perfect industrial robot.<br/>But the <span class=\"text-point\">most reasonable starting point</span> for humanoid research.",
+    "title_desc": "OpenArm is an innovative open-source robotics project globally available for AI research. We don't claim the flawless precision of multi-million-dollar industrial equipment, but it is undeniably the best platform to start. Libertron's role is simple: we eliminate a <strong>minimum of 3+ months and countless trials and errors</strong> you would otherwise waste on overseas sourcing, assembly, and setup. Now, simply focus on your research.",
+    "card_diy_title": "📦 DIY Self-Assembly",
+    "card_diy_subtitle": "Individual part sourcing & manufacturing",
+    "card_pro_title": "🤝 Libertron Devkits",
+    "card_pro_subtitle": "Pre-assembled & Fully Tested",
+    "items": [
+      {
+        "label": "Setup Time",
+        "diy_strong": "Minimum 2-3 Months",
+        "diy_desc": "Individual shipping from 10+ overseas vendors, risk of missing parts",
+        "pro_strong": "Immediate Start",
+        "pro_desc": "Fast delivery via single vendor with complete documentation"
+      },
+      {
+        "label": "Assembly Effort",
+        "diy_strong": "Minimum 180 Hours",
+        "diy_desc": "Dozens of hours waiting for 3D prints + complex fastening",
+        "pro_strong": "0 Hours",
+        "pro_desc": "Fully assembled by Libertron's expert engineers before shipping"
+      },
+      {
+        "label": "Initial Software",
+        "diy_strong": "Self Troubleshooting",
+        "diy_desc": "Scouring community issues for ROS2 integration and debugging",
+        "pro_strong": "Pre-tested Environment",
+        "pro_desc": "Basic operation verified; out-of-the-box example code provided"
+      },
+      {
+        "label": "Maintenance",
+        "diy_strong": "100% User Responsibility",
+        "diy_desc": "No overseas returns or free repairs for burned motors",
+        "pro_strong": "Dedicated Local Support",
+        "pro_desc": "Transparent and fast B2B technical support system"
+      }
+    ],
+    "cta_msg": "When you factor in time and risk, it's ultimately the most affordable choice.",
+    "cta_btn": "Get a Quote for Devkits"
+  },
   "why_korea": {
     "title": "Why buy from <a href=\"https://libertron.com/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-point font-black px-1 border-b-4 border-point/30 hover:border-point hover:text-blue-600 transition-all duration-300\">Libertron</a>?<br class=\"md:hidden\" />",
     "subtitle": "Libertron has enhanced the OpenArm platform for a more user-friendly experience,<br className=\"hidden md:block\"/>providing comprehensive support from delivery to after-sales service.",

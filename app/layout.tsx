@@ -7,6 +7,14 @@ const jetBrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jet
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://openarm.co.kr'),
+  alternates: {
+    canonical: '/',
+    languages: {
+      'ko-KR': '/',
+      'en-US': '/?lang=en', // Optional language param hint
+      'x-default': '/',
+    },
+  },
   title: "OpenArm KR | (주)리버트론",
   description: "오픈소스 로봇암 OpenArm의 한국내 구매 및 서비스 페이지. 교육, 연구, 개발용 양팔 로봇암을 합리적인 가격에 공급합니다. OpenArm KR은 한국에서 조립하여 글로벌로 배송합니다.",
   keywords: [

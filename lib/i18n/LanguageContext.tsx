@@ -19,11 +19,26 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    // Component is mounted, we can safely access localStorage
+    // Component is mounted, we can safely access localStorage/navigator
     setIsMounted(true);
     const savedLang = localStorage.getItem("openarm-lang") as Language;
+    
     if (savedLang && (savedLang === "en" || savedLang === "ko")) {
       setLang(savedLang);
+    } else {
+      try {
+        // Fallback to strict regional detection
+        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const browserLang = navigator.language || "";
+        
+        if (tz === "Asia/Seoul" || browserLang.toLowerCase().includes("ko")) {
+          setLang("ko");
+        } else {
+          setLang("en"); // Default for non-Korea regions
+        }
+      } catch {
+        setLang("en");
+      }
     }
   }, []);
 

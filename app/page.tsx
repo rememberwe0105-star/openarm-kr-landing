@@ -7,6 +7,7 @@ import HeroVideoSection from "@/components/sections/HeroVideoSection";
 import ExplodedViewSection from "@/components/sections/ExplodedViewSection";
 import StatsSection from "@/components/sections/StatsSection";
 import VideoCarouselSection from "@/components/sections/VideoCarouselSection";
+import ComparisonSection from "@/components/sections/ComparisonSection";
 import ShowcaseSection from "@/components/sections/ShowcaseSection";
 import FeaturesSection from "@/components/sections/FeaturesSection";
 import ApplicationSection from "@/components/sections/ApplicationSection";
@@ -30,6 +31,7 @@ export default function Home() {
       <FeaturesSection />
       <ApplicationSection />
       <GetStartedSection />
+      <ComparisonSection />
       <WhyKoreaSection />
       <FAQSection />
       <ContactSection />

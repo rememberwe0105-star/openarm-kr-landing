@@ -67,6 +67,46 @@
       "torque": "Peak Torque"
     }
   },
+  "comparison": {
+    "title_main": "완벽한 산업용 로봇이 아닙니다.<br/>하지만 휴머노이드 연구의 <span class=\"text-point\">가장 합리적인 시작점</span>입니다.",
+    "title_desc": "OpenArm은 전 세계에 공개된 혁신적인 오픈소스 로봇 프로젝트입니다. 수천만 원대 산업용 로봇의 완벽한 정밀도를 보장하진 않지만, AI 연구를 위한 가장 훌륭한 플랫폼입니다. 리버트론의 역할은 명확합니다. 연구진이 부품 직구부터 세팅까지 허비해야 할 <strong>최소 3달 이상의 시간과 수많은 시행착오</strong>를 완벽히 대신해 드리는 것입니다. 이제는 연구에만 집중하세요.",
+    "card_diy_title": "📦 DIY 직접 조립",
+    "card_diy_subtitle": "개인 부품 수급 및 제작",
+    "card_pro_title": "🤝 리버트론 Devkits",
+    "card_pro_subtitle": "사전 조립 및 테스트 완료 (Pre-assembled)",
+    "items": [
+      {
+        "label": "도입 시간",
+        "diy_strong": "최소 2개월~3개월 소요",
+        "diy_desc": "해외 부품 10곳 이상 개별 배송, 누락 및 오배송 리스크",
+        "pro_strong": "배송 즉시 연구 착수 가능",
+        "pro_desc": "단일 벤더 구매로 즉시 배송 및 증빙 서류 완비"
+      },
+      {
+        "label": "조립 공수",
+        "diy_strong": "최소 180시간 이상",
+        "diy_desc": "수십 시간의 3D 프린팅 대기 + 복잡한 하네싱 및 직접 나사 체결",
+        "pro_strong": "0시간",
+        "pro_desc": "리버트론 전문 엔지니어가 전수 조립하여 완성품으로 출고"
+      },
+      {
+        "label": "초기 구동 S/W",
+        "diy_strong": "직접 해결",
+        "diy_desc": "커뮤니티 이슈 탭을 뒤지며 알아서 ROS2 연동 및 초기 오류 디버깅",
+        "pro_strong": "초기 테스트 완료 환경 제공",
+        "pro_desc": "기본 작동 확인 완료 및 즉각적인 테스트용 예제 코드 제공"
+      },
+      {
+        "label": "유지보수 A/S",
+        "diy_strong": "100% 본인 부담",
+        "diy_desc": "조립 중 모터 번아웃 등 파손 시 해외 반품 및 무상 수리 불가",
+        "pro_strong": "대한민국 로컬 대응",
+        "pro_desc": "가장 투명하고 빠른 B2B 전용 로컬 기술 지원 체계 제공"
+      }
+    ],
+    "cta_msg": "시간과 리스크를 계산하면, 결국 가장 저렴한 선택입니다.",
+    "cta_btn": "Devkits 견적 알아보기"
+  },
   "why_korea": {
     "title": "왜 <a href=\"https://libertron.com/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-point font-black px-1 border-b-4 border-point/30 hover:border-point hover:text-blue-600 transition-all duration-300\">리버트론</a>에서<br class=\"md:hidden\" /> 구매해야 할까요?",
     "subtitle": "리버트론은 사용자 친화적인 OpenArm으로 개선하였으며,<br />납품부터 A/S까지 전 과정을 지원하여 원활하게 사용할 수 있도록 합니다.",
