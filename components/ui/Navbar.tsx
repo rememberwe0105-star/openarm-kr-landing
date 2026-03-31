@@ -5,9 +5,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { gsap } from "@/lib/gsap";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const { lang, toggleLanguage, t } = useLanguage();
   
@@ -48,44 +50,88 @@ export default function Navbar() {
     });
   }, [isScrolled]);
 
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [isMobileMenuOpen]);
+
+  const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
+
   return (
-    <nav 
-      className={`navbar fixed top-0 w-full z-50 transition-colors duration-300 ${
-        shouldUseDarkText ? "text-foreground-main" : "text-white"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 h-20 flex items-center justify-between">
-        <Link href="/" className="text-2xl font-bold tracking-tighter">
-          OpenArm<span className="text-point">.</span>
-        </Link>
-        <div className="hidden md:flex space-x-8 text-sm font-medium">
-          <Link href="/#specs" className="hover:text-point transition-colors">{t("nav.specs")}</Link>
-          <Link href="/#features" className="hover:text-point transition-colors">{t("nav.features")}</Link>
-          <Link href="/#applications" className="hover:text-point transition-colors">{t("nav.applications")}</Link>
-          <Link href="/#get-started" className="hover:text-point transition-colors">{t("nav.resources")}</Link>
-          <Link href="/#why-korea" className="hover:text-point transition-colors">{t("nav.about")}</Link>
-        </div>
-        <div className="flex items-center space-x-4">
-          <button 
-            onClick={toggleLanguage}
-            className={`font-mono text-sm font-bold tracking-wider hover:text-point transition-colors ${
-              shouldUseDarkText ? "text-foreground-main" : "text-white"
-            }`}
-          >
-            {lang === "en" ? "Kor" : "En"}
-          </button>
-          <Link 
-            href="/products" 
-            className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-              shouldUseDarkText 
-                ? "bg-foreground-main text-background-main hover:bg-point hover:text-white" 
-                : "bg-white text-black hover:bg-point hover:text-white"
-            }`}
-          >
-            {t("nav.store")}
+    <>
+      <nav 
+        className={`navbar fixed top-0 w-full z-50 transition-colors duration-300 ${
+          shouldUseDarkText ? "text-foreground-main" : "text-white"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 h-20 flex items-center justify-between">
+          <Link href="/" className="text-2xl font-bold tracking-tighter" onClick={closeMobileMenu}>
+            OpenArm<span className="text-point">.</span>
           </Link>
+          <div className="hidden md:flex space-x-8 text-sm font-medium">
+            <Link href="/#specs" className="hover:text-point transition-colors">{t("nav.specs")}</Link>
+            <Link href="/#features" className="hover:text-point transition-colors">{t("nav.features")}</Link>
+            <Link href="/#applications" className="hover:text-point transition-colors">{t("nav.applications")}</Link>
+            <Link href="/#get-started" className="hover:text-point transition-colors">{t("nav.resources")}</Link>
+            <Link href="/#why-korea" className="hover:text-point transition-colors">{t("nav.about")}</Link>
+          </div>
+          <div className="flex items-center space-x-3 md:space-x-4">
+            <button 
+              onClick={toggleLanguage}
+              className={`font-mono text-sm font-bold tracking-wider hover:text-point transition-colors ${
+                shouldUseDarkText ? "text-foreground-main" : "text-white"
+              }`}
+            >
+              {lang === "en" ? "Kor" : "En"}
+            </button>
+            <Link 
+              href="/products" 
+              className={`px-5 py-2 md:px-6 rounded-full text-sm font-medium transition-all duration-300 ${
+                shouldUseDarkText 
+                  ? "bg-foreground-main text-background-main hover:bg-point hover:text-white" 
+                  : "bg-white text-black hover:bg-point hover:text-white"
+              }`}
+            >
+              {t("nav.store")}
+            </Link>
+            {/* Mobile Hamburger Button */}
+            <button 
+              className={`md:hidden p-1.5 focus:outline-none transition-colors hover:text-point`}
+              onClick={toggleMobileMenu}
+              aria-label="Toggle mobile menu"
+            >
+              <Menu className="w-6 h-6" />
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Mobile Fullscreen Overlay Menu */}
+      <div 
+        className={`fixed inset-0 z-[60] bg-background-main/95 backdrop-blur-xl flex flex-col justify-center items-center transition-all duration-400 ease-in-out md:hidden ${
+          isMobileMenuOpen ? "opacity-100 pointer-events-auto translate-y-0" : "opacity-0 pointer-events-none -translate-y-4"
+        }`}
+      >
+        <button 
+          onClick={closeMobileMenu}
+          className="absolute top-6 right-6 p-4 text-foreground-main hover:text-point transition-colors focus:outline-none"
+        >
+          <X className="w-8 h-8" />
+        </button>
+        
+        <div className="flex flex-col items-center space-y-8 text-2xl font-bold text-foreground-main">
+          <Link href="/#specs" onClick={closeMobileMenu} className="hover:text-point transition-colors">{t("nav.specs")}</Link>
+          <Link href="/#features" onClick={closeMobileMenu} className="hover:text-point transition-colors">{t("nav.features")}</Link>
+          <Link href="/#applications" onClick={closeMobileMenu} className="hover:text-point transition-colors">{t("nav.applications")}</Link>
+          <Link href="/#get-started" onClick={closeMobileMenu} className="hover:text-point transition-colors">{t("nav.resources")}</Link>
+          <Link href="/#why-korea" onClick={closeMobileMenu} className="hover:text-point transition-colors">{t("nav.about")}</Link>
         </div>
       </div>
-    </nav>
+    </>
   );
 }

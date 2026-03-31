@@ -38,6 +38,8 @@ export default function HeroVideoSection() {
           loop 
           muted 
           playsInline
+          preload="auto"
+          poster="https://openarm.dev/images/img_introducing.webp"
           className="absolute inset-0 w-full h-full object-cover"
         >
           <source src="https://openarm.dev/videos/kv.mp4" type="video/mp4" />

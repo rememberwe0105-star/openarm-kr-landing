@@ -6,6 +6,8 @@ import { gsap } from "@/lib/gsap";
 import Link from "next/link";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
+import Image from "next/image";
+
 export default function HeroSection() {
   const containerRef = useRef<HTMLElement>(null);
   const { t } = useLanguage();
@@ -53,10 +55,17 @@ export default function HeroSection() {
     >
       {/* Background Image Container */}
       <div className="absolute inset-0 z-0">
-        <div 
-          className="hero-bg absolute inset-[-10%] w-[120%] h-[120%] bg-cover bg-center"
-          style={{ backgroundImage: "url('https://openarm.dev/images/img_introducing.webp')" }}
-        />
+        <div className="hero-bg absolute inset-[-10%] w-[120%] h-[120%]">
+          <Image 
+            src="https://openarm.dev/images/img_introducing.webp"
+            alt="OpenArm background"
+            fill
+            priority
+            quality={90}
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
         {/* Cinematic dark overlay for text readability */}
         <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />
         {/* Gradient fade to bottom */}

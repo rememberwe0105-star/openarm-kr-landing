@@ -18,27 +18,24 @@ export default function AnimatedCounter({ end, duration = 2, prefix = "", suffix
   useGSAP(() => {
     if (!counterRef.current) return;
 
-    gsap.fromTo(
-      counterRef.current,
-      { innerHTML: 0 },
-      {
-        innerHTML: end,
-        duration: duration,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: counterRef.current,
-          start: "top 85%",
-          once: true,
-        },
-        snap: { innerHTML: Math.pow(10, -decimals) },
-        onUpdate: function () {
-          if (counterRef.current) {
-             const val = Number(this.targets()[0].innerHTML);
-             counterRef.current.innerHTML = `${prefix}${val.toFixed(decimals)}${suffix}`;
-          }
-        },
+    const counterObj = { val: 0 };
+    
+    gsap.to(counterObj, {
+      val: end,
+      duration: duration,
+      ease: "power2.out", // slightly smoother easing
+      scrollTrigger: {
+        trigger: counterRef.current,
+        start: "top 80%",
+        once: true,
+      },
+      onUpdate: () => {
+        if (counterRef.current) {
+          counterRef.current.innerText = `${prefix}${counterObj.val.toFixed(decimals)}${suffix}`;
+        }
       }
-    );
+    });
+
   }, { scope: counterRef });
 
   return <span ref={counterRef} className="font-mono text-point font-bold">0</span>;

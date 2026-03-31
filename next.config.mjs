@@ -1,5 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'openarm.dev',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+      }
+    ],
+  },
   async headers() {
     return [
       {
