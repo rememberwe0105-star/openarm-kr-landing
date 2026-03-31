@@ -69,7 +69,7 @@
   },
   "comparison": {
     "title_main": "완벽한 산업용 로봇이 아닙니다.<br/>하지만 휴머노이드 연구의 <span class=\"text-point\">가장 합리적인 시작점</span>입니다.",
-    "title_desc": "OpenArm은 전 세계에 공개된 혁신적인 오픈소스 로봇 프로젝트입니다. 수천만 원대 산업용 로봇의 완벽한 정밀도를 보장하진 않지만, AI 연구를 위한 가장 훌륭한 플랫폼입니다. 리버트론의 역할은 명확합니다. 연구진이 부품 직구부터 세팅까지 허비해야 할 <strong>최소 3달 이상의 시간과 수많은 시행착오</strong>를 완벽히 대신해 드리는 것입니다. 이제는 연구에만 집중하세요.",
+    "title_desc": "<strong>OpenArm은</strong> 전 세계에 공개된 혁신적인 <strong>오픈소스 로봇 프로젝트</strong>입니다. 수천만 원대 산업용 로봇의 완벽한 정밀도를 보장하진 않지만, <strong>피지컬 AI 연구를 위한 가장 훌륭한 플랫폼</strong>입니다. 리버트론의 역할은 명확합니다. 연구진이 부품 직구부터 세팅까지 허비해야 할 <strong>최소 3달 이상의 시간과 수많은 시행착오를 완벽히 대신해 드리는 것</strong>입니다. <strong>이제는 연구에만 집중하세요.</strong>",
     "card_diy_title": "📦 DIY 직접 조립",
     "card_diy_subtitle": "개인 부품 수급 및 제작",
     "card_pro_title": "🤝 리버트론 Devkits",
