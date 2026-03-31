@@ -69,7 +69,7 @@
   },
   "comparison": {
     "title_main": "Not a perfect industrial robot.<br/>But the <span class=\"text-point\">most reasonable starting point</span> for humanoid research.",
-    "title_desc": "OpenArm is an innovative open-source robotics project globally available for AI research. We don't claim the flawless precision of multi-million-dollar industrial equipment, but it is undeniably the best platform to start. Libertron's role is simple: we eliminate a <strong>minimum of 3+ months and countless trials and errors</strong> you would otherwise waste on overseas sourcing, assembly, and setup. Now, simply focus on your research.",
+    "title_desc": "<strong>OpenArm</strong> is an innovative <strong>open-source robotics project</strong> globally available for AI research. We don't claim the flawless precision of multi-million-dollar industrial equipment, but it is undeniably <strong>the best platform for physical AI research</strong>. Libertron's role is simple: we eliminate <strong>a minimum of 3+ months and countless trials and errors you would otherwise waste on overseas sourcing, assembly, and setup</strong>. <strong>Now, simply focus on your research.</strong>",
     "card_diy_title": "📦 DIY Self-Assembly",
     "card_diy_subtitle": "Individual part sourcing & manufacturing",
     "card_pro_title": "🤝 Libertron Devkits",
