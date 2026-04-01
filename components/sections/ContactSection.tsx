@@ -89,19 +89,6 @@ export default function ContactSection() {
         <div className="md:w-1/2 bg-background-sub p-8 rounded-3xl border border-border-light shadow-sm">
           <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
             <div>
-              <label htmlFor="country" className="block text-sm font-medium text-foreground-sub mb-1">{t<string>("contact.form.country_label")}</label>
-              <input 
-                type="text" 
-                id="country" 
-                value={formData.country}
-                onChange={(e) => setFormData({...formData, country: e.target.value})}
-                className="w-full px-4 py-3 mb-5 rounded-xl border border-border-light bg-background-main focus:outline-none focus:ring-2 focus:ring-point/50 focus:border-point transition-all disabled:opacity-50"
-                placeholder={t<string>("contact.form.country_placeholder")}
-                required
-                disabled={isSubmitting}
-              />
-            </div>
-            <div>
               <label htmlFor="name" className="block text-sm font-medium text-foreground-sub mb-1">{t<string>("contact.form.name_label")}</label>
               <input 
                 type="text" 
@@ -110,6 +97,19 @@ export default function ContactSection() {
                 onChange={(e) => setFormData({...formData, name: e.target.value})}
                 className="w-full px-4 py-3 rounded-xl border border-border-light bg-background-main focus:outline-none focus:ring-2 focus:ring-point/50 focus:border-point transition-all disabled:opacity-50"
                 placeholder={t<string>("contact.form.name_placeholder")}
+                required
+                disabled={isSubmitting}
+              />
+            </div>
+            <div>
+              <label htmlFor="country" className="block text-sm font-medium text-foreground-sub mb-1">{t<string>("contact.form.country_label")}</label>
+              <input 
+                type="text" 
+                id="country" 
+                value={formData.country}
+                onChange={(e) => setFormData({...formData, country: e.target.value})}
+                className="w-full px-4 py-3 rounded-xl border border-border-light bg-background-main focus:outline-none focus:ring-2 focus:ring-point/50 focus:border-point transition-all disabled:opacity-50"
+                placeholder={t<string>("contact.form.country_placeholder")}
                 required
                 disabled={isSubmitting}
               />
