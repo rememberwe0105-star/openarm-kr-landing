@@ -48,6 +48,7 @@ export const metadata: Metadata = {
 
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 import FloatingContactButton from "@/components/ui/FloatingContactButton";
+import { GoogleTagManager } from '@next/third-parties/google';
 
 export default function RootLayout({
   children,
@@ -57,6 +58,7 @@ export default function RootLayout({
   return (
     <html lang="ko" className="scroll-smooth scroll-pt-20" suppressHydrationWarning>
       <body className={`${inter.variable} ${jetBrainsMono.variable} font-inter bg-background-main text-foreground-main antialiased`} suppressHydrationWarning>
+        <GoogleTagManager gtmId="GTM-N9TLN2LT" />
         <LanguageProvider>
           {children}
           <FloatingContactButton />

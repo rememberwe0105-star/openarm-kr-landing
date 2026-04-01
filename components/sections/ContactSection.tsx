@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { useGSAPAnimation } from "@/hooks/useGSAPAnimation";
 import { useGSAP } from "@gsap/react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { sendGTMEvent } from '@next/third-parties/google';
 
 export default function ContactSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -24,6 +25,7 @@ export default function ContactSection() {
       });
       const data = await response.json();
       if (response.ok) {
+        sendGTMEvent({ event: 'generate_lead', country: formData.country });
         setFormData({ name: "", email: "", country: "", message: "" });
         setShowSuccessPopup(true);
       } else {
