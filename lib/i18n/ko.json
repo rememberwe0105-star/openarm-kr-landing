@@ -159,6 +159,8 @@
     "success_btn": "확인",
     "error": "오류가 발생했습니다. 다시 시도해주세요.",
     "form": {
+      "country_label": "국가 / 지역",
+      "country_placeholder": "예: 대한민국 / e.g., United States",
       "name_label": "이름 / 소속",
       "name_placeholder": "홍길동 / (주)리버트론",
       "email_label": "이메일",

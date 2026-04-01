@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { X, Check } from "lucide-react";
 import { Product, ProductOption } from "@/data/products";
+import Image from "next/image";
 
 interface CameraOptionModalProps {
   isOpen: boolean;
@@ -83,9 +84,11 @@ export default function CameraOptionModal({ isOpen, onClose, product, onAddToCar
             <div className="w-full md:w-1/3 flex flex-col gap-4">
               {/* Main Large Image */}
               <div className="w-full bg-white rounded-xl flex items-center justify-center p-8 border border-border-light aspect-[4/3] relative overflow-hidden">
-                <img 
+                <Image 
                   src={displayImage} 
                   alt={currentViewedOpt.name} 
+                  width={800}
+                  height={600}
                   className={`w-full h-full object-contain mix-blend-multiply transition-all duration-300 ${currentViewedOpt.id === 'd405' ? 'scale-[1.3]' : ''}`} 
                 />
               </div>
@@ -104,8 +107,8 @@ export default function CameraOptionModal({ isOpen, onClose, product, onAddToCar
                           : "border-border-light hover:border-border-dark opacity-100"
                       }`}
                     >
-                      <div className="w-full h-10 flex items-center justify-center">
-                        {opt.imageUrl && <img src={opt.imageUrl} alt={opt.name} className={`w-full h-full object-contain mix-blend-multiply opacity-90 ${opt.id === 'd405' ? 'scale-[1.3]' : ''}`} />}
+                      <div className="w-full h-10 flex items-center justify-center relative">
+                        {opt.imageUrl && <Image src={opt.imageUrl} alt={opt.name} fill sizes="100px" className={`object-contain mix-blend-multiply opacity-90 ${opt.id === 'd405' ? 'scale-[1.3]' : ''}`} />}
                       </div>
                       <span className={`text-[13px] font-bold whitespace-nowrap w-full text-center ${isActive ? 'text-[#009cff]' : 'text-foreground-sub'}`}>
                         {opt.specs.modelName}

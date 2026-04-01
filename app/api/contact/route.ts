@@ -6,9 +6,9 @@ export async function POST(req: Request) {
 
   try {
     const body = await req.json();
-    const { name, email, message } = body;
+    const { name, email, country, message } = body;
 
-    if (!name || !email || !message) {
+    if (!name || !email || !country || !message) {
       return NextResponse.json(
         { message: "필수 정보가 누락되었습니다." },
         { status: 400 }
@@ -18,6 +18,7 @@ export async function POST(req: Request) {
     const htmlContent = `
       <h2>새로운 문의사항이 접수되었습니다.</h2>
       <ul>
+        <li><strong>국가/지역:</strong> ${country}</li>
         <li><strong>이름/소속:</strong> ${name}</li>
         <li><strong>이메일:</strong> ${email}</li>
       </ul>

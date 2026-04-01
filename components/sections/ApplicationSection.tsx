@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
+import Image from "next/image";
 
 const applications = [
   {
@@ -76,10 +77,12 @@ export default function ApplicationSection() {
               className="app-card group relative bg-background-main rounded-[2rem] overflow-hidden border border-border-light shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1"
             >
               <div className="aspect-[4/3] w-full relative overflow-hidden bg-black flex items-center justify-center">
-                <img 
+                <Image 
                   src={app.image} 
                   alt={`오픈소스 로봇팔 OpenArm 활용 사례: ${app.title} (대학 연구소, 코딩 교육용 협동로봇)`} 
-                  className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
                 />
                 {/* Gradient overlay to make text highly legible */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80 transition-opacity duration-500" />

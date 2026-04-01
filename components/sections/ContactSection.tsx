@@ -11,7 +11,7 @@ export default function ContactSection() {
   const { t } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({ name: "", email: "", country: "", message: "" });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,7 +24,7 @@ export default function ContactSection() {
       });
       const data = await response.json();
       if (response.ok) {
-        setFormData({ name: "", email: "", message: "" });
+        setFormData({ name: "", email: "", country: "", message: "" });
         setShowSuccessPopup(true);
       } else {
         alert(data.message || t("contact.error"));
@@ -88,6 +88,19 @@ export default function ContactSection() {
 
         <div className="md:w-1/2 bg-background-sub p-8 rounded-3xl border border-border-light shadow-sm">
           <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
+            <div>
+              <label htmlFor="country" className="block text-sm font-medium text-foreground-sub mb-1">{t<string>("contact.form.country_label")}</label>
+              <input 
+                type="text" 
+                id="country" 
+                value={formData.country}
+                onChange={(e) => setFormData({...formData, country: e.target.value})}
+                className="w-full px-4 py-3 mb-5 rounded-xl border border-border-light bg-background-main focus:outline-none focus:ring-2 focus:ring-point/50 focus:border-point transition-all disabled:opacity-50"
+                placeholder={t<string>("contact.form.country_placeholder")}
+                required
+                disabled={isSubmitting}
+              />
+            </div>
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-foreground-sub mb-1">{t<string>("contact.form.name_label")}</label>
               <input 

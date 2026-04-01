@@ -159,6 +159,8 @@
     "success_btn": "OK",
     "error": "An error occurred. Please try again later.",
     "form": {
+      "country_label": "Country / Region",
+      "country_placeholder": "e.g., United States",
       "name_label": "Name / Company",
       "name_placeholder": "e.g., John Doe / Libertron",
       "email_label": "Email",

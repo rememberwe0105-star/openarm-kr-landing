@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
+import Image from "next/image";
 
 export default function ExplodedViewSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -32,10 +33,12 @@ export default function ExplodedViewSection() {
     >
       <div className="w-full relative flex items-center justify-center">
         {/* The exploded view image inherently has a dark blue/grey background, filling the container nicely */}
-        <img 
+        <Image 
           src="/images/exploded_view.png" 
           alt="오픈소스 6축 웹소켓 제어 로봇팔 OpenArm (오픈암) 하드웨어 정밀 분해도 및 투시 구조 (알루미늄 절삭 가공 바디, 교육용 로봇 제작)" 
-          className="exploded-image w-full h-full max-h-[90vh] object-cover origin-bottom"
+          width={1920}
+          height={1080}
+          className="exploded-image w-full h-auto max-h-[90vh] object-cover origin-bottom"
         />
       </div>
     </section>
