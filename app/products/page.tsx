@@ -12,6 +12,7 @@ import CheckoutModal from "@/components/ui/CheckoutModal";
 import CameraOptionModal from "@/components/ui/CameraOptionModal";
 import { ShoppingBag } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { sendGAEvent } from '@next/third-parties/google';
 
 export default function ProductsPage() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -65,6 +66,11 @@ export default function ProductsPage() {
       }
       return [...prev, { ...product, id: cartItemId, name: cartItemName, quantity: 1 }];
     });
+    sendGAEvent('event', 'add_to_cart', {
+      currency: 'USD',
+      value: product.price,
+      items: [{ item_name: product.name, price: product.price }]
+    });
     setIsCartOpen(true);
   };
 
@@ -77,6 +83,10 @@ export default function ProductsPage() {
   };
 
   const handleCheckout = () => {
+    sendGAEvent('event', 'begin_checkout', {
+      currency: 'USD',
+      value: cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0)
+    });
     setIsCartOpen(false);
     setIsCheckoutOpen(true);
   };

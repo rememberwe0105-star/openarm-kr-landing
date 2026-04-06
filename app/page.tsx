@@ -1,7 +1,19 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: '/',
+    languages: {
+      'ko-KR': '/',
+      'en-US': '/?lang=en',
+      'x-default': '/',
+    },
+  },
+};
+
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 import ScrollProgress from "@/components/ui/ScrollProgress";
-
 import HeroSection from "@/components/sections/HeroSection";
 import HeroVideoSection from "@/components/sections/HeroVideoSection";
 import ExplodedViewSection from "@/components/sections/ExplodedViewSection";
