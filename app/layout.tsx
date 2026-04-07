@@ -88,6 +88,7 @@ export default function RootLayout({
                   "@type": "Offer",
                   "availability": "https://schema.org/InStock",
                   "priceCurrency": "USD",
+                  "price": "0",
                   "shippingDetails": {
                     "@type": "OfferShippingDetails",
                     "shippingDestination": {
