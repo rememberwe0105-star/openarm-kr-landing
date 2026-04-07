@@ -78,7 +78,9 @@ export default function RootLayout({
                 "@context": "https://schema.org",
                 "@type": "Product",
                 "name": "OpenArm Bimanual Robot Devkit",
-                "image": "https://openarm.co.kr/opengraph-image.png",
+                "image": [
+                  "https://openarm.co.kr/opengraph-image.png"
+                ],
                 "brand": {
                   "@type": "Brand",
                   "name": "Libertron"
