@@ -195,8 +195,8 @@
         "answer": "OpenArm is the ultimate starting machine to experience collaborative robots at a reasonable price. Unlike expensive industrial robots, we eliminated price bubbles while keeping research-grade specifications. It is comprehensively designed based on open-source so anyone can easily access and modify it, making it optimized for education, research, and prototyping."
       },
       {
-        "question": "Can I control it directly using Python or ROS?",
-        "answer": "Yes, absolutely! OpenArm provides a Python API and can be directly coded and controlled in various environments including C++, ROS, and WebSockets. It is the best platform for robotics students or AI researchers who want to quickly deploy deep learning and reinforcement learning (RL) models onto a physical robot arm."
+        "question": "Can I control it directly using Python or ROS2?",
+        "answer": "Yes, absolutely! OpenArm provides a Python API and can be directly coded and controlled in various environments including C++, ROS2, and WebSockets. It is the best platform for robotics students or AI researchers who want to quickly deploy deep learning and reinforcement learning (RL) models onto a physical robot arm."
       },
       {
         "question": "Is it suitable for university labs or high school robotics courses?",
