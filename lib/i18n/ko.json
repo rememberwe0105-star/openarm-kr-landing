@@ -165,8 +165,12 @@
       "name_placeholder": "홍길동 / (주)리버트론",
       "email_label": "이메일",
       "email_placeholder": "hello@example.com",
+      "phone_label": "전화번호",
+      "phone_placeholder": "010-0000-0000",
       "message_label": "문의 내용",
-      "message_placeholder": "도입 수량 및 기타 문의사항을 적어주세요."
+      "message_placeholder": "도입 수량 및 기타 문의사항을 적어주세요.",
+      "privacy_label": "개인정보 수집 및 이용 동의 (필수)",
+      "privacy_desc": "문의 및 견적 처리를 위해 이름, 연락처, 이메일 등의 개인정보를 수집하며, 목적 달성 시 즉시 파기합니다."
     },
     "visit_libertron": "리버트론 홈페이지 방문하기"
   },

@@ -15,9 +15,8 @@ export default function CheckoutModal({ isOpen, onClose, items, onOrderComplete 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [formData, setFormData] = useState({
-    company: "",
+    name: "",
     country: "",
-    zipcode: "",
     email: "",
     phone: "",
     requests: ""
@@ -132,21 +131,20 @@ export default function CheckoutModal({ isOpen, onClose, items, onOrderComplete 
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-              <div>
-                <label htmlFor="company" className="block text-sm font-bold text-foreground-sub mb-2">회사명 (또는 학교/연구소명)*</label>
-                <input 
-                  type="text" 
-                  id="company"
-                  name="company"
-                  required
-                  value={formData.company}
-                  onChange={handleChange}
-                  className="w-full bg-background-sub border border-border-light rounded-xl px-4 py-3 text-foreground-main focus:outline-none focus:border-point focus:ring-1 focus:ring-point transition-all"
-                  placeholder="리버트론"
-                />
-              </div>
-
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-bold text-foreground-sub mb-2">이름 / 소속 (Name / Company)*</label>
+                  <input 
+                    type="text" 
+                    id="name"
+                    name="name"
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full bg-background-sub border border-border-light rounded-xl px-4 py-3 text-foreground-main focus:outline-none focus:border-point focus:ring-1 focus:ring-point transition-all"
+                    placeholder="홍길동 / 리버트론"
+                  />
+                </div>
                 <div>
                   <label htmlFor="country" className="block text-sm font-bold text-foreground-sub mb-2">나라 (Country)*</label>
                   <input 
@@ -158,19 +156,6 @@ export default function CheckoutModal({ isOpen, onClose, items, onOrderComplete 
                     onChange={handleChange}
                     className="w-full bg-background-sub border border-border-light rounded-xl px-4 py-3 text-foreground-main focus:outline-none focus:border-point focus:ring-1 focus:ring-point transition-all"
                     placeholder="South Korea"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="zipcode" className="block text-sm font-bold text-foreground-sub mb-2">우편번호 (Zip Code)*</label>
-                  <input 
-                    type="text" 
-                    id="zipcode"
-                    name="zipcode"
-                    required
-                    value={formData.zipcode}
-                    onChange={handleChange}
-                    className="w-full bg-background-sub border border-border-light rounded-xl px-4 py-3 text-foreground-main focus:outline-none focus:border-point focus:ring-1 focus:ring-point transition-all"
-                    placeholder="07222"
                   />
                 </div>
               </div>

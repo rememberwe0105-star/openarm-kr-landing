@@ -7,10 +7,10 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
     const { contactInfo, cartItems, subtotal } = body;
-    const { email, phone, company, country, zipcode, requests } = contactInfo;
+    const { email, phone, name, country, requests } = contactInfo;
 
     // Validate request
-    if (!email || !phone || !company || !country || !zipcode || !cartItems || cartItems.length === 0) {
+    if (!email || !phone || !name || !country || !cartItems || cartItems.length === 0) {
       return NextResponse.json(
         { message: "필수 정보가 누락되었습니다." },
         { status: 400 }
@@ -33,12 +33,11 @@ export async function POST(req: Request) {
       <h2>새로운 주문/견적 요청이 접수되었습니다.</h2>
       <h3>구매자 정보</h3>
       <ul>
-        <li><strong>회사명:</strong> ${company}</li>
+        <li><strong>이름/소속 (Name / Company):</strong> ${name}</li>
         <li><strong>나라 (Country):</strong> ${country}</li>
-        <li><strong>우편번호 (Zip Code):</strong> ${zipcode}</li>
-        <li><strong>이메일:</strong> ${email}</li>
-        <li><strong>전화번호:</strong> ${phone}</li>
-        <li><strong>요청사항:</strong> ${requests || "없음"}</li>
+        <li><strong>이메일 (Email):</strong> ${email}</li>
+        <li><strong>전화번호 (Phone):</strong> ${phone}</li>
+        <li><strong>요청사항 (Requests):</strong> ${requests || "없음"}</li>
       </ul>
       
       <h3>주문 내역</h3>
@@ -52,7 +51,7 @@ export async function POST(req: Request) {
       from: "OpenArm Store <noreply@openarm.co.kr>",
       to: process.env.CONTACT_EMAIL_TO || "openarm@libertron.com",
       replyTo: email,
-      subject: `[OpenArm Store] ${company}님의 새로운 주문 요청`,
+      subject: `[OpenArm Store] ${name}님의 새로운 주문 요청`,
       html: htmlContent,
     });
 

@@ -12,7 +12,8 @@ export default function ContactSection() {
   const { t } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
-  const [formData, setFormData] = useState({ name: "", email: "", country: "", message: "" });
+  const [formData, setFormData] = useState({ name: "", country: "", email: "", phone: "", message: "" });
+  const [agreePrivacy, setAgreePrivacy] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,7 +28,8 @@ export default function ContactSection() {
       if (response.ok) {
         sendGTMEvent({ event: 'generate_lead', country: formData.country });
         sendGAEvent('event', 'generate_lead', { method: 'contact_form' });
-        setFormData({ name: "", email: "", country: "", message: "" });
+        setFormData({ name: "", country: "", email: "", phone: "", message: "" });
+        setAgreePrivacy(false);
         setShowSuccessPopup(true);
       } else {
         alert(data.message || t("contact.error"));
@@ -91,52 +93,69 @@ export default function ContactSection() {
 
         <div className="md:w-1/2 bg-background-sub p-8 rounded-3xl border border-border-light shadow-sm">
           <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium text-foreground-sub mb-1">{t<string>("contact.form.name_label")}</label>
-              <input 
-                type="text" 
-                id="name" 
-                value={formData.name}
-                onChange={(e) => setFormData({...formData, name: e.target.value})}
-                className="w-full px-4 py-3 rounded-xl border border-border-light bg-background-main focus:outline-none focus:ring-2 focus:ring-point/50 focus:border-point transition-all disabled:opacity-50"
-                placeholder={t<string>("contact.form.name_placeholder")}
-                required
-                disabled={isSubmitting}
-              />
-            </div>
-            <div>
-              <label htmlFor="country" className="block text-sm font-medium text-foreground-sub mb-1">{t<string>("contact.form.country_label")}</label>
-              <input 
-                type="text" 
-                id="country" 
-                value={formData.country}
-                onChange={(e) => setFormData({...formData, country: e.target.value})}
-                className="w-full px-4 py-3 rounded-xl border border-border-light bg-background-main focus:outline-none focus:ring-2 focus:ring-point/50 focus:border-point transition-all disabled:opacity-50"
-                placeholder={t<string>("contact.form.country_placeholder")}
-                required
-                disabled={isSubmitting}
-              />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-foreground-sub mb-1">{t<string>("contact.form.name_label")}</label>
+                <input 
+                  type="text" 
+                  id="name" 
+                  value={formData.name}
+                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  className="w-full px-4 py-3 rounded-xl border border-border-light bg-background-main focus:outline-none focus:ring-2 focus:ring-point/50 focus:border-point transition-all disabled:opacity-50"
+                  placeholder={t<string>("contact.form.name_placeholder")}
+                  required
+                  disabled={isSubmitting}
+                />
+              </div>
+              <div>
+                <label htmlFor="country" className="block text-sm font-medium text-foreground-sub mb-1">{t<string>("contact.form.country_label")}</label>
+                <input 
+                  type="text" 
+                  id="country" 
+                  value={formData.country}
+                  onChange={(e) => setFormData({...formData, country: e.target.value})}
+                  className="w-full px-4 py-3 rounded-xl border border-border-light bg-background-main focus:outline-none focus:ring-2 focus:ring-point/50 focus:border-point transition-all disabled:opacity-50"
+                  placeholder={t<string>("contact.form.country_placeholder")}
+                  required
+                  disabled={isSubmitting}
+                />
+              </div>
             </div>
             
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-foreground-sub mb-1">{t<string>("contact.form.email_label")}</label>
-              <input 
-                type="email" 
-                id="email" 
-                value={formData.email}
-                onChange={(e) => setFormData({...formData, email: e.target.value})}
-                className="w-full px-4 py-3 rounded-xl border border-border-light bg-background-main focus:outline-none focus:ring-2 focus:ring-point/50 focus:border-point transition-all disabled:opacity-50"
-                placeholder={t<string>("contact.form.email_placeholder")}
-                required
-                disabled={isSubmitting}
-              />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-foreground-sub mb-1">{t<string>("contact.form.email_label")}</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  value={formData.email}
+                  onChange={(e) => setFormData({...formData, email: e.target.value})}
+                  className="w-full px-4 py-3 rounded-xl border border-border-light bg-background-main focus:outline-none focus:ring-2 focus:ring-point/50 focus:border-point transition-all disabled:opacity-50"
+                  placeholder={t<string>("contact.form.email_placeholder")}
+                  required
+                  disabled={isSubmitting}
+                />
+              </div>
+              <div>
+                <label htmlFor="phone" className="block text-sm font-medium text-foreground-sub mb-1">{t<string>("contact.form.phone_label")}</label>
+                <input 
+                  type="tel" 
+                  id="phone" 
+                  value={formData.phone}
+                  onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                  className="w-full px-4 py-3 rounded-xl border border-border-light bg-background-main focus:outline-none focus:ring-2 focus:ring-point/50 focus:border-point transition-all disabled:opacity-50"
+                  placeholder={t<string>("contact.form.phone_placeholder")}
+                  required
+                  disabled={isSubmitting}
+                />
+              </div>
             </div>
             
             <div>
               <label htmlFor="message" className="block text-sm font-medium text-foreground-sub mb-1">{t<string>("contact.form.message_label")}</label>
               <textarea 
                 id="message" 
-                rows={4}
+                rows={3}
                 value={formData.message}
                 onChange={(e) => setFormData({...formData, message: e.target.value})}
                 className="w-full px-4 py-3 rounded-xl border border-border-light bg-background-main focus:outline-none focus:ring-2 focus:ring-point/50 focus:border-point transition-all resize-none disabled:opacity-50"
@@ -146,9 +165,25 @@ export default function ContactSection() {
               />
             </div>
 
+            <div className="flex items-start gap-3 mt-1">
+              <input 
+                type="checkbox" 
+                id="agreePrivacy" 
+                required
+                checked={agreePrivacy}
+                onChange={(e) => setAgreePrivacy(e.target.checked)}
+                className="mt-1 w-4 h-4 rounded border-border-light text-point focus:ring-point bg-background-main"
+                disabled={isSubmitting}
+              />
+              <label htmlFor="agreePrivacy" className="text-sm text-foreground-sub select-none cursor-pointer leading-tight">
+                <span className="font-semibold text-foreground-main">{t<string>("contact.form.privacy_label")}</span><br/>
+                <span className="text-xs">{t<string>("contact.form.privacy_desc")}</span>
+              </label>
+            </div>
+
             <button 
               type="submit" 
-              disabled={isSubmitting}
+              disabled={isSubmitting || !agreePrivacy}
               className="mt-2 w-full py-4 rounded-xl bg-foreground-main text-background-main font-bold text-lg hover:bg-point hover:text-white transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg disabled:opacity-70 disabled:hover:translate-y-0 disabled:hover:shadow-none"
             >
               {isSubmitting ? t("contact.button_sending") : t("contact.button")}
