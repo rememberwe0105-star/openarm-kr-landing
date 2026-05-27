@@ -215,5 +215,74 @@
         "answer": "Libertron provides a one-stop solution covering the entire process of equipment adoption from consultation and delivery to technical support based on products manufactured in Korea. For customers in Korea, we ensure fast and seamless supply without complex import procedures. For international customers, products are delivered safely and efficiently through global logistics partners such as FedEx."
       }
     ]
+  },
+  "cart": {
+    "title": "Your Cart",
+    "empty": "Your cart is currently empty.",
+    "total": "Total",
+    "taxes_note": "Taxes, discounts and shipping calculated upon inquiry.",
+    "submit_inquiry": "Submit Inquiry",
+    "continue_shopping": "Continue Shopping"
+  },
+  "checkout": {
+    "title": "Quote & Order Request",
+    "order_summary": "Order Summary",
+    "name_label": "Name / Company *",
+    "country_label": "Country *",
+    "email_label": "Email *",
+    "phone_label": "Phone *",
+    "requests_label": "Requests",
+    "name_placeholder": "John Doe / Libertron",
+    "country_placeholder": "South Korea",
+    "email_placeholder": "example@libertron.com",
+    "phone_placeholder": "+1 234 567 8900",
+    "requests_placeholder": "Delivery schedule, custom options, or any other questions.",
+    "privacy_label": "Privacy Policy Consent (Required)",
+    "privacy_desc": "We collect personal information such as name, contact information, and email to process inquiries and quotes, and securely delete it immediately after the purpose is fulfilled.",
+    "submit": "Submit Quote Request",
+    "submitting": "Submitting...",
+    "success_title": "Your request has been successfully submitted.",
+    "success_desc": "A representative will review it and contact you shortly.",
+    "success_btn": "OK",
+    "error": "An error occurred. Please try again later.",
+    "mobile_total": "Total",
+    "items_suffix": "items"
+  },
+  "camera_modal": {
+    "title": "Select Options",
+    "base_robot": "Base Robot (Included)",
+    "platform_standard": "Platform Standard",
+    "chest_camera_bundle": "Chest Camera (Select one required)",
+    "chest_camera_optional": "Chest Camera (Select one or none)",
+    "arm_cameras_bundle": "Arm Cameras (Included)",
+    "arm_cameras_optional": "Arm Cameras (Optional)",
+    "specifications": "Specifications",
+    "cancel": "Cancel",
+    "add_to_cart": "Add Selected to Cart"
+  },
+  "exploded_view": {
+    "title_1": "Exploded",
+    "title_2": "View",
+    "subtitle": "Scroll to see through the internal component structure"
+  },
+  "video_section": {
+    "title": "OpenArm in Action"
+  },
+  "applications": {
+    "title": "Applications"
+  },
+  "resources_page": {
+    "title_1": "Developer",
+    "title_2": "Resources",
+    "subtitle": "The true value of open source comes from its community.<br />Freely explore all of OpenArm's technical documentation, blueprints, and developer forums.",
+    "docs_title": "Official Documentation",
+    "docs_desc": "Learn how to build, deploy, and configure OpenArm from scratch.",
+    "docs_btn": "Read Docs",
+    "github_title": "GitHub Repository",
+    "github_desc": "Access all source code, CAD files, and issues to start contributing.",
+    "github_btn": "View Source",
+    "discord_title": "Discord Community",
+    "discord_desc": "Join the conversation with developers, share projects, and get help.",
+    "discord_btn": "Join Discord"
   }
 }

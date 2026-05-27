@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { X, Check } from "lucide-react";
 import { Product, ProductOption } from "@/data/products";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 import Image from "next/image";
 
 interface CameraOptionModalProps {
@@ -16,6 +17,17 @@ export default function CameraOptionModal({ isOpen, onClose, product, onAddToCar
   const [selectedChest, setSelectedChest] = useState<string | null>(null);
   const [selectedArm, setSelectedArm] = useState<boolean>(false);
   const [viewedOptId, setViewedOptId] = useState<string | null>(null);
+  const { t } = useLanguage();
+
+  // ESC key to close
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, onClose]);
 
   // Reset state when modal opens with a new product
   useEffect(() => {
@@ -75,7 +87,7 @@ export default function CameraOptionModal({ isOpen, onClose, product, onAddToCar
         className={`relative w-full max-w-4xl max-h-[90vh] bg-background-main border border-border-light shadow-2xl rounded-2xl flex flex-col transform transition-transform duration-300 md:p-8 p-4 ${isOpen ? "scale-100" : "scale-95"}`}
       >
         <div className="flex items-center justify-between mb-4 md:mb-6 pb-4 border-b border-border-light shrink-0">
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground-main">Select Options</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground-main">{t("camera_modal.title")}</h2>
           <button onClick={onClose} className="p-2 text-foreground-sub hover:text-point transition-colors bg-background-sub rounded-full">
             <X size={24} />
           </button>
@@ -130,7 +142,7 @@ export default function CameraOptionModal({ isOpen, onClose, product, onAddToCar
           <div className="bg-background-sub border border-border-light rounded-xl p-6 mb-8">
             {isBundle && (
               <>
-                <h4 className="text-lg font-bold text-foreground-main mb-4 border-b border-border-light pb-2">Base Robot (Included)</h4>
+                <h4 className="text-lg font-bold text-foreground-main mb-4 border-b border-border-light pb-2">{t("camera_modal.base_robot")}</h4>
                 <div className="mb-6">
                   <div className="relative p-4 rounded-xl border-2 cursor-default border-point bg-point/10 flex items-center gap-3">
                     <div className="w-5 h-5 rounded border flex-shrink-0 flex items-center justify-center border-point bg-point text-white">
@@ -138,7 +150,7 @@ export default function CameraOptionModal({ isOpen, onClose, product, onAddToCar
                     </div>
                     <div className="flex-1">
                       <span className="font-bold text-foreground-main block mb-1 text-sm leading-tight">OpenArm Follower Dual Arm V1.1</span>
-                      <span className="text-xs text-foreground-sub block font-mono">Platform Standard</span>
+                      <span className="text-xs text-foreground-sub block font-mono">{t("camera_modal.platform_standard")}</span>
                     </div>
                   </div>
                 </div>
@@ -146,7 +158,7 @@ export default function CameraOptionModal({ isOpen, onClose, product, onAddToCar
             )}
 
             <h4 className="text-lg font-bold text-foreground-main mb-4 border-b border-border-light pb-2">
-              {isBundle ? "Chest Camera (Select one required)" : "Chest Camera (Select one or none)"}
+              {isBundle ? t("camera_modal.chest_camera_bundle") : t("camera_modal.chest_camera_optional")}
             </h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
               {chestOptions.map(opt => (
@@ -167,7 +179,7 @@ export default function CameraOptionModal({ isOpen, onClose, product, onAddToCar
             </div>
 
             <h4 className="text-lg font-bold text-foreground-main mb-4 border-b border-border-light pb-2">
-              {isBundle ? "Arm Cameras (Included)" : "Arm Cameras (Optional)"}
+              {isBundle ? t("camera_modal.arm_cameras_bundle") : t("camera_modal.arm_cameras_optional")}
             </h4>
             {armOption && (
               <div 
@@ -187,7 +199,7 @@ export default function CameraOptionModal({ isOpen, onClose, product, onAddToCar
 
           {/* Specifications Table */}
           <div className="mb-4">
-            <h4 className="text-xl font-bold text-foreground-main mb-4">Specifications</h4>
+            <h4 className="text-xl font-bold text-foreground-main mb-4">{t("camera_modal.specifications")}</h4>
             <div className="overflow-x-auto rounded-xl border border-border-light">
               <table className="w-full text-sm text-left">
                 <thead className="text-xs text-foreground-sub uppercase bg-background-sub border-b border-border-light">
@@ -225,14 +237,14 @@ export default function CameraOptionModal({ isOpen, onClose, product, onAddToCar
 
         <div className="pt-4 md:pt-6 mt-4 border-t border-border-light flex justify-end gap-4 shrink-0">
           <button onClick={onClose} className="px-6 py-3 rounded-xl border border-border-light font-bold text-foreground-main hover:bg-background-sub transition-colors">
-            Cancel
+            {t("camera_modal.cancel")}
           </button>
           <button 
             onClick={handleAddToCart}
             disabled={!selectedChest && !selectedArm}
             className={`px-8 py-3 rounded-xl font-bold transition-all shadow-lg ${(!selectedChest && !selectedArm) ? "bg-border-light text-foreground-sub cursor-not-allowed" : "bg-point text-white hover:bg-point/80 hover:shadow-point/20"}`}
           >
-            Add Selected to Cart
+            {t("camera_modal.add_to_cart")}
           </button>
         </div>
       </div>

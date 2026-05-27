@@ -9,9 +9,9 @@ export default function Footer() {
     <footer className="bg-background-sub border-t border-border-light">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 py-12 flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="text-center md:text-left">
-          <h2 className="text-xl font-bold tracking-tighter mb-4">
+          <div className="text-xl font-bold tracking-tighter mb-4">
             OpenArm<span className="text-point">.</span>
-          </h2>
+          </div>
           <div className="text-foreground-sub text-sm space-y-1">
             <p className="font-semibold text-foreground-main mb-2">{t("footer.corp")}</p>
             <p>{t("footer.addr_1")}</p>

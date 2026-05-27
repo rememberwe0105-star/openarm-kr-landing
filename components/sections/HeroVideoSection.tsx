@@ -38,11 +38,12 @@ export default function HeroVideoSection() {
           loop 
           muted 
           playsInline
+          aria-label="OpenArm robotic arm introduction video"
           preload="auto"
-          poster="https://openarm.dev/images/img_introducing.webp"
+          poster="/images/img_introducing.webp"
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src="https://openarm.dev/videos/kv.mp4" type="video/mp4" />
+          <source src="/videos/kv.mp4" type="video/mp4" />
         </video>
         {/* Subtle overlay to blend into the Dark theme */}
         <div className="absolute inset-0 bg-gradient-to-t from-background-main/40 to-transparent pointer-events-none" />

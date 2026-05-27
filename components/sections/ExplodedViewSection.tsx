@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 interface LabelData {
   id: string;
@@ -31,6 +32,7 @@ export default function ExplodedViewSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { t } = useLanguage();
 
   useGSAP(() => {
     const framesCount = 60;
@@ -118,10 +120,10 @@ export default function ExplodedViewSection() {
         {/* Title Area */}
         <div className="text-center mb-8 relative z-50">
           <h2 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tight mb-2">
-            Exploded <span className="text-point">View</span>
+            {t("exploded_view.title_1")} <span className="text-point">{t("exploded_view.title_2")}</span>
           </h2>
           <p className="text-gray-400 text-base md:text-lg">
-            스크롤하여 컴포넌트 내부 구조를 투시하세요
+            {t("exploded_view.subtitle")}
           </p>
         </div>
 

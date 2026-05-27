@@ -7,31 +7,31 @@ import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 const images = [
   {
-    src: "https://openarm.dev/images/img_introducing.webp",
+    src: "/images/img_introducing.webp",
     alt: "OpenArm Bimanual System",
     title: "Bimanual System",
     description: "인간의 양팔을 완벽하게 모사한 구조",
   },
   {
-    src: "https://openarm.dev/images/features_teleoperation_pc.webp",
+    src: "/images/features_teleoperation_pc.webp",
     alt: "Teleoperation",
     title: "Teleoperation",
     description: "직관적이고 정밀한 원격 조종",
   },
   {
-    src: "https://openarm.dev/images/features_fully_opensource_pc.webp",
+    src: "/images/features_fully_opensource_pc.webp",
     alt: "Hardware Profile",
     title: "Simulation",
     description: "데스크탑 환경에 최적화된 하드웨어",
   },
   {
-    src: "https://openarm.dev/images/features_dexterous_pc.webp",
+    src: "/images/features_dexterous_pc.webp",
     alt: "Dexterous Gripper",
     title: "Dexterous, Powerful & Safe Design",
     description: "다양한 물체를 정교하게 파지하는 그리퍼",
   },
   {
-    src: "https://openarm.dev/images/features_bilateral_pc.webp",
+    src: "/images/features_bilateral_pc.webp",
     alt: "Bilateral Force Feedback",
     title: "Bilateral Force Feedback",
     description: "작업의 감각을 전달하는 포스 피드백",
@@ -121,9 +121,10 @@ export default function ShowcaseSection() {
               loop 
               muted 
               playsInline
+              aria-label="OpenArm fully open-source demonstration video"
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
             >
-              <source src="https://openarm.dev/videos/kv.mp4" type="video/mp4" />
+              <source src="/videos/kv.mp4" type="video/mp4" />
             </video>
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
             

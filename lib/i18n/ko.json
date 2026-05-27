@@ -215,5 +215,74 @@
         "answer": "(주)리버트론은 한국에서 직접 제작한 제품을 기반으로, 상담에서 배송, 기술 지원 등 장비 도입의 전 과정에 대한 원스톱 서비스를 제공합니다. 국내는 복잡한 수입 절차 없이 신속하게 공급하며, 해외 고객의 경우에는 FedEx 등 글로벌 물류 네트워크를 통해 안전하고 효율적인 배송을 지원합니다."
       }
     ]
+  },
+  "cart": {
+    "title": "장바구니",
+    "empty": "장바구니가 비어있습니다.",
+    "total": "합계",
+    "taxes_note": "세금, 할인 및 배송비는 문의 시 별도 안내드립니다.",
+    "submit_inquiry": "견적 요청하기",
+    "continue_shopping": "계속 쇼핑하기"
+  },
+  "checkout": {
+    "title": "견적 및 주문 요청",
+    "order_summary": "주문 요약 (Order Summary)",
+    "name_label": "이름 / 소속 (Name / Company) *",
+    "country_label": "나라 (Country) *",
+    "email_label": "이메일 (Email) *",
+    "phone_label": "전화번호 (Phone) *",
+    "requests_label": "요청사항 (Requests)",
+    "name_placeholder": "홍길동 / 리버트론",
+    "country_placeholder": "South Korea",
+    "email_placeholder": "example@libertron.com",
+    "phone_placeholder": "010-0000-0000",
+    "requests_placeholder": "납기일정, 커스텀 옵션 등 추가로 궁금하신 사항을 남겨주세요.",
+    "privacy_label": "개인정보 수집 및 이용 동의 (필수)",
+    "privacy_desc": "문의 및 견적 처리를 위해 이름, 연락처, 이메일 등의 개인정보를 수집하며, 목적 달성 시 즉시 파기합니다.",
+    "submit": "상담 및 견적 요청하기",
+    "submitting": "전송 중...",
+    "success_title": "요청이 성공적으로 접수되었습니다.",
+    "success_desc": "담당자가 내용을 확인한 후 입력하신 연락처로 회신드리겠습니다.",
+    "success_btn": "확인",
+    "error": "주문 접수 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.",
+    "mobile_total": "합계",
+    "items_suffix": "개 항목"
+  },
+  "camera_modal": {
+    "title": "옵션 선택",
+    "base_robot": "기본 로봇 (포함)",
+    "platform_standard": "플랫폼 표준",
+    "chest_camera_bundle": "가슴 카메라 (1개 필수 선택)",
+    "chest_camera_optional": "가슴 카메라 (선택 또는 미선택)",
+    "arm_cameras_bundle": "팔 카메라 (포함)",
+    "arm_cameras_optional": "팔 카메라 (선택)",
+    "specifications": "사양",
+    "cancel": "취소",
+    "add_to_cart": "선택 항목 장바구니에 담기"
+  },
+  "exploded_view": {
+    "title_1": "Exploded",
+    "title_2": "View",
+    "subtitle": "스크롤하여 컴포넌트 내부 구조를 투시하세요"
+  },
+  "video_section": {
+    "title": "OpenArm in Action"
+  },
+  "applications": {
+    "title": "Applications"
+  },
+  "resources_page": {
+    "title_1": "Developer",
+    "title_2": "Resources",
+    "subtitle": "오픈소스의 진정한 가치는 커뮤니티에서 나옵니다.<br />오픈암의 모든 기술 문서, 도면, 그리고 개발자 포럼에 자유롭게 참여하세요.",
+    "docs_title": "Official Documentation",
+    "docs_desc": "오픈암을 처음부터 빌드, 배포, 구성하는 방법을 알아보세요.",
+    "docs_btn": "Read Docs",
+    "github_title": "GitHub Repository",
+    "github_desc": "모든 소스 코드, CAD 파일, 이슈에 접근하여 기여를 시작하세요.",
+    "github_btn": "View Source",
+    "discord_title": "Discord Community",
+    "discord_desc": "개발자들과 대화하고, 프로젝트를 공유하고, 도움을 받으세요.",
+    "discord_btn": "Join Discord"
   }
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 const VIDEO = { id: "6ZLM6f8kF4Q", title: "OpenArm Offical Reveal" };
 
@@ -8,6 +9,7 @@ export default function VideoCarouselSection() {
   const containerRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLDivElement>(null);
   const [shouldPlay, setShouldPlay] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -44,7 +46,7 @@ export default function VideoCarouselSection() {
         {/* Header Row */}
         <div className="mb-12 text-center">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">
-            OpenArm in Action
+            {t("video_section.title")}
           </h2>
         </div>
 

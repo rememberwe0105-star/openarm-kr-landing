@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
 import Image from "next/image";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 const applications = [
   {
@@ -34,6 +35,7 @@ const applications = [
 
 export default function ApplicationSection() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
 
   useGSAP(() => {
     const ctx = gsap.context(() => {
@@ -65,7 +67,7 @@ export default function ApplicationSection() {
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24">
         <div className="mb-16 text-center">
           <h2 className="text-3xl md:text-5xl font-black text-foreground-main tracking-tighter mb-4">
-            Applications
+            {t("applications.title")}
           </h2>
           {/* Subtitle omitted to keep it strictly English and professional as requested */}
         </div>

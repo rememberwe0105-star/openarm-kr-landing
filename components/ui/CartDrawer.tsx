@@ -1,7 +1,9 @@
 "use client";
 
+import { useEffect } from "react";
 import { X, Plus, Minus, Trash2 } from "lucide-react";
 import { Product } from "@/data/products";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export interface CartItem extends Product {
   quantity: number;
@@ -24,7 +26,18 @@ export default function CartDrawer({
   onRemoveItem,
   onCheckout,
 }: CartDrawerProps) {
+  const { t } = useLanguage();
   const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  // ESC key to close
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, onClose]);
 
   return (
     <>
@@ -37,10 +50,13 @@ export default function CartDrawer({
       {/* Drawer */}
       <div 
         className={`fixed top-0 right-0 h-full w-full max-w-md bg-background-main border-l border-border-light shadow-2xl z-50 transform transition-transform duration-300 ease-in-out flex flex-col ${isOpen ? "translate-x-0" : "translate-x-full"}`}
+        role="dialog"
+        aria-modal="true"
+        aria-label={String(t("cart.title"))}
       >
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-border-light">
-          <h2 className="text-2xl font-bold text-foreground-main tracking-tight">Your Cart</h2>
+          <h2 className="text-2xl font-bold text-foreground-main tracking-tight">{t("cart.title")}</h2>
           <button 
             onClick={onClose}
             className="p-2 text-foreground-sub hover:text-point transition-colors rounded-full hover:bg-background-sub"
@@ -53,7 +69,7 @@ export default function CartDrawer({
         <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-6">
           {items.length === 0 ? (
             <div className="h-full flex flex-col items-center justify-center text-foreground-sub">
-              <p className="text-lg">Your cart is currently empty.</p>
+              <p className="text-lg">{t("cart.empty")}</p>
             </div>
           ) : (
             items.map((item) => (
@@ -113,25 +129,25 @@ export default function CartDrawer({
         {items.length > 0 && (
           <div className="p-6 border-t border-border-light bg-background-main">
             <div className="flex justify-between items-center mb-6">
-              <span className="text-lg font-medium text-foreground-main">Total</span>
+              <span className="text-lg font-medium text-foreground-main">{t("cart.total")}</span>
               <span className="text-2xl font-mono font-bold text-foreground-main">
                 ${subtotal.toLocaleString()}
               </span>
             </div>
             <p className="text-xs text-foreground-sub mb-6 text-center">
-              Taxes, discounts and shipping calculated upon inquiry.
+              {t("cart.taxes_note")}
             </p>
             <button 
               onClick={onCheckout}
               className="w-full bg-point text-white py-4 rounded-xl font-bold text-lg hover:bg-point/80 shadow-lg shadow-point/20 transition-all duration-300"
             >
-              Submit Inquiry
+              {t("cart.submit_inquiry")}
             </button>
             <button 
               onClick={onClose}
               className="w-full mt-3 bg-transparent text-foreground-main py-4 rounded-xl font-medium text-sm hover:bg-background-sub transition-colors duration-300"
             >
-              Continue Shopping
+              {t("cart.continue_shopping")}
             </button>
           </div>
         )}

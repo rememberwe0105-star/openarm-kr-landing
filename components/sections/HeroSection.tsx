@@ -57,7 +57,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 z-0">
         <div className="hero-bg absolute inset-[-10%] w-[120%] h-[120%]">
           <Image 
-            src="https://openarm.dev/images/img_introducing.webp"
+            src="/images/img_introducing.webp"
             alt="OpenArm background"
             fill
             priority
