@@ -1,6 +1,15 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 export async function POST(req: Request) {
   const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -15,16 +24,17 @@ export async function POST(req: Request) {
       );
     }
 
+    // All user inputs are HTML-escaped to prevent XSS
     const htmlContent = `
       <h2>새로운 문의사항이 접수되었습니다.</h2>
       <ul>
-        <li><strong>이름/소속:</strong> ${name}</li>
-        <li><strong>국가/지역:</strong> ${country}</li>
-        <li><strong>이메일:</strong> ${email}</li>
-        <li><strong>전화번호:</strong> ${phone}</li>
+        <li><strong>이름/소속:</strong> ${escapeHtml(name)}</li>
+        <li><strong>국가/지역:</strong> ${escapeHtml(country)}</li>
+        <li><strong>이메일:</strong> ${escapeHtml(email)}</li>
+        <li><strong>전화번호:</strong> ${escapeHtml(phone)}</li>
       </ul>
       <h3>문의 내용</h3>
-      <p style="white-space: pre-wrap;">${message}</p>
+      <p style="white-space: pre-wrap;">${escapeHtml(message)}</p>
     `;
 
     const { data, error } = await resend.emails.send({

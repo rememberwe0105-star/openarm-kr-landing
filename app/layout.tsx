@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { LanguageProvider } from "@/lib/i18n/LanguageContext";
+import FloatingContactButton from "@/components/ui/FloatingContactButton";
+import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google';
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const jetBrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains-mono" });
@@ -36,10 +39,6 @@ export const metadata: Metadata = {
     },
   },
 };
-
-import { LanguageProvider } from "@/lib/i18n/LanguageContext";
-import FloatingContactButton from "@/components/ui/FloatingContactButton";
-import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google';
 
 export default function RootLayout({
   children,

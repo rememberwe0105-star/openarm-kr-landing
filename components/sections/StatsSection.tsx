@@ -2,12 +2,10 @@
 
 import { useRef } from "react";
 import AnimatedCounter from "../ui/AnimatedCounter";
-import { useGSAPAnimation } from "@/hooks/useGSAPAnimation";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export default function StatsSection() {
   const containerRef = useRef<HTMLElement>(null);
-  useGSAPAnimation();
   const { t } = useLanguage();
 
   // Define specs data

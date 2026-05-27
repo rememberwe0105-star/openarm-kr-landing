@@ -147,7 +147,7 @@
     ]
   },
   "contact": {
-    "title": "Ready to<br />\n<span className=\"text-point\">innovate?</span>",
+    "title": "Ready to<br /><span class=\"text-point\">innovate?</span>",
     "subtitle": "Leave an inquiry or request a quote,<br />\nand a representative will contact you shortly.",
     "button": "Submit Inquiry",
     "button_sending": "Sending...",

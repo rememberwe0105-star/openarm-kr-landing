@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { useGSAPAnimation } from "@/hooks/useGSAPAnimation";
 
 const VIDEO = { id: "6ZLM6f8kF4Q", title: "OpenArm Offical Reveal" };
 
@@ -9,8 +8,6 @@ export default function VideoCarouselSection() {
   const containerRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLDivElement>(null);
   const [shouldPlay, setShouldPlay] = useState(false);
-
-  useGSAPAnimation();
 
   useEffect(() => {
     const observer = new IntersectionObserver(

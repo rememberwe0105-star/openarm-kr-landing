@@ -1,6 +1,15 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 export async function POST(req: Request) {
   const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -17,12 +26,12 @@ export async function POST(req: Request) {
       );
     }
 
-    // Prepare email content
+    // Prepare email content (all user inputs are HTML-escaped to prevent XSS)
     const itemsHtml = cartItems
       .map(
         (item: { name: string; quantity: number; price: number }) =>
           `<li>
-            <strong>${item.name}</strong> (x${item.quantity}) - $${(
+            <strong>${escapeHtml(item.name)}</strong> (x${item.quantity}) - $${(
             item.price * item.quantity
           ).toLocaleString()}
           </li>`
@@ -33,11 +42,11 @@ export async function POST(req: Request) {
       <h2>새로운 주문/견적 요청이 접수되었습니다.</h2>
       <h3>구매자 정보</h3>
       <ul>
-        <li><strong>이름/소속 (Name / Company):</strong> ${name}</li>
-        <li><strong>나라 (Country):</strong> ${country}</li>
-        <li><strong>이메일 (Email):</strong> ${email}</li>
-        <li><strong>전화번호 (Phone):</strong> ${phone}</li>
-        <li><strong>요청사항 (Requests):</strong> ${requests || "없음"}</li>
+        <li><strong>이름/소속 (Name / Company):</strong> ${escapeHtml(name)}</li>
+        <li><strong>나라 (Country):</strong> ${escapeHtml(country)}</li>
+        <li><strong>이메일 (Email):</strong> ${escapeHtml(email)}</li>
+        <li><strong>전화번호 (Phone):</strong> ${escapeHtml(phone)}</li>
+        <li><strong>요청사항 (Requests):</strong> ${escapeHtml(requests || "없음")}</li>
       </ul>
       
       <h3>주문 내역</h3>

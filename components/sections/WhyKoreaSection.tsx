@@ -50,7 +50,7 @@ export default function WhyKoreaSection() {
   return (
     <section id="why-korea" className="section-padding bg-background-main relative overflow-hidden">
       {/* Decorative background element */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-background-sub to-transparent opcaity-50 -z-10" />
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-background-sub to-transparent opacity-50 -z-10" />
 
       <div className="text-left md:text-center mb-16 md:mb-24">
         <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-foreground-main mb-6" dangerouslySetInnerHTML={{ __html: t("why_korea.title") }} />
