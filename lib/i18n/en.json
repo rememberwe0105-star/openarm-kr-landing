@@ -266,7 +266,12 @@
     "subtitle": "Scroll to see through the internal component structure"
   },
   "video_section": {
-    "title": "OpenArm in Action"
+    "title": "OpenArm in Action",
+    "now_shipping": "Now Shipping",
+    "coming_soon": "Coming Soon",
+    "v1_1_caption": "OpenArm v1.1 — Assembled in Korea, shipped worldwide by Libertron.",
+    "v2_0_teaser_desc": "The next generation is on its way to Korea. Stay tuned.",
+    "v2_0_caption": "OpenArm 2.0 — Coming soon to Libertron Devkits."
   },
   "applications": {
     "title": "Applications"
