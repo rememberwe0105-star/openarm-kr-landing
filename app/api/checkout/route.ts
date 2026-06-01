@@ -1,5 +1,13 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { checkRateLimit } from "@/lib/rate-limit";
+
+let _resend: Resend;
+function getResend() {
+  if (!_resend) _resend = new Resend(process.env.RESEND_API_KEY);
+  return _resend;
+}
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function escapeHtml(str: string): string {
   return str
@@ -11,20 +19,58 @@ function escapeHtml(str: string): string {
 }
 
 export async function POST(req: Request) {
-  const resend = new Resend(process.env.RESEND_API_KEY);
+  // Rate limiting
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+  if (!checkRateLimit(ip)) {
+    return NextResponse.json(
+      { message: "요청이 너무 많습니다. 잠시 후 다시 시도해주세요." },
+      { status: 429 }
+    );
+  }
 
   try {
     const body = await req.json();
-    const { contactInfo, cartItems, subtotal } = body;
+    const { contactInfo, cartItems } = body;
     const { email, phone, name, country, requests } = contactInfo;
 
-    // Validate request
-    if (!email || !phone || !name || !country || !cartItems || cartItems.length === 0) {
+    // Validate required fields
+    if (!email || !phone || !name || !country || !cartItems || !Array.isArray(cartItems) || cartItems.length === 0) {
       return NextResponse.json(
         { message: "필수 정보가 누락되었습니다." },
         { status: 400 }
       );
     }
+
+    // Validate email format
+    if (!EMAIL_REGEX.test(email)) {
+      return NextResponse.json(
+        { message: "올바른 이메일 형식이 아닙니다." },
+        { status: 400 }
+      );
+    }
+
+    // Validate cartItems structure
+    for (const item of cartItems) {
+      if (
+        typeof item.name !== "string" ||
+        !Number.isInteger(item.quantity) ||
+        item.quantity <= 0 ||
+        typeof item.price !== "number" ||
+        item.price < 0
+      ) {
+        return NextResponse.json(
+          { message: "장바구니 항목이 올바르지 않습니다." },
+          { status: 400 }
+        );
+      }
+    }
+
+    // Recalculate subtotal server-side instead of trusting client value
+    const subtotal = cartItems.reduce(
+      (sum: number, item: { price: number; quantity: number }) =>
+        sum + item.price * item.quantity,
+      0
+    );
 
     // Prepare email content (all user inputs are HTML-escaped to prevent XSS)
     const itemsHtml = cartItems
@@ -56,7 +102,7 @@ export async function POST(req: Request) {
       <p><strong>총 결제 예상 금액:</strong> $${subtotal.toLocaleString()}</p>
     `;
 
-    const { data, error } = await resend.emails.send({
+    const { data, error } = await getResend().emails.send({
       from: "OpenArm Store <noreply@openarm.co.kr>",
       to: process.env.CONTACT_EMAIL_TO || "openarm@libertron.com",
       replyTo: email,

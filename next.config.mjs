@@ -6,10 +6,6 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'openarm.dev',
       },
-      {
-        protocol: 'http',
-        hostname: 'localhost',
-      }
     ],
   },
   async headers() {

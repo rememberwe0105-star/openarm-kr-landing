@@ -64,7 +64,7 @@ export default function RootLayout({
                 "@type": "Organization",
                 "name": "Libertron (리버트론)",
                 "url": "https://openarm.co.kr",
-                "logo": "https://openarm.co.kr/images/openarm_logo.png",
+                "logo": "https://openarm.co.kr/icon.png",
                 "contactPoint": {
                   "@type": "ContactPoint",
                   "telephone": "+82-2-3486-5278",
@@ -88,13 +88,14 @@ export default function RootLayout({
                   "@type": "Offer",
                   "availability": "https://schema.org/InStock",
                   "priceCurrency": "USD",
-                  "price": "0",
+                  "url": "https://openarm.co.kr/products",
                   "shippingDetails": {
                     "@type": "OfferShippingDetails",
-                    "shippingDestination": {
-                      "@type": "DefinedRegion",
-                      "addressCountry": "US"
-                    }
+                    "shippingDestination": [
+                      { "@type": "DefinedRegion", "addressCountry": "KR" },
+                      { "@type": "DefinedRegion", "addressCountry": "US" },
+                      { "@type": "DefinedRegion", "addressCountry": "JP" }
+                    ]
                   }
                 }
               },
@@ -104,7 +105,7 @@ export default function RootLayout({
                 "name": "OpenArm Official Reveal",
                 "description": "Witness the capabilities of the OpenArm Bimanual Robot Devkit in action.",
                 "thumbnailUrl": "https://img.youtube.com/vi/6ZLM6f8kF4Q/maxresdefault.jpg",
-                "uploadDate": "2024-01-01T00:00:00Z",
+                "uploadDate": "2024-10-15T00:00:00Z",
                 "contentUrl": "https://www.youtube.com/watch?v=6ZLM6f8kF4Q",
                 "embedUrl": "https://www.youtube.com/embed/6ZLM6f8kF4Q"
               },

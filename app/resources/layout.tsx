@@ -5,8 +5,9 @@ export const metadata: Metadata = {
   description: "Official documentation, GitHub repositories, and community links for Libertron OpenArm.",
   openGraph: {
     title: "Resources - OpenArm | Libertron",
-    description: "Documentation and resources for OpenArm.",
+    description: "Access official OpenArm documentation, GitHub source code, CAD files, and join the developer community on Discord.",
     url: "https://openarm.co.kr/resources",
+    type: "website",
   },
   alternates: {
     canonical: "/resources",

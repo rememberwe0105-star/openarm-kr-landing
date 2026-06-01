@@ -5,8 +5,9 @@ export const metadata: Metadata = {
   description: "Browse OpenArm robotics devkits, bimanual systems, and accessories. Assembled in Korea.",
   openGraph: {
     title: "Products - OpenArm Devkits | Libertron",
-    description: "Browse OpenArm robotics devkits.",
+    description: "Browse OpenArm robotics devkits, bimanual systems, and accessories. Pre-assembled 14DOF robot arms shipped globally from South Korea.",
     url: "https://openarm.co.kr/products",
+    type: "website",
   },
   alternates: {
     canonical: "/products",

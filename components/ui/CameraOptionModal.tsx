@@ -84,6 +84,9 @@ export default function CameraOptionModal({ isOpen, onClose, product, onAddToCar
         onClick={onClose}
       />
       <div 
+        role="dialog"
+        aria-modal="true"
+        aria-label={String(t("camera_modal.title"))}
         className={`relative w-full max-w-4xl max-h-[90vh] bg-background-main border border-border-light shadow-2xl rounded-2xl flex flex-col transform transition-transform duration-300 md:p-8 p-4 ${isOpen ? "scale-100" : "scale-95"}`}
       >
         <div className="flex items-center justify-between mb-4 md:mb-6 pb-4 border-b border-border-light shrink-0">
@@ -118,7 +121,7 @@ export default function CameraOptionModal({ isOpen, onClose, product, onAddToCar
                       className={`bg-white rounded-xl py-3 px-2 border-2 flex flex-col items-center justify-center gap-2 transition-all duration-200 ${
                         isActive 
                           ? "border-[#009cff]" 
-                          : "border-border-light hover:border-border-dark opacity-100"
+                          : "border-border-light hover:border-border-light opacity-100"
                       }`}
                     >
                       <div className="w-full h-10 flex items-center justify-center relative">

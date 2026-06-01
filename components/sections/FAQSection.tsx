@@ -52,7 +52,10 @@ export default function FAQSection() {
                 className={`faq-item border rounded-2xl overflow-hidden transition-all duration-300 ${isOpen ? 'border-point shadow-md bg-background-sub' : 'border-border-light bg-background-main hover:border-foreground-sub/30'}`}
               >
                 <button
+                  id={`faq-btn-${index}`}
                   onClick={() => setOpenIndex(isOpen ? null : index)}
+                  aria-expanded={openIndex === index}
+                  aria-controls={`faq-panel-${index}`}
                   className="w-full flex items-center justify-between p-6 md:p-8 text-left focus:outline-none"
                 >
                   <h3 className="text-lg md:text-xl font-bold text-foreground-main pr-8">
@@ -64,6 +67,9 @@ export default function FAQSection() {
                 </button>
                 
                 <div 
+                  id={`faq-panel-${index}`}
+                  role="region"
+                  aria-labelledby={`faq-btn-${index}`}
                   className={`overflow-hidden transition-all duration-400 ease-in-out ${isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}
                 >
                   <div className="p-6 md:p-8 pt-0 text-foreground-sub text-base md:text-lg leading-relaxed font-medium">

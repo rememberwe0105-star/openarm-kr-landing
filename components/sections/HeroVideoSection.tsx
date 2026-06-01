@@ -3,8 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
-
-const VIDEO_1_1 = { id: "6ZLM6f8kF4Q", title: "OpenArm v1.1 Official Reveal" };
+import { VIDEO_1_1 } from "@/lib/constants";
 
 export default function HeroVideoSection() {
   const containerRef = useRef<HTMLElement>(null);

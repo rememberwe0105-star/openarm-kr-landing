@@ -9,32 +9,32 @@ const features = [
   {
     title: "Bimanual System",
     description: "완벽히 동기화된 양팔 14DOF 제어로 인간 수준의 복잡한 작업 수행이 가능합니다.",
-    imgUrl: "/images/features/bimanual.png",
+    imgUrl: "/images/features/bimanual.webp",
   },
   {
     title: "1kHz CAN-FD Control",
     description: "독자 개발된 초고속 통신 프로토콜로 실시간 초정밀 모션 제어를 실현합니다.",
-    imgUrl: "/images/features/can_fd.png",
+    imgUrl: "/images/features/can_fd.webp",
   },
   {
     title: "Affordable Platform",
     description: "$6,500(USD)의 합리적인 가격. 연구 및 산업 현장의 도입 장벽을 획기적으로 낮췄습니다.",
-    imgUrl: "/images/features/affordable.png",
+    imgUrl: "/images/features/affordable.webp",
   },
   {
     title: "Lightweight & Powerful",
     description: "5.5kg의 가벼운 암 무게에도 불구하고 최대 6kg의 강력한 페이로드를 자랑합니다.",
-    imgUrl: "/images/features/lightweight.png",
+    imgUrl: "/images/features/lightweight.webp",
   },
   {
     title: "Open Source Ecosystem",
     description: "ROS2 완벽 호환 및 풍부한 오픈소스 커뮤니티 지원으로 빠른 개발이 가능합니다.",
-    imgUrl: "/images/features/opensource.png",
+    imgUrl: "/images/features/opensource.webp",
   },
   {
     title: "Built for AI",
     description: "Sim-to-Real 강화학습 모델 배포에 최적화된 하드웨어 아키텍처를 제공합니다.",
-    imgUrl: "/images/features/ai.png",
+    imgUrl: "/images/features/ai.webp",
   }
 ];
 

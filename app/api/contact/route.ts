@@ -1,5 +1,14 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { checkRateLimit } from "@/lib/rate-limit";
+
+let _resend: Resend;
+function getResend() {
+  if (!_resend) _resend = new Resend(process.env.RESEND_API_KEY);
+  return _resend;
+}
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const MAX_MESSAGE_LENGTH = 5000;
 
 function escapeHtml(str: string): string {
   return str
@@ -11,7 +20,14 @@ function escapeHtml(str: string): string {
 }
 
 export async function POST(req: Request) {
-  const resend = new Resend(process.env.RESEND_API_KEY);
+  // Rate limiting
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+  if (!checkRateLimit(ip)) {
+    return NextResponse.json(
+      { message: "요청이 너무 많습니다. 잠시 후 다시 시도해주세요." },
+      { status: 429 }
+    );
+  }
 
   try {
     const body = await req.json();
@@ -20,6 +36,22 @@ export async function POST(req: Request) {
     if (!name || !email || !country || !message || !phone) {
       return NextResponse.json(
         { message: "필수 정보가 누락되었습니다." },
+        { status: 400 }
+      );
+    }
+
+    // Validate email format
+    if (!EMAIL_REGEX.test(email)) {
+      return NextResponse.json(
+        { message: "올바른 이메일 형식이 아닙니다." },
+        { status: 400 }
+      );
+    }
+
+    // Validate message length
+    if (typeof message === "string" && message.length > MAX_MESSAGE_LENGTH) {
+      return NextResponse.json(
+        { message: `메시지는 ${MAX_MESSAGE_LENGTH}자 이내로 작성해주세요.` },
         { status: 400 }
       );
     }
@@ -37,7 +69,7 @@ export async function POST(req: Request) {
       <p style="white-space: pre-wrap;">${escapeHtml(message)}</p>
     `;
 
-    const { data, error } = await resend.emails.send({
+    const { data, error } = await getResend().emails.send({
       from: "OpenArm Website <noreply@openarm.co.kr>",
       to: process.env.CONTACT_EMAIL_TO || "openarm@libertron.com",
       replyTo: email,
