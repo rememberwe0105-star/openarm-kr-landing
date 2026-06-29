@@ -1,0 +1,58 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "OpenArm 1.1 | Libertron",
+  description: "OpenArm 1.1 — the proven bimanual research arm from Libertron. 검증된 OpenArm 1.1 양팔 로봇암 상세 페이지.",
+  alternates: {
+    canonical: '/openarm-1.1',
+    languages: {
+      'ko-KR': '/openarm-1.1',
+      'en-US': '/openarm-1.1?lang=en',
+      'x-default': '/openarm-1.1',
+    },
+  },
+};
+
+import Navbar from "@/components/ui/Navbar";
+import Footer from "@/components/ui/Footer";
+import ScrollProgress from "@/components/ui/ScrollProgress";
+import HeroSection from "@/components/sections/HeroSection";
+import HeroVideoSection from "@/components/sections/HeroVideoSection";
+import ExplodedViewSection from "@/components/sections/ExplodedViewSection";
+import StatsSection from "@/components/sections/StatsSection";
+import VideoCarouselSection from "@/components/sections/VideoCarouselSection";
+import ComparisonSection from "@/components/sections/ComparisonSection";
+import ShowcaseSection from "@/components/sections/ShowcaseSection";
+import FeaturesSection from "@/components/sections/FeaturesSection";
+import ApplicationSection from "@/components/sections/ApplicationSection";
+import WhyKoreaSection from "@/components/sections/WhyKoreaSection";
+import GetStartedSection from "@/components/sections/GetStartedSection";
+import ContactSection from "@/components/sections/ContactSection";
+import FAQSection from "@/components/sections/FAQSection";
+
+// Preserved OpenArm 1.1 landing (previously the site root `/`).
+// The unified premium 2.0-led landing now lives at `/`.
+export default function OpenArm11Page() {
+  return (
+    <main className="min-h-screen">
+      <ScrollProgress />
+      <Navbar />
+
+      <HeroSection />
+      <HeroVideoSection />
+      <ExplodedViewSection />
+      <StatsSection />
+      <VideoCarouselSection />
+      <ShowcaseSection />
+      <FeaturesSection />
+      <ApplicationSection />
+      <GetStartedSection />
+      <ComparisonSection />
+      <WhyKoreaSection />
+      <FAQSection />
+      <ContactSection />
+
+      <Footer />
+    </main>
+  );
+}

@@ -123,10 +123,10 @@ export default function RootLayout({
                   },
                   {
                     "@type": "Question",
-                    "name": "파이썬(Python)이나 ROS로 직접 제어가 가능한가요?",
+                    "name": "파이썬(Python)이나 ROS2로 직접 제어가 가능한가요?",
                     "acceptedAnswer": {
                       "@type": "Answer",
-                      "text": "네, 완벽하게 지원합니다! OpenArm은 Python API를 제공하며, C++, ROS, 웹소켓 등 다양한 환경에서 직접 코딩하여 제어할 수 있습니다. 로봇 공학도나 AI 연구원들이 딥러닝, 강화학습(RL) 모델을 로봇팔에 바로 적용해 볼 수 있는 최고의 플랫폼입니다."
+                      "text": "네, 완벽하게 지원합니다! OpenArm은 Python API를 제공하며, C++, ROS2, 웹소켓 등 다양한 환경에서 직접 코딩하여 제어할 수 있습니다. 로봇 공학도나 AI 연구원들이 딥러닝, 강화학습(RL) 모델을 로봇팔에 바로 적용해 볼 수 있는 최고의 플랫폼입니다."
                     }
                   },
                   {

@@ -74,11 +74,11 @@ export default function Navbar() {
             OpenArm<span className="text-point">.</span>
           </Link>
           <div className="hidden md:flex space-x-8 text-sm font-medium">
-            <Link href="/#specs" className="hover:text-point transition-colors">{t("nav.specs")}</Link>
-            <Link href="/#features" className="hover:text-point transition-colors">{t("nav.features")}</Link>
-            <Link href="/#applications" className="hover:text-point transition-colors">{t("nav.applications")}</Link>
-            <Link href="/#get-started" className="hover:text-point transition-colors">{t("nav.resources")}</Link>
-            <Link href="/#why-korea" className="hover:text-point transition-colors">{t("nav.about")}</Link>
+            <Link href="/openarm-1.1#specs" className="hover:text-point transition-colors">{t("nav.specs")}</Link>
+            <Link href="/openarm-1.1#features" className="hover:text-point transition-colors">{t("nav.features")}</Link>
+            <Link href="/openarm-1.1#applications" className="hover:text-point transition-colors">{t("nav.applications")}</Link>
+            <Link href="/openarm-1.1#get-started" className="hover:text-point transition-colors">{t("nav.resources")}</Link>
+            <Link href="/openarm-1.1#why-korea" className="hover:text-point transition-colors">{t("nav.about")}</Link>
           </div>
           <div className="flex items-center space-x-3 md:space-x-4">
             <button 
@@ -89,8 +89,8 @@ export default function Navbar() {
             >
               {lang === "en" ? "Kor" : "En"}
             </button>
-            <Link 
-              href="/products" 
+            <Link
+              href="/store"
               className={`px-5 py-2 md:px-6 rounded-full text-sm font-medium transition-all duration-300 ${
                 shouldUseDarkText 
                   ? "bg-foreground-main text-background-main hover:bg-point hover:text-white" 
@@ -125,11 +125,11 @@ export default function Navbar() {
         </button>
         
         <div className="flex flex-col items-center space-y-8 text-2xl font-bold text-foreground-main">
-          <Link href="/#specs" onClick={closeMobileMenu} className="hover:text-point transition-colors">{t("nav.specs")}</Link>
-          <Link href="/#features" onClick={closeMobileMenu} className="hover:text-point transition-colors">{t("nav.features")}</Link>
-          <Link href="/#applications" onClick={closeMobileMenu} className="hover:text-point transition-colors">{t("nav.applications")}</Link>
-          <Link href="/#get-started" onClick={closeMobileMenu} className="hover:text-point transition-colors">{t("nav.resources")}</Link>
-          <Link href="/#why-korea" onClick={closeMobileMenu} className="hover:text-point transition-colors">{t("nav.about")}</Link>
+          <Link href="/openarm-1.1#specs" onClick={closeMobileMenu} className="hover:text-point transition-colors">{t("nav.specs")}</Link>
+          <Link href="/openarm-1.1#features" onClick={closeMobileMenu} className="hover:text-point transition-colors">{t("nav.features")}</Link>
+          <Link href="/openarm-1.1#applications" onClick={closeMobileMenu} className="hover:text-point transition-colors">{t("nav.applications")}</Link>
+          <Link href="/openarm-1.1#get-started" onClick={closeMobileMenu} className="hover:text-point transition-colors">{t("nav.resources")}</Link>
+          <Link href="/openarm-1.1#why-korea" onClick={closeMobileMenu} className="hover:text-point transition-colors">{t("nav.about")}</Link>
         </div>
       </div>
     </>

@@ -8,6 +8,14 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      // The 2.0 work previously lived at /v2 and /v2/order (indexed on the live
+      // site). The unified site moves them to / and /store — redirect to keep SEO.
+      { source: '/v2', destination: '/', permanent: true },
+      { source: '/v2/order', destination: '/store', permanent: true },
+    ];
+  },
   async headers() {
     return [
       {

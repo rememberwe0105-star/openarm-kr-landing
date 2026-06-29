@@ -30,8 +30,15 @@ export async function POST(req: Request) {
 
   try {
     const body = await req.json();
-    const { contactInfo, cartItems } = body;
+    const { contactInfo, cartItems, source } = body;
     const { email, phone, name, country, requests } = contactInfo;
+
+    // Optional source tag (e.g. "OpenArm 2.0 사전예약"). Sanitized for use in
+    // both the subject line and the email body. Single line, length-capped.
+    const sourceTag =
+      typeof source === "string" && source.trim()
+        ? source.replace(/[\r\n]+/g, " ").trim().slice(0, 80)
+        : "";
 
     // Validate required fields
     if (!email || !phone || !name || !country || !cartItems || !Array.isArray(cartItems) || cartItems.length === 0) {
@@ -86,6 +93,7 @@ export async function POST(req: Request) {
 
     const htmlContent = `
       <h2>새로운 주문/견적 요청이 접수되었습니다.</h2>
+      ${sourceTag ? `<p><strong>유입 경로:</strong> ${escapeHtml(sourceTag)}</p>` : ""}
       <h3>구매자 정보</h3>
       <ul>
         <li><strong>이름/소속 (Name / Company):</strong> ${escapeHtml(name)}</li>
@@ -106,7 +114,7 @@ export async function POST(req: Request) {
       from: "OpenArm Store <noreply@openarm.co.kr>",
       to: process.env.CONTACT_EMAIL_TO || "openarm@libertron.com",
       replyTo: email,
-      subject: `[OpenArm Store] ${name}님의 새로운 주문 요청`,
+      subject: `[OpenArm Store${sourceTag ? ` · ${sourceTag}` : ""}] ${name}님의 새로운 주문 요청`,
       html: htmlContent,
     });
 
