@@ -17,6 +17,7 @@ export default function CheckoutModal({ isOpen, onClose, items, onOrderComplete 
   const [isSuccess, setIsSuccess] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
+    organization: "",
     country: "",
     email: "",
     phone: "",
@@ -146,8 +147,8 @@ export default function CheckoutModal({ isOpen, onClose, items, onOrderComplete 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
                   <label htmlFor="name" className="block text-sm font-bold text-foreground-sub mb-2">{t("checkout.name_label")}</label>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     id="name"
                     name="name"
                     required
@@ -158,9 +159,24 @@ export default function CheckoutModal({ isOpen, onClose, items, onOrderComplete 
                   />
                 </div>
                 <div>
+                  <label htmlFor="organization" className="block text-sm font-bold text-foreground-sub mb-2">{t("checkout.organization_label")}</label>
+                  <input
+                    type="text"
+                    id="organization"
+                    name="organization"
+                    value={formData.organization}
+                    onChange={handleChange}
+                    className="w-full bg-background-sub border border-border-light rounded-xl px-4 py-3 text-foreground-main focus:outline-none focus:border-point focus:ring-1 focus:ring-point transition-all"
+                    placeholder={String(t("checkout.organization_placeholder"))}
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div>
                   <label htmlFor="country" className="block text-sm font-bold text-foreground-sub mb-2">{t("checkout.country_label")}</label>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     id="country"
                     name="country"
                     required
@@ -170,9 +186,6 @@ export default function CheckoutModal({ isOpen, onClose, items, onOrderComplete 
                     placeholder={String(t("checkout.country_placeholder"))}
                   />
                 </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
                   <label htmlFor="email" className="block text-sm font-bold text-foreground-sub mb-2">{t("checkout.email_label")}</label>
                   <input 
@@ -186,19 +199,20 @@ export default function CheckoutModal({ isOpen, onClose, items, onOrderComplete 
                     placeholder={String(t("checkout.email_placeholder"))}
                   />
                 </div>
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-bold text-foreground-sub mb-2">{t("checkout.phone_label")}</label>
-                  <input 
-                    type="tel" 
-                    id="phone"
-                    name="phone"
-                    required
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className="w-full bg-background-sub border border-border-light rounded-xl px-4 py-3 text-foreground-main focus:outline-none focus:border-point focus:ring-1 focus:ring-point transition-all"
-                    placeholder={String(t("checkout.phone_placeholder"))}
-                  />
-                </div>
+              </div>
+
+              <div>
+                <label htmlFor="phone" className="block text-sm font-bold text-foreground-sub mb-2">{t("checkout.phone_label")}</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  required
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className="w-full bg-background-sub border border-border-light rounded-xl px-4 py-3 text-foreground-main focus:outline-none focus:border-point focus:ring-1 focus:ring-point transition-all"
+                  placeholder={String(t("checkout.phone_placeholder"))}
+                />
               </div>
 
               <div>

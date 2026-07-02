@@ -31,7 +31,7 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
     const { contactInfo, cartItems, source } = body;
-    const { email, phone, name, country, requests } = contactInfo;
+    const { email, phone, name, organization, country, requests } = contactInfo;
 
     // Optional source tag (e.g. "OpenArm 2.0 사전예약"). Sanitized for use in
     // both the subject line and the email body. Single line, length-capped.
@@ -96,8 +96,9 @@ export async function POST(req: Request) {
       ${sourceTag ? `<p><strong>유입 경로:</strong> ${escapeHtml(sourceTag)}</p>` : ""}
       <h3>구매자 정보</h3>
       <ul>
-        <li><strong>이름/소속 (Name / Company):</strong> ${escapeHtml(name)}</li>
-        <li><strong>나라 (Country):</strong> ${escapeHtml(country)}</li>
+        <li><strong>이름 (Name):</strong> ${escapeHtml(name)}</li>
+        <li><strong>소속/회사 (Company):</strong> ${escapeHtml(organization || "-")}</li>
+        <li><strong>국가/지역 (Country):</strong> ${escapeHtml(country)}</li>
         <li><strong>이메일 (Email):</strong> ${escapeHtml(email)}</li>
         <li><strong>전화번호 (Phone):</strong> ${escapeHtml(phone)}</li>
         <li><strong>요청사항 (Requests):</strong> ${escapeHtml(requests || "없음")}</li>
