@@ -318,7 +318,7 @@ const RI = {
 };
 
 const mv = (src: string, alt: string, orbit = "25deg 70deg auto", fov = 'field-of-view="30deg"') =>
-  `<model-viewer src="${src}" camera-controls touch-action="pan-y" auto-rotate auto-rotate-delay="400" rotation-per-second="16deg" interaction-prompt="none" orientation="0deg 90deg 0deg" shadow-intensity="0" exposure="1.05" environment-image="/models/studio-env.png" tone-mapping="aces" camera-orbit="${orbit}" ${fov} loading="eager" reveal="auto" alt="${alt}"></model-viewer>`;
+  `<model-viewer src="${src}" camera-controls touch-action="pan-y" disable-zoom auto-rotate auto-rotate-delay="400" rotation-per-second="16deg" interaction-prompt="none" orientation="0deg 90deg 0deg" shadow-intensity="0" exposure="1.05" environment-image="/models/studio-env.png" tone-mapping="aces" camera-orbit="${orbit}" ${fov} loading="lazy" reveal="auto" alt="${alt}"></model-viewer>`;
 
 const cnt = (to: string, suf = "", pre = "") =>
   `<span class="cnt" data-to="${to}" data-pre="${pre}" data-suf="${suf}">${pre}0${suf}</span>`;
@@ -436,7 +436,7 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
     <h2 class="h2">${t.act_h}</h2>
   </div>
   <div class="vbframe">
-    <video src="/videos/kv.mp4" autoplay muted loop playsinline preload="auto"></video>
+    <video src="/videos/kv.mp4" autoplay muted loop playsinline preload="metadata"></video>
     <span class="vbcap">${t.act_cap}</span>
   </div>
 </section>
@@ -815,16 +815,23 @@ export default function Home() {
       const onResize = () => resize();
       window.addEventListener("mousemove", onMove, { passive: true });
       window.addEventListener("resize", onResize);
+      // 화면 밖 캔버스는 rAF를 완전히 정지 — 스크롤 중 불필요한 O(n²) 페인트 제거
+      let visible = false;
       const draw = () => {
-        if (!document.body.contains(cv)) return;
+        if (!document.body.contains(cv) || !visible) return;
         ctx.clearRect(0, 0, W, H);
         for (const p of pts) { p.x += p.vx; p.y += p.vy; if (p.x < 0 || p.x > W) p.vx *= -1; if (p.y < 0 || p.y > H) p.vy *= -1; ctx.beginPath(); ctx.arc(p.x, p.y, 1.3, 0, 6.283); ctx.fillStyle = "rgba(0,200,255,.5)"; ctx.fill(); }
         for (let a = 0; a < pts.length; a++) for (let b = a + 1; b < pts.length; b++) { const dx = pts[a].x - pts[b].x, dy = pts[a].y - pts[b].y, d = dx * dx + dy * dy; if (d < 16000) { ctx.strokeStyle = "rgba(0,200,255," + (0.15 * (1 - d / 16000)) + ")"; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(pts[a].x, pts[a].y); ctx.lineTo(pts[b].x, pts[b].y); ctx.stroke(); } }
         for (const p of pts) { const dx = p.x - mouse.x, dy = p.y - mouse.y, d = dx * dx + dy * dy; if (d < 30000) { ctx.strokeStyle = "rgba(0,200,255," + (0.5 * (1 - d / 30000)) + ")"; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke(); } }
         raf = requestAnimationFrame(draw);
       };
-      draw();
-      stops.push(() => { cancelAnimationFrame(raf); window.removeEventListener("mousemove", onMove); window.removeEventListener("resize", onResize); });
+      const io = new IntersectionObserver(([en]) => {
+        const was = visible;
+        visible = !!en?.isIntersecting;
+        if (visible && !was) { cancelAnimationFrame(raf); raf = requestAnimationFrame(draw); }
+      }, { rootMargin: "120px" });
+      io.observe(cv);
+      stops.push(() => { cancelAnimationFrame(raf); io.disconnect(); window.removeEventListener("mousemove", onMove); window.removeEventListener("resize", onResize); });
     }
     return () => { for (const s of stops) s(); };
   }, [lang]);
@@ -854,10 +861,13 @@ export default function Home() {
       const vv = document.querySelector<HTMLVideoElement>(".vbframe video");
       if (vv && vv.paused) { vv.muted = true; vv.play().catch(() => {}); }
     };
-    window.addEventListener("scroll", check, { passive: true });
-    window.addEventListener("resize", check);
+    // rAF 코얼레싱 — 스크롤 이벤트마다가 아니라 프레임당 1회만 실행
+    let ticking = false;
+    const onCheck = () => { if (ticking) return; ticking = true; requestAnimationFrame(() => { ticking = false; check(); }); };
+    window.addEventListener("scroll", onCheck, { passive: true });
+    window.addEventListener("resize", onCheck);
     check();
-    return () => { window.removeEventListener("scroll", check); window.removeEventListener("resize", check); };
+    return () => { window.removeEventListener("scroll", onCheck); window.removeEventListener("resize", onCheck); };
   }, [lang]);
   // inquiry form → /api/contact
   useEffect(() => {
@@ -902,11 +912,14 @@ export default function Home() {
       const active = Math.min(panels.length - 1, Math.floor(p * panels.length));
       panels.forEach((pl, idx) => pl.classList.toggle("on", idx === active));
     };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    // rAF 코얼레싱 — 카메라 오빗 갱신을 프레임당 1회로 제한
+    let ticking = false;
+    const onScrollRaf = () => { if (ticking) return; ticking = true; requestAnimationFrame(() => { ticking = false; onScroll(); }); };
+    window.addEventListener("scroll", onScrollRaf, { passive: true });
+    window.addEventListener("resize", onScrollRaf);
     onScroll();
     const t0 = setTimeout(onScroll, 200);
-    return () => { clearTimeout(t0); window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); };
+    return () => { clearTimeout(t0); window.removeEventListener("scroll", onScrollRaf); window.removeEventListener("resize", onScrollRaf); };
   }, [lang]);
   const t = lang === "en" ? EN : KO;
   return (
