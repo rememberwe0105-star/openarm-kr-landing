@@ -5,7 +5,8 @@
     "applications": "Applications",
     "resources": "Resources",
     "about": "Libertron",
-    "store": "Store"
+    "store": "Store",
+    "v2": "2.0"
   },
   "hero": {
     "built_in_korea": "Assembled in Korea, Shipped Worldwide",
@@ -18,11 +19,21 @@
     "subtitle": "Experience OpenArm's elaborate hardware design and innovative features in photos and videos.",
     "dynamic_motion_subtitle": "Complete CAD, firmware, control code, and simulation tools openly available.",
     "images": [
-      { "desc": "Structure flawlessly mimicking human arms" },
-      { "desc": "Enables intuitive and precise teleoperation of the Follow arm via the Leader arm, providing smooth operation with gravity compensation." },
-      { "desc": "Works with MuJoCo and Isaac Sim for realistic testing and reinforcement learning." },
-      { "desc": "Compliant, backdrivable joints enable safe, practical human-centered interaction." },
-      { "desc": "Two-way force feedback for contact-rich teleoperation and real-world data collection." }
+      {
+        "desc": "Structure flawlessly mimicking human arms"
+      },
+      {
+        "desc": "Enables intuitive and precise teleoperation of the Follow arm via the Leader arm, providing smooth operation with gravity compensation."
+      },
+      {
+        "desc": "Works with MuJoCo and Isaac Sim for realistic testing and reinforcement learning."
+      },
+      {
+        "desc": "Compliant, backdrivable joints enable safe, practical human-centered interaction."
+      },
+      {
+        "desc": "Two-way force feedback for contact-rich teleoperation and real-world data collection."
+      }
     ]
   },
   "features": {
@@ -161,8 +172,10 @@
     "form": {
       "country_label": "Country / Region",
       "country_placeholder": "e.g., United States",
-      "name_label": "Name / Company",
-      "name_placeholder": "e.g., John Doe / Libertron",
+      "name_label": "Name",
+      "name_placeholder": "Jane Doe",
+      "org_label": "Organization / Company",
+      "org_placeholder": "Acme Inc. / Lab (optional)",
       "email_label": "Email",
       "email_placeholder": "hello@example.com",
       "phone_label": "Phone",
@@ -227,13 +240,15 @@
   "checkout": {
     "title": "Quote & Order Request",
     "order_summary": "Order Summary",
-    "name_label": "Name / Company *",
-    "country_label": "Country *",
+    "name_label": "Name *",
+    "org_label": "Organization / Company",
+    "country_label": "Country / Region *",
     "email_label": "Email *",
     "phone_label": "Phone *",
     "requests_label": "Requests",
-    "name_placeholder": "John Doe / Libertron",
-    "country_placeholder": "South Korea",
+    "name_placeholder": "Jane Doe",
+    "org_placeholder": "Acme Inc. / Lab (optional)",
+    "country_placeholder": "e.g., South Korea",
     "email_placeholder": "example@libertron.com",
     "phone_placeholder": "+1 234 567 8900",
     "requests_placeholder": "Delivery schedule, custom options, or any other questions.",
@@ -271,7 +286,8 @@
     "coming_soon": "Coming Soon",
     "v1_1_caption": "OpenArm v1.1 — Assembled in Korea, shipped worldwide by Libertron.",
     "v2_0_teaser_desc": "The next generation is on its way to Korea. Stay tuned.",
-    "v2_0_caption": "OpenArm 2.0 — Coming soon to Libertron Devkits."
+    "v2_0_caption": "OpenArm 2.0 — Coming soon to Libertron Devkits.",
+    "learn_more": "Learn more"
   },
   "applications": {
     "title": "Applications"

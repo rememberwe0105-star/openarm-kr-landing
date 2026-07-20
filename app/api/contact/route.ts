@@ -31,7 +31,7 @@ export async function POST(req: Request) {
 
   try {
     const body = await req.json();
-    const { name, email, phone, country, message } = body;
+    const { name, organization, email, phone, country, message } = body;
 
     if (!name || !email || !country || !message || !phone) {
       return NextResponse.json(
@@ -60,7 +60,8 @@ export async function POST(req: Request) {
     const htmlContent = `
       <h2>새로운 문의사항이 접수되었습니다.</h2>
       <ul>
-        <li><strong>이름/소속:</strong> ${escapeHtml(name)}</li>
+        <li><strong>이름:</strong> ${escapeHtml(name)}</li>
+        <li><strong>소속/회사:</strong> ${escapeHtml(organization || "-")}</li>
         <li><strong>국가/지역:</strong> ${escapeHtml(country)}</li>
         <li><strong>이메일:</strong> ${escapeHtml(email)}</li>
         <li><strong>전화번호:</strong> ${escapeHtml(phone)}</li>

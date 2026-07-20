@@ -23,7 +23,7 @@ export default function StatsSection() {
     <section 
       id="specs" 
       ref={containerRef}
-      className="bg-gradient-to-b from-[#111] to-[#0a0a0a] text-white w-full py-24"
+      className="bg-gradient-to-b from-[#111] to-[#0a0a0a] text-white w-full py-24 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
         <div className="text-center mb-16">
@@ -39,9 +39,9 @@ export default function StatsSection() {
         {stats.map((stat, idx) => (
           <div 
             key={idx} 
-            className="stat-card flex flex-col items-center justify-center p-6 md:py-8 bg-white/[0.03] backdrop-blur-md rounded-[2rem] shadow-2xl border border-white/[0.08] hover:bg-white/[0.06] hover:border-white/[0.15] transition-all duration-500 hover:-translate-y-1 group"
+            className="stat-card flex flex-col items-center justify-center min-w-0 p-6 md:py-8 bg-white/[0.03] md:backdrop-blur-md rounded-[2rem] shadow-lg border border-white/[0.08] hover:bg-white/[0.06] hover:border-white/[0.15] transition-all duration-500 hover:-translate-y-1 group"
           >
-            <div className="text-4xl md:text-5xl lg:text-6xl mb-2 flex items-baseline">
+            <div className="text-3xl md:text-5xl lg:text-6xl mb-2 flex items-baseline">
               {stat.prefix && <span className="text-2xl md:text-3xl font-bold font-mono text-point mr-1">{stat.prefix}</span>}
               <AnimatedCounter 
                 end={stat.value} 

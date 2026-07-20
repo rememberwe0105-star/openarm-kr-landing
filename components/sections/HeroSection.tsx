@@ -34,16 +34,20 @@ export default function HeroSection() {
       "-=0.4"
     );
 
-    // Parallax background
-    gsap.to(".hero-bg", {
-      yPercent: 30,
-      ease: "none",
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top top",
-        end: "bottom top",
-        scrub: true,
-      },
+    // Parallax background — desktop only; on mobile the scrubbed transform
+    // repaints the oversized image every frame and janks touch scrolling
+    const mm = gsap.matchMedia();
+    mm.add("(min-width: 768px)", () => {
+      gsap.to(".hero-bg", {
+        yPercent: 30,
+        ease: "none",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
     });
 
   }, { scope: containerRef });
@@ -51,11 +55,11 @@ export default function HeroSection() {
   return (
     <section 
       ref={containerRef} 
-      className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-background-main"
+      className="relative w-full min-h-[100svh] flex items-center justify-center overflow-hidden bg-background-main"
     >
       {/* Background Image Container */}
       <div className="absolute inset-0 z-0">
-        <div className="hero-bg absolute inset-[-10%] w-[120%] h-[120%]">
+        <div className="hero-bg absolute inset-0 w-full h-full md:inset-[-10%] md:w-[120%] md:h-[120%]">
           <Image 
             src="/images/img_introducing.webp"
             alt="OpenArm background"
@@ -67,7 +71,7 @@ export default function HeroSection() {
           />
         </div>
         {/* Cinematic dark overlay for text readability */}
-        <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 bg-black/60 md:backdrop-blur-[2px]" />
         {/* Gradient fade to bottom */}
         <div className="absolute inset-0 bg-gradient-to-t from-background-main via-background-main/50 to-transparent" />
       </div>
@@ -76,7 +80,7 @@ export default function HeroSection() {
         <div className="mb-8">
           <h1 className="hero-title flex flex-col items-center gap-2 md:gap-3">
             <span className="sr-only">리버트론이 제공하는 압도적인 가성비의 파이썬 코딩 6축 로봇팔, 대학 연구소와 산업용 자동화를 위한 최고의 오픈소스 협동로봇 솔루션</span>
-            <span className="bg-gradient-to-r from-purple-600 via-fuchsia-500 to-pink-500 bg-clip-text text-transparent font-black tracking-tighter text-[4rem] md:text-[7rem] lg:text-[9rem] leading-none drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)] dark:drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]">
+            <span className="bg-gradient-to-r from-purple-600 via-fuchsia-500 to-pink-500 bg-clip-text text-transparent font-black tracking-tighter text-[clamp(2.75rem,17vw,4rem)] md:text-[7rem] lg:text-[9rem] leading-none drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)] dark:drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]">
               OpenArm
             </span>
             <span className="text-xl md:text-3xl lg:text-4xl font-bold tracking-tight text-white/95 drop-shadow-md mt-2">
