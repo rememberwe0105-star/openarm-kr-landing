@@ -178,11 +178,11 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
     <div class="pinfo">
       <div class="pcat">// ROBOTS</div>
       <h2>OpenArm 2.0 Bimanual</h2>
-      <div class="price">$6,500 <small>USD</small></div>
+      <div class="price" style="font-size:23px">${t.inquire}</div>
       <div class="ship">${t.ship_2_0}</div>
       <div class="pdesc">${t.d_2_0}</div>
-      <label class="opt"><input type="checkbox" id="camopt"/><span class="ot">${t.cam_opt}</span><span class="op">+$800</span></label>
-      <button class="addbtn solid" onclick="add('OpenArm 2.0',6500,document.getElementById('camopt').checked)">${t.add}</button>
+      <label class="opt"><input type="checkbox" id="camopt"/><span class="ot">${t.cam_opt}</span></label>
+      <button class="addbtn solid" onclick="add('OpenArm 2.0',0,document.getElementById('camopt').checked)">${t.add_inq}</button>
     </div>
   </div>
 
@@ -192,10 +192,10 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
     <div class="pinfo">
       <div class="pcat">// EVALUATION</div>
       <h2>OpenArm Cell</h2>
-      <div class="price">$6,200 <small>USD</small></div>
+      <div class="price" style="font-size:23px">${t.inquire}</div>
       <div class="ship">${t.ship_cell}</div>
       <div class="pdesc">${t.d_cell}</div>
-      <button class="addbtn" onclick="add('OpenArm Cell',6200,false)">${t.add}</button>
+      <button class="addbtn" onclick="add('OpenArm Cell',0,false)">${t.add_inq}</button>
     </div>
   </div>
 
@@ -218,11 +218,11 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
     <div class="pinfo">
       <div class="pcat">// UPGRADE</div>
       <h2>${t.up_t}</h2>
-      <div class="price">$1,000 <small>USD</small></div>
+      <div class="price" style="font-size:23px">${t.inquire}</div>
       <div class="ship tbd">${t.ship_inq}</div>
       <div class="pdesc">${t.d_up}</div>
-      <label class="opt"><input type="checkbox" id="upcamopt"/><span class="ot">${t.cam_opt}</span><span class="op">+$800</span></label>
-      <button class="addbtn" onclick="add('${lang === "en" ? "1.1 → 2.0 Upgrade Kit" : "1.1 → 2.0 업그레이드 키트"}',1000,document.getElementById('upcamopt').checked)">${t.add}</button>
+      <label class="opt"><input type="checkbox" id="upcamopt"/><span class="ot">${t.cam_opt}</span></label>
+      <button class="addbtn" onclick="add('${lang === "en" ? "1.1 → 2.0 Upgrade Kit" : "1.1 → 2.0 업그레이드 키트"}',0,document.getElementById('upcamopt').checked)">${t.add_inq}</button>
     </div>
   </div>
 
@@ -352,12 +352,12 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
 }
 
 const KO: Record<string, string> = {
-  back: "OpenArm 2.0 메인으로", head_p: "OpenArm 전 라인업을 한 곳에서. 사양과 가격을 확인하고, 원하는 구성을 담아 주문하세요.",
-  estnote: "※ 가격은 USD 기준입니다. 구성·수량·배송지에 따라 최종 견적은 개별 안내드리며, 담은 구성 그대로 담당자가 연락드립니다.",
+  back: "OpenArm 2.0 메인으로", head_p: "OpenArm 전 라인업을 한 곳에서. 사양을 확인하고, 원하는 구성을 담아 문의하세요.",
+  estnote: "※ 가격은 현재 확정 전입니다. 원하는 구성을 담아 문의를 남겨주시면, 담당자가 최종 견적을 개별 안내드립니다.",
   drag: "드래그 · 360°", add: "주문 담기", add_inq: "담기 (가격 문의)", inquire: "가격 문의",
   cam_select: "옵션 선택", cam_title: "카메라 옵션 선택", cam_chest: "가슴 카메라 (선택)", cam_arm: "팔 카메라 (선택)", cam_specs: "사양 비교", cam_cancel: "취소", cam_add: "선택 항목 담기",
   b_now: "지금 구매 가능", b_oct: "10월 예정", b_soon: "출시 예정", b_11user: "1.1 사용자용", b_stock: "재고 보유", b_acc: "액세서리",
-  ship_2_0: "지금 주문 시 8월 중 수령 예정", ship_cell: "10월경 배송 예정", ship_ker: "배송 시기 미정", ship_inq: "배송 문의",
+  ship_2_0: "지금 주문 시 8월 중 수령 예정", ship_cell: "10월경 배송 예정", ship_ker: "10월경 배송 예정", ship_inq: "배송 문의",
   cam_opt: "상단 스테레오 카메라(ZED) — 권장 옵션",
   d_2_0: "컴팩트 그리퍼와 인핸드 카메라를 갖춘 차세대 양팔 로봇암입니다.\n연구·교육·개발 현장이 부담 없이 들일 수 있는 피지컬 AI 플랫폼이죠. 7-DOF ×2 · 양방향 힘 피드백.",
   d_cell: "배경, 조명, 카메라, 로봇 위치까지 똑같이 맞춰주는 평가용 셀입니다.\n모델을 공정하게 비교하고 자동으로 평가하는 표준 환경을 만듭니다. Z축 높이 조절 · 침입 차단 안전 센서 · 제로 캘리브레이션 지그.",
@@ -372,16 +372,16 @@ const KO: Record<string, string> = {
   f_name: "이름", ph_name: "홍길동", f_org: "소속 / 회사", ph_org: "(주)리버트론 / 학교·연구실 (선택)",
   f_country: "국가 / 지역", ph_country: "예: 대한민국", f_email: "이메일", f_phone: "전화번호", f_msg: "문의 내용", ph_msg: "도입 수량, 희망 일정, 기타 문의사항을 적어주세요.",
   agree_b: "개인정보 수집 및 이용 동의 (필수)", agree_d: "문의·견적 처리를 위해 개인정보를 수집하며 목적 달성 시 즉시 파기합니다.", submit: "주문 접수하기",
-  footer: "연구 · 교육 · 개발용 플랫폼 · 가격은 USD 기준",
+  footer: "연구 · 교육 · 개발용 플랫폼 · 가격은 문의 시 개별 안내",
 };
 
 const EN: Record<string, string> = {
-  back: "Back to OpenArm 2.0", head_p: "The full OpenArm lineup in one place. Check specs and pricing, add the configuration you want, and place your order.",
-  estnote: "* Prices are in USD. Final quotes depend on configuration, quantity, and destination; our team follows up with exactly what you add to the cart.",
+  back: "Back to OpenArm 2.0", head_p: "The full OpenArm lineup in one place. Check the specs, add the configuration you want, and send an inquiry.",
+  estnote: "* Pricing is being finalized. Add the configuration you want and leave an inquiry — our team follows up with an individual quote.",
   drag: "Drag · 360°", add: "Add to order", add_inq: "Add (inquire)", inquire: "Contact for price",
   cam_select: "Select options", cam_title: "Select Camera Options", cam_chest: "Chest Camera (optional)", cam_arm: "Arm Cameras (optional)", cam_specs: "Specifications", cam_cancel: "Cancel", cam_add: "Add Selected",
   b_now: "Available now", b_oct: "Ships ~October", b_soon: "Coming soon", b_11user: "For 1.1 owners", b_stock: "In stock", b_acc: "Accessory",
-  ship_2_0: "Order now to receive by mid-August", ship_cell: "Ships around October", ship_ker: "Ship date TBD", ship_inq: "Shipping on request",
+  ship_2_0: "Order now to receive by mid-August", ship_cell: "Ships around October", ship_ker: "Ships around October", ship_inq: "Shipping on request",
   cam_opt: "Top stereo camera (ZED) — recommended option",
   d_2_0: "A next-generation bimanual arm with a compact gripper and in-hand camera.\nA physical-AI platform research, education, and development teams can actually afford. 7-DOF ×2 · bilateral force feedback.",
   d_cell: "An evaluation cell that keeps background, lighting, cameras, and arm position identical every time.\nIt creates a standard environment for fair, automated model comparison. Z-axis lift · reach-in safety stop · zero-position jig.",
@@ -396,7 +396,7 @@ const EN: Record<string, string> = {
   f_name: "Name", ph_name: "Jane Doe", f_org: "Organization / Company", ph_org: "Acme Inc. / Lab (optional)",
   f_country: "Country / Region", ph_country: "e.g., South Korea", f_email: "Email", f_phone: "Phone", f_msg: "Message", ph_msg: "Quantity, timeline, and any questions.",
   agree_b: "I agree to the collection and use of personal data (required)", agree_d: "used only to process your inquiry and quote, then deleted once fulfilled.", submit: "Submit order",
-  footer: "Research · Education · Development platform · Prices in USD",
+  footer: "Research · Education · Development platform · Pricing on inquiry",
 };
 
 export default function StorePage() {

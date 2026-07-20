@@ -19,7 +19,8 @@
   function fmt(n) { return '$' + n.toLocaleString(); }
   function add(name, price, cam) {
     var label = name, p = price;
-    if (cam) { p = (price || 0) + 800; label = name + (EN ? ' + ZED top stereo camera' : ' + ZED 상단 스테레오 카메라'); }
+    // 가격 비공개 전환: 기본가가 견적(0)이면 카메라 옵션도 가격을 붙이지 않는다
+    if (cam) { p = price > 0 ? price + 800 : 0; label = name + (EN ? ' + ZED top stereo camera' : ' + ZED 상단 스테레오 카메라'); }
     cart.push({ name: label, price: p });
     render(); openDrawer();
   }
