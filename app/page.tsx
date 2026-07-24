@@ -94,7 +94,7 @@ html{scroll-behavior:smooth;scroll-padding-top:84px}
   .oa .hero-fade{display:none}
 }
 /* ── scroll-driven intro experience ── */
-.oa .intro{position:relative;height:440vh;z-index:1}
+.oa .intro{position:relative;height:280vh;z-index:1}
 .oa .intro-sticky{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--bg)}
 .oa .intro-mv{position:absolute;inset:0;width:100%;height:100%;background:transparent;z-index:1;transform:translateX(12%)}
 .oa .intro-glow{position:absolute;left:64%;top:48%;width:900px;height:900px;max-width:88%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(58,86,255,.07),transparent 62%);filter:blur(26px);z-index:0;pointer-events:none}
@@ -127,6 +127,10 @@ html{scroll-behavior:smooth;scroll-padding-top:84px}
 .oa .sc-bar{width:1px;height:38px;background:rgba(10,13,20,.14);position:relative;overflow:hidden}
 .oa .sc-bar::after{content:"";position:absolute;top:0;left:0;width:100%;height:42%;background:var(--cy);animation:scd 1.8s ease-in-out infinite}
 @keyframes scd{0%{transform:translateY(-110%)}100%{transform:translateY(260%)}}
+.oa .istep{position:absolute;right:36px;top:50%;transform:translateY(-50%);z-index:4;display:flex;flex-direction:column;gap:11px;align-items:center}
+.oa .istep i{width:7px;height:7px;border-radius:999px;background:rgba(10,13,20,.16);transition:height .35s ease,background .35s ease,box-shadow .35s ease}
+.oa .istep i.on{height:28px;background:var(--grad);box-shadow:0 0 0 4px rgba(58,86,255,.10)}
+@media(max-width:980px){.oa .istep{display:none}}
 @media(max-width:820px){
   .oa .intro{height:auto}
   .oa .intro-sticky{position:relative;height:auto;min-height:auto;padding:40px 0 30px}
@@ -417,6 +421,7 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
         <div class="hero-cta"><a href="/store" class="btn btn-pri">${t.hero_cta1} →</a><a href="#features" class="btn btn-ghost">${t.intro_explore}</a></div>
       </div>
     </div>
+    <div class="istep"><i class="on"></i><i></i><i></i><i></i></div>
     <div class="scrollcue"><span class="sc-bar"></span>${t.scrollcue}</div>
   </div>
 </section>
@@ -930,6 +935,7 @@ export default function Home() {
       mv.setAttribute("camera-target", `${tx.toFixed(1)}m ${ty.toFixed(1)}m ${tz.toFixed(1)}m`);
       const active = Math.min(panels.length - 1, Math.floor(p * panels.length));
       panels.forEach((pl, idx) => pl.classList.toggle("on", idx === active));
+      document.querySelectorAll<HTMLElement>(".istep i").forEach((d, idx) => d.classList.toggle("on", idx === active));
     };
     // rAF 코얼레싱 — 카메라 오빗 갱신을 프레임당 1회로 제한
     let ticking = false;
