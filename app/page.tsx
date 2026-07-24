@@ -32,6 +32,13 @@ html{scroll-behavior:smooth;scroll-padding-top:84px;scroll-snap-type:y proximity
 .oa .h2{font-size:clamp(32px,4.6vw,56px);font-weight:850;letter-spacing:-.035em;line-height:1.04;word-break:keep-all;max-width:20ch}
 .oa .h2 em{color:var(--cy);font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .oa .lead{margin-top:18px;font-size:17px;color:var(--mut);max-width:58ch;word-break:keep-all;line-height:1.7}
+/* roofing-template inspired: scroll word-fill headings + entrance reveals (white/blue) */
+.oa .h2 .wf{color:#c4cbd7;transition:color .4s ease}
+.oa .h2 .wf.on{color:var(--txt)}
+.oa .h2 .wf.wfa.on{color:var(--cy)}
+.oa .rv{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1);will-change:opacity,transform}
+.oa .rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.oa .rv{opacity:1;transform:none;transition:none}.oa .h2 .wf{color:var(--txt)}}
 
 /* nav */
 .oa nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
@@ -951,6 +958,56 @@ export default function Home() {
     onScroll();
     const t0 = setTimeout(onScroll, 200);
     return () => { clearTimeout(t0); window.removeEventListener("scroll", onScrollRaf); window.removeEventListener("resize", onScrollRaf); };
+  }, [lang]);
+  // roofing-template inspired: section heading word-fill on scroll + entrance reveals (white/blue)
+  useEffect(() => {
+    const heads = Array.from(document.querySelectorAll<HTMLElement>(".oa .h2"));
+    heads.forEach((h) => {
+      if (h.dataset.wf) return;
+      h.dataset.wf = "1";
+      const kids = Array.from(h.childNodes);
+      h.textContent = "";
+      const addWords = (text: string, cls: string) => {
+        text.split(/(\s+)/).forEach((tok) => {
+          if (tok === "") return;
+          if (/^\s+$/.test(tok)) { h.appendChild(document.createTextNode(tok)); return; }
+          const s = document.createElement("span");
+          s.className = cls;
+          s.textContent = tok;
+          h.appendChild(s);
+        });
+      };
+      kids.forEach((k) => {
+        if (k.nodeType === 3) addWords(k.textContent || "", "wf");
+        else if ((k as HTMLElement).tagName === "EM") addWords(k.textContent || "", "wf wfa");
+        else h.appendChild(k);
+      });
+    });
+    const fill = () => {
+      for (const h of heads) {
+        const words = h.querySelectorAll<HTMLElement>(".wf");
+        if (!words.length) continue;
+        const r = h.getBoundingClientRect();
+        const start = window.innerHeight * 0.86, end = window.innerHeight * 0.42;
+        const p = Math.min(1, Math.max(0, (start - r.top) / (start - end)));
+        const n = Math.ceil(p * words.length);
+        words.forEach((w, i) => w.classList.toggle("on", i < n));
+      }
+    };
+    const rvEls = Array.from(document.querySelectorAll<HTMLElement>(
+      ".oa .kicker, .oa .sec > .wrap > .lead, .oa .feat, .oa .d3, .oa .eco, .oa .resgrid, .oa .faqlist, .oa .final .panel, .oa .ctgrid"
+    ));
+    rvEls.forEach((el) => el.classList.add("rv"));
+    const io = new IntersectionObserver((ents) => {
+      ents.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+    rvEls.forEach((el) => io.observe(el));
+    let ticking = false;
+    const onScroll = () => { if (ticking) return; ticking = true; requestAnimationFrame(() => { ticking = false; fill(); }); };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    fill();
+    return () => { window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); io.disconnect(); };
   }, [lang]);
   const t = lang === "en" ? EN : KO;
   return (
