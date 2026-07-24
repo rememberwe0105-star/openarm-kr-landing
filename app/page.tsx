@@ -18,7 +18,7 @@ const CSS = `:root{
   --grid:linear-gradient(rgba(10,13,20,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(10,13,20,.028) 1px,transparent 1px);
   --sans:var(--font-inter),'Inter',system-ui,sans-serif; --mono:var(--font-jetbrains-mono),'JetBrains Mono',monospace;
 }
-html{scroll-behavior:smooth;scroll-padding-top:84px}
+html{scroll-behavior:smooth;scroll-padding-top:84px;scroll-snap-type:y proximity}
 .oa{font-family:var(--sans);background:var(--bg);color:var(--txt);-webkit-font-smoothing:antialiased;line-height:1.6}
 .oa *{box-sizing:border-box;margin:0;padding:0}
 .oa a{color:inherit;text-decoration:none}
@@ -131,6 +131,8 @@ html{scroll-behavior:smooth;scroll-padding-top:84px}
 .oa .istep i{width:7px;height:7px;border-radius:999px;background:rgba(10,13,20,.16);transition:height .35s ease,background .35s ease,box-shadow .35s ease}
 .oa .istep i.on{height:28px;background:var(--grad);box-shadow:0 0 0 4px rgba(58,86,255,.10)}
 @media(max-width:980px){.oa .istep{display:none}}
+.oa .isnap{position:absolute;left:0;width:1px;height:1px;pointer-events:none;scroll-snap-align:start;scroll-snap-stop:always}
+@media(max-width:980px){html{scroll-snap-type:none}.oa .isnap{display:none}}
 @media(max-width:820px){
   .oa .intro{height:auto}
   .oa .intro-sticky{position:relative;height:auto;min-height:auto;padding:40px 0 30px}
@@ -424,6 +426,10 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
     <div class="istep"><i class="on"></i><i></i><i></i><i></i></div>
     <div class="scrollcue"><span class="sc-bar"></span>${t.scrollcue}</div>
   </div>
+  <div class="isnap" style="top:0"></div>
+  <div class="isnap" style="top:65vh"></div>
+  <div class="isnap" style="top:110vh"></div>
+  <div class="isnap" style="top:155vh"></div>
 </section>
 
 <!-- SPEC METRICS (count-up) -->
