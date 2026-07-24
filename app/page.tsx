@@ -67,9 +67,9 @@ html{scroll-behavior:smooth;scroll-padding-top:84px;scroll-snap-type:y proximity
 .oa .nav-in{max-width:1240px;margin:0 auto;padding:0 32px;height:70px;display:flex;align-items:center;justify-content:space-between}
 .oa .logo{font-weight:800;font-size:21px;letter-spacing:-.02em}.oa .logo b{color:var(--cy)}
 .oa .nav-links{display:flex;gap:30px;font-size:14px;font-weight:500;color:var(--mut);align-items:center}
-.oa .nav-links a{transition:.2s}.oa .nav-links a:hover{color:var(--txt)}
+.oa .nav-links a{transition:background-color .2s,border-color .2s}.oa .nav-links a:hover{color:var(--txt)}
 .oa .nav-r{display:flex;align-items:center;gap:12px}
-.oa .langbtn{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--txt);border:1px solid var(--line2);background:transparent;padding:8px 13px;border-radius:999px;cursor:pointer;transition:.2s}
+.oa .langbtn{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--txt);border:1px solid var(--line2);background:transparent;padding:8px 13px;border-radius:999px;cursor:pointer;transition:background-color .2s,border-color .2s}
 .oa .langbtn:hover{border-color:var(--cy);color:var(--cy)}
 .oa .cta{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:14px;background:var(--cy);color:#fff;padding:10px 20px;border-radius:999px;transition:.2s}
 .oa .cta:hover{background:var(--cy-deep);box-shadow:0 8px 24px rgba(58,86,255,.28)}
@@ -843,6 +843,15 @@ export default function Home() {
     const s = document.createElement("script");
     s.src = "/oa-mats.js";
     document.body.appendChild(s);
+    // 모바일: auto-rotate가 유휴 WebGL 렌더 루프를 돌려 메인 스레드를 포화 → CSS 색 전환(내비/제목)이 멈춤.
+    // 회전은 데스크톱에서만, 모바일은 드래그로만 회전(정지 상태 = 잼 없음).
+    if (window.matchMedia("(max-width:980px)").matches) {
+      document.querySelectorAll(".oa model-viewer").forEach((el) => {
+        el.removeAttribute("auto-rotate");
+        el.removeAttribute("auto-rotate-delay");
+        el.removeAttribute("rotation-per-second");
+      });
+    }
     return () => { s.remove(); };
   }, [lang]);
   // constellation network on dark sections
