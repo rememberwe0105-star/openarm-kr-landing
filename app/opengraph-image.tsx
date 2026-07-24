@@ -15,33 +15,44 @@ export default function OpengraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background:
-            "radial-gradient(1000px 500px at 78% 8%, rgba(58,86,255,0.12), rgba(255,255,255,0)), #ffffff",
+          background: "#ffffff",
           padding: "76px 84px",
           fontFamily: "sans-serif",
+          position: "relative",
         }}
       >
         <div
           style={{
+            position: "absolute",
+            top: -160,
+            right: -120,
+            width: 520,
+            height: 520,
+            borderRadius: 520,
+            background: "#eef1ff",
+            display: "flex",
+          }}
+        />
+        <div
+          style={{
             display: "flex",
             alignItems: "center",
-            gap: 14,
             color: "#2438C9",
             fontSize: 26,
             fontWeight: 700,
             letterSpacing: 3,
           }}
         >
-          <div style={{ width: 14, height: 14, borderRadius: 10, background: "#3A56FF" }} />
+          <div style={{ width: 14, height: 14, borderRadius: 10, background: "#3A56FF", marginRight: 14, display: "flex" }} />
           INTRODUCING · OPENARM 2.0
         </div>
 
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ display: "flex", fontSize: 148, fontWeight: 900, letterSpacing: -6, lineHeight: 1 }}>
-            <span style={{ color: "#0A0D14" }}>OpenArm&nbsp;</span>
+          <div style={{ display: "flex", fontSize: 150, fontWeight: 900, letterSpacing: -6, lineHeight: 1 }}>
+            <span style={{ color: "#0A0D14", marginRight: 32 }}>OpenArm</span>
             <span style={{ color: "#3A56FF" }}>2.0</span>
           </div>
-          <div style={{ display: "flex", fontSize: 40, color: "#52525B", marginTop: 28, fontWeight: 600 }}>
+          <div style={{ display: "flex", fontSize: 40, color: "#52525B", marginTop: 30, fontWeight: 600 }}>
             Open-source bimanual robot for physical AI
           </div>
         </div>
@@ -58,7 +69,7 @@ export default function OpengraphImage() {
           }}
         >
           <div style={{ display: "flex", fontWeight: 800, color: "#0A0D14", letterSpacing: 1 }}>LIBERTRON</div>
-          <div style={{ display: "flex" }}>ROS 2 · MuJoCo · Isaac Sim · CAN-FD · openarm.co.kr</div>
+          <div style={{ display: "flex" }}>ROS 2 · MuJoCo · Isaac Sim · openarm.co.kr</div>
         </div>
       </div>
     ),
