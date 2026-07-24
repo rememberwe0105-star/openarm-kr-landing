@@ -23,12 +23,12 @@ html{scroll-behavior:smooth;scroll-padding-top:84px;scroll-snap-type:y proximity
 .oa *{box-sizing:border-box;margin:0;padding:0}
 .oa a{color:inherit;text-decoration:none}
 .oa .wrap{max-width:1240px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
-.oa .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--cy);display:inline-flex;align-items:center;gap:11px;font-weight:500}
-.oa .eyebrow::before{content:"";width:24px;height:1px;background:var(--cy)}
+.oa .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--cy-deep);display:inline-flex;align-items:center;gap:8px;font-weight:700;background:rgba(58,86,255,.07);border:1px solid rgba(58,86,255,.18);border-radius:999px;padding:7px 15px}
+.oa .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--cy);box-shadow:0 0 0 3px rgba(58,86,255,.14)}
 .oa .foot{font-size:.62em;color:var(--cy-soft);vertical-align:super;font-weight:600;margin-left:2px;opacity:.85}
 .oa .sec{padding:clamp(80px,11vw,150px) 0;position:relative}
-.oa .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);margin-bottom:18px;display:flex;align-items:baseline;gap:12px}
-.oa .kicker b{color:var(--cy);font-weight:700}
+.oa .kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--cy-deep);margin-bottom:20px;display:inline-flex;align-items:center;gap:9px;width:fit-content;background:rgba(58,86,255,.07);border:1px solid rgba(58,86,255,.18);border-radius:999px;padding:7px 15px}
+.oa .kicker b{color:var(--cy);font-weight:800}
 .oa .h2{font-size:clamp(32px,4.6vw,56px);font-weight:850;letter-spacing:-.035em;line-height:1.04;word-break:keep-all;max-width:20ch}
 .oa .h2 em{color:var(--cy);font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .oa .lead{margin-top:18px;font-size:17px;color:var(--mut);max-width:58ch;word-break:keep-all;line-height:1.7}
@@ -39,6 +39,21 @@ html{scroll-behavior:smooth;scroll-padding-top:84px;scroll-snap-type:y proximity
 .oa .rv{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1);will-change:opacity,transform}
 .oa .rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.oa .rv{opacity:1;transform:none;transition:none}.oa .h2 .wf{color:var(--txt)}}
+/* ecosystem trust strip (honest social proof) */
+.oa .trustbar{padding:24px 0;border-bottom:1px solid var(--line);background:var(--bg2);background-image:var(--grid);background-size:38px 38px}
+.oa .trustbar .wrap{display:flex;align-items:center;gap:14px 24px;flex-wrap:wrap;justify-content:center}
+.oa .tb-label{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
+.oa .tb-chips{display:flex;flex-wrap:wrap;gap:9px;justify-content:center}
+.oa .tb-chips span{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--cy-deep);background:var(--card);border:1px solid rgba(58,86,255,.16);border-radius:999px;padding:8px 15px;box-shadow:var(--shadow)}
+/* hero social proof line */
+.oa .heroproof{display:inline-flex;align-items:center;gap:10px;font-size:13px;color:var(--mut)}
+.oa .heroproof b{color:var(--txt);font-weight:800}
+.oa .heroproof .dots{display:inline-flex}
+.oa .heroproof .dots i{width:22px;height:22px;border-radius:50%;border:2px solid var(--bg);margin-left:-7px;background:linear-gradient(135deg,#3A56FF,#7B61FF)}
+.oa .heroproof .dots i:first-child{margin-left:0}
+.oa .heroproof .dots i:nth-child(2){background:linear-gradient(135deg,#5B6BFF,#9B7BFF)}
+.oa .heroproof .dots i:nth-child(3){background:linear-gradient(135deg,#2438C9,#5B52FF)}
+.oa .heroproof .dots i:nth-child(4){background:linear-gradient(135deg,#7B61FF,#3A56FF)}
 
 /* nav */
 .oa nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
@@ -117,7 +132,7 @@ html{scroll-behavior:smooth;scroll-padding-top:84px;scroll-snap-type:y proximity
 .oa .itag em{color:var(--cy);font-style:normal}
 .oa .ilead{margin-top:18px;font-size:17px;color:var(--mut);max-width:44ch;line-height:1.72;word-break:keep-all}
 .oa .ipanel .hero-cta{margin-top:32px}
-.oa .ibadge{font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--cy);font-weight:600}
+.oa .ibadge{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--cy-deep);font-weight:700;background:rgba(58,86,255,.07);border:1px solid rgba(58,86,255,.18);border-radius:999px;padding:6px 14px}
 .oa .ih{font-size:clamp(32px,4.6vw,56px);font-weight:850;letter-spacing:-.035em;line-height:1.05;max-width:15ch;margin:14px 0 0;word-break:keep-all}
 .oa .ispecs{display:flex;gap:34px;flex-wrap:wrap;margin-top:26px}
 .oa .ispecs > div{display:flex;flex-direction:column}
@@ -189,7 +204,7 @@ html{scroll-behavior:smooth;scroll-padding-top:84px;scroll-snap-type:y proximity
 .oa .ecomedia model-viewer{width:100%;height:100%;background:transparent}
 .oa .ecomedia img,.oa .ecomedia video{width:100%;height:100%;object-fit:cover;display:block}
 .oa .ecomedia .lab{position:absolute;top:16px;left:18px;font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--cy);opacity:.85;z-index:2}
-.oa .ecobadge{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--cy);background:rgba(58,86,255,.08);border:1px solid rgba(58,86,255,.22);padding:6px 12px;border-radius:7px;margin-bottom:18px}
+.oa .ecobadge{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--cy-deep);background:rgba(58,86,255,.08);border:1px solid rgba(58,86,255,.22);padding:6px 13px;border-radius:999px;margin-bottom:18px}
 .oa .eco h3{font-size:clamp(26px,3.2vw,40px);font-weight:850;letter-spacing:-.025em;margin-bottom:14px}
 .oa .eco > div > p{color:var(--mut);font-size:15.5px;line-height:1.7;margin-bottom:22px;word-break:keep-all}
 .oa .ecogrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -437,6 +452,15 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
   <div class="isnap" style="top:65vh"></div>
   <div class="isnap" style="top:110vh"></div>
   <div class="isnap" style="top:155vh"></div>
+</section>
+
+<!-- ECOSYSTEM TRUST STRIP (honest social proof) -->
+<section class="trustbar">
+  <div class="wrap">
+    <div class="heroproof"><span class="dots"><i></i><i></i><i></i><i></i></span> <span>${lang === "en" ? "A <b>globally open-source</b> robotics project" : "<b>전 세계에 공개된</b> 오픈소스 로봇 프로젝트"}</span></div>
+    <div class="tb-label">${lang === "en" ? "Works with your standard stack" : "이미 쓰는 표준 스택 그대로"}</div>
+    <div class="tb-chips"><span>ROS 2</span><span>MuJoCo</span><span>Isaac Sim</span><span>Python</span><span>CAN-FD</span><span>${lang === "en" ? "Open-source CAD·BOM" : "오픈소스 CAD·BOM"}</span></div>
+  </div>
 </section>
 
 <!-- SPEC METRICS (count-up) -->
