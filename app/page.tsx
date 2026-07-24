@@ -480,17 +480,6 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
   </div>
 </div></section>
 
-<!-- IN ACTION — kv.mp4 (same key-visual as openarm.dev) -->
-<section class="sec vidband">
-  <div class="wrap">
-    <div class="kicker"><b>▶</b> ${t.act_k}</div>
-    <h2 class="h2">${t.act_h}</h2>
-  </div>
-  <div class="vbframe">
-    <video src="/videos/kv.mp4" autoplay muted loop playsinline preload="metadata"></video>
-    <span class="vbcap">${t.act_cap}</span>
-  </div>
-</section>
 
 <!-- HARDWARE / LOOK INSIDE -->
 <section class="sec" id="hardware" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap">
