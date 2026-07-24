@@ -116,7 +116,7 @@ html{scroll-behavior:smooth;scroll-padding-top:84px;scroll-snap-type:y proximity
 .oa .hero .lead{max-width:44ch;margin-top:18px}
 .oa .hero-cta{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
 /* full-bleed cinematic video hero */
-.oa .vhero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;background:#05070d;border-bottom:1px solid var(--line)}
+.oa .vhero{position:relative;margin-top:-71px;min-height:100svh;display:flex;align-items:center;overflow:hidden;background:#05070d;border-bottom:1px solid var(--line)}
 .oa .vhero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
 .oa .vhero-scrim{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(4,7,13,.82) 0%,rgba(4,7,13,.52) 16%,rgba(4,7,13,.46) 40%,rgba(4,7,13,.42) 72%,rgba(255,255,255,0) 92%,#ffffff 100%)}
 .oa .vhero-in{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;padding:96px 0 96px}
