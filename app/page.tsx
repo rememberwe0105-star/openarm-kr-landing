@@ -25,7 +25,6 @@ html{scroll-behavior:smooth;scroll-padding-top:84px;scroll-snap-type:y proximity
 .oa .wrap{max-width:1240px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
 .oa .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--cy-deep);display:inline-flex;align-items:center;gap:8px;font-weight:700;background:rgba(58,86,255,.07);border:1px solid rgba(58,86,255,.18);border-radius:999px;padding:7px 15px}
 .oa .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--cy);box-shadow:0 0 0 3px rgba(58,86,255,.14)}
-.oa .foot{font-size:.62em;color:var(--cy-soft);vertical-align:super;font-weight:600;margin-left:2px;opacity:.85}
 .oa .sec{padding:clamp(80px,11vw,150px) 0;position:relative}
 .oa .kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--cy-deep);margin-bottom:20px;display:inline-flex;align-items:center;gap:9px;width:fit-content;background:rgba(58,86,255,.07);border:1px solid rgba(58,86,255,.18);border-radius:999px;padding:7px 15px}
 .oa .kicker b{color:var(--cy);font-weight:800}
@@ -360,11 +359,7 @@ html{scroll-behavior:smooth;scroll-padding-top:84px;scroll-snap-type:y proximity
 .oa .ctsubmit{width:100%;justify-content:center;border:none;cursor:pointer;font-family:var(--sans)}
 @media(max-width:820px){.oa .ctgrid{grid-template-columns:1fr;gap:30px}.oa .frow2{grid-template-columns:1fr}}
 
-/* notes + footer */
-.oa .notes{border-top:1px solid var(--line)}
-.oa .notes ul{list-style:none;display:flex;flex-direction:column;gap:8px;padding:30px 0 6px}
-.oa .notes li{font-size:12.5px;color:var(--mut);line-height:1.6;font-family:var(--mono)}
-.oa .notes li b{color:var(--cy-soft);font-weight:500;margin-right:6px}
+/* footer */
 .oa .vidband{padding-top:clamp(80px,11vw,140px)}
 .oa .vidband .wrap{margin-bottom:42px}
 .oa .vbframe{position:relative;width:100%;height:clamp(440px,64vh,780px);overflow:hidden;background:#04060a;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -480,8 +475,8 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
 
 <section class="specs"><div class="specrow">
   <div class="scell"><div class="v">${cnt("7")}<span class="u">-DOF ×2</span></div><div class="l">${t.s_dof}</div></div>
-  <div class="scell"><div class="v">${cnt("633", "")}<span class="u">mm</span><span class="foot">1</span></div><div class="l">${t.s_reach}</div></div>
-  <div class="scell"><div class="v">${cnt("4.1", "")}<span class="u">/ 6.0kg</span><span class="foot">2</span></div><div class="l">${t.s_pay}</div></div>
+  <div class="scell"><div class="v">${cnt("633", "")}<span class="u">mm</span></div><div class="l">${t.s_reach}</div></div>
+  <div class="scell"><div class="v">${cnt("4.1", "")}<span class="u">/ 6.0kg</span></div><div class="l">${t.s_pay}</div></div>
   <div class="scell"><div class="v">${cnt("1")}<span class="u">kHz</span></div><div class="l">${t.s_ctrl}</div></div>
   <div class="scell"><div class="v">${cnt("100", "%")}</div><div class="l">${t.s_open}</div></div>
 </div></section>
@@ -670,11 +665,6 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
   </div>
 </div></section>
 
-<section class="notes"><div class="wrap"><ul>
-  <li><b>1</b> ${t.note1}</li>
-  <li><b>2</b> ${t.note2}</li>
-</ul></div></section>
-
 <footer>OPENARM 2.0 · <b>LIBERTRON</b> · ${t.footer}</footer>`;
 }
 
@@ -749,8 +739,6 @@ const KO = {
   ct_country: "국가 / 지역", ct_country_ph: "예: 대한민국", ct_email: "이메일", ct_phone: "전화번호", ct_msg: "문의 내용", ct_msg_ph: "도입 수량, 일정, 그 밖에 궁금한 점을 적어주세요.",
   ct_privacy: "개인정보 수집 및 이용에 동의합니다 (필수) — 문의·견적 처리에만 사용하며, 처리가 끝나면 곧바로 파기합니다.",
   ct_btn: "문의 보내기", ct_sending: "보내는 중…", ct_done: "문의가 잘 접수되었습니다. 담당자가 곧 연락드리겠습니다. 감사합니다!", ct_err: "전송에 실패했습니다. 잠시 후 다시 시도해주세요.",
-  note1: "도달 거리 633mm는 OpenArm CAD 도면에서 실측한 값입니다. (공식 문서에는 공개되지 않은 항목)",
-  note2: "정격 4.1kg · 피크 6.0kg 가반하중은 엔드이펙터를 포함한 값입니다. 실제 가반하중은 엔드이펙터 무게만큼 줄어듭니다.",
   footer: "100% 오픈소스 · 연구 · 교육 · 개발용 양팔 로봇 플랫폼",
 };
 
@@ -825,8 +813,6 @@ const EN: Dict = {
   ct_country: "Country / Region", ct_country_ph: "e.g., South Korea", ct_email: "Email", ct_phone: "Phone", ct_msg: "Message", ct_msg_ph: "Quantity, timeline, and any questions.",
   ct_privacy: "I agree to the collection and use of personal data (required) — used only to process your inquiry and quote, then deleted once fulfilled.",
   ct_btn: "Submit inquiry", ct_sending: "Sending…", ct_done: "Your inquiry has been received. Our team will be in touch shortly. Thank you!", ct_err: "Submission failed. Please try again in a moment.",
-  note1: "Reach 633mm is measured from the OpenArm CAD drawings (not published in the official docs).",
-  note2: "Nominal 4.1kg / peak 6.0kg payload includes the end-effector. Effective payload is reduced by the end-effector's weight.",
   footer: "100% open-source · bimanual robot platform for research · education · development",
 };
 
