@@ -121,6 +121,7 @@ html{scroll-behavior:smooth;scroll-padding-top:84px;scroll-snap-type:y proximity
 .oa .vhero .hero-cta{justify-content:center;margin-top:32px}
 .oa .vhero .herostats{justify-content:center;margin-top:30px}
 .oa .vhero-stage{position:relative;z-index:2;max-width:1140px;margin:clamp(52px,7vh,90px) auto 0;padding:0 24px}
+.oa .vhero-stage::before{content:"";position:absolute;left:50%;top:14%;width:78%;height:84%;transform:translateX(-50%);background:radial-gradient(ellipse 60% 58% at 50% 50%,rgba(58,86,255,.20),transparent 68%);filter:blur(48px);pointer-events:none}
 .oa .vframe{position:relative;aspect-ratio:16/9;border-radius:26px;overflow:hidden;border:1px solid var(--line2);box-shadow:var(--shadow-lg);background:#0a0d14}
 .oa .vframe video{width:100%;height:100%;object-fit:cover;display:block}
 .oa .vframe::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:26px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
@@ -627,8 +628,7 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
 </div></div></section>
 
 <!-- CONTACT -->
-<section class="sec" id="contact" style="background:var(--bg2);border-top:1px solid var(--line)"><div class="wrap">
-  <canvas class="net"></canvas>
+<section class="sec" id="contact" style="background:var(--bg2);background-image:var(--grid);background-size:38px 38px;border-top:1px solid var(--line)"><div class="wrap">
   <div class="kicker"><b>06</b> ${t.k_contact}</div>
   <div class="ctgrid">
     <div>
