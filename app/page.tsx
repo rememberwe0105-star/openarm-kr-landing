@@ -71,6 +71,14 @@ html{scroll-behavior:smooth;scroll-padding-top:84px;scroll-snap-type:y proximity
 .oa .nav-r{display:flex;align-items:center;gap:12px}
 .oa .langbtn{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--txt);border:1px solid var(--line2);background:transparent;padding:8px 13px;border-radius:999px;cursor:pointer;transition:background-color .2s,border-color .2s}
 .oa .langbtn:hover{border-color:var(--cy);color:var(--cy)}
+.oa .langtog{display:inline-flex;align-items:center;font-family:var(--mono);font-size:12px;font-weight:700;color:var(--txt);border:1px solid var(--line2);border-radius:999px;padding:8px 12px;user-select:none;transition:border-color .2s}
+.oa .langtog:hover{border-color:var(--cy)}
+.oa .langtog .lg{opacity:.4;cursor:pointer;transition:opacity .15s}
+.oa .langtog .lg:not(.on):hover{opacity:.85}
+.oa .langtog .lg.on{opacity:1;color:var(--cy);cursor:default}
+.oa .langtog .lgsep{opacity:.4;margin:0 4px;cursor:default}
+.oa nav:not(.scrolled) .langtog{color:#fff;text-shadow:0 1px 16px rgba(0,0,0,.5);border-color:rgba(255,255,255,.4)}
+.oa nav:not(.scrolled) .langtog .lg.on{color:#fff}
 .oa .cta{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:14px;background:var(--cy);color:#fff;padding:10px 20px;border-radius:999px;transition:.2s}
 .oa .cta:hover{background:var(--cy-deep);box-shadow:0 8px 24px rgba(58,86,255,.28)}
 .oa .hamb{display:none;flex-direction:column;justify-content:center;gap:5px;width:42px;height:42px;border:1px solid var(--line2);border-radius:11px;background:transparent;cursor:pointer;padding:0 10px}
@@ -83,8 +91,9 @@ html{scroll-behavior:smooth;scroll-padding-top:84px;scroll-snap-type:y proximity
 .oa .mmenu a:active{color:var(--cy)}
 .oa .mfoot{margin-top:auto;padding-top:24px;display:flex;gap:12px;align-items:center}
 .oa .mfoot .langbtn{font-size:14px;padding:12px 18px}
+.oa .mfoot .langtog{font-size:14px;padding:12px 18px}
 .oa .mfoot .cta{flex:1;justify-content:center;font-size:15px;padding:14px}
-@media(max-width:980px){.oa .nav-links{display:none}.oa .hamb{display:flex}.oa .nav-r > .langbtn{display:none}}
+@media(max-width:980px){.oa .nav-links{display:none}.oa .hamb{display:flex}.oa .nav-r > .langbtn,.oa .nav-r > .langtog{display:none}}
 @media(min-width:981px){.oa .mmenu{display:none}}
 
 /* buttons */
@@ -412,7 +421,11 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
     <a href="#contact">${t.nav_contact}</a>
   </div>
   <div class="nav-r">
-    <button class="langbtn" onclick="window.__oaToggleLang&&window.__oaToggleLang()">${lang === "ko" ? "EN" : "한국어"}</button>
+    <div class="langtog" role="group" aria-label="Language">
+      <span class="lg${lang === "en" ? " on" : ""}"${lang !== "en" ? ` onclick="window.__oaToggleLang&&window.__oaToggleLang()"` : ""}>EN</span>
+      <span class="lgsep">/</span>
+      <span class="lg${lang === "ko" ? " on" : ""}"${lang !== "ko" ? ` onclick="window.__oaToggleLang&&window.__oaToggleLang()"` : ""}>KR</span>
+    </div>
     <a href="/store" class="cta">${t.nav_store} →</a>
     <button class="hamb" aria-label="menu" onclick="document.getElementById('mmenu').classList.add('on')"><span></span><span></span><span></span></button>
   </div>
@@ -429,7 +442,11 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
   <a href="#contact" onclick="document.getElementById('mmenu').classList.remove('on')">${t.nav_contact}</a>
   <a href="/openarm-1.1">OpenArm 1.1</a>
   <div class="mfoot">
-    <button class="langbtn" onclick="window.__oaToggleLang&&window.__oaToggleLang()">${lang === "ko" ? "EN · English" : "KO · 한국어"}</button>
+    <div class="langtog" role="group" aria-label="Language">
+      <span class="lg${lang === "en" ? " on" : ""}"${lang !== "en" ? ` onclick="window.__oaToggleLang&&window.__oaToggleLang()"` : ""}>EN</span>
+      <span class="lgsep">/</span>
+      <span class="lg${lang === "ko" ? " on" : ""}"${lang !== "ko" ? ` onclick="window.__oaToggleLang&&window.__oaToggleLang()"` : ""}>KR</span>
+    </div>
     <a href="/store" class="cta">${t.nav_store} →</a>
   </div>
 </div>
@@ -677,7 +694,7 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
 type TCard = { label: string; ds: string; ps: string; pd: string };
 
 const KO = {
-  nav_features: "핵심", nav_why: "왜 리버트론", nav_res: "자료", nav_contact: "문의", nav_store: "스토어",
+  nav_features: "Core", nav_why: "Why Libertron", nav_res: "Resources", nav_contact: "Contact", nav_store: "Store",
   hero_eyebrow: "Introducing · OpenArm 2.0",
   hero_tag: "피지컬 AI 연구를, <em>누구나 재현할 수 있게.</em>",
   hero_lead: "100% 오픈소스 양팔 로봇암. 더 작아진 그리퍼, 손안의 카메라, 그리고 변수를 잡아주는 Cell까지. 부품 수급부터 세팅까지, 리버트론이 한 번에 준비해 드립니다.",
