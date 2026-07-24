@@ -59,7 +59,7 @@ html{scroll-behavior:smooth;scroll-padding-top:84px;scroll-snap-type:y proximity
 .oa nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.72);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid transparent;transition:background .3s,border-color .3s,box-shadow .3s}
 .oa nav.scrolled{background:rgba(255,255,255,.9);border-bottom-color:var(--line);box-shadow:0 8px 30px -16px rgba(16,24,40,.28)}
 .oa nav:not(.scrolled){background:transparent;border-bottom-color:transparent;box-shadow:none}
-.oa nav:not(.scrolled) .logo,.oa nav:not(.scrolled) .nav-links a,.oa nav:not(.scrolled) .langbtn{color:#fff}
+.oa nav:not(.scrolled) .logo,.oa nav:not(.scrolled) .nav-links a,.oa nav:not(.scrolled) .langbtn{color:#fff;text-shadow:0 1px 16px rgba(0,0,0,.5)}
 .oa nav:not(.scrolled) .logo b{color:#9db0ff}
 .oa nav:not(.scrolled) .langbtn{border-color:rgba(255,255,255,.4)}
 .oa nav:not(.scrolled) .hamb{border-color:rgba(255,255,255,.4)}
@@ -118,7 +118,7 @@ html{scroll-behavior:smooth;scroll-padding-top:84px;scroll-snap-type:y proximity
 /* full-bleed cinematic video hero */
 .oa .vhero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;background:#05070d;border-bottom:1px solid var(--line)}
 .oa .vhero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
-.oa .vhero-scrim{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(4,7,13,.66) 0%,rgba(4,7,13,.46) 38%,rgba(4,7,13,.42) 72%,rgba(255,255,255,0) 92%,#ffffff 100%)}
+.oa .vhero-scrim{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(4,7,13,.82) 0%,rgba(4,7,13,.52) 16%,rgba(4,7,13,.46) 40%,rgba(4,7,13,.42) 72%,rgba(255,255,255,0) 92%,#ffffff 100%)}
 .oa .vhero-in{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;padding:96px 0 96px}
 .oa .vhero-title{font-size:clamp(56px,9.5vw,132px);font-weight:900;letter-spacing:-.05em;line-height:.9;margin:20px 0 0;color:#fff}
 .oa .vhero-title b{background:linear-gradient(120deg,#7d90ff,#b3a6ff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
