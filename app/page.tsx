@@ -116,6 +116,13 @@ html{scroll-behavior:smooth;scroll-padding-top:84px}
 .oa .ispecs > div{display:flex;flex-direction:column}
 .oa .ispecs b{font-family:var(--mono);font-size:clamp(34px,4vw,48px);font-weight:700;color:var(--cy);letter-spacing:-.02em;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;width:fit-content}
 .oa .ispecs span{color:var(--mut);font-family:var(--mono);font-size:13px;margin-top:6px}
+.oa .herostats{display:flex;flex-wrap:wrap;gap:0;margin-top:34px}
+.oa .herostats > div{display:flex;flex-direction:column;gap:5px;padding:2px 22px;border-left:1px solid var(--line)}
+.oa .herostats > div:first-child{padding-left:0;border-left:none}
+.oa .herostats b{font-family:var(--mono);font-size:clamp(24px,3vw,30px);font-weight:700;letter-spacing:-.02em;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;width:fit-content}
+.oa .herostats span{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+@media(max-width:820px){.oa .herostats{gap:0}.oa .herostats > div{padding:2px 16px}}
+@media(max-width:480px){.oa .herostats > div{padding:2px 12px}.oa .herostats b{font-size:22px}}
 .oa .scrollcue{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);z-index:3;font-family:var(--mono);font-size:11px;color:var(--mut);letter-spacing:.16em;display:flex;flex-direction:column;align-items:center;gap:10px}
 .oa .sc-bar{width:1px;height:38px;background:rgba(10,13,20,.14);position:relative;overflow:hidden}
 .oa .sc-bar::after{content:"";position:absolute;top:0;left:0;width:100%;height:42%;background:var(--cy);animation:scd 1.8s ease-in-out infinite}
@@ -381,6 +388,12 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
         <p class="itag">${t.hero_tag}</p>
         <p class="ilead">${t.hero_lead}</p>
         <div class="hero-cta"><a href="/store" class="btn btn-pri">${t.hero_cta1} →</a><a href="#contact" class="btn btn-ghost">${t.hero_cta2}</a></div>
+        <div class="herostats">
+          <div><b>7</b><span>-DOF ×2</span></div>
+          <div><b>633</b><span>mm</span></div>
+          <div><b>4.1</b><span>/6.0kg</span></div>
+          <div><b>1</b><span>kHz CAN-FD</span></div>
+        </div>
       </div>
       <div class="ipanel" data-i="1">
         <span class="ibadge">// IN-HAND CAMERA</span>
