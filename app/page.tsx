@@ -359,6 +359,27 @@ html{scroll-behavior:smooth;scroll-padding-top:84px;scroll-snap-type:y proximity
 .oa .ctsubmit{width:100%;justify-content:center;border:none;cursor:pointer;font-family:var(--sans)}
 @media(max-width:820px){.oa .ctgrid{grid-template-columns:1fr;gap:30px}.oa .frow2{grid-template-columns:1fr}}
 
+/* inside — exploded scroll sequence */
+.oa .seqwrap{position:relative;height:340vh;background:#232a34}
+.oa .seqsticky{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:84px 0 30px;background:radial-gradient(circle at 50% 42%,#3a4552,#20262f 80%)}
+.oa .seqhead{text-align:center;position:relative;z-index:2;margin-bottom:clamp(6px,1.6vh,22px);padding:0 24px}
+.oa .seqhead .kicker{justify-content:center;color:var(--cy-soft)}
+.oa .seqhead .h2{color:#fff}
+.oa .seqhead .lead{color:rgba(255,255,255,.66);margin-left:auto;margin-right:auto}
+.oa .seqstage{position:relative;width:100%;display:flex;align-items:center;justify-content:center}
+.oa .seqcanvas{width:min(1040px,90vw);height:auto;aspect-ratio:16/9;display:block;max-height:64vh;object-fit:contain}
+.oa .seqhint{position:absolute;bottom:0;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:rgba(255,255,255,.5);text-transform:uppercase}
+@media(max-width:820px){.oa .seqwrap{height:250vh}}
+
+/* applications gallery */
+.oa .apps .appgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
+.oa .appcard{position:relative;margin:0;border-radius:20px;overflow:hidden;border:1px solid var(--line2);aspect-ratio:4/3;background:#0b0e14;box-shadow:var(--shadow)}
+.oa .appcard img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.22,1,.36,1)}
+.oa .appcard:hover img{transform:scale(1.06)}
+.oa .appcard figcaption{position:absolute;left:0;bottom:0;width:100%;padding:22px 20px 18px;color:#fff;font-weight:700;font-size:15px;line-height:1.35;letter-spacing:-.01em;background:linear-gradient(to top,rgba(4,6,10,.88),rgba(4,6,10,.32) 58%,transparent);z-index:2}
+@media(max-width:900px){.oa .apps .appgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.oa .apps .appgrid{grid-template-columns:1fr}}
+
 /* footer */
 .oa .vidband{padding-top:clamp(80px,11vw,140px)}
 .oa .vidband .wrap{margin-bottom:42px}
@@ -512,6 +533,34 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
       <div class="d3stage"><span class="lab">// CALIBRATION_JIG</span>${mv("/models/openarm-jig.glb", "Calibration jig", "30deg 72deg auto")}<span class="hint">${t.drag}</span></div>
       <h3>${t.hw2_t}</h3><p>${t.hw2_d}</p>
     </div>
+  </div>
+</div></section>
+
+<section class="seqwrap" id="inside">
+  <div class="seqsticky">
+    <div class="wrap seqhead">
+      <div class="kicker"><b>◇</b> ${t.k_inside}</div>
+      <h2 class="h2">${t.inside_h}</h2>
+      <p class="lead">${t.inside_lead}</p>
+    </div>
+    <div class="seqstage">
+      <canvas class="seqcanvas" width="1440" height="810" aria-label="OpenArm exploded structure sequence"></canvas>
+      <span class="seqhint">${t.inside_hint}</span>
+    </div>
+  </div>
+</section>
+
+<section class="sec apps" id="applications" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap">
+  <div class="kicker"><b>◆</b> ${t.k_apps}</div>
+  <h2 class="h2">${t.apps_h}</h2>
+  <p class="lead">${t.apps_lead}</p>
+  <div class="appgrid">
+    <figure class="appcard"><img loading="lazy" src="/images/app_teleoperation.png" alt="OpenArm 활용: ${t.app_teleop}"/><figcaption>${t.app_teleop}</figcaption></figure>
+    <figure class="appcard"><img loading="lazy" src="/images/app_rl_imitation.png" alt="OpenArm 활용: ${t.app_rl}"/><figcaption>${t.app_rl}</figcaption></figure>
+    <figure class="appcard"><img loading="lazy" src="/images/app_robot_manipulation.png" alt="OpenArm 활용: ${t.app_manip}"/><figcaption>${t.app_manip}</figcaption></figure>
+    <figure class="appcard"><img loading="lazy" src="/images/app_ai_humanoid.png" alt="OpenArm 활용: ${t.app_humanoid}"/><figcaption>${t.app_humanoid}</figcaption></figure>
+    <figure class="appcard"><img loading="lazy" src="/images/app_hri_handshake.png" alt="OpenArm 활용: ${t.app_hri}"/><figcaption>${t.app_hri}</figcaption></figure>
+    <figure class="appcard"><img loading="lazy" src="/images/app_ai_education.png" alt="OpenArm 활용: ${t.app_edu}"/><figcaption>${t.app_edu}</figcaption></figure>
   </div>
 </div></section>
 
@@ -690,6 +739,12 @@ const KO = {
   hw_lead: "끌어서 360°로 돌려보세요. 손안의 카메라를 품은 본체부터, 데이터셋의 일관성을 잡아주는 캘리브레이션 지그까지.",
   hw1_t: "OpenArm 2.0 · 헤드 카메라", hw1_d: "손안의 카메라를 품은 본체에, 상단 카메라까지 더한 완전한 구성입니다.",
   hw2_t: "캘리브레이션 지그", hw2_d: "그리퍼를 CAD가 정한 정확한 각도에 딱 맞춰 고정합니다. 조립 오차를 바로잡아, 데이터셋을 더 일관되게 유지하도록 돕습니다.",
+  k_inside: "Inside — 내부를 열어보다", inside_h: "부품 하나까지, <em>이렇게 만들어졌습니다</em>",
+  inside_lead: "스크롤하면 팔이 분해됩니다. DAMIAO 액추에이터부터 CNC 금속 파트, 3D 프린트 케이싱까지 — OpenArm의 속을 그대로 들여다보세요.", inside_hint: "스크롤 · 분해",
+  k_apps: "Applications — 활용 분야", apps_h: "연구실이 <em>실제로 쓰는 곳</em>",
+  apps_lead: "텔레오퍼레이션 데이터 수집부터 강화·모방학습, 휴머노이드 연구와 교육까지. OpenArm 한 대로 다양한 피지컬 AI 연구를 시작할 수 있습니다.",
+  app_teleop: "텔레오퍼레이션 · 시연 기반 학습", app_rl: "강화학습 · 모방학습", app_manip: "로봇 매니퓰레이션 연구",
+  app_humanoid: "AI 휴머노이드 로봇 학습", app_hri: "인간–로봇 상호작용 (HRI)", app_edu: "AI 로보틱스 교육",
   k_eco: "Ecosystem — 함께 확장되는 셋업", h_eco: "팔 하나로 끝나지 않습니다",
   cell_badge: "출시 예정", cell_d: "배경도, 조명도, 카메라와 로봇 위치까지 매번 똑같이. 모델을 공정하게 비교하고 자동으로 평가하는 표준 환경, Cell입니다.",
   cell_1t: "표준 환경", cell_1d: "배경·조명·카메라를 고정해 공정하게 비교", cell_2t: "Z축 리프트", cell_2d: "높이를 조절해 다양한 작업을 재현",
@@ -764,6 +819,12 @@ const EN: Dict = {
   hw_lead: "Drag to explore in 360° — from the body with its in-hand camera to the calibration jig that keeps your dataset consistent.",
   hw1_t: "OpenArm 2.0 · head camera", hw1_d: "The full setup — the body with integrated in-hand camera plus the top-down camera.",
   hw2_t: "Calibration jig", hw2_d: "A zero-position jig that locks the gripper to its exact CAD-defined angles, calibrating out assembly errors for a consistent dataset.",
+  k_inside: "Inside — look under the covers", inside_h: "Built <em>part by part</em>",
+  inside_lead: "Scroll to take the arm apart — from DAMIAO actuators to CNC metal parts and 3D-printed casings, see exactly what's inside OpenArm.", inside_hint: "scroll · explode",
+  k_apps: "Applications — where it's used", apps_h: "What labs <em>actually build</em>",
+  apps_lead: "From teleoperation data collection to reinforcement and imitation learning, humanoid research, and education — one OpenArm opens the door to a wide range of physical-AI work.",
+  app_teleop: "Teleoperation & demonstration learning", app_rl: "Reinforcement & imitation learning", app_manip: "Robot manipulation research",
+  app_humanoid: "AI-driven humanoid learning", app_hri: "Human–robot interaction (HRI)", app_edu: "AI robotics education",
   k_eco: "Ecosystem — an expandable setup", h_eco: "It doesn't end with one arm",
   cell_badge: "Coming soon", cell_d: "A reproducible evaluation cell that keeps background, lighting, cameras, and arm position identical every time — a standard environment for fair, automated model comparison.",
   cell_1t: "Standard environment", cell_1d: "Controls background, lighting, cameras for fair comparison", cell_2t: "Z-axis lift", cell_2d: "Height adjust to reproduce varied tasks",
@@ -1021,6 +1082,43 @@ export default function Home() {
     window.addEventListener("resize", onScroll);
     fill();
     return () => { window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); io.disconnect(); };
+  }, [lang]);
+  // exploded-view scroll sequence (canvas frame scrub)
+  useEffect(() => {
+    const canvas = document.querySelector<HTMLCanvasElement>(".oa .seqcanvas");
+    const wrap = document.querySelector<HTMLElement>(".oa .seqwrap");
+    if (!canvas || !wrap) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    const FRAMES = 61; // frame_000 ~ frame_060
+    const imgs: HTMLImageElement[] = [];
+    let cur = -1;
+    const draw = (f: number) => {
+      const img = imgs[f];
+      if (!img || !img.complete || img.naturalWidth === 0 || f === cur) return;
+      cur = f;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    };
+    const frameFromScroll = () => {
+      const total = wrap.offsetHeight - window.innerHeight;
+      const prog = total > 0 ? Math.min(1, Math.max(0, -wrap.getBoundingClientRect().top / total)) : 0;
+      return Math.round(prog * (FRAMES - 1));
+    };
+    for (let i = 0; i < FRAMES; i++) {
+      const img = new window.Image();
+      // when any frame finishes loading, (re)draw the frame the scroll is currently on
+      img.onload = () => draw(frameFromScroll());
+      img.src = `/images/sequence/frame_${i.toString().padStart(3, "0")}.webp`;
+      imgs.push(img);
+    }
+    let ticking = false;
+    const update = () => { ticking = false; draw(frameFromScroll()); };
+    const onScroll = () => { if (ticking) return; ticking = true; requestAnimationFrame(update); };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    update();
+    return () => { window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); };
   }, [lang]);
   const t = lang === "en" ? EN : KO;
   return (
