@@ -173,7 +173,6 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
 
 <div class="wrap">
 
-  <!-- OpenArm 2.0 -->
   <div class="prod">
     <div class="pmedia mv"><span class="pbadge">${t.b_now}</span><span class="scode">// UNIT_2.0</span>${mvTag("/models/openarm-2.glb", "OpenArm 2.0", "25deg 72deg auto", 'field-of-view="32deg"')}<span class="mvhint">${t.drag}</span></div>
     <div class="pinfo">
@@ -187,7 +186,6 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
     </div>
   </div>
 
-  <!-- OpenArm Cell -->
   <div class="prod rev">
     <div class="pmedia mv"><span class="pbadge">${t.b_oct}</span><span class="scode">// MOD_CELL</span>${mvTag("/models/openarm-cell.glb", "OpenArm Cell", "30deg 72deg auto")}<span class="mvhint">${t.drag}</span></div>
     <div class="pinfo">
@@ -200,7 +198,6 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
     </div>
   </div>
 
-  <!-- OpenArm KER -->
   <div class="prod">
     <div class="pmedia dark"><span class="pbadge">${t.b_soon}</span><span class="scode">// MOD_KER</span><img src="https://docs.openarm.dev/assets/images/ker-086043e0d7a5b11dd872d6f997f37ce4.gif" alt="OpenArm KER"/></div>
     <div class="pinfo">
@@ -213,7 +210,6 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
     </div>
   </div>
 
-  <!-- Upgrade Kit -->
   <div class="prod rev">
     <div class="pmedia"><span class="pbadge">${t.b_11user}</span><span class="scode">// UPGRADE_KIT</span><img src="${UP}" alt="OpenArm 1.1 → 2.0 Upgrade Kit"/></div>
     <div class="pinfo">
@@ -227,7 +223,6 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
     </div>
   </div>
 
-  <!-- OpenArm 1.1 Follower -->
   <div class="prod">
     <div class="pmedia"><span class="pbadge">${t.b_stock}</span><span class="scode">// FOLLOWER_1.1</span><img src="/images/products/follower_clean.png" alt="OpenArm Follower Dual Arm V1.1"/></div>
     <div class="pinfo">
@@ -240,7 +235,6 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
     </div>
   </div>
 
-  <!-- OpenArm 1.1 Leader -->
   <div class="prod rev">
     <div class="pmedia"><span class="pbadge">${t.b_stock}</span><span class="scode">// LEADER_1.1</span><img src="/images/products/leader_clean.png" alt="OpenArm Leader Dual Arm V1.1"/></div>
     <div class="pinfo">
@@ -253,7 +247,6 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
     </div>
   </div>
 
-  <!-- Camera Package -->
   <div class="prod">
     <div class="pmedia"><span class="pbadge">${t.b_acc}</span><span class="scode">// CAMERA_PKG</span><img src="/images/products/d435if_camera.png" alt="OpenArm Camera Package"/></div>
     <div class="pinfo">

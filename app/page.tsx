@@ -451,7 +451,6 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
   </div>
 </div>
 
-<!-- HERO (full-bleed cinematic video) -->
 <section class="vhero" id="top">
   <video class="vhero-bg" src="/videos/kv.mp4" autoplay muted loop playsinline preload="auto"></video>
   <div class="vhero-scrim"></div>
@@ -471,7 +470,6 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
   <div class="vscroll" aria-hidden="true"><span class="vscroll-bar"></span></div>
 </section>
 
-<!-- ECOSYSTEM TRUST STRIP (honest social proof) -->
 <section class="trustbar">
   <div class="wrap">
     <div class="heroproof"><span class="dots"><i></i><i></i><i></i><i></i></span> <span>${lang === "en" ? "A <b>globally open-source</b> robotics project" : "<b>전 세계에 공개된</b> 오픈소스 로봇 프로젝트"}</span></div>
@@ -480,7 +478,6 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
   </div>
 </section>
 
-<!-- SPEC METRICS (count-up) -->
 <section class="specs"><div class="specrow">
   <div class="scell"><div class="v">${cnt("7")}<span class="u">-DOF ×2</span></div><div class="l">${t.s_dof}</div></div>
   <div class="scell"><div class="v">${cnt("633", "")}<span class="u">mm</span><span class="foot">1</span></div><div class="l">${t.s_reach}</div></div>
@@ -489,7 +486,6 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
   <div class="scell"><div class="v">${cnt("100", "%")}</div><div class="l">${t.s_open}</div></div>
 </div></section>
 
-<!-- CORE FEATURES -->
 <section class="sec" id="features"><div class="wrap">
   <div class="kicker"><b>01</b> ${t.k_feat}</div>
   <h2 class="h2">${t.h_feat}</h2>
@@ -508,7 +504,6 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
 </div></section>
 
 
-<!-- HARDWARE / LOOK INSIDE -->
 <section class="sec" id="hardware" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap">
   <div class="kicker"><b>02</b> ${t.k_hw}</div>
   <h2 class="h2">${t.h_hw}</h2>
@@ -525,7 +520,6 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
   </div>
 </div></section>
 
-<!-- ECOSYSTEM: CELL -->
 <section class="sec" id="cell"><div class="wrap">
   <div class="kicker"><b>03</b> ${t.k_eco}</div>
   <h2 class="h2">${t.h_eco}</h2>
@@ -545,7 +539,6 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
   </div>
 </div></section>
 
-<!-- ECOSYSTEM: KER -->
 <section class="sec" id="ker" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap">
   <div class="eco rev">
     <div class="ecomedia"><span class="lab">// MOD_KER</span><img src="https://docs.openarm.dev/assets/images/ker-086043e0d7a5b11dd872d6f997f37ce4.gif" alt="OpenArm KER" loading="lazy"/></div>
@@ -563,7 +556,6 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
   </div>
 </div></section>
 
-<!-- OFFICIAL REVEAL (YouTube) -->
 <section class="sec reveal" id="reveal"><div class="wrap">
   <div class="kicker"><b>▶</b> ${t.rv_k}</div>
   <h2 class="h2">${t.rv_h}</h2>
@@ -573,7 +565,6 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
   </div>
 </div></section>
 
-<!-- WHY LIBERTRON -->
 <section class="sec why" id="why"><div class="wrap">
   <div class="kicker"><b>04</b> ${t.k_why}</div>
   <h2 class="h2">${t.why_title}</h2>
@@ -604,7 +595,6 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
   </div>
 </div></section>
 
-<!-- RESOURCES (open-source ecosystem) -->
 <section class="sec res" id="resources"><div class="wrap">
   <div class="kicker"><b>05</b> ${t.k_res}</div>
   <h2 class="h2">${t.res_h}</h2>
@@ -629,7 +619,6 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
   </div>
 </div></section>
 
-<!-- FAQ (SEO) -->
 <section class="sec faq" id="faq" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap">
   <div class="kicker"><b>?</b> ${t.faq_k}</div>
   <h2 class="h2">${t.faq_h}</h2>
@@ -642,7 +631,6 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
   </div>
 </div></section>
 
-<!-- FINAL CTA -->
 <section class="sec final" id="order"><div class="wrap"><div class="panel">
   <span class="eyebrow" style="justify-content:center">${t.order_eyebrow}</span>
   <h2>${t.order_h}</h2>
@@ -653,7 +641,6 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
   </div>
 </div></div></section>
 
-<!-- CONTACT -->
 <section class="sec" id="contact" style="background:var(--bg2);background-image:var(--grid);background-size:38px 38px;border-top:1px solid var(--line)"><div class="wrap">
   <div class="kicker"><b>06</b> ${t.k_contact}</div>
   <div class="ctgrid">
