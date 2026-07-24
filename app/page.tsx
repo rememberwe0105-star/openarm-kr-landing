@@ -58,6 +58,12 @@ html{scroll-behavior:smooth;scroll-padding-top:84px;scroll-snap-type:y proximity
 /* nav */
 .oa nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.72);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid transparent;transition:background .3s,border-color .3s,box-shadow .3s}
 .oa nav.scrolled{background:rgba(255,255,255,.9);border-bottom-color:var(--line);box-shadow:0 8px 30px -16px rgba(16,24,40,.28)}
+.oa nav:not(.scrolled){background:transparent;border-bottom-color:transparent;box-shadow:none}
+.oa nav:not(.scrolled) .logo,.oa nav:not(.scrolled) .nav-links a,.oa nav:not(.scrolled) .langbtn{color:#fff}
+.oa nav:not(.scrolled) .logo b{color:#9db0ff}
+.oa nav:not(.scrolled) .langbtn{border-color:rgba(255,255,255,.4)}
+.oa nav:not(.scrolled) .hamb{border-color:rgba(255,255,255,.4)}
+.oa nav:not(.scrolled) .hamb span{background:#fff}
 .oa .nav-in{max-width:1240px;margin:0 auto;padding:0 32px;height:70px;display:flex;align-items:center;justify-content:space-between}
 .oa .logo{font-weight:800;font-size:21px;letter-spacing:-.02em}.oa .logo b{color:var(--cy)}
 .oa .nav-links{display:flex;gap:30px;font-size:14px;font-weight:500;color:var(--mut);align-items:center}
@@ -109,31 +115,31 @@ html{scroll-behavior:smooth;scroll-padding-top:84px;scroll-snap-type:y proximity
 .oa .hero .tag em{color:var(--cy);font-style:normal}
 .oa .hero .lead{max-width:44ch;margin-top:18px}
 .oa .hero-cta{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
-/* cinematic video hero */
-.oa .vhero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);background:radial-gradient(120% 68% at 50% 0%,rgba(58,86,255,.07),transparent 62%),var(--bg);padding:clamp(120px,15vh,180px) 0 clamp(64px,9vh,110px)}
-.oa .vhero::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background-image:var(--grid);background-size:44px 44px;-webkit-mask-image:radial-gradient(100% 78% at 50% 0,#000,transparent 70%);mask-image:radial-gradient(100% 78% at 50% 0,#000,transparent 70%);opacity:.55}
-.oa .vhero .net{z-index:0}
-.oa .vhero-in{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center}
-.oa .vhero-title{font-size:clamp(56px,9.5vw,128px);font-weight:900;letter-spacing:-.05em;line-height:.9;margin:20px 0 0}
-.oa .vhero-title b{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.oa .vhero-tag{font-size:clamp(20px,2.7vw,34px);font-weight:750;letter-spacing:-.02em;margin-top:18px;line-height:1.22;max-width:22ch;word-break:keep-all}
-.oa .vhero-tag em{color:var(--cy);font-style:normal}
-.oa .vhero-lead{margin-top:16px;font-size:17px;color:var(--mut);max-width:54ch;line-height:1.7;word-break:keep-all}
-.oa .vhero .hero-cta{justify-content:center;margin-top:32px}
-.oa .vhero .herostats{justify-content:center;margin-top:30px}
-.oa .vhero-stage{position:relative;z-index:2;max-width:1140px;margin:clamp(52px,7vh,90px) auto 0;padding:0 24px}
-.oa .vhero-stage::before{content:"";position:absolute;left:50%;top:14%;width:78%;height:84%;transform:translateX(-50%);background:radial-gradient(ellipse 60% 58% at 50% 50%,rgba(58,86,255,.20),transparent 68%);filter:blur(48px);pointer-events:none}
-.oa .vframe{position:relative;aspect-ratio:16/9;border-radius:26px;overflow:hidden;border:1px solid var(--line2);box-shadow:var(--shadow-lg);background:#0a0d14}
-.oa .vframe video{width:100%;height:100%;object-fit:cover;display:block}
-.oa .vframe::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:26px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
-.oa .vbadge{position:absolute;top:16px;left:16px;z-index:2;display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.12em;color:#fff;background:rgba(10,13,20,.42);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:8px 14px}
-.oa .vbadge i{width:7px;height:7px;border-radius:50%;background:#38e08a;box-shadow:0 0 9px #38e08a;animation:vpulse 1.8s ease-in-out infinite}
-@keyframes vpulse{0%,100%{opacity:1}50%{opacity:.4}}
-@media(max-width:820px){.oa .vhero{padding-top:104px}.oa .vframe{border-radius:18px}.oa .vhero-stage{padding:0 16px}.oa .vhero-title{font-size:clamp(48px,13vw,84px)}}
-.oa .vscroll{margin-top:38px;display:flex;justify-content:center}
-.oa .vscroll-bar{width:1px;height:42px;background:rgba(10,13,20,.12);position:relative;overflow:hidden;border-radius:2px}
-.oa .vscroll-bar::after{content:"";position:absolute;top:0;left:0;width:100%;height:44%;background:var(--grad);animation:scd2 1.8s ease-in-out infinite}
+/* full-bleed cinematic video hero */
+.oa .vhero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;background:#05070d;border-bottom:1px solid var(--line)}
+.oa .vhero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.oa .vhero-scrim{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(4,7,13,.66) 0%,rgba(4,7,13,.46) 38%,rgba(4,7,13,.42) 72%,rgba(255,255,255,0) 92%,#ffffff 100%)}
+.oa .vhero-in{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;padding:96px 0 96px}
+.oa .vhero-title{font-size:clamp(56px,9.5vw,132px);font-weight:900;letter-spacing:-.05em;line-height:.9;margin:20px 0 0;color:#fff}
+.oa .vhero-title b{background:linear-gradient(120deg,#7d90ff,#b3a6ff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.oa .vhero-tag{font-size:clamp(20px,2.7vw,34px);font-weight:750;letter-spacing:-.02em;margin-top:18px;line-height:1.22;max-width:22ch;word-break:keep-all;color:#fff}
+.oa .vhero-tag em{color:#9db0ff;font-style:normal}
+.oa .vhero-lead{margin-top:16px;font-size:17px;color:rgba(255,255,255,.82);max-width:54ch;line-height:1.7;word-break:keep-all}
+.oa .vhero .hero-cta{justify-content:center;margin-top:34px}
+.oa .vhero .btn-ghost{border-color:rgba(255,255,255,.34);color:#fff}
+.oa .vhero .btn-ghost:hover{border-color:#fff;color:#fff;background:rgba(255,255,255,.08)}
+.oa .vhero .herostats{justify-content:center;margin-top:34px}
+.oa .vhero .herostats > div{border-left-color:rgba(255,255,255,.2)}
+.oa .vhero .herostats > div:first-child{border-left:none}
+.oa .vhero .herostats b{background:linear-gradient(120deg,#8ea0ff,#b9adff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.oa .vhero .herostats span{color:rgba(255,255,255,.7)}
+.oa .vhero .eyebrow{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.28);color:#fff}
+.oa .vhero .eyebrow::before{background:#8ea0ff;box-shadow:0 0 0 3px rgba(142,160,255,.25)}
+.oa .vscroll{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:2;display:flex;justify-content:center}
+.oa .vscroll-bar{width:1px;height:44px;background:rgba(255,255,255,.28);position:relative;overflow:hidden;border-radius:2px}
+.oa .vscroll-bar::after{content:"";position:absolute;top:0;left:0;width:100%;height:44%;background:linear-gradient(#fff,#8ea0ff);animation:scd2 1.8s ease-in-out infinite}
 @keyframes scd2{0%{transform:translateY(-120%)}100%{transform:translateY(260%)}}
+@media(max-width:820px){.oa .vhero-title{font-size:clamp(48px,13vw,84px)}.oa .vhero-in{padding-top:112px}}
 .oa .btn:active{transform:translateY(0) scale(.98)}
 .oa .cta:active{transform:scale(.97)}
 @media(max-width:980px){
@@ -428,9 +434,10 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
   </div>
 </div>
 
-<!-- HERO (cinematic video) -->
+<!-- HERO (full-bleed cinematic video) -->
 <section class="vhero" id="top">
-  <canvas class="net"></canvas>
+  <video class="vhero-bg" src="/videos/kv.mp4" autoplay muted loop playsinline preload="auto"></video>
+  <div class="vhero-scrim"></div>
   <div class="vhero-in wrap">
     <span class="eyebrow">${t.hero_eyebrow}</span>
     <h1 class="vhero-title">OpenArm <b>2.0</b></h1>
@@ -443,14 +450,8 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
       <div><b>4.1</b><span>/6.0kg</span></div>
       <div><b>1</b><span>kHz CAN-FD</span></div>
     </div>
-    <div class="vscroll" aria-hidden="true"><span class="vscroll-bar"></span></div>
   </div>
-  <div class="vhero-stage">
-    <div class="vframe">
-      <span class="vbadge"><i></i>${lang === "en" ? "LIVE MOTION" : "실제 구동 영상"}</span>
-      <video src="/videos/kv.mp4" autoplay muted loop playsinline preload="metadata"></video>
-    </div>
-  </div>
+  <div class="vscroll" aria-hidden="true"><span class="vscroll-bar"></span></div>
 </section>
 
 <!-- ECOSYSTEM TRUST STRIP (honest social proof) -->
@@ -996,7 +997,7 @@ export default function Home() {
     });
     const nav = document.querySelector<HTMLElement>(".oa nav");
     const fill = () => {
-      if (nav) nav.classList.toggle("scrolled", window.scrollY > 16);
+      if (nav) nav.classList.toggle("scrolled", window.scrollY > window.innerHeight * 0.72);
       for (const h of heads) {
         const words = h.querySelectorAll<HTMLElement>(".wf");
         if (!words.length) continue;
