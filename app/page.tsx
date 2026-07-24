@@ -13,7 +13,7 @@ import { useLanguage } from "@/lib/i18n/LanguageContext";
 const CSS = `:root{
   --bg:#FFFFFF; --bg2:#F6F8FB; --card:#FFFFFF; --card2:#F2F5F9;
   --txt:#0A0D14; --mut:#52525B; --line:rgba(10,13,20,.09); --line2:rgba(10,13,20,.15);
-  --cy:#3A56FF; --cy-soft:#6F83FF; --cy-deep:#2438C9;
+  --cy:#3A56FF; --cy-soft:#6F83FF; --cy-deep:#2438C9; --grad:linear-gradient(120deg,#3A56FF,#7B61FF);
   --shadow:0 1px 2px rgba(16,24,40,.04),0 10px 28px -10px rgba(16,24,40,.14); --shadow-lg:0 2px 6px rgba(16,24,40,.05),0 28px 60px -16px rgba(16,24,40,.22);
   --grid:linear-gradient(rgba(10,13,20,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(10,13,20,.028) 1px,transparent 1px);
   --sans:var(--font-inter),'Inter',system-ui,sans-serif; --mono:var(--font-jetbrains-mono),'JetBrains Mono',monospace;
@@ -30,7 +30,7 @@ html{scroll-behavior:smooth;scroll-padding-top:84px}
 .oa .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);margin-bottom:18px;display:flex;align-items:baseline;gap:12px}
 .oa .kicker b{color:var(--cy);font-weight:700}
 .oa .h2{font-size:clamp(32px,4.6vw,56px);font-weight:850;letter-spacing:-.035em;line-height:1.04;word-break:keep-all;max-width:20ch}
-.oa .h2 em{color:var(--cy);font-style:normal}
+.oa .h2 em{color:var(--cy);font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .oa .lead{margin-top:18px;font-size:17px;color:var(--mut);max-width:58ch;word-break:keep-all;line-height:1.7}
 
 /* nav */
@@ -81,7 +81,7 @@ html{scroll-behavior:smooth;scroll-padding-top:84px}
 .oa .hero-in{position:relative;z-index:2;width:100%;padding:96px 32px}
 .oa .hero-copy{max-width:560px}
 .oa .hero h1{font-size:clamp(56px,7.6vw,112px);font-weight:900;letter-spacing:-.05em;line-height:.88;margin:18px 0 0}
-.oa .hero h1 b{color:var(--cy)}
+.oa .hero h1 b{color:var(--cy);background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .oa .hero .tag{font-size:clamp(20px,2.5vw,32px);font-weight:750;letter-spacing:-.02em;margin-top:22px;line-height:1.25;word-break:keep-all;max-width:16ch}
 .oa .hero .tag em{color:var(--cy);font-style:normal}
 .oa .hero .lead{max-width:44ch;margin-top:18px}
@@ -105,7 +105,7 @@ html{scroll-behavior:smooth;scroll-padding-top:84px}
 .oa .ipanel{position:absolute;left:0;top:0;width:100%;max-width:780px;height:100%;display:flex;flex-direction:column;justify-content:center;padding:0 8vw;opacity:0;transform:translateY(18px);transition:opacity .35s ease,transform .35s ease;pointer-events:none}
 .oa .ipanel.on{opacity:1;transform:none;pointer-events:auto}
 .oa .ititle{font-size:clamp(58px,8vw,122px);font-weight:900;letter-spacing:-.05em;line-height:.88;margin:16px 0 0}
-.oa .ititle b{color:var(--cy)}
+.oa .ititle b{color:var(--cy);background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .oa .itag{font-size:clamp(20px,2.5vw,32px);font-weight:750;letter-spacing:-.02em;margin-top:22px;max-width:18ch;line-height:1.25;word-break:keep-all}
 .oa .itag em{color:var(--cy);font-style:normal}
 .oa .ilead{margin-top:18px;font-size:17px;color:var(--mut);max-width:44ch;line-height:1.72;word-break:keep-all}
@@ -114,7 +114,7 @@ html{scroll-behavior:smooth;scroll-padding-top:84px}
 .oa .ih{font-size:clamp(32px,4.6vw,56px);font-weight:850;letter-spacing:-.035em;line-height:1.05;max-width:15ch;margin:14px 0 0;word-break:keep-all}
 .oa .ispecs{display:flex;gap:34px;flex-wrap:wrap;margin-top:26px}
 .oa .ispecs > div{display:flex;flex-direction:column}
-.oa .ispecs b{font-family:var(--mono);font-size:clamp(34px,4vw,48px);font-weight:700;color:var(--cy);letter-spacing:-.02em;line-height:1}
+.oa .ispecs b{font-family:var(--mono);font-size:clamp(34px,4vw,48px);font-weight:700;color:var(--cy);letter-spacing:-.02em;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;width:fit-content}
 .oa .ispecs span{color:var(--mut);font-family:var(--mono);font-size:13px;margin-top:6px}
 .oa .scrollcue{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);z-index:3;font-family:var(--mono);font-size:11px;color:var(--mut);letter-spacing:.16em;display:flex;flex-direction:column;align-items:center;gap:10px}
 .oa .sc-bar{width:1px;height:38px;background:rgba(10,13,20,.14);position:relative;overflow:hidden}
@@ -134,7 +134,7 @@ html{scroll-behavior:smooth;scroll-padding-top:84px}
 .oa .specs{border-bottom:1px solid var(--line);background:var(--bg2);background-image:var(--grid);background-size:38px 38px;position:relative;z-index:1}
 .oa .specrow{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line)}
 .oa .scell{background:var(--bg2);padding:38px 22px;text-align:center}
-.oa .scell .v{font-family:var(--mono);font-size:clamp(26px,3.2vw,40px);font-weight:700;color:var(--cy);letter-spacing:-.03em;line-height:1}
+.oa .scell .v{font-family:var(--mono);font-size:clamp(26px,3.2vw,40px);font-weight:700;color:var(--cy);letter-spacing:-.03em;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;width:fit-content;margin:0 auto}
 .oa .scell .v .u{font-size:.5em;color:var(--cy-soft);margin-left:2px}
 .oa .scell .l{font-size:12.5px;color:var(--mut);margin-top:12px;letter-spacing:.02em}
 @media(max-width:860px){.oa .specrow{grid-template-columns:1fr 1fr}.oa .scell:last-child{grid-column:1 / -1}}
@@ -180,6 +180,7 @@ html{scroll-behavior:smooth;scroll-padding-top:84px}
 
 /* why libertron — transformation */
 .oa .why{background:var(--bg2);background-image:var(--grid);background-size:38px 38px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.oa #cell{background:var(--bg2);background-image:var(--grid);background-size:38px 38px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .oa .cmplead{max-width:64ch;margin-top:18px;font-size:16px;color:var(--mut);line-height:1.75;word-break:keep-all}
 .oa .cmplead strong{color:var(--txt);font-weight:700}
 .oa .tgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:44px}
