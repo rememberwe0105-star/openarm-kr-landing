@@ -17,8 +17,8 @@ const config: Config = {
           sub: "#4B5563",
         },
         point: {
-          DEFAULT: "#00C8FF",
-          dark: "#0EA5E9",
+          DEFAULT: "#3A56FF",
+          dark: "#2438C9",
         },
         border: {
           light: "#E5E7EB",
