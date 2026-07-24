@@ -108,6 +108,26 @@ html{scroll-behavior:smooth;scroll-padding-top:84px;scroll-snap-type:y proximity
 .oa .hero .tag em{color:var(--cy);font-style:normal}
 .oa .hero .lead{max-width:44ch;margin-top:18px}
 .oa .hero-cta{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+/* cinematic video hero */
+.oa .vhero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);background:radial-gradient(120% 68% at 50% 0%,rgba(58,86,255,.07),transparent 62%),var(--bg);padding:clamp(120px,15vh,180px) 0 clamp(64px,9vh,110px)}
+.oa .vhero::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background-image:var(--grid);background-size:44px 44px;-webkit-mask-image:radial-gradient(100% 78% at 50% 0,#000,transparent 70%);mask-image:radial-gradient(100% 78% at 50% 0,#000,transparent 70%);opacity:.55}
+.oa .vhero .net{z-index:0}
+.oa .vhero-in{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center}
+.oa .vhero-title{font-size:clamp(56px,9.5vw,128px);font-weight:900;letter-spacing:-.05em;line-height:.9;margin:20px 0 0}
+.oa .vhero-title b{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.oa .vhero-tag{font-size:clamp(20px,2.7vw,34px);font-weight:750;letter-spacing:-.02em;margin-top:18px;line-height:1.22;max-width:22ch;word-break:keep-all}
+.oa .vhero-tag em{color:var(--cy);font-style:normal}
+.oa .vhero-lead{margin-top:16px;font-size:17px;color:var(--mut);max-width:54ch;line-height:1.7;word-break:keep-all}
+.oa .vhero .hero-cta{justify-content:center;margin-top:32px}
+.oa .vhero .herostats{justify-content:center;margin-top:30px}
+.oa .vhero-stage{position:relative;z-index:2;max-width:1140px;margin:clamp(52px,7vh,90px) auto 0;padding:0 24px}
+.oa .vframe{position:relative;aspect-ratio:16/9;border-radius:26px;overflow:hidden;border:1px solid var(--line2);box-shadow:var(--shadow-lg);background:#0a0d14}
+.oa .vframe video{width:100%;height:100%;object-fit:cover;display:block}
+.oa .vframe::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:26px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+.oa .vbadge{position:absolute;top:16px;left:16px;z-index:2;display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.12em;color:#fff;background:rgba(10,13,20,.42);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:8px 14px}
+.oa .vbadge i{width:7px;height:7px;border-radius:50%;background:#38e08a;box-shadow:0 0 9px #38e08a;animation:vpulse 1.8s ease-in-out infinite}
+@keyframes vpulse{0%,100%{opacity:1}50%{opacity:.4}}
+@media(max-width:820px){.oa .vhero{padding-top:104px}.oa .vframe{border-radius:18px}.oa .vhero-stage{padding:0 16px}.oa .vhero-title{font-size:clamp(48px,13vw,84px)}}
 @media(max-width:980px){
   .oa .hero{min-height:auto;display:block;padding-top:20px}
   .oa .hero-in{padding:8px 32px 0}
@@ -400,58 +420,28 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
   </div>
 </div>
 
-<!-- HERO -->
-<section class="intro" id="top">
-  <div class="intro-sticky">
-    <canvas class="net"></canvas>
-    <div class="intro-glow"></div>
-    <model-viewer id="introMV" class="intro-mv" src="/models/openarm-2.glb" environment-image="/models/studio-env.png" exposure="1.05" shadow-intensity="0" tone-mapping="aces" interaction-prompt="none" orientation="0deg 90deg 0deg" camera-orbit="15deg 80deg 154%" field-of-view="30deg" disable-zoom disable-tap loading="eager" reveal="auto" alt="OpenArm 2.0"></model-viewer>
-    <div class="intro-pool"></div>
-    <div class="intro-shade"></div>
-    <span class="intro-lab">// OPENARM_2.0 · REALTIME</span>
-    <div class="intro-panels">
-      <div class="ipanel" data-i="0">
-        <span class="eyebrow">${t.hero_eyebrow}</span>
-        <h1 class="ititle">OpenArm <b>2.0</b></h1>
-        <p class="itag">${t.hero_tag}</p>
-        <p class="ilead">${t.hero_lead}</p>
-        <div class="hero-cta"><a href="/store" class="btn btn-pri">${t.hero_cta1} →</a><a href="#contact" class="btn btn-ghost">${t.hero_cta2}</a></div>
-        <div class="herostats">
-          <div><b>7</b><span>-DOF ×2</span></div>
-          <div><b>633</b><span>mm</span></div>
-          <div><b>4.1</b><span>/6.0kg</span></div>
-          <div><b>1</b><span>kHz CAN-FD</span></div>
-        </div>
-      </div>
-      <div class="ipanel" data-i="1">
-        <span class="ibadge">// IN-HAND CAMERA</span>
-        <h2 class="ih">${t.f1_t}</h2>
-        <p class="ilead">${t.f1_d}</p>
-      </div>
-      <div class="ipanel" data-i="2">
-        <span class="ibadge">// SPECIFICATIONS</span>
-        <h2 class="ih">${t.intro_spec_h}</h2>
-        <div class="ispecs">
-          <div><b>7</b><span>-DOF ×2</span></div>
-          <div><b>633</b><span>mm<span class="foot">1</span></span></div>
-          <div><b>4.1</b><span>/ 6.0kg<span class="foot">2</span></span></div>
-          <div><b>1</b><span>kHz CAN-FD</span></div>
-        </div>
-      </div>
-      <div class="ipanel" data-i="3">
-        <span class="ibadge">// PURCHASE</span>
-        <h2 class="ih">${t.order_h}</h2>
-        <p class="ilead">${t.order_d}</p>
-        <div class="hero-cta"><a href="/store" class="btn btn-pri">${t.hero_cta1} →</a><a href="#features" class="btn btn-ghost">${t.intro_explore}</a></div>
-      </div>
+<!-- HERO (cinematic video) -->
+<section class="vhero" id="top">
+  <canvas class="net"></canvas>
+  <div class="vhero-in wrap">
+    <span class="eyebrow">${t.hero_eyebrow}</span>
+    <h1 class="vhero-title">OpenArm <b>2.0</b></h1>
+    <p class="vhero-tag">${t.hero_tag}</p>
+    <p class="vhero-lead">${t.hero_lead}</p>
+    <div class="hero-cta"><a href="/store" class="btn btn-pri">${t.hero_cta1} →</a><a href="#contact" class="btn btn-ghost">${t.hero_cta2}</a></div>
+    <div class="herostats">
+      <div><b>7</b><span>-DOF ×2</span></div>
+      <div><b>633</b><span>mm</span></div>
+      <div><b>4.1</b><span>/6.0kg</span></div>
+      <div><b>1</b><span>kHz CAN-FD</span></div>
     </div>
-    <div class="istep"><i class="on"></i><i></i><i></i><i></i></div>
-    <div class="scrollcue"><span class="sc-bar"></span>${t.scrollcue}</div>
   </div>
-  <div class="isnap" style="top:0"></div>
-  <div class="isnap" style="top:65vh"></div>
-  <div class="isnap" style="top:110vh"></div>
-  <div class="isnap" style="top:155vh"></div>
+  <div class="vhero-stage">
+    <div class="vframe">
+      <span class="vbadge"><i></i>${lang === "en" ? "LIVE MOTION" : "실제 구동 영상"}</span>
+      <video src="/videos/kv.mp4" autoplay muted loop playsinline preload="metadata"></video>
+    </div>
+  </div>
 </section>
 
 <!-- ECOSYSTEM TRUST STRIP (honest social proof) -->
