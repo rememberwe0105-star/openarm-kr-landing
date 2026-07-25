@@ -366,9 +366,12 @@ html{scroll-behavior:smooth;scroll-padding-top:84px;scroll-snap-type:y proximity
 .oa .seqhead .kicker{justify-content:center;color:var(--cy-soft)}
 .oa .seqhead .h2{color:#fff}
 .oa .seqhead .lead{color:rgba(255,255,255,.66);margin-left:auto;margin-right:auto}
-.oa .seqstage{position:relative;width:100%;display:flex;align-items:center;justify-content:center}
-.oa .seqcanvas{width:min(1040px,90vw);height:auto;aspect-ratio:16/9;display:block;max-height:64vh;object-fit:contain}
-.oa .seqhint{position:absolute;bottom:0;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:rgba(255,255,255,.5);text-transform:uppercase}
+.oa .seqstage{position:relative;width:min(1040px,90vw);aspect-ratio:16/9;max-height:64vh;margin:0 auto}
+.oa .seqstage .seqcanvas{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block}
+.oa .seqstage .seqmv{position:absolute;inset:0;opacity:0;pointer-events:none;touch-action:pan-y}
+.oa .seqstage .seqmv.on{pointer-events:auto}
+.oa .seqmv model-viewer{width:100%;height:100%;background:transparent}
+.oa .seqhint{position:absolute;bottom:-34px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:rgba(255,255,255,.5);text-transform:uppercase;white-space:nowrap}
 @media(max-width:820px){.oa .seqwrap{height:250vh}}
 
 /* applications gallery */
@@ -544,7 +547,8 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
       <p class="lead">${t.inside_lead}</p>
     </div>
     <div class="seqstage">
-      <canvas class="seqcanvas" width="1440" height="810" aria-label="OpenArm exploded structure sequence"></canvas>
+      <canvas class="seqcanvas" width="1440" height="810" aria-label="OpenArm 분해도 시퀀스"></canvas>
+      <div class="seqmv">${mv("/models/openarm-2.glb", "OpenArm 2.0", "20deg 80deg auto")}</div>
       <span class="seqhint">${t.inside_hint}</span>
     </div>
   </div>
@@ -740,7 +744,7 @@ const KO = {
   hw1_t: "OpenArm 2.0 · 헤드 카메라", hw1_d: "손안의 카메라를 품은 본체에, 상단 카메라까지 더한 완전한 구성입니다.",
   hw2_t: "캘리브레이션 지그", hw2_d: "그리퍼를 CAD가 정한 정확한 각도에 딱 맞춰 고정합니다. 조립 오차를 바로잡아, 데이터셋을 더 일관되게 유지하도록 돕습니다.",
   k_inside: "Inside — 내부를 열어보다", inside_h: "부품 하나까지, <em>이렇게 만들어졌습니다</em>",
-  inside_lead: "스크롤하면 팔이 분해됩니다. DAMIAO 액추에이터부터 CNC 금속 파트, 3D 프린트 케이싱까지 — OpenArm의 속을 그대로 들여다보세요.", inside_hint: "스크롤 · 분해",
+  inside_lead: "먼저 OpenArm 2.0을 드래그로 돌려보세요. 스크롤하면 이 플랫폼의 내부 구성이 분해도로 펼쳐집니다 — DAMIAO 액추에이터부터 CNC 금속 파트, 3D 프린트 케이싱까지.", inside_hint: "드래그 회전 · 스크롤 분해",
   k_apps: "Applications — 활용 분야", apps_h: "연구실이 <em>실제로 쓰는 곳</em>",
   apps_lead: "텔레오퍼레이션 데이터 수집부터 강화·모방학습, 휴머노이드 연구와 교육까지. OpenArm 한 대로 다양한 피지컬 AI 연구를 시작할 수 있습니다.",
   app_teleop: "텔레오퍼레이션 · 시연 기반 학습", app_rl: "강화학습 · 모방학습", app_manip: "로봇 매니퓰레이션 연구",
@@ -820,7 +824,7 @@ const EN: Dict = {
   hw1_t: "OpenArm 2.0 · head camera", hw1_d: "The full setup — the body with integrated in-hand camera plus the top-down camera.",
   hw2_t: "Calibration jig", hw2_d: "A zero-position jig that locks the gripper to its exact CAD-defined angles, calibrating out assembly errors for a consistent dataset.",
   k_inside: "Inside — look under the covers", inside_h: "Built <em>part by part</em>",
-  inside_lead: "Scroll to take the arm apart — from DAMIAO actuators to CNC metal parts and 3D-printed casings, see exactly what's inside OpenArm.", inside_hint: "scroll · explode",
+  inside_lead: "Spin the OpenArm 2.0 with a drag. Then scroll, and the platform's internals fan out into an exploded view — DAMIAO actuators, CNC metal parts, 3D-printed casings and all.", inside_hint: "drag to rotate · scroll to explode",
   k_apps: "Applications — where it's used", apps_h: "What labs <em>actually build</em>",
   apps_lead: "From teleoperation data collection to reinforcement and imitation learning, humanoid research, and education — one OpenArm opens the door to a wide range of physical-AI work.",
   app_teleop: "Teleoperation & demonstration learning", app_rl: "Reinforcement & imitation learning", app_manip: "Robot manipulation research",
@@ -1083,14 +1087,16 @@ export default function Home() {
     fill();
     return () => { window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); io.disconnect(); };
   }, [lang]);
-  // exploded-view scroll sequence (canvas frame scrub)
+  // "inside" — live 2.0 (model-viewer, drag to rotate) crossfades into the exploded platform diagram on scroll
   useEffect(() => {
-    const canvas = document.querySelector<HTMLCanvasElement>(".oa .seqcanvas");
+    const stage = document.querySelector<HTMLElement>(".oa .seqstage");
     const wrap = document.querySelector<HTMLElement>(".oa .seqwrap");
-    if (!canvas || !wrap) return;
+    const canvas = stage?.querySelector<HTMLCanvasElement>(".seqcanvas");
+    const mvWrap = stage?.querySelector<HTMLElement>(".seqmv");
+    if (!wrap || !canvas || !mvWrap) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    const FRAMES = 61; // frame_000 ~ frame_060
+    const FRAMES = 61; // frame_000 (assembled) → frame_060 (exploded)
     const imgs: HTMLImageElement[] = [];
     let cur = -1;
     const draw = (f: number) => {
@@ -1100,24 +1106,30 @@ export default function Home() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
     };
-    const frameFromScroll = () => {
+    const clamp01 = (x: number) => Math.min(1, Math.max(0, x));
+    const apply = () => {
       const total = wrap.offsetHeight - window.innerHeight;
-      const prog = total > 0 ? Math.min(1, Math.max(0, -wrap.getBoundingClientRect().top / total)) : 0;
-      return Math.round(prog * (FRAMES - 1));
+      const p = total > 0 ? clamp01(-wrap.getBoundingClientRect().top / total) : 0;
+      // 0–0.12 hold the live 2.0 · 0.12–0.28 crossfade to the diagram · 0.24–0.96 explode the parts
+      const mvOp = 1 - clamp01((p - 0.12) / 0.16);
+      const cvOp = clamp01((p - 0.12) / 0.16);
+      const fp = clamp01((p - 0.24) / 0.72);
+      draw(Math.round(fp * (FRAMES - 1)));
+      canvas.style.opacity = String(cvOp);
+      mvWrap.style.opacity = String(mvOp);
+      mvWrap.classList.toggle("on", mvOp > 0.5);
     };
     for (let i = 0; i < FRAMES; i++) {
       const img = new window.Image();
-      // when any frame finishes loading, (re)draw the frame the scroll is currently on
-      img.onload = () => draw(frameFromScroll());
+      img.onload = () => apply();
       img.src = `/images/sequence/frame_${i.toString().padStart(3, "0")}.webp`;
       imgs.push(img);
     }
     let ticking = false;
-    const update = () => { ticking = false; draw(frameFromScroll()); };
-    const onScroll = () => { if (ticking) return; ticking = true; requestAnimationFrame(update); };
+    const onScroll = () => { if (ticking) return; ticking = true; requestAnimationFrame(() => { ticking = false; apply(); }); };
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
-    update();
+    apply();
     return () => { window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); };
   }, [lang]);
   const t = lang === "en" ? EN : KO;
