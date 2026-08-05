@@ -127,14 +127,14 @@ const HTML_KO = `<canvas id="net"></canvas><div class="grid"></div><div class="g
 
 <nav>
   <div class="nav-in">
-    <a href="/" class="logo">OpenArm<b>.</b></a>
+    <a href="/ko" class="logo">OpenArm<b>.</b></a>
     <div style="display:flex;align-items:center;gap:8px"><button class="langbtn" onclick="window.__v2ToggleLang&&window.__v2ToggleLang()">EN</button><div class="cartbtn" onclick="openDrawer()"><span class="mono">CART</span><span class="cnt" id="cnt" style="display:none">0</span></div></div>
   </div>
 </nav>
 
 <div class="wrap">
   <header>
-    <a class="back" href="/v2">← OpenArm 2.0 페이지로</a>
+    <a class="back" href="/ko/v2">← OpenArm 2.0 페이지로</a>
     <div class="eyebrow">PRE-ORDER STORE</div>
     <h1>OpenArm 2.0 <span>사전예약</span></h1>
     <p>출시를 앞둔 제품들을 미리 둘러보세요. 사진과 사양을 확인하고, 원하는 구성을 카트에 담아 사전예약을 남기실 수 있습니다.</p>

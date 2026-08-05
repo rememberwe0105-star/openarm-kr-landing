@@ -8,6 +8,9 @@ const nextConfig = {
       },
     ],
   },
+  // The legacy `?lang=` switch is retired in middleware.ts — `redirects()`
+  // re-appends unmatched query params to the destination, which would make a
+  // param-stripping rule redirect to itself forever.
   async headers() {
     return [
       {

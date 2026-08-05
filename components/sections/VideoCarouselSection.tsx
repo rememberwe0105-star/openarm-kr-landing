@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { useLanguage, useLocalePath } from "@/lib/i18n/LanguageContext";
 import { VIDEO_1_1 } from "@/lib/constants";
 import Link from "next/link";
 
@@ -10,6 +10,7 @@ export default function VideoCarouselSection() {
   const videoRef = useRef<HTMLDivElement>(null);
   const [shouldPlay, setShouldPlay] = useState(false);
   const { t } = useLanguage();
+  const lp = useLocalePath();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -97,7 +98,7 @@ export default function VideoCarouselSection() {
 
             {/* Teaser Card */}
             <Link
-              href="/v2"
+              href={lp("/v2")}
               aria-label="OpenArm 2.0 자세히 보기"
               className="block w-full aspect-video rounded-2xl overflow-hidden relative group shadow-2xl border border-white/10 transition-all duration-500 hover:border-violet-400/60 hover:shadow-violet-500/20 hover:-translate-y-1"
             >
