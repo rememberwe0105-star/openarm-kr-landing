@@ -1,15 +1,4 @@
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  alternates: {
-    canonical: '/',
-    languages: {
-      'ko-KR': '/',
-      'en-US': '/?lang=en',
-      'x-default': '/',
-    },
-  },
-};
+// Canonical and hreflang for `/` come from the locale layout's generateMetadata.
 
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";

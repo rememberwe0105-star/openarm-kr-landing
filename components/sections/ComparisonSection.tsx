@@ -5,11 +5,12 @@ import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
 import { Check, X, ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { useLanguage, useLocalePath } from "@/lib/i18n/LanguageContext";
 
 export default function ComparisonSection() {
   const containerRef = useRef<HTMLElement>(null);
   const { t } = useLanguage();
+  const lp = useLocalePath();
 
   useGSAP(() => {
     if (!containerRef.current) return;
@@ -120,7 +121,7 @@ export default function ComparisonSection() {
         <div className="comp-cta mt-16 md:mt-24 text-center opacity-0">
           <p className="text-foreground-sub font-medium mb-6">{t("comparison.cta_msg") as string}</p>
           <Link 
-            href="/products" 
+            href={lp("/products")} 
             className="inline-flex items-center gap-2 bg-point text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-point/80 hover:shadow-lg hover:shadow-point/20 transition-all duration-300 transform hover:-translate-y-1"
           >
             {t("comparison.cta_btn") as string}

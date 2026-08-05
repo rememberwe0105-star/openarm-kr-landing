@@ -237,12 +237,12 @@ const HTML_KO = `<canvas id="net"></canvas>
 
 <nav>
   <div class="nav-in">
-    <a href="/" class="logo">OpenArm<b>.</b></a>
+    <a href="/ko" class="logo">OpenArm<b>.</b></a>
     <div class="nav-links">
       <a class="on" href="#top">2.0 <span class="tagpill">NEW</span></a>
       <a href="#features">Features</a><a href="#options">Options</a><a href="#contact">Contact</a>
     </div>
-    <div style="display:flex;align-items:center;gap:12px"><a href="/" class="navback">← OpenArm 1.1</a><button class="langbtn" onclick="window.__v2ToggleLang&&window.__v2ToggleLang()">EN</button></div>
+    <div style="display:flex;align-items:center;gap:12px"><a href="/ko" class="navback">← OpenArm 1.1</a><button class="langbtn" onclick="window.__v2ToggleLang&&window.__v2ToggleLang()">EN</button></div>
   </div>
 </nav>
 <div class="ticker"><span class="move">7-DOF ×2&nbsp;&nbsp;//&nbsp;&nbsp;REACH <b>633MM</b>&nbsp;&nbsp;//&nbsp;&nbsp;PAYLOAD <b>4.1KG</b> (PEAK 6.0KG)&nbsp;&nbsp;//&nbsp;&nbsp;<b>BILATERAL FORCE FEEDBACK</b>&nbsp;&nbsp;//&nbsp;&nbsp;IN-HAND CAMERA&nbsp;&nbsp;//&nbsp;&nbsp;KER LEADER ARM&nbsp;&nbsp;//&nbsp;&nbsp;OPENARM CELL&nbsp;&nbsp;//&nbsp;&nbsp;100% OPEN-SOURCE&nbsp;&nbsp;//&nbsp;&nbsp;7-DOF ×2&nbsp;&nbsp;//&nbsp;&nbsp;REACH <b>633MM</b>&nbsp;&nbsp;//&nbsp;&nbsp;PAYLOAD <b>4.1KG</b> (PEAK 6.0KG)&nbsp;&nbsp;//&nbsp;&nbsp;<b>BILATERAL FORCE FEEDBACK</b>&nbsp;&nbsp;//&nbsp;&nbsp;IN-HAND CAMERA&nbsp;&nbsp;//&nbsp;&nbsp;KER LEADER ARM&nbsp;&nbsp;//&nbsp;&nbsp;OPENARM CELL&nbsp;&nbsp;//&nbsp;&nbsp;100% OPEN-SOURCE&nbsp;&nbsp;//&nbsp;&nbsp;</span></div>
@@ -384,7 +384,7 @@ const HTML_KO = `<canvas id="net"></canvas>
       <div class="sec-tag" style="justify-content:center"><b>04</b> / PRE-ORDER — 사전예약</div>
       <h2>OpenArm 2.0, 가장 먼저 만나보세요</h2>
       <p>원하는 구성을 직접 확인하고, 필요한 셋업을 담아 사전예약을 남겨보세요. 가격은 구성에 맞춰 개별 견적으로 안내드립니다.</p>
-      <a class="cta" href="/v2/order" style="margin-top:6px">사전예약 구성 보러가기 →</a>
+      <a class="cta" href="/ko/v2/order" style="margin-top:6px">사전예약 구성 보러가기 →</a>
       <div style="margin-top:16px;font-family:var(--mono);font-size:11px;color:var(--mut)">// 별도 사전예약 스토어 페이지로 연결됩니다 (가격은 견적 안내)</div>
     </div>
   </div>
