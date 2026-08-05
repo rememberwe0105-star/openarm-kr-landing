@@ -364,6 +364,12 @@ html{scroll-behavior:smooth;scroll-padding-top:84px;scroll-snap-type:y proximity
 .oa .seqstage .seq3d:active{cursor:grabbing}
 .oa .seqstage .seqph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:rgba(255,255,255,.35);text-transform:uppercase;transition:opacity .4s;pointer-events:none}
 .oa .seqhint{position:absolute;bottom:-34px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:rgba(255,255,255,.5);text-transform:uppercase;white-space:nowrap}
+.oa .seqprog{position:absolute;right:-6px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:9px;z-index:4;pointer-events:none}
+.oa .seqprog span{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.45);writing-mode:vertical-rl}
+.oa .sp-rail{position:relative;width:2px;height:112px;background:rgba(255,255,255,.14);border-radius:2px}
+.oa .sp-fill{position:absolute;left:0;top:0;width:100%;height:0%;background:linear-gradient(180deg,var(--cy-soft),var(--cy));border-radius:2px}
+.oa .sp-dot{position:absolute;left:50%;top:0%;width:9px;height:9px;border-radius:50%;background:var(--cy);border:2px solid rgba(255,255,255,.85);transform:translate(-50%,-50%);box-shadow:0 0 10px rgba(58,86,255,.8)}
+@media(max-width:820px){.oa .seqprog{right:-2px}.oa .sp-rail{height:84px}}
 .oa .seqlabels3d{position:absolute;inset:0;pointer-events:none;z-index:3;overflow:visible}
 .oa .seqleaders{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 .oa .seqleaders line{stroke:rgba(122,225,255,.72);stroke-width:1.3;stroke-dasharray:4 3}
@@ -544,6 +550,11 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
     <div class="seqstage">
       <canvas class="seq3d" aria-label="OpenArm 2.0 분해도 (드래그로 회전, 스크롤로 분해)"></canvas>
       <div class="seqph">${t.inside_hint}</div>
+      <div class="seqprog" aria-hidden="true">
+        <span>${t.prog_closed}</span>
+        <div class="sp-rail"><i class="sp-fill"></i><b class="sp-dot"></b></div>
+        <span>${t.prog_open}</span>
+      </div>
       <div class="seqlabels3d" aria-hidden="true">
         <svg class="seqleaders"><defs><marker id="oaArrow" viewBox="0 0 10 10" refX="7.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0.5,1 L9,5 L0.5,9 Z" fill="#7ae1ff"/></marker></defs></svg>
         <div class="tag3" data-part="17"><span>${t.tag_grip_d}</span><b>${t.tag_grip_n}</b></div>
@@ -743,6 +754,7 @@ const KO = {
   hw2_t: "캘리브레이션 지그 (CELL 전용)", hw2_d: "CELL에서 OpenArm 2.0을 동작할 때, 그리퍼를 CAD가 정한 정확한 각도에 딱 맞춰 고정합니다. 조립 오차를 바로잡아, 데이터셋을 더 일관되게 유지하도록 돕습니다.",
   k_inside: "Inside", inside_h: "2.0의 <em>새로워진 그리퍼</em> 구성",
   inside_lead: "카메라가 내장되고, 3D 프린팅만으로 그리퍼를 만들어 교체할 수 있습니다.", inside_hint: "드래그 회전 · 스크롤 분해",
+  prog_closed: "조립", prog_open: "분해",
   lbl_grip: "2핑거 그리퍼 조", lbl_act: "DAMIAO QDD 액추에이터", lbl_case: "3D 프린트 케이싱", lbl_cnc: "CNC 알루미늄 플레이트",
   tag_grip_d: "나사 3개로 교체 가능한", tag_grip_n: "그리퍼 엔드",
   tag_cam_d: "손안에 내장된", tag_cam_n: "카메라",
@@ -833,6 +845,7 @@ const EN: Dict = {
   hw2_t: "Calibration jig", hw2_d: "A zero-position jig that locks the gripper to its exact CAD-defined angles, calibrating out assembly errors for a consistent dataset.",
   k_inside: "Inside — look under the covers", inside_h: "Built <em>part by part</em>",
   inside_lead: "The gripper, redesigned for 2.0. Spin it with a drag — then scroll, and it fans out into an exploded view: the drive actuator, two-finger jaws, CNC plate and 3D-printed casing.", inside_hint: "drag to rotate · scroll to explode",
+  prog_closed: "Closed", prog_open: "Open",
   lbl_grip: "Two-finger gripper jaw", lbl_act: "DAMIAO QDD actuator", lbl_case: "3D-printed casing", lbl_cnc: "CNC aluminum plate",
   tag_grip_d: "Swappable with 3 screws", tag_grip_n: "Gripper end",
   tag_cam_d: "Built into the hand", tag_cam_n: "Camera",
@@ -1109,12 +1122,6 @@ export default function Home() {
   // Drag to rotate; scrolling the sticky section drives the explosion.
   // three.js + the baked part segmentation load lazily as the section approaches.
   useEffect(() => {
-    const wrap = document.querySelector<HTMLElement>(".oa .seqwrap");
-    const stage = document.querySelector<HTMLElement>(".oa .seqstage");
-    const canvas = stage?.querySelector<HTMLCanvasElement>(".seq3d");
-    const ph = stage?.querySelector<HTMLElement>(".seqph");
-    const labelBox = stage?.querySelector<HTMLElement>(".seqlabels3d");
-    if (!wrap || !stage || !canvas) return;
     const clamp01 = (x: number) => Math.min(1, Math.max(0, x));
     const isMobile = window.matchMedia("(max-width:820px)").matches;
 
@@ -1125,6 +1132,19 @@ export default function Home() {
     const start = async () => {
       if (sceneReady || disposed) return;
       sceneReady = true; // guard re-entry; real readiness set at the end
+      // query the live DOM at start-time, never earlier: after hydration React can re-apply the
+      // section's innerHTML, silently detaching any nodes captured when the effect first ran
+      // (the scene then renders into a ghost canvas — the root cause of the "3D never starts
+      // until a reload" bug). The render loop watches isConnected and re-runs start() if the
+      // nodes get swapped again.
+      const wrap = document.querySelector<HTMLElement>(".oa .seqwrap");
+      const stage = document.querySelector<HTMLElement>(".oa .seqstage");
+      const canvas = stage?.querySelector<HTMLCanvasElement>(".seq3d");
+      const ph = stage?.querySelector<HTMLElement>(".seqph");
+      const labelBox = stage?.querySelector<HTMLElement>(".seqlabels3d");
+      const spFill = stage?.querySelector<HTMLElement>(".sp-fill");
+      const spDot = stage?.querySelector<HTMLElement>(".sp-dot");
+      if (!wrap || !stage || !canvas) { sceneReady = false; return; }
       const THREE = await import("three");
       const { OrbitControls } = await import("three/examples/jsm/controls/OrbitControls.js");
       const bin = await fetch("/models/arm-exploded.bin").then((r) => r.arrayBuffer());
@@ -1311,8 +1331,18 @@ export default function Home() {
 
       const loop = () => {
         if (disposed || !wantRun) { running = false; return; }
+        if (!canvas.isConnected) { // DOM was re-applied under us — tear down and re-init on live nodes
+          running = false; sceneReady = false;
+          if (cleanupScene) { cleanupScene(); cleanupScene = null; }
+          gate();
+          return;
+        }
         raf = requestAnimationFrame(loop);
         uEx.value += (explode - uEx.value) * 0.14;
+        // assembled⇄exploded progress rail
+        const pct = (Math.min(1, uEx.value) * 100).toFixed(1) + "%";
+        if (spFill) spFill.style.height = pct;
+        if (spDot) spDot.style.top = pct;
         fitCamera();
         controls.update();
         renderer.render(scene, cam);
@@ -1337,21 +1367,40 @@ export default function Home() {
       (start as unknown as { _run?: () => void })._run = startLoop;
     };
 
-    // lazy init + render gating: run only while the section is near/in the viewport
-    const io = new IntersectionObserver((ents) => {
-      const vis = ents.some((e) => e.isIntersecting);
-      wantRun = vis;
-      if (vis) {
-        start();
-        const run = (start as unknown as { _run?: () => void })._run;
-        if (run) run();
-      }
-    }, { rootMargin: "500px 0px" });
-    io.observe(wrap);
+    // lazy init + render gating: run only while the section is near/in the viewport.
+    // scroll-driven rect check instead of IntersectionObserver — the IO occasionally went
+    // stale after its initial (non-intersecting) event and never fired again, leaving the
+    // scene unstarted until a hard reload.
+    const nearViewport = () => {
+      const w = document.querySelector<HTMLElement>(".oa .seqwrap");
+      if (!w) return false;
+      const r = w.getBoundingClientRect();
+      return r.bottom > -500 && r.top < window.innerHeight + 500;
+    };
+    let gateTick = false;
+    const gate = () => {
+      if (gateTick || disposed) return;
+      gateTick = true;
+      requestAnimationFrame(() => {
+        gateTick = false;
+        if (disposed) return;
+        const vis = nearViewport();
+        wantRun = vis;
+        if (vis) {
+          start();
+          const run = (start as unknown as { _run?: () => void })._run;
+          if (run) run();
+        }
+      });
+    };
+    window.addEventListener("scroll", gate, { passive: true });
+    window.addEventListener("resize", gate);
+    gate();
 
     return () => {
       disposed = true; wantRun = false;
-      io.disconnect();
+      window.removeEventListener("scroll", gate);
+      window.removeEventListener("resize", gate);
       if (raf) cancelAnimationFrame(raf);
       if (cleanupScene) cleanupScene();
     };
