@@ -37,3 +37,9 @@ next-env.d.ts
 
 # oh-my-claude-code plugin state (not part of the project)
 .omc/
+
+# claude code local config
+.claude/
+
+# dev-only 3D inspector pages (not for deploy)
+public/_*.html

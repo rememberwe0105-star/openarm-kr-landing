@@ -367,19 +367,27 @@ html{scroll-behavior:smooth;scroll-padding-top:84px;scroll-snap-type:y proximity
 .oa .seqhead .h2{color:#fff}
 .oa .seqhead .lead{color:rgba(255,255,255,.66);margin-left:auto;margin-right:auto}
 .oa .seqstage{position:relative;width:min(1040px,90vw);aspect-ratio:16/9;max-height:64vh;margin:0 auto}
-.oa .seqstage .seqcanvas{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block}
-.oa .seqstage .seqmv{position:absolute;inset:0;opacity:0;pointer-events:none;touch-action:pan-y}
-.oa .seqstage .seqmv.on{pointer-events:auto}
-.oa .seqmv model-viewer{width:100%;height:100%;background:transparent}
+.oa .seqstage .seq3d{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:pan-y;cursor:grab}
+.oa .seqstage .seq3d:active{cursor:grabbing}
+.oa .seqstage .seqph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:rgba(255,255,255,.35);text-transform:uppercase;transition:opacity .4s;pointer-events:none}
 .oa .seqhint{position:absolute;bottom:-34px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:rgba(255,255,255,.5);text-transform:uppercase;white-space:nowrap}
-@media(max-width:820px){.oa .seqwrap{height:250vh}}
+.oa .seqlabels3d{position:absolute;inset:0;pointer-events:none;z-index:3;overflow:visible}
+.oa .seqleaders{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.oa .seqleaders line{stroke:rgba(122,225,255,.72);stroke-width:1.3;stroke-dasharray:4 3}
+.oa .tag3{position:absolute;top:0;left:0;opacity:0;transition:opacity .3s ease;width:max-content;max-width:190px;padding:8px 13px 9px;border-radius:12px;background:rgba(10,14,20,.66);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(5px);will-change:opacity}
+.oa .tag3.rgt{text-align:right}
+.oa .tag3 span{display:block;font-family:var(--sans);font-size:11px;line-height:1.32;color:rgba(255,255,255,.6);letter-spacing:-.01em}
+.oa .tag3 b{display:block;margin-top:2px;font-family:var(--sans);font-size:14px;font-weight:700;color:#fff;letter-spacing:-.01em;text-shadow:0 1px 6px rgba(0,0,0,.5)}
+@media(max-width:820px){.oa .seqwrap{height:250vh}.oa .seqstage{aspect-ratio:1/1;max-height:52vh}.oa .tag3{max-width:140px;padding:6px 10px}.oa .tag3 b{font-size:12px}.oa .tag3 span{font-size:10px}}
 
 /* applications gallery */
 .oa .apps .appgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
 .oa .appcard{position:relative;margin:0;border-radius:20px;overflow:hidden;border:1px solid var(--line2);aspect-ratio:4/3;background:#0b0e14;box-shadow:var(--shadow)}
 .oa .appcard img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.22,1,.36,1)}
 .oa .appcard:hover img{transform:scale(1.06)}
-.oa .appcard figcaption{position:absolute;left:0;bottom:0;width:100%;padding:22px 20px 18px;color:#fff;font-weight:700;font-size:15px;line-height:1.35;letter-spacing:-.01em;background:linear-gradient(to top,rgba(4,6,10,.88),rgba(4,6,10,.32) 58%,transparent);z-index:2}
+.oa .appcard figcaption{position:absolute;left:0;bottom:0;width:100%;padding:26px 20px 18px;color:#fff;letter-spacing:-.01em;background:linear-gradient(to top,rgba(4,6,10,.92),rgba(4,6,10,.5) 46%,transparent);z-index:2}
+.oa .appcard figcaption b{display:block;font-weight:700;font-size:15px;line-height:1.32}
+.oa .appcard figcaption span{display:block;margin-top:5px;font-weight:400;font-size:12.5px;line-height:1.45;color:rgba(255,255,255,.72);max-width:34ch}
 @media(max-width:900px){.oa .apps .appgrid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.oa .apps .appgrid{grid-template-columns:1fr}}
 
@@ -547,8 +555,14 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
       <p class="lead">${t.inside_lead}</p>
     </div>
     <div class="seqstage">
-      <canvas class="seqcanvas" width="1440" height="810" aria-label="OpenArm 분해도 시퀀스"></canvas>
-      <div class="seqmv">${mv("/models/openarm-2.glb", "OpenArm 2.0", "20deg 80deg auto")}</div>
+      <canvas class="seq3d" aria-label="OpenArm 2.0 분해도 (드래그로 회전, 스크롤로 분해)"></canvas>
+      <div class="seqph">${t.inside_hint}</div>
+      <div class="seqlabels3d" aria-hidden="true">
+        <svg class="seqleaders"><defs><marker id="oaArrow" viewBox="0 0 10 10" refX="7.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0.5,1 L9,5 L0.5,9 Z" fill="#7ae1ff"/></marker></defs></svg>
+        <div class="tag3" data-part="17"><span>${t.tag_grip_d}</span><b>${t.tag_grip_n}</b></div>
+        <div class="tag3" data-part="39"><span>${t.tag_cam_d}</span><b>${t.tag_cam_n}</b></div>
+        <div class="tag3" data-part="52"><span>${t.tag_motor_d}</span><b>${t.tag_motor_n}</b></div>
+      </div>
       <span class="seqhint">${t.inside_hint}</span>
     </div>
   </div>
@@ -559,12 +573,12 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
   <h2 class="h2">${t.apps_h}</h2>
   <p class="lead">${t.apps_lead}</p>
   <div class="appgrid">
-    <figure class="appcard"><img loading="lazy" src="/images/app_teleoperation.png" alt="OpenArm 활용: ${t.app_teleop}"/><figcaption>${t.app_teleop}</figcaption></figure>
-    <figure class="appcard"><img loading="lazy" src="/images/app_rl_imitation.png" alt="OpenArm 활용: ${t.app_rl}"/><figcaption>${t.app_rl}</figcaption></figure>
-    <figure class="appcard"><img loading="lazy" src="/images/app_robot_manipulation.png" alt="OpenArm 활용: ${t.app_manip}"/><figcaption>${t.app_manip}</figcaption></figure>
-    <figure class="appcard"><img loading="lazy" src="/images/app_ai_humanoid.png" alt="OpenArm 활용: ${t.app_humanoid}"/><figcaption>${t.app_humanoid}</figcaption></figure>
-    <figure class="appcard"><img loading="lazy" src="/images/app_hri_handshake.png" alt="OpenArm 활용: ${t.app_hri}"/><figcaption>${t.app_hri}</figcaption></figure>
-    <figure class="appcard"><img loading="lazy" src="/images/app_ai_education.png" alt="OpenArm 활용: ${t.app_edu}"/><figcaption>${t.app_edu}</figcaption></figure>
+    <figure class="appcard"><img loading="lazy" src="/images/app_teleoperation.png" alt="OpenArm 활용: ${t.app_teleop}"/><figcaption><b>${t.app_teleop}</b><span>${t.app_teleop_d}</span></figcaption></figure>
+    <figure class="appcard"><img loading="lazy" src="/images/app_rl_imitation.png" alt="OpenArm 활용: ${t.app_rl}"/><figcaption><b>${t.app_rl}</b><span>${t.app_rl_d}</span></figcaption></figure>
+    <figure class="appcard"><img loading="lazy" src="/images/app_robot_manipulation.png" alt="OpenArm 활용: ${t.app_manip}"/><figcaption><b>${t.app_manip}</b><span>${t.app_manip_d}</span></figcaption></figure>
+    <figure class="appcard"><img loading="lazy" src="/images/app_ai_humanoid.png" alt="OpenArm 활용: ${t.app_humanoid}"/><figcaption><b>${t.app_humanoid}</b><span>${t.app_humanoid_d}</span></figcaption></figure>
+    <figure class="appcard"><img loading="lazy" src="/images/app_hri_handshake.png" alt="OpenArm 활용: ${t.app_hri}"/><figcaption><b>${t.app_hri}</b><span>${t.app_hri_d}</span></figcaption></figure>
+    <figure class="appcard"><img loading="lazy" src="/images/app_ai_education.png" alt="OpenArm 활용: ${t.app_edu}"/><figcaption><b>${t.app_edu}</b><span>${t.app_edu_d}</span></figcaption></figure>
   </div>
 </div></section>
 
@@ -744,11 +758,21 @@ const KO = {
   hw1_t: "OpenArm 2.0 · 헤드 카메라", hw1_d: "손안의 카메라를 품은 본체에, 상단 카메라까지 더한 완전한 구성입니다.",
   hw2_t: "캘리브레이션 지그", hw2_d: "그리퍼를 CAD가 정한 정확한 각도에 딱 맞춰 고정합니다. 조립 오차를 바로잡아, 데이터셋을 더 일관되게 유지하도록 돕습니다.",
   k_inside: "Inside — 내부를 열어보다", inside_h: "부품 하나까지, <em>이렇게 만들어졌습니다</em>",
-  inside_lead: "먼저 OpenArm 2.0을 드래그로 돌려보세요. 스크롤하면 이 플랫폼의 내부 구성이 분해도로 펼쳐집니다 — DAMIAO 액추에이터부터 CNC 금속 파트, 3D 프린트 케이싱까지.", inside_hint: "드래그 회전 · 스크롤 분해",
+  inside_lead: "2.0에서 새로 설계된 그리퍼입니다. 드래그로 돌려보고, 스크롤하면 내부가 분해도로 펼쳐집니다 — 구동 액추에이터부터 2핑거 조, CNC 플레이트, 3D 프린트 케이싱까지.", inside_hint: "드래그 회전 · 스크롤 분해",
+  lbl_grip: "2핑거 그리퍼 조", lbl_act: "DAMIAO QDD 액추에이터", lbl_case: "3D 프린트 케이싱", lbl_cnc: "CNC 알루미늄 플레이트",
+  tag_grip_d: "나사 3개로 교체 가능한", tag_grip_n: "그리퍼 엔드",
+  tag_cam_d: "손안에 내장된", tag_cam_n: "카메라",
+  tag_motor_d: "사람의 손·손목처럼 자연스럽게 동작하는", tag_motor_n: "다미아오 모터",
   k_apps: "Applications — 활용 분야", apps_h: "연구실이 <em>실제로 쓰는 곳</em>",
   apps_lead: "텔레오퍼레이션 데이터 수집부터 강화·모방학습, 휴머노이드 연구와 교육까지. OpenArm 한 대로 다양한 피지컬 AI 연구를 시작할 수 있습니다.",
   app_teleop: "텔레오퍼레이션 · 시연 기반 학습", app_rl: "강화학습 · 모방학습", app_manip: "로봇 매니퓰레이션 연구",
   app_humanoid: "AI 휴머노이드 로봇 학습", app_hri: "인간–로봇 상호작용 (HRI)", app_edu: "AI 로보틱스 교육",
+  app_teleop_d: "리더–팔로워 원격조종으로 사람의 시연을 그대로 데이터화합니다.",
+  app_rl_d: "수집한 궤적으로 정책을 학습하고 실기에서 바로 검증합니다.",
+  app_manip_d: "파지·조립·핸드오버 등 정밀 양팔 조작 알고리즘을 개발합니다.",
+  app_humanoid_d: "양팔 매니퓰레이션 데이터로 휴머노이드 스킬을 이식합니다.",
+  app_hri_d: "힘 제어 기반의 안전한 근접 협업과 접촉 인터랙션을 연구합니다.",
+  app_edu_d: "ROS2·Python·CAN-FD API로 실습하는 로보틱스 커리큘럼.",
   k_eco: "Ecosystem — 함께 확장되는 셋업", h_eco: "팔 하나로 끝나지 않습니다",
   cell_badge: "출시 예정", cell_d: "배경도, 조명도, 카메라와 로봇 위치까지 매번 똑같이. 모델을 공정하게 비교하고 자동으로 평가하는 표준 환경, Cell입니다.",
   cell_1t: "표준 환경", cell_1d: "배경·조명·카메라를 고정해 공정하게 비교", cell_2t: "Z축 리프트", cell_2d: "높이를 조절해 다양한 작업을 재현",
@@ -824,11 +848,21 @@ const EN: Dict = {
   hw1_t: "OpenArm 2.0 · head camera", hw1_d: "The full setup — the body with integrated in-hand camera plus the top-down camera.",
   hw2_t: "Calibration jig", hw2_d: "A zero-position jig that locks the gripper to its exact CAD-defined angles, calibrating out assembly errors for a consistent dataset.",
   k_inside: "Inside — look under the covers", inside_h: "Built <em>part by part</em>",
-  inside_lead: "Spin the OpenArm 2.0 with a drag. Then scroll, and the platform's internals fan out into an exploded view — DAMIAO actuators, CNC metal parts, 3D-printed casings and all.", inside_hint: "drag to rotate · scroll to explode",
+  inside_lead: "The gripper, redesigned for 2.0. Spin it with a drag — then scroll, and it fans out into an exploded view: the drive actuator, two-finger jaws, CNC plate and 3D-printed casing.", inside_hint: "drag to rotate · scroll to explode",
+  lbl_grip: "Two-finger gripper jaw", lbl_act: "DAMIAO QDD actuator", lbl_case: "3D-printed casing", lbl_cnc: "CNC aluminum plate",
+  tag_grip_d: "Swappable with 3 screws", tag_grip_n: "Gripper end",
+  tag_cam_d: "Built into the hand", tag_cam_n: "Camera",
+  tag_motor_d: "Human-like hand & wrist motion", tag_motor_n: "DAMIAO motor",
   k_apps: "Applications — where it's used", apps_h: "What labs <em>actually build</em>",
   apps_lead: "From teleoperation data collection to reinforcement and imitation learning, humanoid research, and education — one OpenArm opens the door to a wide range of physical-AI work.",
   app_teleop: "Teleoperation & demonstration learning", app_rl: "Reinforcement & imitation learning", app_manip: "Robot manipulation research",
   app_humanoid: "AI-driven humanoid learning", app_hri: "Human–robot interaction (HRI)", app_edu: "AI robotics education",
+  app_teleop_d: "Capture human demonstrations directly via leader–follower teleop.",
+  app_rl_d: "Train policies on the collected trajectories, then validate on hardware.",
+  app_manip_d: "Develop precise bimanual grasping, assembly and handover algorithms.",
+  app_humanoid_d: "Port bimanual manipulation data into humanoid skills.",
+  app_hri_d: "Study safe, force-controlled close collaboration and contact.",
+  app_edu_d: "A hands-on robotics curriculum on the ROS2, Python & CAN-FD API.",
   k_eco: "Ecosystem — an expandable setup", h_eco: "It doesn't end with one arm",
   cell_badge: "Coming soon", cell_d: "A reproducible evaluation cell that keeps background, lighting, cameras, and arm position identical every time — a standard environment for fair, automated model comparison.",
   cell_1t: "Standard environment", cell_1d: "Controls background, lighting, cameras for fair comparison", cell_2t: "Z-axis lift", cell_2d: "Height adjust to reproduce varied tasks",
@@ -1087,50 +1121,256 @@ export default function Home() {
     fill();
     return () => { window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); io.disconnect(); };
   }, [lang]);
-  // "inside" — live 2.0 (model-viewer, drag to rotate) crossfades into the exploded platform diagram on scroll
+  // "inside" — live three.js exploded view of the OpenArm 2.0 arm.
+  // Drag to rotate; scrolling the sticky section drives the explosion.
+  // three.js + the baked part segmentation load lazily as the section approaches.
   useEffect(() => {
-    const stage = document.querySelector<HTMLElement>(".oa .seqstage");
     const wrap = document.querySelector<HTMLElement>(".oa .seqwrap");
-    const canvas = stage?.querySelector<HTMLCanvasElement>(".seqcanvas");
-    const mvWrap = stage?.querySelector<HTMLElement>(".seqmv");
-    if (!wrap || !canvas || !mvWrap) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-    const FRAMES = 61; // frame_000 (assembled) → frame_060 (exploded)
-    const imgs: HTMLImageElement[] = [];
-    let cur = -1;
-    const draw = (f: number) => {
-      const img = imgs[f];
-      if (!img || !img.complete || img.naturalWidth === 0 || f === cur) return;
-      cur = f;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-    };
+    const stage = document.querySelector<HTMLElement>(".oa .seqstage");
+    const canvas = stage?.querySelector<HTMLCanvasElement>(".seq3d");
+    const ph = stage?.querySelector<HTMLElement>(".seqph");
+    const labelBox = stage?.querySelector<HTMLElement>(".seqlabels3d");
+    if (!wrap || !stage || !canvas) return;
     const clamp01 = (x: number) => Math.min(1, Math.max(0, x));
-    const apply = () => {
-      const total = wrap.offsetHeight - window.innerHeight;
-      const p = total > 0 ? clamp01(-wrap.getBoundingClientRect().top / total) : 0;
-      // 0–0.12 hold the live 2.0 · 0.12–0.28 crossfade to the diagram · 0.24–0.96 explode the parts
-      const mvOp = 1 - clamp01((p - 0.12) / 0.16);
-      const cvOp = clamp01((p - 0.12) / 0.16);
-      const fp = clamp01((p - 0.24) / 0.72);
-      draw(Math.round(fp * (FRAMES - 1)));
-      canvas.style.opacity = String(cvOp);
-      mvWrap.style.opacity = String(mvOp);
-      mvWrap.classList.toggle("on", mvOp > 0.5);
+    const isMobile = window.matchMedia("(max-width:820px)").matches;
+
+    let disposed = false, raf = 0, running = false, sceneReady = false, wantRun = false;
+    let cleanupScene: (() => void) | null = null;
+    let explode = 0, labelOp = 0;
+
+    const start = async () => {
+      if (sceneReady || disposed) return;
+      sceneReady = true; // guard re-entry; real readiness set at the end
+      const THREE = await import("three");
+      const { OrbitControls } = await import("three/examples/jsm/controls/OrbitControls.js");
+      const bin = await fetch("/models/arm-exploded.bin").then((r) => r.arrayBuffer());
+      if (disposed) return;
+
+      const dv = new DataView(bin);
+      if (dv.getUint32(0, true) !== 0x4f414558) return;
+      const V = dv.getUint32(8, true), T = dv.getUint32(12, true), P = dv.getUint32(16, true);
+      let o = 24;
+      const pos = new Float32Array(bin, o, V * 3); o += V * 12;
+      const disp = new Float32Array(bin, o, V * 3); o += V * 12;
+      const pid = new Uint16Array(bin, o, V); o += (V * 2 + 3) & ~3;
+      const idx = new Uint32Array(bin, o, T * 3);
+
+      // per-part centroid + displacement, for projecting the callout tags
+      const pc = new Float32Array(P * 3), pcn = new Float32Array(P), pdsp = new Float32Array(P * 3);
+      for (let i = 0; i < V; i++) {
+        const g = pid[i];
+        pc[g * 3] += pos[i * 3]; pc[g * 3 + 1] += pos[i * 3 + 1]; pc[g * 3 + 2] += pos[i * 3 + 2]; pcn[g]++;
+        pdsp[g * 3] = disp[i * 3]; pdsp[g * 3 + 1] = disp[i * 3 + 1]; pdsp[g * 3 + 2] = disp[i * 3 + 2];
+      }
+      for (let g = 0; g < P; g++) { const n = pcn[g] || 1; pc[g * 3] /= n; pc[g * 3 + 1] /= n; pc[g * 3 + 2] /= n; }
+
+      const scene = new THREE.Scene();
+      const cam = new THREE.PerspectiveCamera(32, 1, 1, 20000);
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+      renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.1;
+      // studio environment for metallic reflections (procedural, no asset download)
+      const { RoomEnvironment } = await import("three/examples/jsm/environments/RoomEnvironment.js");
+      const pmrem = new THREE.PMREMGenerator(renderer);
+      const envTex = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+      scene.environment = envTex;
+      const d1 = new THREE.DirectionalLight(0xffffff, 1.1); d1.position.set(500, 900, 700); scene.add(d1);
+      const d2 = new THREE.DirectionalLight(0x9fc0ff, 0.4); d2.position.set(-600, 200, -500); scene.add(d2);
+
+      // hide the detached mount plate + stray fasteners that float free of the isolated gripper assembly
+      const HIDDEN = new Set([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 19, 20, 21]);
+      let index = idx;
+      if (HIDDEN.size) {
+        const keep: number[] = [];
+        for (let f = 0; f < T; f++) {
+          const a = idx[f * 3];
+          if (!HIDDEN.has(pid[a])) keep.push(a, idx[f * 3 + 1], idx[f * 3 + 2]);
+        }
+        index = new Uint32Array(keep);
+      }
+      const raw = new THREE.BufferGeometry();
+      raw.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+      raw.setAttribute("adisp", new THREE.BufferAttribute(disp, 3));
+      raw.setIndex(new THREE.BufferAttribute(index, 1));
+      // the GLB carries no normals — naive smooth normals over the welded soup look crumpled.
+      // Creased normals keep curved faces (motor drums) smooth while machined edges stay crisp.
+      const { toCreasedNormals } = await import("three/examples/jsm/utils/BufferGeometryUtils.js");
+      const geom = toCreasedNormals(raw, Math.PI / 5);
+      raw.dispose();
+
+      const uEx = { value: 0 };
+      const mat = new THREE.MeshStandardMaterial({ color: 0x99a3b2, metalness: 0.55, roughness: 0.42 });
+      mat.onBeforeCompile = (sh) => {
+        sh.uniforms.uEx = uEx;
+        sh.vertexShader = "attribute vec3 adisp;uniform float uEx;\n" + sh.vertexShader
+          .replace("#include <begin_vertex>", "vec3 transformed = position + adisp * uEx;");
+      };
+      const mesh = new THREE.Mesh(geom, mat); scene.add(mesh);
+
+      geom.computeBoundingBox();
+      const bb = geom.boundingBox!;
+      const ctr3 = bb.getCenter(new THREE.Vector3());
+      // bounding-sphere radius at rest and at full explode, so the camera can be pulled
+      // back dynamically — the assembly never overflows the canvas at any aspect or explode level
+      const EXPLODE_MAX = 1.0;
+      const FRAME_MARGIN = 1.15; // >1 = breathing room; the bounding sphere already guards against overflow at any rotation
+      const posA = geom.attributes.position, dspA = geom.attributes.adisp;
+      let rAsm2 = 0, rFull2 = 0;
+      for (let i = 0; i < posA.count; i++) {
+        const dx = posA.getX(i) - ctr3.x, dy = posA.getY(i) - ctr3.y, dz = posA.getZ(i) - ctr3.z;
+        rAsm2 = Math.max(rAsm2, dx * dx + dy * dy + dz * dz);
+        const ex = dx + dspA.getX(i) * EXPLODE_MAX, ey = dy + dspA.getY(i) * EXPLODE_MAX, ez = dz + dspA.getZ(i) * EXPLODE_MAX;
+        rFull2 = Math.max(rFull2, ex * ex + ey * ey + ez * ez);
+      }
+      const rAsm = Math.sqrt(rAsm2), rFull = Math.sqrt(rFull2);
+
+      const controls = new OrbitControls(cam, canvas);
+      controls.enableZoom = false; controls.enablePan = false; controls.rotateSpeed = 0.75;
+      controls.autoRotate = !isMobile; controls.autoRotateSpeed = 0.55;
+      controls.target.copy(ctr3);
+      // initial 3/4 side view direction; distance is driven by fitCamera()
+      cam.position.set(ctr3.x + 0.96, ctr3.y + 0.41, ctr3.z + 1.07);
+      // fit the current explode state to the viewport by forcing the orbit distance.
+      // binds on whichever FOV is tighter (vertical, or horizontal on narrow viewports).
+      const fitCamera = () => {
+        const R = rAsm + (rFull - rAsm) * Math.min(1, uEx.value / EXPLODE_MAX);
+        const fovV = cam.fov * Math.PI / 180;
+        const fovH = 2 * Math.atan(Math.tan(fovV / 2) * cam.aspect);
+        const dist = (R / Math.sin(Math.min(fovV, fovH) / 2)) * FRAME_MARGIN;
+        controls.minDistance = controls.maxDistance = dist;
+      };
+      fitCamera();
+      controls.update();
+
+      // callout tags sit at the stage edges (off the model); a dashed leader arrows in to each part
+      const svg = labelBox?.querySelector<SVGSVGElement>(".seqleaders") || null;
+      const SLOTS: Record<number, { side: "L" | "R"; ty: number }> = {
+        17: { side: "L", ty: 0.70 }, // gripper end
+        39: { side: "R", ty: 0.52 }, // camera
+        52: { side: "R", ty: 0.20 }, // DAMIAO motor
+      };
+      const anchors = (labelBox ? Array.from(labelBox.querySelectorAll<HTMLElement>(".tag3")) : []).map((el) => {
+        const id = parseInt(el.dataset.part || "-1", 10);
+        const slot = SLOTS[id] || { side: "R" as const, ty: 0.5 };
+        el.classList.toggle("rgt", slot.side === "R");
+        let line: SVGLineElement | null = null;
+        if (svg) {
+          line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+          line.setAttribute("marker-end", "url(#oaArrow)");
+          svg.appendChild(line);
+        }
+        return { el, id, side: slot.side, ty: slot.ty, line, connX: 0, connY: 0 };
+      });
+      const v3 = new THREE.Vector3();
+      let userInteracting = false;
+      controls.addEventListener("start", () => { userInteracting = true; controls.autoRotate = false; });
+      controls.addEventListener("end", () => { userInteracting = false; });
+
+      const readP = () => {
+        const total = wrap.offsetHeight - window.innerHeight;
+        return total > 0 ? clamp01(-wrap.getBoundingClientRect().top / total) : 0;
+      };
+      const applyScroll = () => {
+        const p = readP();
+        const q = clamp01((p - 0.14) / 0.72); // 0 = assembled, 1 = fully scrolled
+        explode = q; // full spread — the baked disps are collision-relaxed for no overlap at 1.0
+        labelOp = clamp01((q - 0.86) / 0.12); // tags fade in only once the parts have settled apart
+        if (!userInteracting && p < 0.16) controls.autoRotate = !isMobile;
+        if (p > 0.22) controls.autoRotate = false;
+      };
+      const placeTags = () => { // pin each tag to its edge slot and cache the leader start point
+        const h = canvas.clientHeight, cr = canvas.getBoundingClientRect();
+        for (const a of anchors) {
+          a.el.style.top = (a.ty * h) + "px";
+          a.el.style.transform = "translateY(-50%)";
+          if (a.side === "L") { a.el.style.left = "6px"; a.el.style.right = "auto"; }
+          else { a.el.style.right = "6px"; a.el.style.left = "auto"; }
+          const r = a.el.getBoundingClientRect();
+          a.connX = (a.side === "L" ? r.right : r.left) - cr.left;
+          a.connY = (r.top + r.height / 2) - cr.top;
+        }
+      };
+      const resize = () => {
+        const w = canvas.clientWidth || 1, h = canvas.clientHeight || 1;
+        renderer.setSize(w, h, false);
+        cam.aspect = w / h; cam.updateProjectionMatrix();
+        placeTags();
+      };
+      const drawLeaders = () => {
+        const w = canvas.clientWidth, h = canvas.clientHeight;
+        for (const a of anchors) {
+          let off = a.id < 0 || a.id >= P;
+          let sx = 0, sy = 0;
+          if (!off) {
+            v3.set(
+              pc[a.id * 3] + pdsp[a.id * 3] * uEx.value,
+              pc[a.id * 3 + 1] + pdsp[a.id * 3 + 1] * uEx.value,
+              pc[a.id * 3 + 2] + pdsp[a.id * 3 + 2] * uEx.value,
+            ).project(cam);
+            off = v3.z > 1;
+            sx = (v3.x * 0.5 + 0.5) * w; sy = (-v3.y * 0.5 + 0.5) * h;
+          }
+          a.el.style.opacity = off ? "0" : String(labelOp);
+          if (a.line) {
+            a.line.style.opacity = off ? "0" : String(labelOp);
+            if (!off) {
+              a.line.setAttribute("x1", String(a.connX)); a.line.setAttribute("y1", String(a.connY));
+              a.line.setAttribute("x2", String(sx)); a.line.setAttribute("y2", String(sy));
+            }
+          }
+        }
+      };
+      resize();
+      applyScroll();
+
+      const loop = () => {
+        if (disposed || !wantRun) { running = false; return; }
+        raf = requestAnimationFrame(loop);
+        uEx.value += (explode - uEx.value) * 0.14;
+        fitCamera();
+        controls.update();
+        renderer.render(scene, cam);
+        drawLeaders();
+      };
+      const startLoop = () => { if (running || disposed || !wantRun) return; running = true; raf = requestAnimationFrame(loop); };
+
+      let ticking = false;
+      const onScroll = () => { if (ticking) return; ticking = true; requestAnimationFrame(() => { ticking = false; applyScroll(); }); };
+      const onResize = () => { resize(); applyScroll(); };
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", onResize);
+      if (ph) ph.style.opacity = "0";
+      startLoop();
+
+      cleanupScene = () => {
+        window.removeEventListener("scroll", onScroll);
+        window.removeEventListener("resize", onResize);
+        controls.dispose(); geom.dispose(); mat.dispose(); envTex.dispose(); pmrem.dispose(); renderer.dispose();
+      };
+      // expose loop starter to the IO gate below
+      (start as unknown as { _run?: () => void })._run = startLoop;
     };
-    for (let i = 0; i < FRAMES; i++) {
-      const img = new window.Image();
-      img.onload = () => apply();
-      img.src = `/images/sequence/frame_${i.toString().padStart(3, "0")}.webp`;
-      imgs.push(img);
-    }
-    let ticking = false;
-    const onScroll = () => { if (ticking) return; ticking = true; requestAnimationFrame(() => { ticking = false; apply(); }); };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    apply();
-    return () => { window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); };
+
+    // lazy init + render gating: run only while the section is near/in the viewport
+    const io = new IntersectionObserver((ents) => {
+      const vis = ents.some((e) => e.isIntersecting);
+      wantRun = vis;
+      if (vis) {
+        start();
+        const run = (start as unknown as { _run?: () => void })._run;
+        if (run) run();
+      }
+    }, { rootMargin: "500px 0px" });
+    io.observe(wrap);
+
+    return () => {
+      disposed = true; wantRun = false;
+      io.disconnect();
+      if (raf) cancelAnimationFrame(raf);
+      if (cleanupScene) cleanupScene();
+    };
   }, [lang]);
   const t = lang === "en" ? EN : KO;
   return (
