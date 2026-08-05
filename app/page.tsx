@@ -134,6 +134,8 @@ html{scroll-behavior:smooth;scroll-padding-top:84px;scroll-snap-type:y proximity
 .oa .vhero-tag em{color:#9db0ff;font-style:normal}
 .oa .vhero-lead{margin-top:16px;font-size:17px;color:rgba(255,255,255,.82);max-width:54ch;line-height:1.7;word-break:keep-all}
 .oa .vhero .hero-cta{justify-content:center;margin-top:34px}
+.oa .vhero .shipnote{margin-top:16px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:rgba(255,255,255,.72);display:inline-flex;align-items:center;gap:8px;text-shadow:0 1px 12px rgba(0,0,0,.5)}
+.oa .vhero .shipnote::before{content:"";width:7px;height:7px;border-radius:50%;background:#5eead4;box-shadow:0 0 10px rgba(94,234,212,.9)}
 .oa .vhero .btn-ghost{border-color:rgba(255,255,255,.34);color:#fff}
 .oa .vhero .btn-ghost:hover{border-color:#fff;color:#fff;background:rgba(255,255,255,.08)}
 .oa .vhero .herostats{justify-content:center;margin-top:34px}
@@ -480,6 +482,7 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
     <p class="vhero-tag">${t.hero_tag}</p>
     <p class="vhero-lead">${t.hero_lead}</p>
     <div class="hero-cta"><a href="/store" class="btn btn-pri">${t.hero_cta1} →</a><a href="#contact" class="btn btn-ghost">${t.hero_cta2}</a></div>
+    <div class="shipnote">${t.hero_ship}</div>
     <div class="herostats">
       <div><b>7</b><span>-DOF ×2</span></div>
       <div><b>633</b><span>mm</span></div>
@@ -737,7 +740,7 @@ const KO = {
   hero_eyebrow: "Introducing · OpenArm 2.0",
   hero_tag: "피지컬 AI, <em>누구나 손 쉽게!</em>",
   hero_lead: "100% 오픈소스 양팔 로봇. 더 작아진 그리퍼와 손안의 카메라, 여기에 실험 변수를 잡아주는 Cell까지. 부품 수급부터 세팅까지 리버트론이 한 번에 준비해 드립니다.",
-  hero_cta1: "구성 둘러보기", hero_cta2: "도입 문의", drag: "드래그 · 360°",
+  hero_cta1: "지금 구매하기", hero_cta2: "도입 문의", hero_ship: "지금 구매 시 9월 배송 예정", drag: "드래그 · 360°",
   intro_spec_h: "핵심 사양", intro_explore: "자세히 보기", scrollcue: "SCROLL",
   s_dof: "양팔 자유도", s_reach: "도달 거리 (CAD 실측)", s_pay: "정격 · 피크 가반하중", s_ctrl: "CAN-FD 제어", s_open: "오픈소스 CAD·펌웨어",
   k_feat: "Core", h_feat: "OpenArm 2.0을 <em>구매해야 하는 이유</em>",
@@ -826,31 +829,31 @@ type Dict = typeof KO;
 const EN: Dict = {
   nav_features: "Core", nav_why: "Why Libertron", nav_res: "Resources", nav_contact: "Contact", nav_store: "Store",
   hero_eyebrow: "Introducing · OpenArm 2.0",
-  hero_tag: "Making physical AI <em>reproducible.</em>",
+  hero_tag: "Physical AI, <em>made easy for everyone.</em>",
   hero_lead: "A 100% open-source bimanual humanoid arm. Compact gripper, in-hand camera, and a variable-controlled Cell — supplied one-stop from Korea by Libertron.",
-  hero_cta1: "Browse purchase options", hero_cta2: "Get in touch", drag: "Drag · 360°",
+  hero_cta1: "Buy now", hero_cta2: "Get in touch", hero_ship: "Order now — ships in September", drag: "Drag · 360°",
   intro_spec_h: "Core specifications", intro_explore: "Explore", scrollcue: "SCROLL",
   s_dof: "DOF per dual arm", s_reach: "Reach (CAD-measured)", s_pay: "Nominal / peak payload", s_ctrl: "CAN-FD control", s_open: "Open-source CAD & firmware",
-  k_feat: "Core — what's inside 2.0", h_feat: "What makes <em>OpenArm 2.0</em> different",
-  feat_lead: "We refined every rough edge of 1.1 and re-engineered it into a next-generation platform built to run reinforcement and reward learning the way they should.",
-  f1_t: "Compact gripper + in-hand camera", f1_d: "Simpler actuation makes the gripper smaller. The in-hand camera captures the moment of grasping, and fingers swap to fit each task. Add the recommended top-down ZED stereo camera and you capture depth-rich training data.", f1_tag: "swappable fingers · ZED recommended",
-  f2_t: "Bilateral force feedback", f2_d: "Leader and follower trade force back and forth, conveying the feel of contact and pressure as-is.",
+  k_feat: "Core", h_feat: "Why you should <em>buy OpenArm 2.0</em>",
+  feat_lead: "We refined what fell short in 1.0 — reborn as a next-generation platform where reinforcement and imitation learning run the way they should.",
+  f1_t: "A smaller gripper, an in-hand camera", f1_d: "Simpler actuation makes the gripper smaller. The in-hand camera captures the moment of grasping, and fingers swap to fit each task. Add the recommended top-down ZED stereo camera and you capture depth-rich training data.", f1_tag: "swappable fingers · ZED recommended",
+  f2_t: "Motorless KER add-on", f2_d: "Collect and feed imitation-learning data faster and more easily with KER, a lightweight motorless input device.",
   f3_t: "Intuitive teleoperation", f3_d: "Smooth gravity compensation lets you operate precisely, as if demonstrating the task by hand.",
   f4_t: "Fully open source", f4_d: "CAD, firmware, and control code are all open — ROS2-compatible for rapid development.",
-  f5_t: "Kit or pre-built", f5_d: "Get it as a DIY kit, or fully assembled and tested by Libertron's engineers.",
+  f5_t: "Ships fully assembled", f5_d: "Libertron delivers OpenArm 2.0 ready to use the moment it arrives — assembly and setup already done.",
   act_k: "In Action", act_h: "See <em>OpenArm 2.0</em> in motion", act_cap: "// OPENARM 2.0 · REAL FOOTAGE",
-  k_hw: "Hardware — explore it yourself", h_hw: "Spin the <em>2.0 hardware</em>",
+  k_hw: "Hardware", h_hw: "Spin the <em>2.0 hardware</em> yourself",
   hw_lead: "Drag to explore in 360° — from the body with its in-hand camera to the calibration jig that keeps your dataset consistent.",
   hw1_t: "OpenArm 2.0 · head camera", hw1_d: "The full setup — the body with integrated in-hand camera plus the top-down camera.",
-  hw2_t: "Calibration jig", hw2_d: "A zero-position jig that locks the gripper to its exact CAD-defined angles, calibrating out assembly errors for a consistent dataset.",
-  k_inside: "Inside — look under the covers", inside_h: "Built <em>part by part</em>",
-  inside_lead: "The gripper, redesigned for 2.0. Spin it with a drag — then scroll, and it fans out into an exploded view: the drive actuator, two-finger jaws, CNC plate and 3D-printed casing.", inside_hint: "drag to rotate · scroll to explode",
+  hw2_t: "Calibration jig (CELL only)", hw2_d: "When operating OpenArm 2.0 in the CELL, it locks the gripper to its exact CAD-defined angles — calibrating out assembly errors for a consistent dataset.",
+  k_inside: "Inside", inside_h: "2.0's <em>redesigned gripper</em>",
+  inside_lead: "A built-in camera — and a gripper you can 3D-print and swap yourself.", inside_hint: "drag to rotate · scroll to explode",
   prog_closed: "Closed", prog_open: "Open",
   lbl_grip: "Two-finger gripper jaw", lbl_act: "DAMIAO QDD actuator", lbl_case: "3D-printed casing", lbl_cnc: "CNC aluminum plate",
   tag_grip_d: "Swappable with 3 screws", tag_grip_n: "Gripper end",
   tag_cam_d: "Built into the hand", tag_cam_n: "Camera",
   tag_motor_d: "Human-like hand & wrist motion", tag_motor_n: "DAMIAO motor",
-  k_apps: "Applications — where it's used", apps_h: "What labs <em>actually build</em>",
+  k_apps: "Applications", apps_h: "Use it for <em>research like this</em>",
   apps_lead: "From teleoperation data collection to reinforcement and imitation learning, humanoid research, and education — one OpenArm opens the door to a wide range of physical-AI work.",
   app_teleop: "Teleoperation & demonstration learning", app_rl: "Reinforcement & imitation learning", app_manip: "Robot manipulation research",
   app_humanoid: "AI-driven humanoid learning", app_hri: "Human–robot interaction (HRI)", app_edu: "AI robotics education",
@@ -860,14 +863,14 @@ const EN: Dict = {
   app_humanoid_d: "Port bimanual manipulation data into humanoid skills.",
   app_hri_d: "Study safe, force-controlled close collaboration and contact.",
   app_edu_d: "A hands-on robotics curriculum on the ROS2, Python & CAN-FD API.",
-  k_eco: "Ecosystem — an expandable setup", h_eco: "It doesn't end with one arm",
+  k_eco: "Ecosystem", h_eco: "Make 2.0 more useful — <em>powerful add-ons</em>",
   cell_badge: "Coming soon", cell_d: "A reproducible evaluation cell that keeps background, lighting, cameras, and arm position identical every time — a standard environment for fair, automated model comparison.",
   cell_1t: "Standard environment", cell_1d: "Controls background, lighting, cameras for fair comparison", cell_2t: "Z-axis lift", cell_2d: "Height adjust to reproduce varied tasks",
-  cell_3t: "Safe & long-running", cell_3d: "Reach-in safety stop for unattended operation", cell_4t: "Automated evaluation", cell_4d: "Reproducible setup for automatic model comparison",
+  cell_3t: "Safe & long-running", cell_3d: "Motion-detection sensors for safer testing", cell_4t: "Automated evaluation", cell_4d: "Reproducible setup for automatic model comparison",
   ker_badge: "Coming soon · CAD·BOM later", ker_d: "A motorless leader arm with the exact same joint structure as 2.0 (Kinematic Equivalent Replica). No motors means it's light and fatigue-free — ideal for teleoperation and teaching-data collection.",
-  ker_1t: "Same kinematics", ker_1d: "Same joints as 2.0 for 1:1 mapping", ker_2t: "Motorless", ker_2d: "Light and affordable without motors",
-  ker_3t: "Fatigue-free", ker_3d: "Operate for hours without tiring", ker_4t: "Data collection", ker_4d: "Ideal for teleop and teaching",
-  k_why: "Why Libertron — the value",
+  ker_1t: "Identical structure & design", ker_1d: "Same joints as 2.0 for 1:1 mapping", ker_2t: "Motorless", ker_2d: "Light and affordable without motors",
+  ker_3t: "Drag-free operation", ker_3d: "A comfortable weight even in long demos", ker_4t: "Data collection", ker_4d: "Ideal for teleop and teaching",
+  k_why: "Why Libertron",
   why_title: "Why buy from <em>Libertron</em>?",
   why_desc: "OpenArm is an open-source project available worldwide. Libertron's role is simple — we eliminate <strong>the 3+ months and countless trials you'd otherwise waste on sourcing, assembly, and setup</strong>. Now, simply focus on your research.",
   why_pro: "Libertron Devkits", why_foot: "When you factor in time and risk, it's ultimately the most affordable choice.", why_cta: "Get a quote in the store",
@@ -880,18 +883,18 @@ const EN: Dict = {
   why_more: "Partnering with Libertron",
   why: [
     { t: "End-to-end support", d: "From sourcing and customs to assembly, calibration, and first run — we hand it over ready for research to begin." },
-    { t: "A platform that keeps improving", d: "Just as 1.1's field experience shaped 2.0, we keep updating firmware, example code, and know-how alongside you." },
+    { t: "A platform that keeps improving", d: "Just as 1.0's field experience shaped 2.0, we keep updating firmware, example code, and know-how alongside you." },
     { t: "An expandable solution", d: "Cell, KER, camera packages — scale your entire research setup and get quotes from a single point of contact." },
   ],
-  rv_k: "Reveal — official footage", rv_h: "The moment it was <em>first revealed</em>",
-  rv_d: "The official OpenArm reveal that Libertron has been part of. See the story of how one robot arm set out to lower the barrier to research.",
-  k_res: "Resources — the open-source ecosystem",
+  rv_k: "Reveal", rv_h: "The moment it was <em>first revealed</em>",
+  rv_d: "The official video that introduced OpenArm to the world — see, at a glance, the concept of an arm built to make physical-AI research affordable.",
+  k_res: "Resources",
   res_h: "Code, docs, and a <em>community</em> — all open",
   res_sub: "OpenArm is an open-source project anyone can inspect and build on. From hardware CAD to firmware and control code to a worldwide developer community — explore it, use it, and help it grow.",
   res_gh_t: "GitHub repository", res_gh_d: "Hardware CAD, firmware, and control code are all public. Clone it, build it, and modify it freely.", res_gh_b: "View code",
   res_doc_t: "Official docs", res_doc_d: "API reference, setup guides, and tutorials. (English)", res_doc_b: "Read docs",
   res_dc_t: "Discord community", res_dc_d: "Ask, answer, and build together with developers around the world in real time.", res_dc_b: "Join server",
-  faq_k: "FAQ — frequently asked", faq_h: "Frequently Asked <em>Questions</em>",
+  faq_k: "FAQ", faq_h: "Frequently Asked <em>Questions</em>",
   faq_sub: "Here are the most common questions about the OpenArm robotic arm.",
   faq: [
     { q: "How is OpenArm different from existing industrial robotic arms?", a: "OpenArm is the ultimate starting machine to experience collaborative robots at a reasonable price. Unlike expensive industrial robots, we eliminated price bubbles while keeping research-grade specifications. It is comprehensively designed based on open-source so anyone can easily access and modify it, making it optimized for education, research, and prototyping." },
@@ -902,7 +905,7 @@ const EN: Dict = {
   ],
   order_eyebrow: "Purchase", order_h: "Meet OpenArm 2.0 — available now", order_d: "Add the configuration you need and order, or request a quote.",
   order_b1: "Browse the store", order_b2: "View OpenArm 1.1",
-  k_contact: "Contact — get in touch", ct_h: "Let's <em>start</em> your project",
+  k_contact: "Contact", ct_h: "Send us <em>your questions</em>",
   ct_sub: "Leave an inquiry or quote request and our team will get back to you shortly.",
   ct_addr: "Room 1111, SK V1 Center W, 11 Dangsan-ro 41-gil, Yeongdeungpo-gu, Seoul",
   ct_name: "Name", ct_name_ph: "Jane Doe", ct_org: "Organization / Company", ct_org_ph: "Acme Inc. / Lab (optional)",
