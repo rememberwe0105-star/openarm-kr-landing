@@ -16,12 +16,22 @@
     ? { empty: 'Your cart is empty', inquire: 'Inquire', total: 'Total', quotePlus: ' + quoted items', addFirst: 'Please add an item first.', sending: 'Sending…', done: 'Order request received. Our team will be in touch shortly. Thank you!', err: 'Submission failed. Please try again in a moment.', org: 'Organization' }
     : { empty: '담긴 제품이 없습니다', inquire: '문의', total: '합계', quotePlus: ' + 견적 품목', addFirst: '제품을 먼저 담아주세요.', sending: '전송 중…', done: '주문 요청이 접수되었습니다. 담당자가 곧 연락드리겠습니다. 감사합니다!', err: '전송에 실패했습니다. 잠시 후 다시 시도해주세요.', org: '소속/회사' };
   var cart = [];
-  function fmt(n) { return '$' + n.toLocaleString(); }
+  var CUR = EN ? '$' : '₩';
+  var ZED_DELTA = EN ? 600 : 1190000; // standalone ZED price per language
+  function fmt(n) { return CUR + n.toLocaleString(EN ? 'en-US' : 'ko-KR'); }
   function add(name, price, cam) {
     var label = name, p = price;
-    // 가격 비공개 전환: 기본가가 견적(0)이면 카메라 옵션도 가격을 붙이지 않는다
-    if (cam) { p = price > 0 ? price + 800 : 0; label = name + (EN ? ' + ZED top stereo camera' : ' + ZED 상단 스테레오 카메라'); }
+    // 견적(0원) 품목에 카메라 옵션을 더해도 가격은 붙이지 않는다 (견적 유지)
+    if (cam) { p = price > 0 ? price + ZED_DELTA : 0; label = name + (EN ? ' + ZED top stereo camera' : ' + ZED 상단 스테레오 카메라'); }
     cart.push({ name: label, price: p });
+    render(); openDrawer();
+  }
+  // OpenArm 2.0 configuration radios (base / +hand cams / full option)
+  function sel20(el) { var v = document.getElementById('p20v'); if (v && el && el.dataset.p) v.textContent = fmt(+el.dataset.p); }
+  function add20() {
+    var el = document.querySelector('input[name="cfg20"]:checked');
+    if (!el) return;
+    cart.push({ name: el.dataset.n, price: +el.dataset.p });
     render(); openDrawer();
   }
   function rm(i) { cart.splice(i, 1); render(); }
@@ -101,7 +111,7 @@
     render(); closeCam(); openDrawer();
   }
 
-  window.add = add; window.rm = rm; window.openDrawer = openDrawer; window.closeDrawer = closeDrawer; window.closeAll = closeAll; window.openModal = openModal; window.submitForm = submitForm;
+  window.add = add; window.sel20 = sel20; window.add20 = add20; window.rm = rm; window.openDrawer = openDrawer; window.closeDrawer = closeDrawer; window.closeAll = closeAll; window.openModal = openModal; window.submitForm = submitForm;
   window.openCam = openCam; window.closeCam = closeCam; window.camView = camView; window.camChest = camChest; window.camArm = camArm; window.camAdd = camAdd;
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAll(); });
   render();

@@ -64,6 +64,11 @@ const CSS = `:root{
 .oas .addbtn:hover{border-color:var(--cy-deep)}
 .oas .addbtn.solid{background:var(--cy);color:#fff;border-color:var(--cy);box-shadow:0 8px 26px rgba(58,86,255,.28)}
 .oas .addbtn.solid:hover{background:var(--cy-soft);transform:translateY(-1px)}
+.oas .accrow{display:flex;align-items:center;justify-content:space-between;gap:14px;border:1px solid var(--l-line2);border-radius:12px;padding:13px 16px;margin-bottom:12px;max-width:460px;background:var(--l-surf)}
+.oas .accrow b{display:block;font-size:14px;font-weight:700}
+.oas .accrow small{font-family:var(--mono);font-size:12.5px;color:var(--cy-deep);font-weight:700}
+.oas .accrow button{border:1px solid var(--l-line2);background:var(--l-bg);border-radius:9px;padding:9px 16px;font-weight:700;font-size:13px;cursor:pointer;transition:.2s;font-family:var(--sans);flex-shrink:0}
+.oas .accrow button:hover{border-color:var(--cy-deep);color:var(--cy-deep)}
 @media(max-width:820px){.oas .prod,.oas .prod.rev{grid-template-columns:1fr;gap:26px;padding:48px 0}.oas .prod.rev .pmedia{order:-1}}
 
 .oas .overlay{position:fixed;inset:0;background:rgba(2,4,8,.55);opacity:0;pointer-events:none;transition:.3s;z-index:40;backdrop-filter:blur(2px)}
@@ -154,6 +159,12 @@ const mvTag = (src: string, alt: string, orbit = "25deg 72deg auto", fov = "") =
 
 function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
   const UP = "https://cdn.shopify.com/s/files/1/0719/7982/7417/files/Upgrade_kit_fig_1N.png?v=1779094011";
+  // dual pricing: KR = KRW package (VAT excluded / DTD shipping & setup included),
+  // EN = USD package (shipping & taxes excluded)
+  const P = lang === "en"
+    ? { cur: "$", b20: 6000, h20: 6400, f20: 6800, hand: 400, zed: 600, l11: 5290, f11: 5290, ker: 2500 }
+    : { cur: "₩", b20: 12900000, h20: 13500000, f20: 13900000, hand: 790000, zed: 1190000, l11: 10900000, f11: 10900000, ker: 4490000 };
+  const F = (n: number) => P.cur + n.toLocaleString(lang === "en" ? "en-US" : "ko-KR");
   return `
 <nav><div class="nav-in">
   <a href="/" class="logo">OpenArm<b>.</b></a>
@@ -178,11 +189,13 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
     <div class="pinfo">
       <div class="pcat">// ROBOTS</div>
       <h2>OpenArm 2.0 Bimanual</h2>
-      <div class="price" style="font-size:23px">${t.inquire}</div>
+      <div class="price"><span id="p20v">${F(P.b20)}</span> <small>${t.vat}</small></div>
       <div class="ship">${t.ship_2_0}</div>
       <div class="pdesc">${t.d_2_0}</div>
-      <label class="opt"><input type="checkbox" id="camopt"/><span class="ot">${t.cam_opt}</span></label>
-      <button class="addbtn solid" onclick="add('OpenArm 2.0',0,document.getElementById('camopt').checked)">${t.add_inq}</button>
+      <label class="opt"><input type="radio" name="cfg20" checked data-p="${P.b20}" data-n="${t.n20_base}" onchange="sel20(this)"/><span class="ot">${t.cfg_base}</span><span class="op">${F(P.b20)}</span></label>
+      <label class="opt"><input type="radio" name="cfg20" data-p="${P.h20}" data-n="${t.n20_hand}" onchange="sel20(this)"/><span class="ot">${t.cfg_hand}</span><span class="op">${F(P.h20)}</span></label>
+      <label class="opt"><input type="radio" name="cfg20" data-p="${P.f20}" data-n="${t.n20_full}" onchange="sel20(this)"/><span class="ot">${t.cfg_full}</span><span class="op">${F(P.f20)}</span></label>
+      <button class="addbtn solid" onclick="add20()">${t.add}</button>
     </div>
   </div>
 
@@ -203,10 +216,10 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
     <div class="pinfo">
       <div class="pcat">// TELEOP</div>
       <h2>OpenArm KER</h2>
-      <div class="price" style="font-size:23px">${t.inquire}</div>
+      <div class="price"><span>${F(P.ker)}</span> <small>${t.vat}</small></div>
       <div class="ship tbd">${t.ship_ker}</div>
       <div class="pdesc">${t.d_ker}</div>
-      <button class="addbtn" onclick="add('OpenArm KER',0,false)">${t.add_inq}</button>
+      <button class="addbtn" onclick="add('OpenArm KER',${P.ker},false)">${t.add}</button>
     </div>
   </div>
 
@@ -228,10 +241,10 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
     <div class="pinfo">
       <div class="pcat">// ROBOTS · 1.1</div>
       <h2>OpenArm Follower Dual Arm 1.1</h2>
-      <div class="price" style="font-size:23px">${t.inquire}</div>
-      <div class="ship tbd">${t.ship_inq}</div>
+      <div class="price"><span>${F(P.f11)}</span> <small>${t.vat}</small></div>
+      <div class="ship">${t.ship_2_0}</div>
       <div class="pdesc">${t.d_follower}</div>
-      <button class="addbtn" onclick="add('OpenArm Follower Dual Arm 1.1',0,false)">${t.add_inq}</button>
+      <button class="addbtn" onclick="add('OpenArm Follower Dual Arm 1.1',${P.f11},false)">${t.add}</button>
     </div>
   </div>
 
@@ -240,14 +253,27 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
     <div class="pinfo">
       <div class="pcat">// ROBOTS · 1.1</div>
       <h2>OpenArm Leader Dual Arm 1.1</h2>
-      <div class="price" style="font-size:23px">${t.inquire}</div>
-      <div class="ship tbd">${t.ship_inq}</div>
+      <div class="price"><span>${F(P.l11)}</span> <small>${t.vat}</small></div>
+      <div class="ship">${t.ship_2_0}</div>
       <div class="pdesc">${t.d_leader}</div>
-      <button class="addbtn" onclick="add('OpenArm Leader Dual Arm 1.1',0,false)">${t.add_inq}</button>
+      <button class="addbtn" onclick="add('OpenArm Leader Dual Arm 1.1',${P.l11},false)">${t.add}</button>
     </div>
   </div>
 
   <div class="prod">
+    <div class="pmedia mv"><span class="pbadge">${t.b_acc}</span><span class="scode">// ACC_2.0</span>${mvTag("/models/openarm-2-headcam.glb", "OpenArm 2.0 + ZED", "25deg 72deg auto", 'field-of-view="32deg"')}<span class="mvhint">${t.drag}</span></div>
+    <div class="pinfo">
+      <div class="pcat">// ACCESSORIES · 2.0</div>
+      <h2>${t.acc_t}</h2>
+      <div class="price"><span>${F(P.hand)} ~</span> <small>${t.vat}</small></div>
+      <div class="ship">${t.ship_2_0}</div>
+      <div class="pdesc">${t.d_acc}</div>
+      <div class="accrow"><div><b>${t.acc_hand}</b><small>${F(P.hand)}</small></div><button onclick="add('${t.n_hand}',${P.hand},false)">${t.add}</button></div>
+      <div class="accrow"><div><b>${t.acc_zed}</b><small>${F(P.zed)}</small></div><button onclick="add('${t.n_zed}',${P.zed},false)">${t.add}</button></div>
+    </div>
+  </div>
+
+  <div class="prod rev">
     <div class="pmedia"><span class="pbadge">${t.b_acc}</span><span class="scode">// CAMERA_PKG</span><img src="/images/products/d435if_camera.png" alt="OpenArm Camera Package"/></div>
     <div class="pinfo">
       <div class="pcat">// ACCESSORIES</div>
@@ -347,7 +373,13 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
 
 const KO: Record<string, string> = {
   back: "OpenArm 2.0 메인으로", head_p: "OpenArm 전 라인업을 한 곳에서. 사양을 확인하고, 원하는 구성을 담아 문의하세요.",
-  estnote: "※ 가격은 현재 확정 전입니다. 원하는 구성을 담아 문의를 남겨주시면, 담당자가 최종 견적을 개별 안내드립니다.",
+  estnote: "※ 표시 가격은 부가세 별도입니다. 국내 배송(DTD) 포함 · 초기 설치 및 시연 지원 · 세금계산서/견적서 발행 · 사용 중 문제 피드백 지원",
+  vat: "부가세 별도",
+  cfg_base: "기본 구성", cfg_hand: "손끝 카메라 2대 추가", cfg_full: "풀옵션 — 손끝 + 상단 ZED",
+  n20_base: "OpenArm 2.0 (기본 구성)", n20_hand: "OpenArm 2.0 + 손끝 카메라 세트", n20_full: "OpenArm 2.0 풀옵션 (손끝+ZED)",
+  acc_t: "2.0 카메라 액세서리", d_acc: "OpenArm 2.0 전용 카메라 액세서리입니다. 손끝 카메라 2대 세트와 상단 스테레오 카메라(ZED)를 단품으로도 구매할 수 있습니다.",
+  acc_hand: "손끝 카메라 2대 세트", acc_zed: "상단 스테레오 카메라 (ZED)",
+  n_hand: "2.0 손끝 카메라 2대 세트", n_zed: "2.0 상단 ZED 카메라",
   drag: "드래그 · 360°", add: "주문 담기", add_inq: "담기 (가격 문의)", inquire: "가격 문의",
   cam_select: "옵션 선택", cam_title: "카메라 옵션 선택", cam_chest: "가슴 카메라 (선택)", cam_arm: "팔 카메라 (선택)", cam_specs: "사양 비교", cam_cancel: "취소", cam_add: "선택 항목 담기",
   b_now: "지금 구매 가능", b_oct: "출시 예정", b_soon: "출시 예정", b_11user: "1.1 사용자용", b_stock: "재고 보유", b_acc: "액세서리",
@@ -361,17 +393,23 @@ const KO: Record<string, string> = {
   d_follower: "OpenArm 사양으로 제작된 검증된 1.1 팔로워 양팔입니다. 좌·우 팔 + 받침대 + 팔로워 그립으로 구성됩니다.\n상단·양팔 Intel RealSense 카메라 옵션을 더할 수 있습니다.",
   d_leader: "OpenArm 사양으로 제작된 1.1 리더 양팔입니다. 좌·우 팔 + 받침대 + 리더 그립으로 구성되어, 팔로워와 양방향 힘 피드백 텔레오퍼레이션을 구현합니다.",
   cam_t: "카메라 패키지 (Intel RealSense)", d_cam: "팔로워에 장착하는 옵션 카메라 시스템입니다. 가슴 1대 + 양팔 각 1대, 최대 3대까지 설치할 수 있습니다.\n가슴 카메라는 D435IF / D455F, 양팔 카메라는 D405 중 용도에 맞춰 선택합니다. 장착 브래킷 포함.",
-  cart_h: "주문 카트", total: "합계", cart_note: "최종 견적은 구성·수량·배송지에 따라 개별 안내드립니다.", checkout: "주문 신청하기",
+  cart_h: "주문 카트", total: "합계", cart_note: "표시 가격은 부가세 별도입니다. 최종 견적은 구성·수량에 따라 개별 안내드립니다.", checkout: "주문 신청하기",
   modal_h: "OpenArm 주문 신청", modal_sub: "담으신 구성 그대로 접수됩니다. 담당자가 구성과 견적을 안내해 드릴게요.",
   f_name: "이름", ph_name: "홍길동", f_org: "소속 / 회사", ph_org: "(주)리버트론 / 학교·연구실 (선택)",
   f_country: "국가 / 지역", ph_country: "예: 대한민국", f_email: "이메일", f_phone: "전화번호", f_msg: "문의 내용", ph_msg: "도입 수량, 희망 일정, 기타 문의사항을 적어주세요.",
   agree_b: "개인정보 수집 및 이용 동의 (필수)", agree_d: "문의·견적 처리를 위해 개인정보를 수집하며 목적 달성 시 즉시 파기합니다.", submit: "주문 접수하기",
-  footer: "연구 · 교육 · 개발용 플랫폼 · 가격은 문의 시 개별 안내",
+  footer: "연구 · 교육 · 개발용 플랫폼 · 표시 가격은 부가세 별도",
 };
 
 const EN: Record<string, string> = {
   back: "Back to OpenArm 2.0", head_p: "The full OpenArm lineup in one place. Check the specs, add the configuration you want, and send an inquiry.",
-  estnote: "* Pricing is being finalized. Add the configuration you want and leave an inquiry — our team follows up with an individual quote.",
+  estnote: "* Prices exclude shipping and taxes/duties. Ships worldwide via FedEx — shipping is quoted with your order.",
+  vat: "excl. shipping & taxes",
+  cfg_base: "Base configuration", cfg_hand: "+ In-hand camera set (2)", cfg_full: "Full option — in-hand + top ZED",
+  n20_base: "OpenArm 2.0 (base)", n20_hand: "OpenArm 2.0 + in-hand camera set", n20_full: "OpenArm 2.0 full option (in-hand + ZED)",
+  acc_t: "2.0 Camera Accessories", d_acc: "Camera accessories for OpenArm 2.0. The in-hand camera set (2 pcs) and the top stereo camera (ZED) are also available separately.",
+  acc_hand: "In-hand camera set (2)", acc_zed: "Top stereo camera (ZED)",
+  n_hand: "2.0 in-hand camera set (2)", n_zed: "2.0 top ZED camera",
   drag: "Drag · 360°", add: "Add to order", add_inq: "Add (inquire)", inquire: "Contact for price",
   cam_select: "Select options", cam_title: "Select Camera Options", cam_chest: "Chest Camera (optional)", cam_arm: "Arm Cameras (optional)", cam_specs: "Specifications", cam_cancel: "Cancel", cam_add: "Add Selected",
   b_now: "Available now", b_oct: "Coming soon", b_soon: "Coming soon", b_11user: "For 1.1 owners", b_stock: "In stock", b_acc: "Accessory",
@@ -385,12 +423,12 @@ const EN: Record<string, string> = {
   d_follower: "The proven 1.1 follower dual arm, built to OpenArm specs. Left + right arm + pedestal + follower grips.\nOptional top and per-arm Intel RealSense cameras can be added.",
   d_leader: "The 1.1 leader dual arm, built to OpenArm specs. Left + right arm + pedestal + leader grips — pairs with the follower for bilateral force-feedback teleoperation.",
   cam_t: "Camera Package (Intel RealSense)", d_cam: "An optional camera system mounted on the follower. One chest + one per arm, up to three total.\nChoose D435IF / D455F for the chest and D405 for the arms. Mounting brackets included.",
-  cart_h: "Order cart", total: "Total", cart_note: "Final quotes are provided individually by configuration, quantity, and destination.", checkout: "Submit order",
+  cart_h: "Order cart", total: "Total", cart_note: "Prices exclude shipping and taxes. Final quotes are provided individually by configuration, quantity, and destination.", checkout: "Submit order",
   modal_h: "OpenArm Order Request", modal_sub: "Submitted exactly as configured. Our team will follow up with configuration and a quote.",
   f_name: "Name", ph_name: "Jane Doe", f_org: "Organization / Company", ph_org: "Acme Inc. / Lab (optional)",
   f_country: "Country / Region", ph_country: "e.g., South Korea", f_email: "Email", f_phone: "Phone", f_msg: "Message", ph_msg: "Quantity, timeline, and any questions.",
   agree_b: "I agree to the collection and use of personal data (required)", agree_d: "used only to process your inquiry and quote, then deleted once fulfilled.", submit: "Submit order",
-  footer: "Research · Education · Development platform · Pricing on inquiry",
+  footer: "Research · Education · Development platform · Prices exclude shipping & taxes",
 };
 
 export default function StorePage() {
