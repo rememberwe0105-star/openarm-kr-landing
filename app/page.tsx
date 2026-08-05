@@ -335,6 +335,8 @@ html{scroll-behavior:smooth;scroll-padding-top:84px;scroll-snap-type:y proximity
 .oa .final h2{font-size:clamp(30px,4.6vw,54px);font-weight:900;letter-spacing:-.035em;margin:16px 0;word-break:keep-all}
 .oa .final p{color:var(--mut);font-size:17px;max-width:50ch;margin:0 auto 30px;word-break:keep-all}
 .oa .final .ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.oa .final .shipnote{margin-top:18px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--mut);display:inline-flex;align-items:center;gap:8px}
+.oa .final .shipnote::before{content:"";width:7px;height:7px;border-radius:50%;background:#0fb890;box-shadow:0 0 8px rgba(15,184,144,.55)}
 
 /* contact */
 .oa .ctgrid{display:grid;grid-template-columns:.85fr 1.15fr;gap:52px;margin-top:44px;align-items:start}
@@ -699,6 +701,7 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
     <a href="/store" class="btn btn-pri">${t.order_b1} →</a>
     <a href="/openarm-1.1" class="btn btn-ghost">${t.order_b2}</a>
   </div>
+  <div class="shipnote">${t.hero_ship}</div>
 </div></div></section>
 
 <section class="sec" id="contact" style="background:var(--bg2);background-image:var(--grid);background-size:38px 38px;border-top:1px solid var(--line)"><div class="wrap">
@@ -813,7 +816,7 @@ const KO = {
     { q: "A/S와 기술 지원은 어떻게 되나요?", a: "리버트론은 한국에서 직접 조립하고 검수한 장비를 기준으로, 상담부터 배송, 기술 지원까지 도입 전 과정을 한 창구에서 대응합니다. 국내는 복잡한 수입 절차 없이 빠르게 공급하고, 해외 고객께는 FedEx 등 글로벌 물류로 안전하게 보내 드립니다." },
   ],
   order_eyebrow: "Purchase", order_h: "OpenArm 2.0, 지금 만나보세요", order_d: "원하는 구성을 담아 주문하거나, 견적을 받아보세요.",
-  order_b1: "스토어로 가기", order_b2: "OpenArm 1.1 보기",
+  order_b1: "지금 구매하기", order_b2: "OpenArm 1.1 보기",
   k_contact: "Contact", ct_h: "궁금한 점을 <em>문의해 주세요</em>",
   ct_sub: "도입 문의나 견적 상담을 남겨주세요. 담당자가 빠르게 연락드립니다.",
   ct_addr: "서울 영등포구 당산로41길 11 SK V1 Center W동 1111호",
@@ -904,7 +907,7 @@ const EN: Dict = {
     { q: "How does after-sales and technical support work?", a: "Libertron provides a one-stop solution covering the entire process of equipment adoption from consultation and delivery to technical support based on products manufactured in Korea. For customers in Korea, we ensure fast and seamless supply without complex import procedures. For international customers, products are delivered safely and efficiently through global logistics partners such as FedEx." },
   ],
   order_eyebrow: "Purchase", order_h: "Meet OpenArm 2.0 — available now", order_d: "Add the configuration you need and order, or request a quote.",
-  order_b1: "Browse the store", order_b2: "View OpenArm 1.1",
+  order_b1: "Buy now", order_b2: "View OpenArm 1.1",
   k_contact: "Contact", ct_h: "Send us <em>your questions</em>",
   ct_sub: "Leave an inquiry or quote request and our team will get back to you shortly.",
   ct_addr: "Room 1111, SK V1 Center W, 11 Dangsan-ro 41-gil, Yeongdeungpo-gu, Seoul",
