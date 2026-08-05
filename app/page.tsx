@@ -260,29 +260,22 @@ html{scroll-behavior:smooth;scroll-padding-top:84px;scroll-snap-type:y proximity
 .oa #cell{background:var(--bg2);background-image:var(--grid);background-size:38px 38px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .oa .cmplead{max-width:64ch;margin-top:18px;font-size:16px;color:var(--mut);line-height:1.75;word-break:keep-all}
 .oa .cmplead strong{color:var(--txt);font-weight:700}
-.oa .tgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:44px}
-.oa .tcard{position:relative;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:18px;padding:26px 28px;overflow:hidden;transition:.28s}
-.oa .tcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--cy),var(--cy-deep))}
-.oa .tcard:hover{border-color:var(--line2);transform:translateY(-3px);box-shadow:0 20px 56px rgba(10,13,20,.10)}
-.oa .tnum{position:absolute;top:22px;right:26px;font-family:var(--mono);font-size:13px;color:var(--line2);font-weight:700}
-.oa .tlabel{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--mut);text-transform:uppercase;margin-bottom:20px}
-.oa .tflow{display:flex;align-items:center;gap:14px;margin-bottom:18px}
-.oa .tside{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
-.oa .tside b{display:block;font-size:16px;font-weight:800;letter-spacing:-.01em;line-height:1.2;word-break:keep-all}
-.oa .tside small{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase}
-.oa .tside.diy b{color:#6e7787}.oa .tside.diy small{color:#566072}
-.oa .tside.pro b{color:var(--txt)}.oa .tside.pro small{color:var(--cy)}
-.oa .tx{width:22px;height:22px;border-radius:50%;background:rgba(10,13,20,.06);color:#8a94a3;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
-.oa .tv{width:22px;height:22px;border-radius:50%;background:var(--cy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;box-shadow:0 0 14px rgba(58,86,255,.5)}
-.oa .tarrow{color:var(--cy);font-weight:700;font-size:18px;flex-shrink:0}
-.oa .tdesc{font-size:13px;color:var(--mut);line-height:1.62;word-break:keep-all;padding-top:16px;border-top:1px solid var(--line)}
-@media(max-width:820px){.oa .tgrid{grid-template-columns:1fr}.oa .tflow{flex-direction:column;align-items:stretch;gap:10px}.oa .tarrow{transform:rotate(90deg);align-self:center}}
+.oa .wqgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:44px}
+.oa .wqcard{position:relative;background:var(--card);border:2px solid var(--line);box-shadow:var(--shadow);border-radius:24px;padding:32px 30px 26px;transition:border-color .4s,box-shadow .4s,transform .28s}
+.oa .wqcard:hover{border-color:var(--cy-deep);transform:translateY(-3px);box-shadow:0 20px 56px rgba(10,13,20,.10)}
+.oa .wqnum{position:absolute;top:20px;right:26px;font-family:var(--mono);font-size:54px;line-height:1;font-weight:900;color:var(--line);transition:color .4s;user-select:none}
+.oa .wqcard:hover .wqnum{color:rgba(58,86,255,.25)}
+.oa .wqt{font-size:23px;font-weight:800;letter-spacing:-.02em;line-height:1.25;word-break:keep-all;padding-right:76px;margin-bottom:6px}
+.oa .wqs{font-size:15.5px;font-weight:700;color:var(--txt);letter-spacing:-.01em;word-break:keep-all;margin-bottom:12px}
+.oa .wqd{font-size:14px;color:var(--mut);line-height:1.68;word-break:keep-all}
+.oa .wqchip{margin-top:18px;padding-top:14px;border-top:1px dashed var(--line);font-family:var(--mono);font-size:12px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.oa .wqchip s{color:#8a94a3}
+.oa .wqchip i{font-style:normal;color:var(--cy);font-weight:700}
+.oa .wqchip b{color:var(--cy);font-weight:800}
+@media(max-width:820px){.oa .wqgrid{grid-template-columns:1fr}.oa .wqnum{font-size:44px}.oa .wqt{font-size:20px;padding-right:62px}}
 .oa .valuebar{margin-top:22px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;background:linear-gradient(110deg,rgba(58,86,255,.1),rgba(58,86,255,.02));border:1px solid var(--cy-deep);border-radius:18px;padding:26px 32px}
 .oa .vbe{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--cy);font-weight:700;margin-bottom:7px}
 .oa .valuebar p{font-size:clamp(17px,2vw,21px);font-weight:800;letter-spacing:-.015em;max-width:42ch;word-break:keep-all}
-.oa .tcard .tlabel{padding-right:50px}
-.oa .tic{position:absolute;top:20px;right:22px;width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(58,86,255,.08);border:1px solid var(--cy-deep);color:var(--cy)}
-.oa .tic svg{width:21px;height:21px}
 .oa .whyhead{margin-top:46px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);display:flex;align-items:center;gap:14px}
 .oa .whyhead::after{content:"";flex:1;height:1px;background:var(--line)}
 .oa .why3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
@@ -409,13 +402,7 @@ const I = {
   kit: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg>',
 };
 
-// transformation-card icons (도입시간·조립·SW·A/S) and reason-card icons (지원·플랫폼·확장)
-const TI = [
-  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>',
-  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.6 6.1a3.8 3.8 0 0 1-4.9 4.9L4.5 16.2l3.3 3.3 5.2-5.2a3.8 3.8 0 0 0 4.9-4.9l-2.4 2.4-2-.5-.5-2z"/></svg>',
-  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></svg>',
-  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 7.7-7 9-4-1.3-7-4.6-7-9V6z"/><path d="M9.3 12l1.9 1.9L15 10.2"/></svg>',
-];
+// reason-card icons (지원·플랫폼·확장)
 const WI = [
   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h3.5l2.2 6 4-13 2.3 7H21"/></svg>',
   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M10 2.5v3M14 2.5v3M10 18.5v3M14 18.5v3M2.5 10h3M2.5 14h3M18.5 10h3M18.5 14h3"/></svg>',
@@ -631,16 +618,13 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
   <div class="kicker"><b>04</b> ${t.k_why}</div>
   <h2 class="h2">${t.why_title}</h2>
   <p class="cmplead">${t.why_desc}</p>
-  <div class="tgrid">
-    ${t.tcards.map((it, i) => `<div class="tcard">
-      <div class="tic">${TI[i]}</div>
-      <div class="tlabel">${it.label}</div>
-      <div class="tflow">
-        <div class="tside diy"><span class="tx">✕</span><div><b>${it.ds}</b><small>DIY</small></div></div>
-        <div class="tarrow">→</div>
-        <div class="tside pro"><span class="tv">✓</span><div><b>${it.ps}</b><small>Devkits</small></div></div>
-      </div>
-      <p class="tdesc">${it.pd}</p>
+  <div class="wqgrid">
+    ${t.tcards.map((it, i) => `<div class="wqcard">
+      <div class="wqnum">0${i + 1}</div>
+      <h3 class="wqt">${it.q}</h3>
+      <div class="wqs">${it.s}</div>
+      <p class="wqd">${it.d}</p>
+      <div class="wqchip"><s>${it.cf}</s><i>→</i><b>${it.ct}</b></div>
     </div>`).join("")}
   </div>
   <div class="valuebar">
@@ -735,7 +719,7 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
 <footer>OPENARM 2.0 · <b>LIBERTRON</b> · ${t.footer}</footer>`;
 }
 
-type TCard = { label: string; ds: string; ps: string; pd: string };
+type TCard = { q: string; s: string; d: string; cf: string; ct: string };
 
 const KO = {
   nav_features: "Core", nav_why: "Why Libertron", nav_res: "Resources", nav_contact: "Contact", nav_store: "Store",
@@ -785,15 +769,15 @@ const KO = {
   why_desc: "OpenArm은 전 세계에 공개된 오픈소스 프로젝트입니다. 그래서 리버트론의 역할은 분명합니다. 부품을 모으고 맞춰보는 데 드는 <strong>최소 석 달의 준비 과정을, 대신 줄여 드리는 것.</strong> 까다로운 준비는 리버트론에 맡기고, 연구에 더 집중하세요.",
   why_pro: "리버트론 Devkits", why_foot: "들어갈 시간과 리스크까지 따져보면, 결국 가장 합리적인 선택입니다.", why_cta: "스토어에서 견적 받기",
   tcards: [
-    { label: "도입 시간", ds: "최소 2~3개월", ps: "받는 즉시 시작", pd: "한 곳에서 바로 배송, 증빙 서류까지 한 번에 챙겨 드립니다." },
-    { label: "조립 시간", ds: "최소 180시간", ps: "0시간", pd: "리버트론 엔지니어가 직접 조립해, 완성품으로 보내드립니다." },
-    { label: "초기 소프트웨어", ds: "직접 해결", ps: "테스트 끝난 환경", pd: "기본 동작은 확인을 마쳤고, 바로 돌려볼 예제 코드도 함께 드립니다." },
-    { label: "유지보수 A/S", ds: "100% 본인 부담", ps: "국내 직접 대응", pd: "투명하고 빠른 B2B 기술 지원. (현재 서비스 지역: 대한민국)" },
+    { q: "“받는 즉시 시작”", s: "도입에 걸리는 준비 기간을 없앴습니다", d: "한 곳에서 바로 배송하고, 증빙 서류까지 한 번에 챙겨 드립니다.", cf: "DIY 최소 2~3개월", ct: "즉시 시작" },
+    { q: "“조립 0시간”", s: "완성품으로 배송됩니다", d: "리버트론 엔지니어가 직접 조립하고 테스트까지 마친 완성품을 보내드립니다.", cf: "DIY 최소 180시간", ct: "0시간" },
+    { q: "“테스트를 마친 소프트웨어”", s: "받은 날 바로 돌려볼 수 있습니다", d: "기본 동작 확인을 마쳤고, 바로 실행할 수 있는 예제 코드도 함께 드립니다.", cf: "직접 해결", ct: "예제 코드 제공" },
+    { q: "“국내 직접 A/S”", s: "유지보수는 리버트론이 책임집니다", d: "투명하고 빠른 B2B 기술 지원을 제공합니다. (현재 서비스 지역: 대한민국)", cf: "100% 본인 부담", ct: "리버트론 지원" },
   ] as TCard[],
   why_more: "리버트론이라는 파트너",
   why: [
     { t: "처음부터 끝까지 함께", d: "부품 수급과 통관, 조립과 캘리브레이션, 첫 구동까지. 연구를 바로 시작할 수 있는 상태로 건네드립니다." },
-    { t: "계속 나아지는 플랫폼", d: "1.1의 경험을 2.0에 담았듯, 펌웨어와 예제, 노하우를 꾸준히 업데이트합니다. 함께 나아갑니다." },
+    { t: "계속 나아지는 플랫폼", d: "1.0의 경험을 2.0에 담았듯, 펌웨어와 예제, 노하우를 꾸준히 업데이트합니다. 함께 나아갑니다." },
     { t: "확장 가능한 솔루션", d: "Cell, KER, 카메라 패키지까지. 연구 환경 전체를 한 창구에서 넓혀가고, 견적도 한 번에 받으세요." },
   ],
   rv_k: "Reveal", rv_h: "세상에 처음 공개되던 <em>그 순간</em>",
@@ -875,10 +859,10 @@ const EN: Dict = {
   why_desc: "OpenArm is an open-source project available worldwide. Libertron's role is simple — we eliminate <strong>the 3+ months and countless trials you'd otherwise waste on sourcing, assembly, and setup</strong>. Now, simply focus on your research.",
   why_pro: "Libertron Devkits", why_foot: "When you factor in time and risk, it's ultimately the most affordable choice.", why_cta: "Get a quote in the store",
   tcards: [
-    { label: "Setup time", ds: "2–3 months min.", ps: "Start immediately", pd: "Fast single-vendor delivery with complete documentation" },
-    { label: "Assembly", ds: "180+ hours min.", ps: "0 hours", pd: "Fully assembled by Libertron's expert engineers before shipping" },
-    { label: "Initial software", ds: "Self troubleshooting", ps: "Pre-tested env", pd: "Basic operation verified; out-of-the-box example code provided" },
-    { label: "Maintenance", ds: "100% on you", ps: "Local support (KR)", pd: "Transparent, fast B2B technical support (currently serving South Korea)" },
+    { q: "“Ready on arrival”", s: "No setup period before you start", d: "Fast single-vendor delivery with complete documentation, all in one place.", cf: "DIY 2–3 months", ct: "Start immediately" },
+    { q: "“Zero assembly”", s: "Delivered fully built", d: "Assembled and tested by Libertron engineers before shipping.", cf: "DIY 180+ hours", ct: "0 hours" },
+    { q: "“Pre-tested software”", s: "Run it the day it arrives", d: "Basic operation verified, with ready-to-run example code included.", cf: "Self troubleshooting", ct: "Example code included" },
+    { q: "“Local direct support”", s: "Maintenance is on Libertron", d: "Transparent, fast B2B technical support. (Currently serving South Korea)", cf: "100% on you", ct: "Libertron support" },
   ] as TCard[],
   why_more: "Partnering with Libertron",
   why: [
