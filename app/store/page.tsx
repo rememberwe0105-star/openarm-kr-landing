@@ -62,6 +62,8 @@ const CSS = `:root{
 .oas .opt .op{margin-left:auto;font-family:var(--mono);color:var(--cy-deep);font-weight:700;font-size:13px}
 .oas .addbtn{width:100%;max-width:460px;border:1px solid var(--l-line2);background:var(--l-surf);color:var(--l-txt);font-family:var(--sans);font-weight:700;font-size:15px;padding:15px;border-radius:12px;cursor:pointer;transition:.22s}
 .oas .addbtn:hover{border-color:var(--cy-deep)}
+.oas .addbtn.blue{background:var(--cy);border-color:var(--cy);color:#fff;box-shadow:0 8px 24px -8px rgba(58,86,255,.5)}
+.oas .addbtn.blue:hover{background:var(--cy-deep);border-color:var(--cy-deep)}
 .oas .addbtn.solid{background:var(--cy);color:#fff;border-color:var(--cy);box-shadow:0 8px 26px rgba(58,86,255,.28)}
 .oas .addbtn.solid:hover{background:var(--cy-soft);transform:translateY(-1px)}
 .oas .optsec{padding:64px 0 80px}
@@ -78,6 +80,7 @@ const CSS = `:root{
 .oas .obody{padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px}
 .oas .obody b{display:block;font-size:14px;font-weight:700;line-height:1.3;word-break:keep-all}
 .oas .obody small{font-family:var(--mono);font-size:12.5px;color:var(--cy-deep);font-weight:700}
+.oas .obody .onote{display:block;font-family:var(--sans);color:var(--l-mut);font-weight:600;font-size:11.5px;margin-top:3px}
 .oas .obody button{border:1px solid var(--l-line2);background:var(--l-bg);border-radius:9px;padding:9px 14px;font-weight:700;font-size:13px;cursor:pointer;transition:.2s;font-family:var(--sans);flex-shrink:0;white-space:nowrap}
 .oas .obody button:hover{border-color:var(--cy-deep);color:var(--cy-deep)}
 @media(max-width:820px){.oas .optlist{grid-template-columns:1fr}}
@@ -174,7 +177,7 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
   // dual pricing: KR = KRW package (VAT excluded / DTD shipping & setup included),
   // EN = USD package (shipping & taxes excluded)
   const P = lang === "en"
-    ? { cur: "$", b20: 6000, f20: 6500, zed: 600, l11: 5000, f11: 5000, b3c: 6500, ker: 2500 }
+    ? { cur: "$", b20: 6000, f20: 6500, zed: 800, l11: 5000, f11: 5000, b3c: 6500, ker: 2500 }
     : { cur: "₩", b20: 12900000, f20: 13290000, zed: 1190000, l11: 10290000, f11: 10290000, b3c: 13390000, ker: 4490000 };
   const F = (n: number) => P.cur + n.toLocaleString(lang === "en" ? "en-US" : "ko-KR");
   const FP = (n: number) => (lang === "en" ? "From " + F(n) : F(n) + " ~"); // starting-price display
@@ -227,7 +230,7 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
       <div class="pcat">// TELEOP</div>
       <h2>OpenArm KER</h2>
       <div class="price"><span>${FP(P.ker)}</span> <small>${t.vat}</small></div>
-      <div class="ship tbd">${t.ship_ker}</div>
+      <div class="ship">${t.ship_ker}</div>
       <div class="pdesc">${t.d_ker}</div>
       <button class="addbtn" onclick="add('OpenArm KER',${P.ker})">${t.add}</button>
     </div>
@@ -251,7 +254,7 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
       <div class="pcat">// ROBOTS · 1.1</div>
       <h2>OpenArm Follower Dual Arm 1.1</h2>
       <div class="price"><span>${FP(P.f11)}</span> <small>${t.vat}</small></div>
-      <button class="addbtn" onclick="add('OpenArm Follower Dual Arm 1.1',${P.f11})">${t.add}</button>
+      <button class="addbtn blue" onclick="add('OpenArm Follower Dual Arm 1.1',${P.f11})">${t.add}</button>
     </div>
   </div>
 
@@ -259,10 +262,10 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
     <div class="pmedia"><span class="pbadge">${t.b_stock}</span><span class="scode">// FOLLOWER_3CAM</span><img src="/images/products/follower_3cam_bundle_2.svg" alt="OpenArm Follower Dual Arm 1.1 + 3 Cameras"/></div>
     <div class="pinfo">
       <div class="pcat">// ROBOTS · 1.1</div>
-      <h2>OpenArm Follower 1.1 + 3 Cameras</h2>
+      <h2>OpenArm Follower Dual Arm 1.1 + 3 Cameras</h2>
       <div class="price"><span>${FP(P.b3c)}</span> <small>${t.vat}</small></div>
       <div class="pdesc">${t.d_b3c}</div>
-      <button class="addbtn" onclick="add('OpenArm Follower 1.1 + 3 Cameras',${P.b3c})">${t.add}</button>
+      <button class="addbtn blue" onclick="add('OpenArm Follower Dual Arm 1.1 + 3 Cameras',${P.b3c})">${t.add}</button>
     </div>
   </div>
 
@@ -274,7 +277,7 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
       <div class="price"><span>${FP(P.l11)}</span> <small>${t.vat}</small></div>
       <div class="ship">${t.ship_2_0}</div>
       <div class="pdesc">${t.d_leader}</div>
-      <button class="addbtn" onclick="add('OpenArm Leader Dual Arm 1.1',${P.l11})">${t.add}</button>
+      <button class="addbtn blue" onclick="add('OpenArm Leader Dual Arm 1.1',${P.l11})">${t.add}</button>
     </div>
   </div>
 
@@ -294,7 +297,7 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
     <div class="optlist">
       <div class="optcard">
         <div class="oimg"><img src="/images/products/zed_camera.png" alt="ZED stereo camera" loading="lazy"/></div>
-        <div class="obody"><div><b>${t.acc_zed}</b><small>${F(P.zed)}</small></div><button onclick="add('${t.n_zed}',${P.zed})">${t.add}</button></div>
+        <div class="obody"><div><b>${t.acc_zed}</b><small>${F(P.zed)}</small><small class="onote">${t.zed_note}</small></div><button onclick="add('${t.n_zed}',${P.zed})">${t.add}</button></div>
       </div>
       <div class="optcard">
         <div class="oimg"><img src="/images/products/d435if_camera.png" alt="Intel RealSense Camera Package" loading="lazy"/></div>
@@ -400,7 +403,7 @@ const KO: Record<string, string> = {
   d_full: "손끝 카메라 2대와 상단 ZED 스테레오 카메라까지 모두 장착된 완전 구성입니다. 받는 즉시 깊이 데이터 수집을 시작할 수 있습니다.",
   d_b3c: "손목·가슴 카메라가 장착된 1.1 팔로워 구성입니다.",
   opt_h: "Options & Accessories", opt_sub: "단품 옵션과 액세서리는 여기서 담을 수 있습니다.",
-  acc_zed: "상단 스테레오 카메라 (ZED)", n_zed: "2.0 상단 ZED 카메라", n_grip: "그리퍼 핑거·그립 세트",
+  acc_zed: "상단 스테레오 카메라 (ZED)", n_zed: "2.0 상단 ZED 카메라", n_grip: "그리퍼 핑거·그립 세트", zed_note: "마운팅 브래킷 포함",
   grip_note: "커스텀 그립 준비 중 · 가격 문의",
   drag: "드래그 · 360°", add: "주문 담기", add_inq: "담기 (가격 문의)", inquire: "가격 문의",
   cam_select: "옵션 선택", cam_title: "카메라 옵션 선택", cam_chest: "가슴 카메라 (선택)", cam_arm: "팔 카메라 (선택)", cam_specs: "사양 비교", cam_cancel: "취소", cam_add: "선택 항목 담기",
@@ -428,7 +431,7 @@ const EN: Record<string, string> = {
   d_full: "The complete configuration — two in-hand cameras and the top ZED stereo camera included. Start capturing depth-rich data on day one.",
   d_b3c: "The 1.1 follower with wrist and chest cameras pre-installed.",
   opt_h: "Options & Accessories", opt_sub: "Add-on options and accessories, available individually.",
-  acc_zed: "Top stereo camera (ZED)", n_zed: "2.0 top ZED camera", n_grip: "Gripper fingers & grips",
+  acc_zed: "Top stereo camera (ZED)", n_zed: "2.0 top ZED camera", n_grip: "Gripper fingers & grips", zed_note: "Mounting bracket included",
   grip_note: "Custom grips coming soon · Contact for price",
   drag: "Drag · 360°", add: "Add to order", add_inq: "Add (inquire)", inquire: "Contact for price",
   cam_select: "Select options", cam_title: "Select Camera Options", cam_chest: "Chest Camera (optional)", cam_arm: "Arm Cameras (optional)", cam_specs: "Specifications", cam_cancel: "Cancel", cam_add: "Add Selected",

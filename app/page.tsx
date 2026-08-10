@@ -790,7 +790,7 @@ const KO = {
     { q: "“조립 0시간”", s: "완성품으로 배송됩니다", d: "리버트론 엔지니어가 직접 조립하고 캘리브레이션·테스트까지 마친 완성품을 보내드립니다.", cf: "DIY 최소 180시간", ct: "0시간" },
     { q: "“받는 즉시 시작”", s: "도입에 걸리는 준비 기간을 없앴습니다", d: "한 곳에서 바로 배송하고, 증빙 서류까지 한 번에 챙겨 드립니다.", cf: "DIY 최소 2~3개월", ct: "즉시 시작" },
     { q: "“테스트를 마친 소프트웨어”", s: "받은 날 바로 돌려볼 수 있습니다", d: "기본 동작 확인을 마쳤고, 바로 실행할 수 있는 예제 코드도 함께 드립니다.", cf: "직접 해결", ct: "예제 코드 제공" },
-    { q: "“국내 직접 A/S”", s: "유지보수는 리버트론이 책임집니다", d: "투명하고 빠른 B2B 기술 지원을 제공합니다. (현재 서비스 지역: 대한민국)", cf: "100% 본인 부담", ct: "리버트론 지원" },
+    { q: "“국내 직접 A/S”", s: "유지보수는 리버트론이 책임집니다", d: "투명하고 빠른 B2B 기술 지원을 제공합니다.", cf: "100% 본인 부담", ct: "리버트론 지원" },
   ] as TCard[],
   why_more: "리버트론이라는 파트너",
   why: [
@@ -881,7 +881,7 @@ const EN: Dict = {
     { q: "“Zero assembly”", s: "Delivered fully built", d: "Assembled, calibrated, and tested by Libertron engineers before shipping.", cf: "DIY 180+ hours", ct: "0 hours" },
     { q: "“Ready on arrival”", s: "No setup period before you start", d: "Fast single-vendor delivery with complete documentation, all in one place.", cf: "DIY 2–3 months", ct: "Start immediately" },
     { q: "“Pre-tested software”", s: "Run it the day it arrives", d: "Basic operation verified, with ready-to-run example code included.", cf: "Self troubleshooting", ct: "Example code included" },
-    { q: "“Technical support”", s: "Maintenance is on Libertron", d: "Transparent, fast B2B technical support. (Currently serving South Korea)", cf: "100% on you", ct: "Libertron support" },
+    { q: "“Technical support”", s: "Maintenance is on Libertron", d: "Transparent, fast B2B technical support.", cf: "100% on you", ct: "Libertron support" },
   ] as TCard[],
   why_more: "Partnering with Libertron",
   why: [
