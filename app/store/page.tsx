@@ -225,12 +225,12 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
   </div>
 
   <div class="prod">
-    <div class="pmedia dark"><span class="pbadge">${t.b_soon}</span><span class="scode">// MOD_KER</span><img src="https://docs.openarm.dev/assets/images/ker-086043e0d7a5b11dd872d6f997f37ce4.gif" alt="OpenArm KER"/></div>
+    <div class="pmedia dark"><span class="pbadge">${t.b_now}</span><span class="scode">// MOD_KER</span><img src="https://docs.openarm.dev/assets/images/ker-086043e0d7a5b11dd872d6f997f37ce4.gif" alt="OpenArm KER"/></div>
     <div class="pinfo">
       <div class="pcat">// TELEOP</div>
       <h2>OpenArm KER</h2>
       <div class="price"><span>${FP(P.ker)}</span> <small>${t.vat}</small></div>
-      <div class="ship">${t.ship_ker}</div>
+      <div class="ship">${t.ship_sep}</div>
       <div class="pdesc">${t.d_ker}</div>
       <button class="addbtn" onclick="add('OpenArm KER',${P.ker})">${t.add}</button>
     </div>
