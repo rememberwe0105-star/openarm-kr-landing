@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { memo, useEffect } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 const CSS = `:root{
@@ -466,7 +466,16 @@ export default function StorePage() {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: CSS }} />
-      <div className="oas" key={lang} dangerouslySetInnerHTML={{ __html: buildHTML(t, lang === "en" ? "en" : "ko") }} />
+      <OasHtml key={lang} html={buildHTML(t, lang === "en" ? "en" : "ko")} />
     </>
   );
 }
+
+// memo blocks re-renders of the adopted server HTML — React would otherwise re-apply the
+// whole innerHTML on any owner re-render, detaching everything (see app/page.tsx OaHtml).
+const OasHtml = memo(
+  function OasHtml({ html }: { html: string }) {
+    return <div className="oas" dangerouslySetInnerHTML={{ __html: html }} />;
+  },
+  (prev, next) => prev.html === next.html
+);

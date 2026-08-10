@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { memo, useEffect, useState } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 /* ──────────────────────────────────────────────────────────────────────────
@@ -920,6 +920,28 @@ const EN: Dict = {
 
 export default function Home() {
   const { lang, toggleLanguage } = useLanguage();
+  // After hydration React can silently re-apply the section's innerHTML, replacing every node
+  // the effects below have bound to (stale nav toggle, wiped word-fill spans / reveal classes —
+  // the "white nav on white background" bug). Watch .oa's direct children and bump an epoch so
+  // all DOM-binding effects re-run against the live nodes.
+  const [domEpoch, setDomEpoch] = useState(0);
+  useEffect(() => {
+    const oa = document.querySelector(".oa");
+    if (!oa) return;
+    const mo = new MutationObserver((recs) => {
+      // safety net: only react to the .oa container itself being replaced (parent record)
+      // or its children being re-applied (oa record) — ignore unrelated mutations like the
+      // effects' own <script> appends, or we loop forever
+      const relevant = recs.some((r) =>
+        r.target === oa ||
+        Array.from(r.addedNodes).concat(Array.from(r.removedNodes)).some((n) => n instanceof HTMLElement && n.classList.contains("oa"))
+      );
+      if (relevant) setDomEpoch((e) => e + 1);
+    });
+    mo.observe(oa, { childList: true });
+    if (oa.parentElement) mo.observe(oa.parentElement, { childList: true });
+    return () => mo.disconnect();
+  }, [lang, domEpoch]);
   useEffect(() => {
     (window as unknown as Record<string, unknown>).__oaToggleLang = toggleLanguage;
   }, [toggleLanguage]);
@@ -945,7 +967,7 @@ export default function Home() {
       });
     }
     return () => { s.remove(); };
-  }, [lang]);
+  }, [lang, domEpoch]);
   // constellation network on dark sections
   useEffect(() => {
     const canvases = Array.from(document.querySelectorAll<HTMLCanvasElement>(".net"));
@@ -984,7 +1006,7 @@ export default function Home() {
       stops.push(() => { cancelAnimationFrame(raf); io.disconnect(); window.removeEventListener("mousemove", onMove); window.removeEventListener("resize", onResize); });
     }
     return () => { for (const s of stops) s(); };
-  }, [lang]);
+  }, [lang, domEpoch]);
   // count-up spec numbers on view
   useEffect(() => {
     const animate = (el: HTMLElement) => {
@@ -1018,7 +1040,7 @@ export default function Home() {
     window.addEventListener("resize", onCheck);
     check();
     return () => { window.removeEventListener("scroll", onCheck); window.removeEventListener("resize", onCheck); };
-  }, [lang]);
+  }, [lang, domEpoch]);
   // inquiry form → /api/contact
   useEffect(() => {
     const tt = lang === "en" ? EN : KO;
@@ -1071,7 +1093,7 @@ export default function Home() {
     onScroll();
     const t0 = setTimeout(onScroll, 200);
     return () => { clearTimeout(t0); window.removeEventListener("scroll", onScrollRaf); window.removeEventListener("resize", onScrollRaf); };
-  }, [lang]);
+  }, [lang, domEpoch]);
   // roofing-template inspired: section heading word-fill on scroll + entrance reveals (white/blue)
   useEffect(() => {
     const heads = Array.from(document.querySelectorAll<HTMLElement>(".oa .h2"));
@@ -1096,8 +1118,9 @@ export default function Home() {
         else h.appendChild(k);
       });
     });
-    const nav = document.querySelector<HTMLElement>(".oa nav");
     const fill = () => {
+      // live query — the cached node can be detached by a post-hydration innerHTML re-apply
+      const nav = document.querySelector<HTMLElement>(".oa nav");
       if (nav) nav.classList.toggle("scrolled", window.scrollY > window.innerHeight * 0.72);
       for (const h of heads) {
         const words = h.querySelectorAll<HTMLElement>(".wf");
@@ -1123,7 +1146,7 @@ export default function Home() {
     window.addEventListener("resize", onScroll);
     fill();
     return () => { window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); io.disconnect(); };
-  }, [lang]);
+  }, [lang, domEpoch]);
   // "inside" — live three.js exploded view of the OpenArm 2.0 arm.
   // Drag to rotate; scrolling the sticky section drives the explosion.
   // three.js + the baked part segmentation load lazily as the section approaches.
@@ -1415,7 +1438,19 @@ export default function Home() {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: CSS }} />
-      <div className="oa" key={lang} dangerouslySetInnerHTML={{ __html: buildHTML(t, lang === "en" ? "en" : "ko") }} />
+      <OaHtml key={lang} html={buildHTML(t, lang === "en" ? "en" : "ko")} />
     </>
   );
 }
+
+// The page body is server-rendered HTML adopted on hydration. React keeps no "previous"
+// record of adopted dangerouslySetInnerHTML, so ANY re-render of the owner re-applies the
+// whole innerHTML — replacing every node the effects have bound to (dead nav color toggle,
+// wiped word-fill/reveal setup, 3D scene rendering into a detached canvas). memo() stops
+// the div from ever re-rendering; language switches remount it via the key above.
+const OaHtml = memo(
+  function OaHtml({ html }: { html: string }) {
+    return <div className="oa" dangerouslySetInnerHTML={{ __html: html }} />;
+  },
+  (prev, next) => prev.html === next.html
+);
