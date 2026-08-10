@@ -250,7 +250,7 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
   </div>
 
   <div class="prod rev">
-    <div class="pmedia"><span class="pbadge">${t.b_stock}</span><span class="scode">// FOLLOWER_3CAM</span><img src="/images/products/follower_3cam_bundle.png" alt="OpenArm Follower Dual Arm 1.1 + 3 Cameras"/></div>
+    <div class="pmedia"><span class="pbadge">${t.b_stock}</span><span class="scode">// FOLLOWER_3CAM</span><img src="/images/products/follower_3cam_bundle_2.svg" alt="OpenArm Follower Dual Arm 1.1 + 3 Cameras"/></div>
     <div class="pinfo">
       <div class="pcat">// ROBOTS · 1.1</div>
       <h2>OpenArm Follower 1.1 + 3 Cameras</h2>
