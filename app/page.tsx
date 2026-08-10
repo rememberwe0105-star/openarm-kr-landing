@@ -437,8 +437,8 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
   <a href="/" class="logo">OpenArm<b>.</b></a>
   <div class="nav-links">
     <a href="#features">${t.nav_features}</a>
-    <a href="#cell">Cell</a>
     <a href="#ker">KER</a>
+    <a href="#cell">Cell</a>
     <a href="#why">${t.nav_why}</a>
     <a href="#resources">${t.nav_res}</a>
     <a href="#faq">FAQ</a>
@@ -458,8 +458,8 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
 <div class="mmenu" id="mmenu">
   <button class="mclose" aria-label="close" onclick="document.getElementById('mmenu').classList.remove('on')">×</button>
   <a href="#features" onclick="document.getElementById('mmenu').classList.remove('on')">${t.nav_features}</a>
-  <a href="#cell" onclick="document.getElementById('mmenu').classList.remove('on')">OpenArm Cell</a>
   <a href="#ker" onclick="document.getElementById('mmenu').classList.remove('on')">OpenArm KER</a>
+  <a href="#cell" onclick="document.getElementById('mmenu').classList.remove('on')">OpenArm Cell</a>
   <a href="#why" onclick="document.getElementById('mmenu').classList.remove('on')">${t.nav_why}</a>
   <a href="#resources" onclick="document.getElementById('mmenu').classList.remove('on')">${t.nav_res}</a>
   <a href="#faq" onclick="document.getElementById('mmenu').classList.remove('on')">FAQ</a>
@@ -512,7 +512,7 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
 </div></section>
 
 <section class="sec" id="features"><div class="wrap">
-  <div class="kicker"><b>01</b> ${t.k_feat}</div>
+  <div class="kicker">${t.k_feat}</div>
   <h2 class="h2">${t.h_feat}</h2>
   <p class="lead">${t.feat_lead}</p>
   <div class="feat">
@@ -530,7 +530,7 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
 
 
 <section class="sec" id="hardware" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap">
-  <div class="kicker"><b>02</b> ${t.k_hw}</div>
+  <div class="kicker">${t.k_hw}</div>
   <h2 class="h2">${t.h_hw}</h2>
   <p class="lead">${t.hw_lead}</p>
   <div class="d3">
@@ -585,27 +585,10 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
   </div>
 </div></section>
 
-<section class="sec" id="cell"><div class="wrap">
-  <div class="kicker"><b>03</b> ${t.k_eco}</div>
+<section class="sec" id="ker"><div class="wrap">
+  <div class="kicker">${t.k_eco}</div>
   <h2 class="h2">${t.h_eco}</h2>
   <div class="eco">
-    <div class="ecomedia"><span class="lab">// MOD_CELL</span>${mv("/models/openarm-cell-full.glb", "OpenArm Cell + 2.0", "30deg 72deg auto")}</div>
-    <div>
-      <span class="ecobadge">${t.cell_badge}</span>
-      <h3>OpenArm Cell</h3>
-      <p>${t.cell_d}</p>
-      <div class="ecogrid">
-        <div class="ecoitem"><b>${t.cell_1t}</b><span>${t.cell_1d}</span></div>
-        <div class="ecoitem"><b>${t.cell_2t}</b><span>${t.cell_2d}</span></div>
-        <div class="ecoitem"><b>${t.cell_3t}</b><span>${t.cell_3d}</span></div>
-        <div class="ecoitem"><b>${t.cell_4t}</b><span>${t.cell_4d}</span></div>
-      </div>
-    </div>
-  </div>
-</div></section>
-
-<section class="sec" id="ker" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap">
-  <div class="eco rev">
     <div class="ecomedia"><span class="lab">// MOD_KER</span><img src="https://docs.openarm.dev/assets/images/ker-086043e0d7a5b11dd872d6f997f37ce4.gif" alt="OpenArm KER" loading="lazy"/></div>
     <div>
       <span class="ecobadge">${t.ker_badge}</span>
@@ -621,6 +604,23 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
   </div>
 </div></section>
 
+<section class="sec" id="cell" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap">
+  <div class="eco rev">
+    <div class="ecomedia"><span class="lab">// MOD_CELL</span>${mv("/models/openarm-cell-full.glb", "OpenArm Cell + 2.0", "30deg 72deg auto")}</div>
+    <div>
+      <span class="ecobadge">${t.cell_badge}</span>
+      <h3>OpenArm Cell</h3>
+      <p>${t.cell_d}</p>
+      <div class="ecogrid">
+        <div class="ecoitem"><b>${t.cell_1t}</b><span>${t.cell_1d}</span></div>
+        <div class="ecoitem"><b>${t.cell_2t}</b><span>${t.cell_2d}</span></div>
+        <div class="ecoitem"><b>${t.cell_3t}</b><span>${t.cell_3d}</span></div>
+        <div class="ecoitem"><b>${t.cell_4t}</b><span>${t.cell_4d}</span></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
 <section class="sec reveal" id="reveal"><div class="wrap">
   <div class="kicker"><b>▶</b> ${t.rv_k}</div>
   <h2 class="h2">${t.rv_h}</h2>
@@ -631,7 +631,7 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
 </div></section>
 
 <section class="sec why" id="why"><div class="wrap">
-  <div class="kicker"><b>04</b> ${t.k_why}</div>
+  <div class="kicker">${t.k_why}</div>
   <h2 class="h2">${t.why_title}</h2>
   <p class="cmplead">${t.why_desc}</p>
   <div class="wqgrid">
@@ -658,7 +658,7 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
 </div></section>
 
 <section class="sec res" id="resources"><div class="wrap">
-  <div class="kicker"><b>05</b> ${t.k_res}</div>
+  <div class="kicker">${t.k_res}</div>
   <h2 class="h2">${t.res_h}</h2>
   <p class="lead">${t.res_sub}</p>
   <div class="resgrid">
@@ -705,7 +705,7 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
 </div></div></section>
 
 <section class="sec" id="contact" style="background:var(--bg2);background-image:var(--grid);background-size:38px 38px;border-top:1px solid var(--line)"><div class="wrap">
-  <div class="kicker"><b>06</b> ${t.k_contact}</div>
+  <div class="kicker">${t.k_contact}</div>
   <div class="ctgrid">
     <div>
       <h2 class="h2">${t.ct_h}</h2>
@@ -745,10 +745,10 @@ const KO = {
   hero_lead: "100% 오픈소스 양팔 로봇. 더 작아진 그리퍼와 손안의 카메라, 여기에 실험 변수를 잡아주는 Cell까지. 부품 수급부터 세팅까지 리버트론이 한 번에 준비해 드립니다.",
   hero_cta1: "지금 구매하기", hero_cta2: "도입 문의", hero_ship: "지금 구매 시 9월 배송 예정", drag: "드래그 · 360°",
   intro_spec_h: "핵심 사양", intro_explore: "자세히 보기", scrollcue: "SCROLL",
-  s_dof: "양팔 자유도", s_reach: "도달 거리 (CAD 실측)", s_pay: "정격 · 피크 가반하중", s_ctrl: "CAN-FD 제어", s_open: "오픈소스 CAD·펌웨어",
+  s_dof: "양팔 기준", s_reach: "도달 거리 (CAD 실측)", s_pay: "정격 · 피크 가반하중", s_ctrl: "CAN-FD 제어", s_open: "오픈소스 CAD·펌웨어",
   k_feat: "Core", h_feat: "OpenArm 2.0을 <em>구매해야 하는 이유</em>",
   feat_lead: "1.0에서 아쉬웠던 부분을 다듬어, 강화학습과 모방학습이 제대로 돌아가는 차세대 플랫폼으로 다시 태어났습니다.",
-  f1_t: "더 작아진 그리퍼, 손안의 카메라", f1_d: "구동부를 덜어내 더 작고 가벼워진 그리퍼. 손안의 카메라가 집는 순간의 시야를 그대로 담고, 핑거는 작업에 맞춰 바꿔 끼우면 됩니다. 상단에 ZED 스테레오 카메라(권장)를 더하면, 깊이까지 담긴 학습 데이터가 쌓입니다.", f1_tag: "교체형 핑거 · ZED 권장",
+  f1_t: "더 작아진 그리퍼, 손안의 카메라", f1_d: "구동부를 덜어내 더 작고 가벼워진 그리퍼. 손안의 카메라가 집는 순간의 시야를 그대로 담고, 핑거는 작업에 맞춰 바꿔 끼우면 됩니다. 가슴 카메라 대신 헤드 마운트 ZED 스테레오 카메라를 채택해, 더 자연스러운 탑다운 시야와 깊이가 담긴 학습 데이터를 제공합니다.", f1_tag: "교체형 핑거 · ZED 권장",
   f2_t: "무동력 KER 추가", f2_d: "가벼운 입력 기기 KER을 활용하여 더 빠르고 간편하게 모방 학습 데이터를 수집하고 입력할 수 있습니다.",
   f3_t: "직관적 텔레오퍼레이션", f3_d: "중력은 알아서 잡아줍니다. 바로 옆에서 손으로 시연하듯, 부드럽고 정밀하게 조작하세요.",
   f4_t: "완전한 오픈소스", f4_d: "CAD도, 펌웨어도, 제어 코드도 전부 공개합니다. ROS2를 그대로 쓰니 개발은 더 빨라집니다.",
@@ -764,7 +764,7 @@ const KO = {
   lbl_grip: "2핑거 그리퍼 조", lbl_act: "DAMIAO QDD 액추에이터", lbl_case: "3D 프린트 케이싱", lbl_cnc: "CNC 알루미늄 플레이트",
   tag_grip_d: "나사 3개로 교체 가능한", tag_grip_n: "그리퍼 엔드",
   tag_cam_d: "손안에 내장된", tag_cam_n: "카메라",
-  tag_motor_d: "사람의 손·손목처럼 자연스럽게 동작하는", tag_motor_n: "다미아오 모터",
+  tag_motor_d: "사람의 손·손목처럼 자연스럽게 동작하는", tag_motor_n: "다미아오 액추에이터",
   k_apps: "Applications", apps_h: "이런 연구에 <em>활용할 수 있습니다</em>",
   apps_lead: "텔레오퍼레이션 데이터 수집부터 강화·모방학습, 휴머노이드 연구와 교육까지. OpenArm 한 대로 다양한 피지컬 AI 연구를 시작할 수 있습니다.",
   app_teleop: "텔레오퍼레이션 · 시연 기반 학습", app_rl: "강화학습 · 모방학습", app_manip: "로봇 매니퓰레이션 연구",
@@ -787,8 +787,8 @@ const KO = {
   why_desc: "OpenArm은 전 세계에 공개된 오픈소스 프로젝트입니다. 그래서 리버트론의 역할은 분명합니다. 부품을 모으고 맞춰보는 데 드는 <strong>최소 석 달의 준비 과정을, 대신 줄여 드리는 것.</strong> 까다로운 준비는 리버트론에 맡기고, 연구에 더 집중하세요.",
   why_pro: "리버트론 Devkits", why_foot: "들어갈 시간과 리스크까지 따져보면, 결국 가장 합리적인 선택입니다.", why_cta: "스토어에서 견적 받기",
   tcards: [
+    { q: "“조립 0시간”", s: "완성품으로 배송됩니다", d: "리버트론 엔지니어가 직접 조립하고 캘리브레이션·테스트까지 마친 완성품을 보내드립니다.", cf: "DIY 최소 180시간", ct: "0시간" },
     { q: "“받는 즉시 시작”", s: "도입에 걸리는 준비 기간을 없앴습니다", d: "한 곳에서 바로 배송하고, 증빙 서류까지 한 번에 챙겨 드립니다.", cf: "DIY 최소 2~3개월", ct: "즉시 시작" },
-    { q: "“조립 0시간”", s: "완성품으로 배송됩니다", d: "리버트론 엔지니어가 직접 조립하고 테스트까지 마친 완성품을 보내드립니다.", cf: "DIY 최소 180시간", ct: "0시간" },
     { q: "“테스트를 마친 소프트웨어”", s: "받은 날 바로 돌려볼 수 있습니다", d: "기본 동작 확인을 마쳤고, 바로 실행할 수 있는 예제 코드도 함께 드립니다.", cf: "직접 해결", ct: "예제 코드 제공" },
     { q: "“국내 직접 A/S”", s: "유지보수는 리버트론이 책임집니다", d: "투명하고 빠른 B2B 기술 지원을 제공합니다. (현재 서비스 지역: 대한민국)", cf: "100% 본인 부담", ct: "리버트론 지원" },
   ] as TCard[],
@@ -796,7 +796,7 @@ const KO = {
   why: [
     { t: "처음부터 끝까지 함께", d: "부품 수급과 통관, 조립과 캘리브레이션, 첫 구동까지. 연구를 바로 시작할 수 있는 상태로 건네드립니다." },
     { t: "계속 나아지는 플랫폼", d: "1.0의 경험을 2.0에 담았듯, 펌웨어와 예제, 노하우를 꾸준히 업데이트합니다. 함께 나아갑니다." },
-    { t: "확장 가능한 솔루션", d: "Cell, KER, 카메라 패키지까지. 연구 환경 전체를 한 창구에서 넓혀가고, 견적도 한 번에 받으세요." },
+    { t: "확장 가능한 솔루션", d: "KER, Cell, 카메라 패키지까지. 연구 환경 전체를 한 창구에서 넓혀가고, 견적도 한 번에 받으세요." },
   ],
   rv_k: "Reveal", rv_h: "세상에 처음 공개되던 <em>그 순간</em>",
   rv_d: "OpenArm의 시작을 담은 공식 영상입니다. 합리적인 가격으로 피지컬 AI 연구를 시작할 수 있도록 설계된 오픈암의 컨셉을 한눈에 확인할 수 있습니다.",
@@ -836,10 +836,10 @@ const EN: Dict = {
   hero_lead: "A 100% open-source bimanual humanoid arm. Compact gripper, in-hand camera, and a variable-controlled Cell — supplied one-stop from Korea by Libertron.",
   hero_cta1: "Buy now", hero_cta2: "Get in touch", hero_ship: "Order now — ships in September", drag: "Drag · 360°",
   intro_spec_h: "Core specifications", intro_explore: "Explore", scrollcue: "SCROLL",
-  s_dof: "DOF per dual arm", s_reach: "Reach (CAD-measured)", s_pay: "Nominal / peak payload", s_ctrl: "CAN-FD control", s_open: "Open-source CAD & firmware",
+  s_dof: "Per dual arm", s_reach: "Reach (CAD-measured)", s_pay: "Nominal / peak payload", s_ctrl: "CAN-FD control", s_open: "Open-source CAD & firmware",
   k_feat: "Core", h_feat: "Why you should <em>buy OpenArm 2.0</em>",
   feat_lead: "We refined what fell short in 1.0 — reborn as a next-generation platform where reinforcement and imitation learning run the way they should.",
-  f1_t: "A smaller gripper, an in-hand camera", f1_d: "Simpler actuation makes the gripper smaller. The in-hand camera captures the moment of grasping, and fingers swap to fit each task. Add the recommended top-down ZED stereo camera and you capture depth-rich training data.", f1_tag: "swappable fingers · ZED recommended",
+  f1_t: "A smaller gripper, an in-hand camera", f1_d: "Simpler actuation makes the gripper smaller. The in-hand camera captures the moment of grasping, and fingers swap to fit each task. Upgraded from a chest-mounted camera to a head-mounted ZED stereo camera, providing a more natural top-down view and depth-rich training data.", f1_tag: "swappable fingers · ZED recommended",
   f2_t: "Motorless KER add-on", f2_d: "Collect and feed imitation-learning data faster and more easily with KER, a lightweight motorless input device.",
   f3_t: "Intuitive teleoperation", f3_d: "Smooth gravity compensation lets you operate precisely, as if demonstrating the task by hand.",
   f4_t: "Fully open source", f4_d: "CAD, firmware, and control code are all open — ROS2-compatible for rapid development.",
@@ -855,7 +855,7 @@ const EN: Dict = {
   lbl_grip: "Two-finger gripper jaw", lbl_act: "DAMIAO QDD actuator", lbl_case: "3D-printed casing", lbl_cnc: "CNC aluminum plate",
   tag_grip_d: "Swappable with 3 screws", tag_grip_n: "Gripper end",
   tag_cam_d: "Built into the hand", tag_cam_n: "Camera",
-  tag_motor_d: "Human-like hand & wrist motion", tag_motor_n: "DAMIAO motor",
+  tag_motor_d: "Human-like hand & wrist motion", tag_motor_n: "DAMIAO actuator",
   k_apps: "Applications", apps_h: "Use it for <em>research like this</em>",
   apps_lead: "From teleoperation data collection to reinforcement and imitation learning, humanoid research, and education — one OpenArm opens the door to a wide range of physical-AI work.",
   app_teleop: "Teleoperation & demonstration learning", app_rl: "Reinforcement & imitation learning", app_manip: "Robot manipulation research",
@@ -878,16 +878,16 @@ const EN: Dict = {
   why_desc: "OpenArm is an open-source project available worldwide. Libertron's role is simple — we eliminate <strong>the 3+ months and countless trials you'd otherwise waste on sourcing, assembly, and setup</strong>. Now, simply focus on your research.",
   why_pro: "Libertron Devkits", why_foot: "When you factor in time and risk, it's ultimately the most affordable choice.", why_cta: "Get a quote in the store",
   tcards: [
+    { q: "“Zero assembly”", s: "Delivered fully built", d: "Assembled, calibrated, and tested by Libertron engineers before shipping.", cf: "DIY 180+ hours", ct: "0 hours" },
     { q: "“Ready on arrival”", s: "No setup period before you start", d: "Fast single-vendor delivery with complete documentation, all in one place.", cf: "DIY 2–3 months", ct: "Start immediately" },
-    { q: "“Zero assembly”", s: "Delivered fully built", d: "Assembled and tested by Libertron engineers before shipping.", cf: "DIY 180+ hours", ct: "0 hours" },
     { q: "“Pre-tested software”", s: "Run it the day it arrives", d: "Basic operation verified, with ready-to-run example code included.", cf: "Self troubleshooting", ct: "Example code included" },
-    { q: "“Local direct support”", s: "Maintenance is on Libertron", d: "Transparent, fast B2B technical support. (Currently serving South Korea)", cf: "100% on you", ct: "Libertron support" },
+    { q: "“Technical support”", s: "Maintenance is on Libertron", d: "Transparent, fast B2B technical support. (Currently serving South Korea)", cf: "100% on you", ct: "Libertron support" },
   ] as TCard[],
   why_more: "Partnering with Libertron",
   why: [
     { t: "End-to-end support", d: "From sourcing and customs to assembly, calibration, and first run — we hand it over ready for research to begin." },
     { t: "A platform that keeps improving", d: "Just as 1.0's field experience shaped 2.0, we keep updating firmware, example code, and know-how alongside you." },
-    { t: "An expandable solution", d: "Cell, KER, camera packages — scale your entire research setup and get quotes from a single point of contact." },
+    { t: "An expandable solution", d: "KER, Cell, camera packages — scale your entire research setup and get quotes from a single point of contact." },
   ],
   rv_k: "Reveal", rv_h: "The moment it was <em>first revealed</em>",
   rv_d: "The official video that introduced OpenArm to the world — see, at a glance, the concept of an arm built to make physical-AI research affordable.",

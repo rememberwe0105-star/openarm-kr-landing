@@ -69,6 +69,12 @@ const CSS = `:root{
 .oas .accrow small{font-family:var(--mono);font-size:12.5px;color:var(--cy-deep);font-weight:700}
 .oas .accrow button{border:1px solid var(--l-line2);background:var(--l-bg);border-radius:9px;padding:9px 16px;font-weight:700;font-size:13px;cursor:pointer;transition:.2s;font-family:var(--sans);flex-shrink:0}
 .oas .accrow button:hover{border-color:var(--cy-deep);color:var(--cy-deep)}
+.oas .optsec{padding:64px 0 80px}
+.oas .optsec h2{font-size:26px;font-weight:800;letter-spacing:-.02em;margin-bottom:6px}
+.oas .optsec .osub{color:var(--l-mut);font-size:14px;margin-bottom:22px}
+.oas .optlist{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.oas .optlist .accrow{max-width:none;margin-bottom:0}
+@media(max-width:680px){.oas .optlist{grid-template-columns:1fr}}
 @media(max-width:820px){.oas .prod,.oas .prod.rev{grid-template-columns:1fr;gap:26px;padding:48px 0}.oas .prod.rev .pmedia{order:-1}}
 
 .oas .overlay{position:fixed;inset:0;background:rgba(2,4,8,.55);opacity:0;pointer-events:none;transition:.3s;z-index:40;backdrop-filter:blur(2px)}
@@ -162,9 +168,10 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
   // dual pricing: KR = KRW package (VAT excluded / DTD shipping & setup included),
   // EN = USD package (shipping & taxes excluded)
   const P = lang === "en"
-    ? { cur: "$", b20: 6000, h20: 6400, f20: 6800, hand: 400, zed: 600, l11: 5290, f11: 5290, ker: 2500 }
-    : { cur: "₩", b20: 12900000, h20: 13500000, f20: 13900000, hand: 790000, zed: 1190000, l11: 10900000, f11: 10900000, ker: 4490000 };
+    ? { cur: "$", b20: 6000, f20: 6500, zed: 600, l11: 5000, f11: 5000, b3c: 6500, ker: 2500 }
+    : { cur: "₩", b20: 12900000, f20: 13290000, zed: 1190000, l11: 10290000, f11: 10290000, b3c: 13390000, ker: 4490000 };
   const F = (n: number) => P.cur + n.toLocaleString(lang === "en" ? "en-US" : "ko-KR");
+  const FP = (n: number) => (lang === "en" ? "From " + F(n) : F(n) + " ~"); // starting-price display
   return `
 <nav><div class="nav-in">
   <a href="/" class="logo">OpenArm<b>.</b></a>
@@ -189,13 +196,34 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
     <div class="pinfo">
       <div class="pcat">// ROBOTS</div>
       <h2>OpenArm 2.0 Bimanual</h2>
-      <div class="price"><span id="p20v">${F(P.b20)}</span> <small>${t.vat}</small></div>
+      <div class="price"><span>${FP(P.b20)}</span> <small>${t.vat}</small></div>
       <div class="ship">${t.ship_sep}</div>
       <div class="pdesc">${t.d_2_0}</div>
-      <label class="opt"><input type="radio" name="cfg20" checked data-p="${P.b20}" data-n="${t.n20_base}" onchange="sel20(this)"/><span class="ot">${t.cfg_base}</span><span class="op">${F(P.b20)}</span></label>
-      <label class="opt"><input type="radio" name="cfg20" data-p="${P.h20}" data-n="${t.n20_hand}" onchange="sel20(this)"/><span class="ot">${t.cfg_hand}</span><span class="op">${F(P.h20)}</span></label>
-      <label class="opt"><input type="radio" name="cfg20" data-p="${P.f20}" data-n="${t.n20_full}" onchange="sel20(this)"/><span class="ot">${t.cfg_full}</span><span class="op">${F(P.f20)}</span></label>
-      <button class="addbtn solid" onclick="add20()">${t.add}</button>
+      <button class="addbtn solid" onclick="add('OpenArm 2.0',${P.b20})">${t.add}</button>
+    </div>
+  </div>
+
+  <div class="prod rev">
+    <div class="pmedia mv"><span class="pbadge">${t.b_now}</span><span class="scode">// UNIT_2.0_FULL</span>${mvTag("/models/openarm-2-headcam.glb", "OpenArm 2.0 Full Option", "25deg 72deg auto", 'field-of-view="32deg"')}<span class="mvhint">${t.drag}</span></div>
+    <div class="pinfo">
+      <div class="pcat">// ROBOTS</div>
+      <h2>OpenArm 2.0 Full Option</h2>
+      <div class="price"><span>${FP(P.f20)}</span> <small>${t.vat}</small></div>
+      <div class="ship">${t.ship_sep}</div>
+      <div class="pdesc">${t.d_full}</div>
+      <button class="addbtn solid" onclick="add('OpenArm 2.0 Full Option',${P.f20})">${t.add}</button>
+    </div>
+  </div>
+
+  <div class="prod">
+    <div class="pmedia dark"><span class="pbadge">${t.b_soon}</span><span class="scode">// MOD_KER</span><img src="https://docs.openarm.dev/assets/images/ker-086043e0d7a5b11dd872d6f997f37ce4.gif" alt="OpenArm KER"/></div>
+    <div class="pinfo">
+      <div class="pcat">// TELEOP</div>
+      <h2>OpenArm KER</h2>
+      <div class="price"><span>${FP(P.ker)}</span> <small>${t.vat}</small></div>
+      <div class="ship tbd">${t.ship_ker}</div>
+      <div class="pdesc">${t.d_ker}</div>
+      <button class="addbtn" onclick="add('OpenArm KER',${P.ker})">${t.add}</button>
     </div>
   </div>
 
@@ -207,19 +235,40 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
       <div class="price" style="font-size:23px">${t.inquire}</div>
       <div class="ship">${t.ship_cell}</div>
       <div class="pdesc">${t.d_cell}</div>
-      <button class="addbtn" onclick="add('OpenArm Cell',0,false)">${t.add_inq}</button>
+      <button class="addbtn" onclick="add('OpenArm Cell',0)">${t.add_inq}</button>
     </div>
   </div>
 
   <div class="prod">
-    <div class="pmedia dark"><span class="pbadge">${t.b_soon}</span><span class="scode">// MOD_KER</span><img src="https://docs.openarm.dev/assets/images/ker-086043e0d7a5b11dd872d6f997f37ce4.gif" alt="OpenArm KER"/></div>
+    <div class="pmedia"><span class="pbadge">${t.b_stock}</span><span class="scode">// FOLLOWER_1.1</span><img src="/images/products/follower_clean.png" alt="OpenArm Follower Dual Arm V1.1"/></div>
     <div class="pinfo">
-      <div class="pcat">// TELEOP</div>
-      <h2>OpenArm KER</h2>
-      <div class="price"><span>${F(P.ker)}</span> <small>${t.vat}</small></div>
-      <div class="ship tbd">${t.ship_ker}</div>
-      <div class="pdesc">${t.d_ker}</div>
-      <button class="addbtn" onclick="add('OpenArm KER',${P.ker},false)">${t.add}</button>
+      <div class="pcat">// ROBOTS · 1.1</div>
+      <h2>OpenArm Follower Dual Arm 1.1</h2>
+      <div class="price"><span>${FP(P.f11)}</span> <small>${t.vat}</small></div>
+      <button class="addbtn" onclick="add('OpenArm Follower Dual Arm 1.1',${P.f11})">${t.add}</button>
+    </div>
+  </div>
+
+  <div class="prod rev">
+    <div class="pmedia"><span class="pbadge">${t.b_stock}</span><span class="scode">// FOLLOWER_3CAM</span><img src="/images/products/follower_3cam_bundle.png" alt="OpenArm Follower Dual Arm 1.1 + 3 Cameras"/></div>
+    <div class="pinfo">
+      <div class="pcat">// ROBOTS · 1.1</div>
+      <h2>OpenArm Follower 1.1 + 3 Cameras</h2>
+      <div class="price"><span>${FP(P.b3c)}</span> <small>${t.vat}</small></div>
+      <div class="pdesc">${t.d_b3c}</div>
+      <button class="addbtn" onclick="add('OpenArm Follower 1.1 + 3 Cameras',${P.b3c})">${t.add}</button>
+    </div>
+  </div>
+
+  <div class="prod">
+    <div class="pmedia"><span class="pbadge">${t.b_stock}</span><span class="scode">// LEADER_1.1</span><img src="/images/products/leader_clean.png" alt="OpenArm Leader Dual Arm V1.1"/></div>
+    <div class="pinfo">
+      <div class="pcat">// ROBOTS · 1.1</div>
+      <h2>OpenArm Leader Dual Arm 1.1</h2>
+      <div class="price"><span>${FP(P.l11)}</span> <small>${t.vat}</small></div>
+      <div class="ship">${t.ship_2_0}</div>
+      <div class="pdesc">${t.d_leader}</div>
+      <button class="addbtn" onclick="add('OpenArm Leader Dual Arm 1.1',${P.l11})">${t.add}</button>
     </div>
   </div>
 
@@ -229,59 +278,17 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
       <div class="pcat">// UPGRADE</div>
       <h2>${t.up_t}</h2>
       <div class="price" style="font-size:23px">${t.inquire}</div>
-      <div class="ship tbd">${t.ship_inq}</div>
-      <div class="pdesc">${t.d_up}</div>
-      <label class="opt"><input type="checkbox" id="upcamopt"/><span class="ot">${t.cam_opt}</span></label>
-      <button class="addbtn" onclick="add('${lang === "en" ? "1.1 → 2.0 Upgrade Kit" : "1.1 → 2.0 업그레이드 키트"}',0,document.getElementById('upcamopt').checked)">${t.add_inq}</button>
+      <button class="addbtn" onclick="add('${lang === "en" ? "1.1 → 2.0 Upgrade Kit" : "1.1 → 2.0 업그레이드 키트"}',0)">${t.add_inq}</button>
     </div>
   </div>
 
-  <div class="prod">
-    <div class="pmedia"><span class="pbadge">${t.b_stock}</span><span class="scode">// FOLLOWER_1.1</span><img src="/images/products/follower_clean.png" alt="OpenArm Follower Dual Arm V1.1"/></div>
-    <div class="pinfo">
-      <div class="pcat">// ROBOTS · 1.1</div>
-      <h2>OpenArm Follower Dual Arm 1.1</h2>
-      <div class="price"><span>${F(P.f11)}</span> <small>${t.vat}</small></div>
-      <div class="ship">${t.ship_2_0}</div>
-      <div class="pdesc">${t.d_follower}</div>
-      <button class="addbtn" onclick="add('OpenArm Follower Dual Arm 1.1',${P.f11},false)">${t.add}</button>
-    </div>
-  </div>
-
-  <div class="prod rev">
-    <div class="pmedia"><span class="pbadge">${t.b_stock}</span><span class="scode">// LEADER_1.1</span><img src="/images/products/leader_clean.png" alt="OpenArm Leader Dual Arm V1.1"/></div>
-    <div class="pinfo">
-      <div class="pcat">// ROBOTS · 1.1</div>
-      <h2>OpenArm Leader Dual Arm 1.1</h2>
-      <div class="price"><span>${F(P.l11)}</span> <small>${t.vat}</small></div>
-      <div class="ship">${t.ship_2_0}</div>
-      <div class="pdesc">${t.d_leader}</div>
-      <button class="addbtn" onclick="add('OpenArm Leader Dual Arm 1.1',${P.l11},false)">${t.add}</button>
-    </div>
-  </div>
-
-  <div class="prod">
-    <div class="pmedia mv"><span class="pbadge">${t.b_acc}</span><span class="scode">// ACC_2.0</span>${mvTag("/models/openarm-2-headcam.glb", "OpenArm 2.0 + ZED", "25deg 72deg auto", 'field-of-view="32deg"')}<span class="mvhint">${t.drag}</span></div>
-    <div class="pinfo">
-      <div class="pcat">// ACCESSORIES · 2.0</div>
-      <h2>${t.acc_t}</h2>
-      <div class="price"><span>${F(P.hand)} ~</span> <small>${t.vat}</small></div>
-      <div class="ship">${t.ship_2_0}</div>
-      <div class="pdesc">${t.d_acc}</div>
-      <div class="accrow"><div><b>${t.acc_hand}</b><small>${F(P.hand)}</small></div><button onclick="add('${t.n_hand}',${P.hand},false)">${t.add}</button></div>
-      <div class="accrow"><div><b>${t.acc_zed}</b><small>${F(P.zed)}</small></div><button onclick="add('${t.n_zed}',${P.zed},false)">${t.add}</button></div>
-    </div>
-  </div>
-
-  <div class="prod rev">
-    <div class="pmedia"><span class="pbadge">${t.b_acc}</span><span class="scode">// CAMERA_PKG</span><img src="/images/products/d435if_camera.png" alt="OpenArm Camera Package"/></div>
-    <div class="pinfo">
-      <div class="pcat">// ACCESSORIES</div>
-      <h2>${t.cam_t}</h2>
-      <div class="price" style="font-size:23px">${t.inquire}</div>
-      <div class="ship tbd">${t.ship_inq}</div>
-      <div class="pdesc">${t.d_cam}</div>
-      <button class="addbtn" onclick="openCam()">${t.cam_select} →</button>
+  <div class="optsec">
+    <h2>${t.opt_h}</h2>
+    <div class="osub">${t.opt_sub}</div>
+    <div class="optlist">
+      <div class="accrow"><div><b>${t.acc_zed}</b><small>${F(P.zed)}</small></div><button onclick="add('${t.n_zed}',${P.zed})">${t.add}</button></div>
+      <div class="accrow"><div><b>${t.cam_t}</b><small>${t.inquire}</small></div><button onclick="openCam()">${t.cam_select} →</button></div>
+      <div class="accrow"><div><b>${t.n_grip}</b><small>${t.inquire}</small></div><button onclick="add('${t.n_grip}',0)">${t.add_inq}</button></div>
     </div>
   </div>
 
@@ -375,11 +382,10 @@ const KO: Record<string, string> = {
   back: "OpenArm 2.0 메인으로", head_p: "OpenArm 전 라인업을 한 곳에서. 사양을 확인하고, 원하는 구성을 담아 문의하세요.",
   estnote: "※ 표시 가격은 부가세 별도입니다. 국내 배송(DTD) 포함 · 초기 설치 및 시연 지원 · 세금계산서/견적서 발행 · 사용 중 문제 피드백 지원",
   vat: "부가세 별도",
-  cfg_base: "기본 구성", cfg_hand: "손끝 카메라 2대 추가", cfg_full: "풀옵션 — 손끝 + 상단 ZED",
-  n20_base: "OpenArm 2.0 (기본 구성)", n20_hand: "OpenArm 2.0 + 손끝 카메라 세트", n20_full: "OpenArm 2.0 풀옵션 (손끝+ZED)",
-  acc_t: "2.0 카메라 액세서리", d_acc: "OpenArm 2.0 전용 카메라 액세서리입니다. 손끝 카메라 2대 세트와 상단 스테레오 카메라(ZED)를 단품으로도 구매할 수 있습니다.",
-  acc_hand: "손끝 카메라 2대 세트", acc_zed: "상단 스테레오 카메라 (ZED)",
-  n_hand: "2.0 손끝 카메라 2대 세트", n_zed: "2.0 상단 ZED 카메라",
+  d_full: "손끝 카메라 2대와 상단 ZED 스테레오 카메라까지 모두 장착된 완전 구성입니다. 받는 즉시 깊이 데이터 수집을 시작할 수 있습니다.",
+  d_b3c: "손목·가슴 카메라가 장착된 1.1 팔로워 구성입니다.",
+  opt_h: "Options & Accessories", opt_sub: "단품 옵션과 액세서리는 여기서 담을 수 있습니다.",
+  acc_zed: "상단 스테레오 카메라 (ZED)", n_zed: "2.0 상단 ZED 카메라", n_grip: "그리퍼 핑거·그립 세트",
   drag: "드래그 · 360°", add: "주문 담기", add_inq: "담기 (가격 문의)", inquire: "가격 문의",
   cam_select: "옵션 선택", cam_title: "카메라 옵션 선택", cam_chest: "가슴 카메라 (선택)", cam_arm: "팔 카메라 (선택)", cam_specs: "사양 비교", cam_cancel: "취소", cam_add: "선택 항목 담기",
   b_now: "지금 구매 가능", b_oct: "출시 예정", b_soon: "출시 예정", b_11user: "1.1 사용자용", b_stock: "재고 보유", b_acc: "액세서리",
@@ -387,10 +393,8 @@ const KO: Record<string, string> = {
   cam_opt: "상단 스테레오 카메라(ZED) — 권장 옵션",
   d_2_0: "컴팩트 그리퍼와 인핸드 카메라를 갖춘 차세대 양팔 로봇암입니다.\n연구·교육·개발 현장이 부담 없이 들일 수 있는 피지컬 AI 플랫폼이죠. 7-DOF ×2 · 양방향 힘 피드백.",
   d_cell: "배경, 조명, 카메라, 로봇 위치까지 똑같이 맞춰주는 평가용 셀입니다.\n모델을 공정하게 비교하고 자동으로 평가하는 표준 환경을 만듭니다. Z축 높이 조절 · 침입 차단 안전 센서 · 제로 캘리브레이션 지그.",
-  d_ker: "2.0과 똑같은 관절 구조를 가진 무동력 리더암입니다. 가벼워서 오래 조작해도 지치지 않고, 텔레오퍼레이션·티칭 데이터 수집에 잘 맞습니다.\n지금은 외형만 공개됐고, CAD·BOM은 곧 공개될 예정입니다.",
+  d_ker: "2.0과 똑같은 관절 구조를 가진 무동력 리더암입니다. 가벼워서 오래 조작해도 지치지 않고, 텔레오퍼레이션·티칭 데이터 수집에 잘 맞습니다.",
   up_t: "1.1 → 2.0 업그레이드 키트",
-  d_up: "이미 1.1을 쓰고 계신다면, 전체를 새로 살 필요 없이 핵심 부품만 바꿔 2.0으로 올릴 수 있습니다. 좌·우 양팔 한 세트로, 새 2.0 엔드이펙터(인핸드 카메라 포함)와 교체형 핑거, 새 외부 커버, CNC 금속 부품이 들어 있습니다.\n※ 엔드이펙터 안의 DM4310 모터는 빠져 있어, 기존 1.1 모터를 그대로 쓰시면 됩니다.",
-  d_follower: "OpenArm 사양으로 제작된 검증된 1.1 팔로워 양팔입니다. 좌·우 팔 + 받침대 + 팔로워 그립으로 구성됩니다.\n상단·양팔 Intel RealSense 카메라 옵션을 더할 수 있습니다.",
   d_leader: "OpenArm 사양으로 제작된 1.1 리더 양팔입니다. 좌·우 팔 + 받침대 + 리더 그립으로 구성되어, 팔로워와 양방향 힘 피드백 텔레오퍼레이션을 구현합니다.",
   cam_t: "카메라 패키지 (Intel RealSense)", d_cam: "팔로워에 장착하는 옵션 카메라 시스템입니다. 가슴 1대 + 양팔 각 1대, 최대 3대까지 설치할 수 있습니다.\n가슴 카메라는 D435IF / D455F, 양팔 카메라는 D405 중 용도에 맞춰 선택합니다. 장착 브래킷 포함.",
   cart_h: "주문 카트", total: "합계", cart_note: "표시 가격은 부가세 별도입니다. 최종 견적은 구성·수량에 따라 개별 안내드립니다.", checkout: "주문 신청하기",
@@ -405,11 +409,10 @@ const EN: Record<string, string> = {
   back: "Back to OpenArm 2.0", head_p: "The full OpenArm lineup in one place. Check the specs, add the configuration you want, and send an inquiry.",
   estnote: "* Prices exclude shipping and taxes/duties. Ships worldwide via FedEx — shipping is quoted with your order.",
   vat: "excl. shipping & taxes",
-  cfg_base: "Base configuration", cfg_hand: "+ In-hand camera set (2)", cfg_full: "Full option — in-hand + top ZED",
-  n20_base: "OpenArm 2.0 (base)", n20_hand: "OpenArm 2.0 + in-hand camera set", n20_full: "OpenArm 2.0 full option (in-hand + ZED)",
-  acc_t: "2.0 Camera Accessories", d_acc: "Camera accessories for OpenArm 2.0. The in-hand camera set (2 pcs) and the top stereo camera (ZED) are also available separately.",
-  acc_hand: "In-hand camera set (2)", acc_zed: "Top stereo camera (ZED)",
-  n_hand: "2.0 in-hand camera set (2)", n_zed: "2.0 top ZED camera",
+  d_full: "The complete configuration — two in-hand cameras and the top ZED stereo camera included. Start capturing depth-rich data on day one.",
+  d_b3c: "The 1.1 follower with wrist and chest cameras pre-installed.",
+  opt_h: "Options & Accessories", opt_sub: "Add-on options and accessories, available individually.",
+  acc_zed: "Top stereo camera (ZED)", n_zed: "2.0 top ZED camera", n_grip: "Gripper fingers & grips",
   drag: "Drag · 360°", add: "Add to order", add_inq: "Add (inquire)", inquire: "Contact for price",
   cam_select: "Select options", cam_title: "Select Camera Options", cam_chest: "Chest Camera (optional)", cam_arm: "Arm Cameras (optional)", cam_specs: "Specifications", cam_cancel: "Cancel", cam_add: "Add Selected",
   b_now: "Available now", b_oct: "Coming soon", b_soon: "Coming soon", b_11user: "For 1.1 owners", b_stock: "In stock", b_acc: "Accessory",
@@ -417,10 +420,8 @@ const EN: Record<string, string> = {
   cam_opt: "Top stereo camera (ZED) — recommended option",
   d_2_0: "A next-generation bimanual arm with a compact gripper and in-hand camera.\nA physical-AI platform research, education, and development teams can actually afford. 7-DOF ×2 · bilateral force feedback.",
   d_cell: "An evaluation cell that keeps background, lighting, cameras, and arm position identical every time.\nIt creates a standard environment for fair, automated model comparison. Z-axis lift · reach-in safety stop · zero-position jig.",
-  d_ker: "A motorless leader arm with the exact same joint structure as 2.0. Light enough for long, fatigue-free operation and ideal for data collection.\nOnly the design has been revealed so far; CAD and BOM are coming soon.",
+  d_ker: "A motorless leader arm with the exact same joint structure as 2.0. Light enough for long, fatigue-free operation and ideal for data collection.",
   up_t: "1.1 → 2.0 Upgrade Kit",
-  d_up: "Already on 1.1? Upgrade to 2.0 by swapping just the key parts — no need to buy a whole new arm. Sold as one left-and-right arm set, it includes the new 2.0 end-effector (with in-hand camera), replaceable fingers, revised outer covers, and CNC metal parts.\n* The DM4310 motor inside the end-effector is not included — reuse your existing 1.1 motor.",
-  d_follower: "The proven 1.1 follower dual arm, built to OpenArm specs. Left + right arm + pedestal + follower grips.\nOptional top and per-arm Intel RealSense cameras can be added.",
   d_leader: "The 1.1 leader dual arm, built to OpenArm specs. Left + right arm + pedestal + leader grips — pairs with the follower for bilateral force-feedback teleoperation.",
   cam_t: "Camera Package (Intel RealSense)", d_cam: "An optional camera system mounted on the follower. One chest + one per arm, up to three total.\nChoose D435IF / D455F for the chest and D405 for the arms. Mounting brackets included.",
   cart_h: "Order cart", total: "Total", cart_note: "Prices exclude shipping and taxes. Final quotes are provided individually by configuration, quantity, and destination.", checkout: "Submit order",
