@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <linearGradient id="mtlA" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F1F5FA"/>
+      <stop offset="1" stop-color="#C9D4E4"/>
+    </linearGradient>
+    <linearGradient id="mtlB" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#DFE7F2"/>
+      <stop offset="1" stop-color="#B6C4D8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ground shadow -->
+  <ellipse cx="200" cy="354" rx="112" ry="13" fill="#0A0D14" opacity="0.08"/>
+
+  <!-- mount stem + flange -->
+  <rect x="178" y="46" width="44" height="28" rx="9" fill="url(#mtlB)" stroke="#26314B" stroke-width="3"/>
+  <rect x="122" y="70" width="156" height="30" rx="12" fill="url(#mtlA)" stroke="#26314B" stroke-width="3"/>
+  <circle cx="147" cy="85" r="4" fill="#8A97AC"/>
+  <circle cx="253" cy="85" r="4" fill="#8A97AC"/>
+
+  <!-- palm body -->
+  <rect x="106" y="100" width="188" height="86" rx="18" fill="url(#mtlA)" stroke="#26314B" stroke-width="3"/>
+  <rect x="128" y="116" width="74" height="8" rx="4" fill="#3A56FF" opacity="0.85"/>
+  <!-- in-hand camera -->
+  <circle cx="258" cy="146" r="13" fill="#131A2B" stroke="#26314B" stroke-width="3"/>
+  <circle cx="258" cy="146" r="5.5" fill="#3A56FF" opacity="0.9"/>
+
+  <!-- knuckle joints -->
+  <circle cx="142" cy="194" r="15" fill="url(#mtlB)" stroke="#26314B" stroke-width="3"/>
+  <circle cx="258" cy="194" r="15" fill="url(#mtlB)" stroke="#26314B" stroke-width="3"/>
+
+  <!-- left finger (proximal + distal, curving inward) -->
+  <rect x="127" y="196" width="27" height="72" rx="12" fill="url(#mtlB)" stroke="#26314B" stroke-width="3" transform="rotate(9 140 232)"/>
+  <circle cx="152" cy="264" r="11" fill="url(#mtlB)" stroke="#26314B" stroke-width="3"/>
+  <rect x="143" y="262" width="24" height="60" rx="11" fill="url(#mtlB)" stroke="#26314B" stroke-width="3" transform="rotate(22 155 292)"/>
+  <rect x="164" y="290" width="9" height="30" rx="4.5" fill="#1E2635" transform="rotate(22 168 305)"/>
+
+  <!-- right finger (mirrored) -->
+  <rect x="246" y="196" width="27" height="72" rx="12" fill="url(#mtlB)" stroke="#26314B" stroke-width="3" transform="rotate(-9 260 232)"/>
+  <circle cx="248" cy="264" r="11" fill="url(#mtlB)" stroke="#26314B" stroke-width="3"/>
+  <rect x="233" y="262" width="24" height="60" rx="11" fill="url(#mtlB)" stroke="#26314B" stroke-width="3" transform="rotate(-22 245 292)"/>
+  <rect x="227" y="290" width="9" height="30" rx="4.5" fill="#1E2635" transform="rotate(-22 232 305)"/>
+</svg>

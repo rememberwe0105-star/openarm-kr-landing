@@ -293,7 +293,7 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
     <div class="osub">${t.opt_sub}</div>
     <div class="optlist">
       <div class="optcard">
-        <div class="oimg">${mvTag("/models/openarm-2-headcam.glb", "OpenArm 2.0 + ZED top camera", "18deg 76deg auto", 'field-of-view="26deg"')}</div>
+        <div class="oimg"><img src="/images/products/zed_camera.png" alt="ZED stereo camera" loading="lazy"/></div>
         <div class="obody"><div><b>${t.acc_zed}</b><small>${F(P.zed)}</small></div><button onclick="add('${t.n_zed}',${P.zed})">${t.add}</button></div>
       </div>
       <div class="optcard">
@@ -301,8 +301,8 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
         <div class="obody"><div><b>${t.cam_t}</b><small>${t.inquire}</small></div><button onclick="openCam()">${t.cam_select} →</button></div>
       </div>
       <div class="optcard">
-        <div class="oimg icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h14"/><path d="M8 4v8.5l2.2 3.2"/><path d="M16 4v8.5l-2.2 3.2"/><path d="M12 4v3"/></svg></div>
-        <div class="obody"><div><b>${t.n_grip}</b><small>${t.inquire}</small></div><button onclick="add('${t.n_grip}',0)">${t.add_inq}</button></div>
+        <div class="oimg"><img src="/images/products/grip_custom.svg" alt="Custom gripper fingers & grips" loading="lazy"/></div>
+        <div class="obody"><div><b>${t.n_grip}</b><small>${t.grip_note}</small></div><button onclick="add('${t.n_grip}',0)">${t.add_inq}</button></div>
       </div>
     </div>
   </div>
@@ -401,6 +401,7 @@ const KO: Record<string, string> = {
   d_b3c: "손목·가슴 카메라가 장착된 1.1 팔로워 구성입니다.",
   opt_h: "Options & Accessories", opt_sub: "단품 옵션과 액세서리는 여기서 담을 수 있습니다.",
   acc_zed: "상단 스테레오 카메라 (ZED)", n_zed: "2.0 상단 ZED 카메라", n_grip: "그리퍼 핑거·그립 세트",
+  grip_note: "커스텀 그립 준비 중 · 가격 문의",
   drag: "드래그 · 360°", add: "주문 담기", add_inq: "담기 (가격 문의)", inquire: "가격 문의",
   cam_select: "옵션 선택", cam_title: "카메라 옵션 선택", cam_chest: "가슴 카메라 (선택)", cam_arm: "팔 카메라 (선택)", cam_specs: "사양 비교", cam_cancel: "취소", cam_add: "선택 항목 담기",
   b_now: "지금 구매 가능", b_oct: "출시 예정", b_soon: "출시 예정", b_11user: "1.1 사용자용", b_stock: "재고 보유", b_acc: "액세서리",
@@ -428,6 +429,7 @@ const EN: Record<string, string> = {
   d_b3c: "The 1.1 follower with wrist and chest cameras pre-installed.",
   opt_h: "Options & Accessories", opt_sub: "Add-on options and accessories, available individually.",
   acc_zed: "Top stereo camera (ZED)", n_zed: "2.0 top ZED camera", n_grip: "Gripper fingers & grips",
+  grip_note: "Custom grips coming soon · Contact for price",
   drag: "Drag · 360°", add: "Add to order", add_inq: "Add (inquire)", inquire: "Contact for price",
   cam_select: "Select options", cam_title: "Select Camera Options", cam_chest: "Chest Camera (optional)", cam_arm: "Arm Cameras (optional)", cam_specs: "Specifications", cam_cancel: "Cancel", cam_add: "Add Selected",
   b_now: "Available now", b_oct: "Coming soon", b_soon: "Coming soon", b_11user: "For 1.1 owners", b_stock: "In stock", b_acc: "Accessory",
