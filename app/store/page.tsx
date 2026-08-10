@@ -64,17 +64,23 @@ const CSS = `:root{
 .oas .addbtn:hover{border-color:var(--cy-deep)}
 .oas .addbtn.solid{background:var(--cy);color:#fff;border-color:var(--cy);box-shadow:0 8px 26px rgba(58,86,255,.28)}
 .oas .addbtn.solid:hover{background:var(--cy-soft);transform:translateY(-1px)}
-.oas .accrow{display:flex;align-items:center;justify-content:space-between;gap:14px;border:1px solid var(--l-line2);border-radius:12px;padding:13px 16px;margin-bottom:12px;max-width:460px;background:var(--l-surf)}
-.oas .accrow b{display:block;font-size:14px;font-weight:700}
-.oas .accrow small{font-family:var(--mono);font-size:12.5px;color:var(--cy-deep);font-weight:700}
-.oas .accrow button{border:1px solid var(--l-line2);background:var(--l-bg);border-radius:9px;padding:9px 16px;font-weight:700;font-size:13px;cursor:pointer;transition:.2s;font-family:var(--sans);flex-shrink:0}
-.oas .accrow button:hover{border-color:var(--cy-deep);color:var(--cy-deep)}
 .oas .optsec{padding:64px 0 80px}
 .oas .optsec h2{font-size:26px;font-weight:800;letter-spacing:-.02em;margin-bottom:6px}
 .oas .optsec .osub{color:var(--l-mut);font-size:14px;margin-bottom:22px}
-.oas .optlist{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.oas .optlist .accrow{max-width:none;margin-bottom:0}
-@media(max-width:680px){.oas .optlist{grid-template-columns:1fr}}
+.oas .optlist{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.oas .optcard{border:1px solid var(--l-line2);border-radius:16px;background:var(--l-surf);overflow:hidden;box-shadow:var(--shadow);transition:.22s}
+.oas .optcard:hover{border-color:var(--cy-deep);transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.oas .oimg{height:180px;background:radial-gradient(circle at 50% 40%,#eef2fb,#e2e8f4 80%);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--l-line)}
+.oas .oimg img{width:100%;height:100%;object-fit:contain;padding:22px;mix-blend-mode:multiply}
+.oas .oimg model-viewer{width:100%;height:100%;background:transparent}
+.oas .oimg.icon{color:var(--cy-deep)}
+.oas .oimg.icon svg{width:52px;height:52px}
+.oas .obody{padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.oas .obody b{display:block;font-size:14px;font-weight:700;line-height:1.3;word-break:keep-all}
+.oas .obody small{font-family:var(--mono);font-size:12.5px;color:var(--cy-deep);font-weight:700}
+.oas .obody button{border:1px solid var(--l-line2);background:var(--l-bg);border-radius:9px;padding:9px 14px;font-weight:700;font-size:13px;cursor:pointer;transition:.2s;font-family:var(--sans);flex-shrink:0;white-space:nowrap}
+.oas .obody button:hover{border-color:var(--cy-deep);color:var(--cy-deep)}
+@media(max-width:820px){.oas .optlist{grid-template-columns:1fr}}
 @media(max-width:820px){.oas .prod,.oas .prod.rev{grid-template-columns:1fr;gap:26px;padding:48px 0}.oas .prod.rev .pmedia{order:-1}}
 
 .oas .overlay{position:fixed;inset:0;background:rgba(2,4,8,.55);opacity:0;pointer-events:none;transition:.3s;z-index:40;backdrop-filter:blur(2px)}
@@ -286,9 +292,18 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
     <h2>${t.opt_h}</h2>
     <div class="osub">${t.opt_sub}</div>
     <div class="optlist">
-      <div class="accrow"><div><b>${t.acc_zed}</b><small>${F(P.zed)}</small></div><button onclick="add('${t.n_zed}',${P.zed})">${t.add}</button></div>
-      <div class="accrow"><div><b>${t.cam_t}</b><small>${t.inquire}</small></div><button onclick="openCam()">${t.cam_select} →</button></div>
-      <div class="accrow"><div><b>${t.n_grip}</b><small>${t.inquire}</small></div><button onclick="add('${t.n_grip}',0)">${t.add_inq}</button></div>
+      <div class="optcard">
+        <div class="oimg">${mvTag("/models/openarm-2-headcam.glb", "OpenArm 2.0 + ZED top camera", "18deg 76deg auto", 'field-of-view="26deg"')}</div>
+        <div class="obody"><div><b>${t.acc_zed}</b><small>${F(P.zed)}</small></div><button onclick="add('${t.n_zed}',${P.zed})">${t.add}</button></div>
+      </div>
+      <div class="optcard">
+        <div class="oimg"><img src="/images/products/d435if_camera.png" alt="Intel RealSense Camera Package" loading="lazy"/></div>
+        <div class="obody"><div><b>${t.cam_t}</b><small>${t.inquire}</small></div><button onclick="openCam()">${t.cam_select} →</button></div>
+      </div>
+      <div class="optcard">
+        <div class="oimg icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h14"/><path d="M8 4v8.5l2.2 3.2"/><path d="M16 4v8.5l-2.2 3.2"/><path d="M12 4v3"/></svg></div>
+        <div class="obody"><div><b>${t.n_grip}</b><small>${t.inquire}</small></div><button onclick="add('${t.n_grip}',0)">${t.add_inq}</button></div>
+      </div>
     </div>
   </div>
 
