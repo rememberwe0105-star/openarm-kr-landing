@@ -74,6 +74,7 @@ const CSS = `:root{
 .oas .optcard:hover{border-color:var(--cy-deep);transform:translateY(-2px);box-shadow:var(--shadow-lg)}
 .oas .oimg{height:180px;background:radial-gradient(circle at 50% 40%,#eef2fb,#e2e8f4 80%);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--l-line)}
 .oas .oimg img{width:100%;height:100%;object-fit:contain;padding:22px;mix-blend-mode:multiply}
+.oas .oimg.render img{mix-blend-mode:normal;padding:10px}
 .oas .oimg model-viewer{width:100%;height:100%;background:transparent}
 .oas .oimg.icon{color:var(--cy-deep)}
 .oas .oimg.icon svg{width:52px;height:52px}
@@ -304,7 +305,7 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
         <div class="obody"><div><b>${t.cam_t}</b><small>${t.inquire}</small></div><button onclick="openCam()">${t.cam_select} →</button></div>
       </div>
       <div class="optcard">
-        <div class="oimg"><img src="/images/products/grip_custom.svg" alt="Custom gripper fingers & grips" loading="lazy"/></div>
+        <div class="oimg render"><img src="/images/products/gripper_render.png" alt="OpenArm gripper fingers & grips" loading="lazy"/></div>
         <div class="obody"><div><b>${t.n_grip}</b><small>${t.grip_note}</small></div><button onclick="add('${t.n_grip}',0)">${t.add_inq}</button></div>
       </div>
     </div>
