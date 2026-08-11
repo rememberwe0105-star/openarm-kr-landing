@@ -237,7 +237,7 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
       <div class="price"><span>${FP(P.ker)}</span> <small>${t.vat}</small></div>
       <div class="ship">${t.ship_sep}</div>
       <div class="pdesc">${t.d_ker}</div>
-      <button class="addbtn" onclick="add('OpenArm KER',${P.ker})">${t.add}</button>
+      <button class="addbtn solid" onclick="add('OpenArm KER',${P.ker})">${t.add}</button>
     </div>
   </div>
 
