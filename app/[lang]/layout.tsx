@@ -17,6 +17,7 @@ export function generateMetadata({ params }: { params: { lang: string } }): Meta
   return {
     title: m.title,
     description: m.description,
+    keywords: m.keywords,
     alternates: buildAlternates(lang, ""),
     openGraph: {
       title: m.title,

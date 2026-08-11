@@ -8,11 +8,19 @@ export function generateMetadata({ params }: { params: { lang: string } }): Meta
     ? {
         title: "OpenArm 1.1 | 리버트론",
         description: "검증된 OpenArm 1.1 양팔 로봇암 상세 페이지 — 리버트론.",
+        keywords: [
+          "OpenArm 1.1", "오픈암 1.1", "양팔 로봇암", "오픈소스 로봇암",
+          "연구용 로봇팔", "텔레오퍼레이션", "리버트론",
+        ],
         alternates,
       }
     : {
         title: "OpenArm 1.1 | Libertron",
         description: "OpenArm 1.1 — the proven bimanual research arm from Libertron.",
+        keywords: [
+          "OpenArm 1.1", "bimanual robot arm", "open-source robot arm",
+          "research robot arm", "teleoperation", "Libertron",
+        ],
         alternates,
       };
 }
