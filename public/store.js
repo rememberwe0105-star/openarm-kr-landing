@@ -22,6 +22,14 @@
     cart.push({ name: name, price: price });
     render(); openDrawer();
   }
+  // 2.0 units with an optional KER add-on checkbox. Bundle price = base + KER
+  // (a bundle is simply the arm plus a KER leader, no separate SKU).
+  function addKer(name, base, ker, chkId) {
+    var chk = document.getElementById(chkId);
+    if (chk && chk.checked) cart.push({ name: name + ' & KER', price: base + ker });
+    else cart.push({ name: name, price: base });
+    render(); openDrawer();
+  }
   function rm(i) { cart.splice(i, 1); render(); }
   function totals() {
     var sum = 0, hasQuote = false;
@@ -99,7 +107,7 @@
     render(); closeCam(); openDrawer();
   }
 
-  window.add = add; window.rm = rm; window.openDrawer = openDrawer; window.closeDrawer = closeDrawer; window.closeAll = closeAll; window.openModal = openModal; window.submitForm = submitForm;
+  window.add = add; window.addKer = addKer; window.rm = rm; window.openDrawer = openDrawer; window.closeDrawer = closeDrawer; window.closeAll = closeAll; window.openModal = openModal; window.submitForm = submitForm;
   window.openCam = openCam; window.closeCam = closeCam; window.camView = camView; window.camChest = camChest; window.camArm = camArm; window.camAdd = camAdd;
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAll(); });
   render();

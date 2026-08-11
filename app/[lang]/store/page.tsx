@@ -66,6 +66,9 @@ const CSS = `:root{
 .oas .addbtn.blue:hover{background:var(--cy-deep);border-color:var(--cy-deep)}
 .oas .addbtn.solid{background:var(--cy);color:#fff;border-color:var(--cy);box-shadow:0 8px 26px rgba(58,86,255,.28)}
 .oas .addbtn.solid:hover{background:var(--cy-soft);transform:translateY(-1px)}
+.oas .keropt{display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:600;color:var(--l-txt);margin-bottom:12px;cursor:pointer;user-select:none}
+.oas .keropt input{width:17px;height:17px;accent-color:var(--cy);cursor:pointer;flex-shrink:0}
+.oas .keropt b{color:var(--cy-deep);font-family:var(--mono);font-weight:700}
 .oas .optsec{padding:64px 0 80px}
 .oas .optsec h2{font-size:26px;font-weight:800;letter-spacing:-.02em;margin-bottom:6px}
 .oas .optsec .osub{color:var(--l-mut);font-size:14px;margin-bottom:22px}
@@ -178,8 +181,8 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
   // dual pricing: KR = KRW package (VAT excluded / DTD shipping & setup included),
   // EN = USD package (shipping & taxes excluded)
   const P = lang === "en"
-    ? { cur: "$", b20: 6000, f20: 6500, zed: 800, l11: 5000, f11: 5000, b3c: 6500, ker: 2500 }
-    : { cur: "₩", b20: 12900000, f20: 13290000, zed: 1190000, l11: 10290000, f11: 10290000, b3c: 13390000, ker: 4490000 };
+    ? { cur: "$", b20: 6000, f20: 6800, zed: 800, l11: 5000, f11: 5000, b3c: 6500, ker: 2300 }
+    : { cur: "₩", b20: 11900000, f20: 12900000, zed: 1190000, l11: 10290000, f11: 10290000, b3c: 13390000, ker: 4900000 };
   const F = (n: number) => P.cur + n.toLocaleString(lang === "en" ? "en-US" : "ko-KR");
   const FP = (n: number) => (lang === "en" ? "From " + F(n) : F(n) + " ~"); // starting-price display
   return `
@@ -208,7 +211,8 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
       <div class="price"><span>${FP(P.b20)}</span> <small>${t.vat}</small></div>
       <div class="ship">${t.ship_sep}</div>
       <div class="pdesc">${t.d_2_0}</div>
-      <button class="addbtn solid" onclick="add('OpenArm 2.0',${P.b20})">${t.add}</button>
+      <label class="keropt"><input type="checkbox" id="ker-b20"/> ${t.ker_opt} <b>+${F(P.ker)}</b></label>
+      <button class="addbtn solid" onclick="addKer('OpenArm 2.0 Bimanual',${P.b20},${P.ker},'ker-b20')">${t.add}</button>
     </div>
   </div>
 
@@ -220,7 +224,8 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
       <div class="price"><span>${FP(P.f20)}</span> <small>${t.vat}</small></div>
       <div class="ship">${t.ship_sep}</div>
       <div class="pdesc">${t.d_full}</div>
-      <button class="addbtn solid" onclick="add('OpenArm 2.0 Full Option',${P.f20})">${t.add}</button>
+      <label class="keropt"><input type="checkbox" id="ker-f20"/> ${t.ker_opt} <b>+${F(P.ker)}</b></label>
+      <button class="addbtn solid" onclick="addKer('OpenArm 2.0 Full Option',${P.f20},${P.ker},'ker-f20')">${t.add}</button>
     </div>
   </div>
 
@@ -405,7 +410,7 @@ const KO: Record<string, string> = {
   opt_h: "Options & Accessories", opt_sub: "단품 옵션과 액세서리는 여기서 담을 수 있습니다.",
   acc_zed: "상단 스테레오 카메라 (ZED)", n_zed: "2.0 상단 ZED 카메라", n_grip: "그리퍼 핑거·그립 세트", zed_note: "마운팅 브래킷 포함",
   grip_note: "커스텀 그립 준비 중 · 가격 문의",
-  drag: "드래그 · 360°", add: "주문 담기", add_inq: "담기 (가격 문의)", inquire: "가격 문의",
+  drag: "드래그 · 360°", add: "주문 담기", add_inq: "담기 (가격 문의)", inquire: "가격 문의", ker_opt: "KER 리더암 함께 추가",
   cam_select: "옵션 선택", cam_title: "카메라 옵션 선택", cam_chest: "가슴 카메라 (선택)", cam_arm: "팔 카메라 (선택)", cam_specs: "사양 비교", cam_cancel: "취소", cam_add: "선택 항목 담기",
   b_now: "지금 구매 가능", b_oct: "출시 예정", b_soon: "출시 예정", b_11user: "1.1 사용자용", b_stock: "재고 보유", b_acc: "액세서리",
   ship_2_0: "지금 주문 가능", ship_sep: "지금 주문 시 9월 배송 예정", ship_cell: "출시 예정", ship_ker: "출시 예정", ship_inq: "배송 문의",
@@ -433,7 +438,7 @@ const EN: Record<string, string> = {
   opt_h: "Options & Accessories", opt_sub: "Add-on options and accessories, available individually.",
   acc_zed: "Top stereo camera (ZED)", n_zed: "2.0 top ZED camera", n_grip: "Gripper fingers & grips", zed_note: "Mounting bracket included",
   grip_note: "Custom grips coming soon · Contact for price",
-  drag: "Drag · 360°", add: "Add to order", add_inq: "Add (inquire)", inquire: "Contact for price",
+  drag: "Drag · 360°", add: "Add to order", add_inq: "Add (inquire)", inquire: "Contact for price", ker_opt: "Add KER leader arm",
   cam_select: "Select options", cam_title: "Select Camera Options", cam_chest: "Chest Camera (optional)", cam_arm: "Arm Cameras (optional)", cam_specs: "Specifications", cam_cancel: "Cancel", cam_add: "Add Selected",
   b_now: "Available now", b_oct: "Coming soon", b_soon: "Coming soon", b_11user: "For 1.1 owners", b_stock: "In stock", b_acc: "Accessory",
   ship_2_0: "Available to order now", ship_sep: "Order now — ships in September", ship_cell: "Coming soon", ship_ker: "Coming soon", ship_inq: "Shipping on request",
