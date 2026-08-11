@@ -185,6 +185,24 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
     : { cur: "₩", b20: 11900000, f20: 12900000, zed: 1190000, l11: 9900000, f11: 9900000, b3c: 12500000, ker: 4900000 };
   const F = (n: number) => P.cur + n.toLocaleString(lang === "en" ? "en-US" : "ko-KR");
   const FP = (n: number) => (lang === "en" ? "From " + F(n) : F(n) + " ~"); // starting-price display
+  // KO(국내)는 영업팀 요청으로 전 품목 가격 비공개 → "가격 문의". EN은 $ 가격 노출.
+  const inq = lang === "ko";
+  const priceBlock = (n: number) =>
+    inq
+      ? `<div class="price" style="font-size:23px">${t.inquire}</div>`
+      : `<div class="price"><span>${FP(n)}</span> <small>${t.vat}</small></div>`;
+  const buyBtn = (name: string, n: number, cls = "") =>
+    inq
+      ? `<button class="addbtn ${cls}" onclick="add('${name}',0)">${t.add_inq}</button>`
+      : `<button class="addbtn ${cls}" onclick="add('${name}',${n})">${t.add}</button>`;
+  const kerOpt = (id: string) =>
+    inq
+      ? `<label class="keropt"><input type="checkbox" id="${id}"/> ${t.ker_opt}</label>`
+      : `<label class="keropt"><input type="checkbox" id="${id}"/> ${t.ker_opt} <b>+${F(P.ker)}</b></label>`;
+  const ker20Btn = (name: string, n: number, id: string) =>
+    inq
+      ? `<button class="addbtn solid" onclick="addKer('${name}',0,0,'${id}')">${t.add_inq}</button>`
+      : `<button class="addbtn solid" onclick="addKer('${name}',${n},${P.ker},'${id}')">${t.add}</button>`;
   return `
 <nav><div class="nav-in">
   <a href="/${lang}" class="logo">OpenArm<b>.</b></a>
@@ -208,11 +226,11 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
     <div class="pinfo">
       <div class="pcat">// ROBOTS</div>
       <h2>OpenArm 2.0 Bimanual</h2>
-      <div class="price"><span>${FP(P.b20)}</span> <small>${t.vat}</small></div>
+      ${priceBlock(P.b20)}
       <div class="ship">${t.ship_sep}</div>
       <div class="pdesc">${t.d_2_0}</div>
-      <label class="keropt"><input type="checkbox" id="ker-b20"/> ${t.ker_opt} <b>+${F(P.ker)}</b></label>
-      <button class="addbtn solid" onclick="addKer('OpenArm 2.0 Bimanual',${P.b20},${P.ker},'ker-b20')">${t.add}</button>
+      ${kerOpt("ker-b20")}
+      ${ker20Btn("OpenArm 2.0 Bimanual", P.b20, "ker-b20")}
     </div>
   </div>
 
@@ -221,11 +239,11 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
     <div class="pinfo">
       <div class="pcat">// ROBOTS</div>
       <h2>OpenArm 2.0 Full Option</h2>
-      <div class="price"><span>${FP(P.f20)}</span> <small>${t.vat}</small></div>
+      ${priceBlock(P.f20)}
       <div class="ship">${t.ship_sep}</div>
       <div class="pdesc">${t.d_full}</div>
-      <label class="keropt"><input type="checkbox" id="ker-f20"/> ${t.ker_opt} <b>+${F(P.ker)}</b></label>
-      <button class="addbtn solid" onclick="addKer('OpenArm 2.0 Full Option',${P.f20},${P.ker},'ker-f20')">${t.add}</button>
+      ${kerOpt("ker-f20")}
+      ${ker20Btn("OpenArm 2.0 Full Option", P.f20, "ker-f20")}
     </div>
   </div>
 
@@ -234,10 +252,10 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
     <div class="pinfo">
       <div class="pcat">// TELEOP</div>
       <h2>OpenArm KER</h2>
-      <div class="price"><span>${FP(P.ker)}</span> <small>${t.vat}</small></div>
+      ${priceBlock(P.ker)}
       <div class="ship">${t.ship_sep}</div>
       <div class="pdesc">${t.d_ker}</div>
-      <button class="addbtn solid" onclick="add('OpenArm KER',${P.ker})">${t.add}</button>
+      ${buyBtn("OpenArm KER", P.ker, "solid")}
     </div>
   </div>
 
@@ -258,8 +276,8 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
     <div class="pinfo">
       <div class="pcat">// ROBOTS · 1.1</div>
       <h2>OpenArm Follower Dual Arm 1.1</h2>
-      <div class="price"><span>${FP(P.f11)}</span> <small>${t.vat}</small></div>
-      <button class="addbtn blue" onclick="add('OpenArm Follower Dual Arm 1.1',${P.f11})">${t.add}</button>
+      ${priceBlock(P.f11)}
+      ${buyBtn("OpenArm Follower Dual Arm 1.1", P.f11, "blue")}
     </div>
   </div>
 
@@ -268,9 +286,9 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
     <div class="pinfo">
       <div class="pcat">// ROBOTS · 1.1</div>
       <h2>OpenArm Follower Dual Arm 1.1 + 3 Cameras</h2>
-      <div class="price"><span>${FP(P.b3c)}</span> <small>${t.vat}</small></div>
+      ${priceBlock(P.b3c)}
       <div class="pdesc">${t.d_b3c}</div>
-      <button class="addbtn blue" onclick="add('OpenArm Follower Dual Arm 1.1 + 3 Cameras',${P.b3c})">${t.add}</button>
+      ${buyBtn("OpenArm Follower Dual Arm 1.1 + 3 Cameras", P.b3c, "blue")}
     </div>
   </div>
 
@@ -279,10 +297,10 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
     <div class="pinfo">
       <div class="pcat">// ROBOTS · 1.1</div>
       <h2>OpenArm Leader Dual Arm 1.1</h2>
-      <div class="price"><span>${FP(P.l11)}</span> <small>${t.vat}</small></div>
+      ${priceBlock(P.l11)}
       <div class="ship">${t.ship_2_0}</div>
       <div class="pdesc">${t.d_leader}</div>
-      <button class="addbtn blue" onclick="add('OpenArm Leader Dual Arm 1.1',${P.l11})">${t.add}</button>
+      ${buyBtn("OpenArm Leader Dual Arm 1.1", P.l11, "blue")}
     </div>
   </div>
 
@@ -302,7 +320,7 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
     <div class="optlist">
       <div class="optcard">
         <div class="oimg"><img src="/images/products/zed_camera.png" alt="ZED stereo camera" loading="lazy"/></div>
-        <div class="obody"><div><b>${t.acc_zed}</b><small>${F(P.zed)}</small><small class="onote">${t.zed_note}</small></div><button onclick="add('${t.n_zed}',${P.zed})">${t.add}</button></div>
+        <div class="obody"><div><b>${t.acc_zed}</b><small>${inq ? t.inquire : F(P.zed)}</small><small class="onote">${t.zed_note}</small></div><button onclick="add('${t.n_zed}',${inq ? 0 : P.zed})">${inq ? t.add_inq : t.add}</button></div>
       </div>
       <div class="optcard">
         <div class="oimg"><img src="/images/products/d435if_camera.png" alt="Intel RealSense Camera Package" loading="lazy"/></div>
@@ -403,7 +421,7 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
 
 const KO: Record<string, string> = {
   back: "OpenArm 2.0 메인으로", head_p: "OpenArm 전 라인업을 한 곳에서. 사양을 확인하고, 원하는 구성을 담아 문의하세요.",
-  estnote: "※ 표시 가격은 부가세 별도입니다. 국내 배송(DTD) 포함 · 초기 설치 및 시연 지원 · 세금계산서/견적서 발행 · 사용 중 문제 피드백 지원",
+  estnote: "※ 구성별 견적은 문의 주시면 안내드립니다. 국내 배송(DTD) 포함 · 초기 설치 및 시연 지원 · 세금계산서/견적서 발행 · 사용 중 문제 피드백 지원",
   vat: "부가세 별도",
   d_full: "손끝 카메라 2대와 상단 ZED 스테레오 카메라까지 모두 장착된 완전 구성입니다. 받는 즉시 깊이 데이터 수집을 시작할 수 있습니다.",
   d_b3c: "손목·가슴 카메라가 장착된 1.1 팔로워 구성입니다.",
@@ -421,12 +439,12 @@ const KO: Record<string, string> = {
   up_t: "1.1 → 2.0 업그레이드 키트",
   d_leader: "OpenArm 사양으로 제작된 1.1 리더 양팔입니다. 좌·우 팔 + 받침대 + 리더 그립으로 구성되어, 팔로워와 양방향 힘 피드백 텔레오퍼레이션을 구현합니다.",
   cam_t: "카메라 패키지 (Intel RealSense)", d_cam: "팔로워에 장착하는 옵션 카메라 시스템입니다. 가슴 1대 + 양팔 각 1대, 최대 3대까지 설치할 수 있습니다.\n가슴 카메라는 D435IF / D455F, 양팔 카메라는 D405 중 용도에 맞춰 선택합니다. 장착 브래킷 포함.",
-  cart_h: "주문 카트", total: "합계", cart_note: "표시 가격은 부가세 별도입니다. 최종 견적은 구성·수량에 따라 개별 안내드립니다.", checkout: "주문 신청하기",
+  cart_h: "주문 카트", total: "합계", cart_note: "최종 견적은 구성·수량에 따라 개별 안내드립니다.", checkout: "주문 신청하기",
   modal_h: "OpenArm 주문 신청", modal_sub: "담으신 구성 그대로 접수됩니다. 담당자가 구성과 견적을 안내해 드릴게요.",
   f_name: "이름", ph_name: "홍길동", f_org: "소속 / 회사", ph_org: "(주)리버트론 / 학교·연구실 (선택)",
   f_country: "국가 / 지역", ph_country: "예: 대한민국", f_email: "이메일", f_phone: "전화번호", f_msg: "문의 내용", ph_msg: "도입 수량, 희망 일정, 기타 문의사항을 적어주세요.",
   agree_b: "개인정보 수집 및 이용 동의 (필수)", agree_d: "문의·견적 처리를 위해 개인정보를 수집하며 목적 달성 시 즉시 파기합니다.", submit: "주문 접수하기",
-  footer: "연구 · 교육 · 개발용 플랫폼 · 표시 가격은 부가세 별도",
+  footer: "연구 · 교육 · 개발용 플랫폼",
 };
 
 const EN: Record<string, string> = {
