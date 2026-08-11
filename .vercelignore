@@ -1,0 +1,10 @@
+node_modules/
+.next/
+.git/
+2.0 자료/
+2.0 STEP/
+_2.0_progress/
+FabConvert.com_*.zip
+public/models/*.step
+*.tsbuildinfo
+*.command
