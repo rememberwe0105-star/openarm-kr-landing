@@ -210,7 +210,7 @@
       },
       {
         "question": "Can I attach accessories like grippers or cameras?",
-        "answer": "Yes, beyond the standard grippers for the Leader and Follower arms, we are expanding our lineup to include custom grippers, suction pumps, and various end effectors. With optional high-performance depth cameras (e.g., Intel RealSense D435i, D455, D405), vision AI-based autonomous pick-and-place tasks can be implemented with ease."
+        "answer": "Yes. Beyond the standard Leader and Follower grippers, you can test custom grippers, suction pumps, and other end effectors. Because the hardware is open source, fabricating and mounting your own adapters with a CNC or 3D printer is straightforward. A depth camera (ZED Mini stereo camera) that captures depth data can be mounted on top, so you can also try vision-AI-based autonomous pick-and-place."
       },
       {
         "question": "How does after-sales and technical support work?",
