@@ -182,7 +182,7 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
   // EN = USD package (shipping & taxes excluded)
   const P = lang === "en"
     ? { cur: "$", b20: 6000, f20: 6800, zed: 800, l11: 5000, f11: 5000, b3c: 6500, ker: 2300 }
-    : { cur: "₩", b20: 11900000, f20: 12900000, zed: 1190000, l11: 10290000, f11: 10290000, b3c: 13390000, ker: 4900000 };
+    : { cur: "₩", b20: 11900000, f20: 12900000, zed: 1190000, l11: 9900000, f11: 9900000, b3c: 12500000, ker: 4900000 };
   const F = (n: number) => P.cur + n.toLocaleString(lang === "en" ? "en-US" : "ko-KR");
   const FP = (n: number) => (lang === "en" ? "From " + F(n) : F(n) + " ~"); // starting-price display
   return `
