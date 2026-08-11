@@ -186,7 +186,6 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
 <nav><div class="nav-in">
   <a href="/${lang}" class="logo">OpenArm<b>.</b></a>
   <div class="nav-r">
-    <button class="langbtn" onclick="window.__oaToggleLang&&window.__oaToggleLang()">${lang === "ko" ? "EN" : "한국어"}</button>
     <div class="cartbtn" onclick="openDrawer()"><span>CART</span><span class="cnt" id="cnt">0</span></div>
   </div>
 </div></nav>
@@ -454,10 +453,7 @@ const EN: Record<string, string> = {
 };
 
 export default function StorePage() {
-  const { lang, toggleLanguage } = useLanguage();
-  useEffect(() => {
-    (window as unknown as Record<string, unknown>).__oaToggleLang = toggleLanguage;
-  }, [toggleLanguage]);
+  const { lang } = useLanguage();
   useEffect(() => {
     (window as unknown as Record<string, unknown>).__lang = lang;
     const s = document.createElement("script");

@@ -445,11 +445,6 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
     <a href="#contact">${t.nav_contact}</a>
   </div>
   <div class="nav-r">
-    <div class="langtog" role="group" aria-label="Language">
-      <span class="lg${lang === "en" ? " on" : ""}"${lang !== "en" ? ` onclick="window.__oaToggleLang&&window.__oaToggleLang()"` : ""}>EN</span>
-      <span class="lgsep">/</span>
-      <span class="lg${lang === "ko" ? " on" : ""}"${lang !== "ko" ? ` onclick="window.__oaToggleLang&&window.__oaToggleLang()"` : ""}>KR</span>
-    </div>
     <a href="/${lang}/store" class="cta">${t.nav_store} →</a>
     <button class="hamb" aria-label="menu" onclick="document.getElementById('mmenu').classList.add('on')"><span></span><span></span><span></span></button>
   </div>
@@ -466,11 +461,6 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
   <a href="#contact" onclick="document.getElementById('mmenu').classList.remove('on')">${t.nav_contact}</a>
   <a href="/${lang}/openarm-1.1">OpenArm 1.1</a>
   <div class="mfoot">
-    <div class="langtog" role="group" aria-label="Language">
-      <span class="lg${lang === "en" ? " on" : ""}"${lang !== "en" ? ` onclick="window.__oaToggleLang&&window.__oaToggleLang()"` : ""}>EN</span>
-      <span class="lgsep">/</span>
-      <span class="lg${lang === "ko" ? " on" : ""}"${lang !== "ko" ? ` onclick="window.__oaToggleLang&&window.__oaToggleLang()"` : ""}>KR</span>
-    </div>
     <a href="/${lang}/store" class="cta">${t.nav_store} →</a>
   </div>
 </div>
@@ -919,7 +909,7 @@ const EN: Dict = {
 };
 
 export default function Home() {
-  const { lang, toggleLanguage } = useLanguage();
+  const { lang } = useLanguage();
   // After hydration React can silently re-apply the section's innerHTML, replacing every node
   // the effects below have bound to (stale nav toggle, wiped word-fill spans / reveal classes —
   // the "white nav on white background" bug). Watch .oa's direct children and bump an epoch so
@@ -942,9 +932,6 @@ export default function Home() {
     if (oa.parentElement) mo.observe(oa.parentElement, { childList: true });
     return () => mo.disconnect();
   }, [lang, domEpoch]);
-  useEffect(() => {
-    (window as unknown as Record<string, unknown>).__oaToggleLang = toggleLanguage;
-  }, [toggleLanguage]);
   // model-viewer + metallic material
   useEffect(() => {
     if (!document.querySelector("script[data-mv]")) {

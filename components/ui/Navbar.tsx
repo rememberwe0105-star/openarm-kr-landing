@@ -12,7 +12,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
-  const { lang, toggleLanguage, t } = useLanguage();
+  const { lang, t } = useLanguage();
   
   // If we are on /products or /resources, we always want the dark text because the background is white
   const bare = stripLocale(pathname);
@@ -83,14 +83,6 @@ export default function Navbar() {
             <Link href={`/${lang}/openarm-1.1#why-korea`} className="hover:text-point transition-colors">{t("nav.about")}</Link>
           </div>
           <div className="flex items-center space-x-3 md:space-x-4">
-            <button 
-              onClick={toggleLanguage}
-              className={`font-mono text-sm font-bold tracking-wider hover:text-point transition-colors ${
-                shouldUseDarkText ? "text-foreground-main" : "text-white"
-              }`}
-            >
-              {lang === "en" ? "Kor" : "En"}
-            </button>
             <Link
               href={`/${lang}/store`}
               className={`px-5 py-2 md:px-6 rounded-full text-sm font-medium transition-all duration-300 ${
