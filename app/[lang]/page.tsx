@@ -729,7 +729,7 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
 type TCard = { q: string; s: string; d: string; cf: string; ct: string };
 
 const KO = {
-  nav_features: "Core", nav_why: "Why Libertron", nav_res: "Resources", nav_contact: "Contact", nav_store: "Store",
+  nav_features: "Core", nav_why: "Libertron", nav_res: "Resources", nav_contact: "Contact", nav_store: "Store",
   hero_eyebrow: "Introducing · OpenArm 2.0",
   hero_tag: "피지컬 AI, <em>누구나 손 쉽게!</em>",
   hero_lead: "100% 오픈소스 양팔 로봇. 더 작아진 그리퍼와 손안의 카메라, 여기에 실험 변수를 잡아주는 Cell까지. 부품 수급부터 세팅까지 리버트론이 한 번에 준비해 드립니다.",
@@ -772,7 +772,7 @@ const KO = {
   ker_badge: "출시 예정 · CAD·BOM 추후", ker_d: "2.0과 똑같은 관절 구조를 그대로 옮긴 무동력 리더암(Kinematic Equivalent Replica). 모터가 없어 가볍고, 오래 잡고 있어도 지치지 않습니다. 텔레오퍼레이션과 티칭 데이터 수집에 제격입니다.",
   ker_1t: "동일한 구조 & 설계", ker_1d: "2.0과 같은 관절 구조로 1:1 매핑", ker_2t: "무동력", ker_2d: "모터가 없어 가볍고 저렴",
   ker_3t: "저항 없는 동작", ker_3d: "오래 시연해도 무리없는 무게감", ker_4t: "데이터 수집", ker_4d: "텔레오퍼레이션·티칭에 제격",
-  k_why: "Why Libertron",
+  k_why: "Libertron",
   why_title: "왜 <em>리버트론</em>에서 구매해야 할까요?",
   why_desc: "OpenArm은 전 세계에 공개된 오픈소스 프로젝트입니다. 그래서 리버트론의 역할은 분명합니다. 부품을 모으고 맞춰보는 데 드는 <strong>최소 석 달의 준비 과정을, 대신 줄여 드리는 것.</strong> 까다로운 준비는 리버트론에 맡기고, 연구에 더 집중하세요.",
   why_pro: "리버트론 Devkits", why_foot: "들어갈 시간과 리스크까지 따져보면, 결국 가장 합리적인 선택입니다.", why_cta: "스토어에서 견적 받기",
@@ -820,7 +820,7 @@ const KO = {
 type Dict = typeof KO;
 
 const EN: Dict = {
-  nav_features: "Core", nav_why: "Why Libertron", nav_res: "Resources", nav_contact: "Contact", nav_store: "Store",
+  nav_features: "Core", nav_why: "Libertron", nav_res: "Resources", nav_contact: "Contact", nav_store: "Store",
   hero_eyebrow: "Introducing · OpenArm 2.0",
   hero_tag: "Physical AI, <em>made easy for everyone.</em>",
   hero_lead: "A 100% open-source bimanual humanoid arm. Compact gripper, in-hand camera, and a variable-controlled Cell — supplied one-stop from Korea by Libertron.",
@@ -863,7 +863,7 @@ const EN: Dict = {
   ker_badge: "Coming soon · CAD·BOM later", ker_d: "A motorless leader arm with the exact same joint structure as 2.0 (Kinematic Equivalent Replica). No motors means it's light and fatigue-free — ideal for teleoperation and teaching-data collection.",
   ker_1t: "Identical structure & design", ker_1d: "Same joints as 2.0 for 1:1 mapping", ker_2t: "Motorless", ker_2d: "Light and affordable without motors",
   ker_3t: "Drag-free operation", ker_3d: "A comfortable weight even in long demos", ker_4t: "Data collection", ker_4d: "Ideal for teleop and teaching",
-  k_why: "Why Libertron",
+  k_why: "Libertron",
   why_title: "Why buy from <em>Libertron</em>?",
   why_desc: "OpenArm is an open-source project available worldwide. Libertron's role is simple — we eliminate <strong>the 3+ months and countless trials you'd otherwise waste on sourcing, assembly, and setup</strong>. Now, simply focus on your research.",
   why_pro: "Libertron Devkits", why_foot: "When you factor in time and risk, it's ultimately the most affordable choice.", why_cta: "Get a quote in the store",
