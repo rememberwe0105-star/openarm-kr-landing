@@ -184,7 +184,7 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
   const FP = (n: number) => (lang === "en" ? "From " + F(n) : F(n) + " ~"); // starting-price display
   return `
 <nav><div class="nav-in">
-  <a href="/" class="logo">OpenArm<b>.</b></a>
+  <a href="/${lang}" class="logo">OpenArm<b>.</b></a>
   <div class="nav-r">
     <button class="langbtn" onclick="window.__oaToggleLang&&window.__oaToggleLang()">${lang === "ko" ? "EN" : "한국어"}</button>
     <div class="cartbtn" onclick="openDrawer()"><span>CART</span><span class="cnt" id="cnt">0</span></div>
@@ -192,7 +192,7 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
 </div></nav>
 
 <div class="head"><div class="wrap">
-  <a class="back" href="/">← ${t.back}</a>
+  <a class="back" href="/${lang}">← ${t.back}</a>
   <div class="eyebrow">Store</div>
   <h1>OpenArm <span>Store</span></h1>
   <p>${t.head_p}</p>

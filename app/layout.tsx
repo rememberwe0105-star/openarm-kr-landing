@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { LanguageProvider } from "@/lib/i18n/LanguageContext";
-import FloatingContactButton from "@/components/ui/FloatingContactButton";
 import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google';
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -46,14 +44,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className="scroll-smooth scroll-pt-20" suppressHydrationWarning>
+    <html lang="en" className="scroll-smooth scroll-pt-20" suppressHydrationWarning>
       <body className={`${inter.variable} ${jetBrainsMono.variable} font-inter bg-background-main text-foreground-main antialiased`} suppressHydrationWarning>
         <GoogleTagManager gtmId="GTM-N9TLN2LT" />
         <GoogleAnalytics gaId="G-Y8P93G14MQ" />
-        <LanguageProvider>
-          {children}
-          <FloatingContactButton />
-        </LanguageProvider>
+        {children}
         {/* JSON-LD SEO Schemas */}
         <script
           type="application/ld+json"

@@ -1,10 +1,12 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import enTranslations from "./en.json";
 import koTranslations from "./ko.json";
+import { stripLocale, type Locale } from "./locale";
 
-type Language = "en" | "ko";
+type Language = Locale;
 
 interface LanguageContextType {
   lang: Language;
@@ -14,49 +16,41 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Language>("en"); // Default to English
-  const [isMounted, setIsMounted] = useState(false);
+// The active locale now comes from the URL (/ko/… or /en/…). `initialLang` is
+// seeded server-side by app/[lang]/layout.tsx, so SSR renders the correct
+// language and both versions are fully crawlable. Toggling navigates to the
+// sibling locale URL and remembers the choice in a cookie the middleware reads.
+export function LanguageProvider({
+  children,
+  initialLang,
+}: {
+  children: ReactNode;
+  initialLang: Language;
+}) {
+  const [lang, setLang] = useState<Language>(initialLang);
+  const router = useRouter();
+  const pathname = usePathname();
 
+  // keep state aligned with the URL locale across client navigations
   useEffect(() => {
-    // Component is mounted, we can safely access localStorage/navigator
-    setIsMounted(true);
-    const savedLang = localStorage.getItem("openarm-lang") as Language;
-    
-    if (savedLang && (savedLang === "en" || savedLang === "ko")) {
-      setLang(savedLang);
-    } else {
-      try {
-        // Fallback to strict regional detection
-        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        const browserLang = navigator.language || "";
-        
-        if (tz === "Asia/Seoul" || browserLang.toLowerCase().includes("ko")) {
-          setLang("ko");
-        } else {
-          setLang("en"); // Default for non-Korea regions
-        }
-      } catch {
-        setLang("en");
-      }
-    }
-  }, []);
+    setLang(initialLang);
+  }, [initialLang]);
 
-  const toggleLanguage = () => {
-    setLang((prev) => {
-      const newLang = prev === "en" ? "ko" : "en";
-      localStorage.setItem("openarm-lang", newLang);
-      return newLang;
-    });
-  };
+  const toggleLanguage = useCallback(() => {
+    const next: Language = lang === "en" ? "ko" : "en";
+    document.cookie = `openarm-lang=${next};path=/;max-age=31536000;samesite=lax`;
+    const rest = stripLocale(pathname || `/${lang}`);
+    setLang(next); // snappy toggle; the navigation re-seeds via initialLang
+    router.push(`/${next}${rest}`);
+  }, [lang, pathname, router]);
 
   const t = useCallback(<T extends string | string[] = string>(key: string): T => {
     const translations = lang === "en" ? enTranslations : koTranslations;
-    
+
     // Support nested keys like "hero.title"
     const keys = key.split(".");
     let value: unknown = translations;
-    
+
     for (const k of keys) {
       if (value === undefined || value === null) break;
       value = (value as Record<string, unknown>)[k];
@@ -73,17 +67,14 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     }
 
     if (typeof value === "string") return value as T;
-    if (Array.isArray(value) && value.every(item => typeof item === "string")) return value as T;
-    
+    if (Array.isArray(value) && value.every((item) => typeof item === "string")) return value as T;
+
     return key as unknown as T;
   }, [lang]);
 
-  // We still provide the context so `useLanguage` does not crash during SSR
   return (
     <LanguageContext.Provider value={{ lang, toggleLanguage, t }}>
-      <div style={{ visibility: isMounted ? "visible" : "hidden" }}>
-        {children}
-      </div>
+      {children}
     </LanguageContext.Provider>
   );
 }

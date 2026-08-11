@@ -1,25 +1,27 @@
 import { MetadataRoute } from 'next';
+import { SITE_URL, hreflangLanguages } from '@/lib/i18n/locale';
 
-const LAST_MODIFIED = new Date('2026-06-28');
-const BASE = 'https://openarm.co.kr';
+const LAST_MODIFIED = new Date('2026-08-11');
 
-// Unified site: `/` = premium OpenArm 2.0 landing, `/store` = full lineup store
-// (carries the 2.0 purchase-intent SEO previously on /v2 + /v2/order, now redirected).
+// Locale-split site: every page exists at /ko/… and /en/…, cross-linked via
+// hreflang so each version ranks in its market. `/` geo-redirects (middleware).
 export default function sitemap(): MetadataRoute.Sitemap {
-  const entry = (
-    path: string,
-    priority: number,
-    changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency'] = 'weekly',
-  ): MetadataRoute.Sitemap => [
-    { url: `${BASE}${path}`, lastModified: LAST_MODIFIED, changeFrequency, priority },
-    { url: `${BASE}${path}?lang=en`, lastModified: LAST_MODIFIED, changeFrequency, priority },
+  const routes: Array<{ path: string; priority: number; freq: MetadataRoute.Sitemap[number]['changeFrequency'] }> = [
+    { path: '', priority: 1.0, freq: 'weekly' },
+    { path: '/store', priority: 0.9, freq: 'weekly' },
+    { path: '/openarm-1.1', priority: 0.7, freq: 'weekly' },
+    { path: '/products', priority: 0.7, freq: 'weekly' },
+    { path: '/resources', priority: 0.5, freq: 'monthly' },
   ];
 
-  return [
-    ...entry('', 1.0),
-    ...entry('/store', 0.9),
-    ...entry('/openarm-1.1', 0.7),
-    ...entry('/products', 0.7),
-    ...entry('/resources', 0.5, 'monthly'),
-  ];
+  return routes.flatMap(({ path, priority, freq }) => {
+    const languages = hreflangLanguages(path);
+    return (['ko', 'en'] as const).map((lang) => ({
+      url: `${SITE_URL}/${lang}${path}`,
+      lastModified: LAST_MODIFIED,
+      changeFrequency: freq,
+      priority,
+      alternates: { languages },
+    }));
+  });
 }

@@ -1,17 +1,21 @@
 import type { Metadata } from "next";
+import { buildAlternates, isLocale } from "@/lib/i18n/locale";
 
-export const metadata: Metadata = {
-  title: "OpenArm 1.1 | Libertron",
-  description: "OpenArm 1.1 — the proven bimanual research arm from Libertron. 검증된 OpenArm 1.1 양팔 로봇암 상세 페이지.",
-  alternates: {
-    canonical: '/openarm-1.1',
-    languages: {
-      'ko-KR': '/openarm-1.1',
-      'en-US': '/openarm-1.1?lang=en',
-      'x-default': '/openarm-1.1',
-    },
-  },
-};
+export function generateMetadata({ params }: { params: { lang: string } }): Metadata {
+  const lang = isLocale(params.lang) ? params.lang : "en";
+  const alternates = buildAlternates(lang, "/openarm-1.1");
+  return lang === "ko"
+    ? {
+        title: "OpenArm 1.1 | 리버트론",
+        description: "검증된 OpenArm 1.1 양팔 로봇암 상세 페이지 — 리버트론.",
+        alternates,
+      }
+    : {
+        title: "OpenArm 1.1 | Libertron",
+        description: "OpenArm 1.1 — the proven bimanual research arm from Libertron.",
+        alternates,
+      };
+}
 
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";

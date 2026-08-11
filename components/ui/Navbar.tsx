@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { gsap } from "@/lib/gsap";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { stripLocale } from "@/lib/i18n/locale";
 import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
@@ -14,7 +15,8 @@ export default function Navbar() {
   const { lang, toggleLanguage, t } = useLanguage();
   
   // If we are on /products or /resources, we always want the dark text because the background is white
-  const isDarkPage = pathname === "/products" || pathname === "/resources";
+  const bare = stripLocale(pathname);
+  const isDarkPage = bare === "/products" || bare === "/resources";
   
   // Text should be dark if scrolled, or if we are firmly on a dark-text page
   const shouldUseDarkText = isScrolled || isDarkPage;
@@ -70,15 +72,15 @@ export default function Navbar() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 h-20 flex items-center justify-between">
-          <Link href="/" className="text-2xl font-bold tracking-tighter" onClick={closeMobileMenu}>
+          <Link href={`/${lang}`} className="text-2xl font-bold tracking-tighter" onClick={closeMobileMenu}>
             OpenArm<span className="text-point">.</span>
           </Link>
           <div className="hidden md:flex space-x-8 text-sm font-medium">
-            <Link href="/openarm-1.1#specs" className="hover:text-point transition-colors">{t("nav.specs")}</Link>
-            <Link href="/openarm-1.1#features" className="hover:text-point transition-colors">{t("nav.features")}</Link>
-            <Link href="/openarm-1.1#applications" className="hover:text-point transition-colors">{t("nav.applications")}</Link>
-            <Link href="/openarm-1.1#get-started" className="hover:text-point transition-colors">{t("nav.resources")}</Link>
-            <Link href="/openarm-1.1#why-korea" className="hover:text-point transition-colors">{t("nav.about")}</Link>
+            <Link href={`/${lang}/openarm-1.1#specs`} className="hover:text-point transition-colors">{t("nav.specs")}</Link>
+            <Link href={`/${lang}/openarm-1.1#features`} className="hover:text-point transition-colors">{t("nav.features")}</Link>
+            <Link href={`/${lang}/openarm-1.1#applications`} className="hover:text-point transition-colors">{t("nav.applications")}</Link>
+            <Link href={`/${lang}/openarm-1.1#get-started`} className="hover:text-point transition-colors">{t("nav.resources")}</Link>
+            <Link href={`/${lang}/openarm-1.1#why-korea`} className="hover:text-point transition-colors">{t("nav.about")}</Link>
           </div>
           <div className="flex items-center space-x-3 md:space-x-4">
             <button 
@@ -90,7 +92,7 @@ export default function Navbar() {
               {lang === "en" ? "Kor" : "En"}
             </button>
             <Link
-              href="/store"
+              href={`/${lang}/store`}
               className={`px-5 py-2 md:px-6 rounded-full text-sm font-medium transition-all duration-300 ${
                 shouldUseDarkText 
                   ? "bg-foreground-main text-background-main hover:bg-point hover:text-white" 
@@ -125,11 +127,11 @@ export default function Navbar() {
         </button>
         
         <div className="flex flex-col items-center space-y-8 text-2xl font-bold text-foreground-main">
-          <Link href="/openarm-1.1#specs" onClick={closeMobileMenu} className="hover:text-point transition-colors">{t("nav.specs")}</Link>
-          <Link href="/openarm-1.1#features" onClick={closeMobileMenu} className="hover:text-point transition-colors">{t("nav.features")}</Link>
-          <Link href="/openarm-1.1#applications" onClick={closeMobileMenu} className="hover:text-point transition-colors">{t("nav.applications")}</Link>
-          <Link href="/openarm-1.1#get-started" onClick={closeMobileMenu} className="hover:text-point transition-colors">{t("nav.resources")}</Link>
-          <Link href="/openarm-1.1#why-korea" onClick={closeMobileMenu} className="hover:text-point transition-colors">{t("nav.about")}</Link>
+          <Link href={`/${lang}/openarm-1.1#specs`} onClick={closeMobileMenu} className="hover:text-point transition-colors">{t("nav.specs")}</Link>
+          <Link href={`/${lang}/openarm-1.1#features`} onClick={closeMobileMenu} className="hover:text-point transition-colors">{t("nav.features")}</Link>
+          <Link href={`/${lang}/openarm-1.1#applications`} onClick={closeMobileMenu} className="hover:text-point transition-colors">{t("nav.applications")}</Link>
+          <Link href={`/${lang}/openarm-1.1#get-started`} onClick={closeMobileMenu} className="hover:text-point transition-colors">{t("nav.resources")}</Link>
+          <Link href={`/${lang}/openarm-1.1#why-korea`} onClick={closeMobileMenu} className="hover:text-point transition-colors">{t("nav.about")}</Link>
         </div>
       </div>
     </>

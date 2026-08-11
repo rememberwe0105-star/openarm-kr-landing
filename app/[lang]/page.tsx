@@ -434,7 +434,7 @@ const cnt = (to: string, suf = "", pre = "") =>
 function buildHTML(t: Dict, lang: "ko" | "en") {
   return `
 <nav><div class="nav-in">
-  <a href="/" class="logo">OpenArm<b>.</b></a>
+  <a href="/${lang}" class="logo">OpenArm<b>.</b></a>
   <div class="nav-links">
     <a href="#features">${t.nav_features}</a>
     <a href="#ker">KER</a>
@@ -450,7 +450,7 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
       <span class="lgsep">/</span>
       <span class="lg${lang === "ko" ? " on" : ""}"${lang !== "ko" ? ` onclick="window.__oaToggleLang&&window.__oaToggleLang()"` : ""}>KR</span>
     </div>
-    <a href="/store" class="cta">${t.nav_store} →</a>
+    <a href="/${lang}/store" class="cta">${t.nav_store} →</a>
     <button class="hamb" aria-label="menu" onclick="document.getElementById('mmenu').classList.add('on')"><span></span><span></span><span></span></button>
   </div>
 </div></nav>
@@ -464,14 +464,14 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
   <a href="#resources" onclick="document.getElementById('mmenu').classList.remove('on')">${t.nav_res}</a>
   <a href="#faq" onclick="document.getElementById('mmenu').classList.remove('on')">FAQ</a>
   <a href="#contact" onclick="document.getElementById('mmenu').classList.remove('on')">${t.nav_contact}</a>
-  <a href="/openarm-1.1">OpenArm 1.1</a>
+  <a href="/${lang}/openarm-1.1">OpenArm 1.1</a>
   <div class="mfoot">
     <div class="langtog" role="group" aria-label="Language">
       <span class="lg${lang === "en" ? " on" : ""}"${lang !== "en" ? ` onclick="window.__oaToggleLang&&window.__oaToggleLang()"` : ""}>EN</span>
       <span class="lgsep">/</span>
       <span class="lg${lang === "ko" ? " on" : ""}"${lang !== "ko" ? ` onclick="window.__oaToggleLang&&window.__oaToggleLang()"` : ""}>KR</span>
     </div>
-    <a href="/store" class="cta">${t.nav_store} →</a>
+    <a href="/${lang}/store" class="cta">${t.nav_store} →</a>
   </div>
 </div>
 
@@ -483,7 +483,7 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
     <h1 class="vhero-title">OpenArm <b>2.0</b></h1>
     <p class="vhero-tag">${t.hero_tag}</p>
     <p class="vhero-lead">${t.hero_lead}</p>
-    <div class="hero-cta"><a href="/store" class="btn btn-pri">${t.hero_cta1} →</a><a href="#contact" class="btn btn-ghost">${t.hero_cta2}</a></div>
+    <div class="hero-cta"><a href="/${lang}/store" class="btn btn-pri">${t.hero_cta1} →</a><a href="#contact" class="btn btn-ghost">${t.hero_cta2}</a></div>
     <div class="shipnote">${t.hero_ship}</div>
     <div class="herostats">
       <div><b>7</b><span>-DOF ×2</span></div>
@@ -645,7 +645,7 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
   </div>
   <div class="valuebar">
     <div><div class="vbe">🤝 ${t.why_pro}</div><p>${t.why_foot}</p></div>
-    <a href="/store" class="btn btn-pri">${t.why_cta} →</a>
+    <a href="/${lang}/store" class="btn btn-pri">${t.why_cta} →</a>
   </div>
   <div class="whyhead">${t.why_more}</div>
   <div class="why3">
@@ -698,8 +698,8 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
   <h2>${t.order_h}</h2>
   <p>${t.order_d}</p>
   <div class="ctas">
-    <a href="/store" class="btn btn-pri">${t.order_b1} →</a>
-    <a href="/openarm-1.1" class="btn btn-ghost">${t.order_b2}</a>
+    <a href="/${lang}/store" class="btn btn-pri">${t.order_b1} →</a>
+    <a href="/${lang}/openarm-1.1" class="btn btn-ghost">${t.order_b2}</a>
   </div>
   <div class="shipnote">${t.hero_ship}</div>
 </div></div></section>

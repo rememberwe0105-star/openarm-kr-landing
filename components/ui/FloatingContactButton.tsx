@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { MessageSquareText } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { stripLocale } from "@/lib/i18n/locale";
 
 export default function FloatingContactButton() {
   const [isVisible, setIsVisible] = useState(false);
@@ -27,9 +28,11 @@ export default function FloatingContactButton() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  if (pathname?.startsWith("/products")) {
+  const bare = stripLocale(pathname ?? "");
+  if (bare.startsWith("/products")) {
     return null;
   }
+  const loc = pathname?.split("/")[1] === "ko" ? "ko" : "en";
 
   return (
     <div 
@@ -38,7 +41,7 @@ export default function FloatingContactButton() {
       }`}
     >
       <Link 
-        href="/#contact"
+        href={`/${loc}#contact`}
         className="flex items-center justify-center w-14 h-14 bg-foreground-main/90 backdrop-blur-md rounded-full shadow-lg border border-border-light/20 hover:scale-110 hover:bg-foreground-main hover:shadow-[0_0_20px_rgba(0,200,255,0.4)] transition-all duration-300 group"
         aria-label="Contact Us"
         title="문의하기"

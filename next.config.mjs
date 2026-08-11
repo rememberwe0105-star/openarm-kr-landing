@@ -8,14 +8,9 @@ const nextConfig = {
       },
     ],
   },
-  async redirects() {
-    return [
-      // The 2.0 work previously lived at /v2 and /v2/order (indexed on the live
-      // site). The unified site moves them to / and /store — redirect to keep SEO.
-      { source: '/v2', destination: '/', permanent: true },
-      { source: '/v2/order', destination: '/store', permanent: true },
-    ];
-  },
+  // NOTE: legacy /v2 and /v2/order redirects are handled in middleware.ts —
+  // middleware runs before next.config redirects, and would otherwise prepend a
+  // locale to /v2 and 404. Middleware maps them to /{locale} and /{locale}/store.
   async headers() {
     return [
       {

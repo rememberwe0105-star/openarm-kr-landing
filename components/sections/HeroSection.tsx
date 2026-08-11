@@ -10,7 +10,7 @@ import Image from "next/image";
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLElement>(null);
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   useGSAP(() => {
     const tl = gsap.timeline();
@@ -91,7 +91,7 @@ export default function HeroSection() {
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center mt-4">
-          <Link href="/products" className="hero-cta bg-white text-black px-8 py-4 rounded-full text-lg font-bold hover:bg-point hover:text-white transition-all duration-300 text-center shadow-xl">
+          <Link href={`/${lang}/products`} className="hero-cta bg-white text-black px-8 py-4 rounded-full text-lg font-bold hover:bg-point hover:text-white transition-all duration-300 text-center shadow-xl">
             {t("hero.cta")}
           </Link>
         </div>
