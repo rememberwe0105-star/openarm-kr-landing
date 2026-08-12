@@ -135,7 +135,9 @@ html{scroll-behavior:smooth;scroll-padding-top:84px;scroll-snap-type:y proximity
 .oa .vhero-lead{margin-top:16px;font-size:17px;color:rgba(255,255,255,.82);max-width:54ch;line-height:1.7;word-break:keep-all}
 .oa .vhero .hero-cta{justify-content:center;margin-top:34px}
 .oa .vhero .shipnote{margin-top:16px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:rgba(255,255,255,.72);display:inline-flex;align-items:center;gap:8px;text-shadow:0 1px 12px rgba(0,0,0,.5)}
-.oa .vhero .shipnote::before{content:"";width:7px;height:7px;border-radius:50%;background:#5eead4;box-shadow:0 0 10px rgba(94,234,212,.9)}
+.oa .vhero .shipnote::before{content:"";width:7px;height:7px;border-radius:50%;background:#5eead4;box-shadow:0 0 10px rgba(94,234,212,.9);animation:shipHook 3.4s ease-in-out infinite}
+@keyframes shipHook{0%{background:#5b78ff;box-shadow:0 0 10px rgba(91,120,255,.9);opacity:.5}7%{opacity:1}15%{opacity:.45}24%{opacity:1}33%{opacity:.45;background:#5b78ff;box-shadow:0 0 10px rgba(91,120,255,.9)}40%{background:#f5a623;box-shadow:0 0 13px rgba(245,166,35,1);opacity:1}48%{opacity:.3}56%{opacity:1}64%{opacity:.3}72%{opacity:1}80%{opacity:.3}88%{opacity:1}96%{opacity:.4}100%{background:#f5a623;box-shadow:0 0 13px rgba(245,166,35,1);opacity:1}}
+@media(prefers-reduced-motion:reduce){.oa .shipnote::before{animation:none!important;background:#f5a623!important;box-shadow:0 0 10px rgba(245,166,35,.8)!important}}
 .oa .vhero .btn-ghost{border-color:rgba(255,255,255,.34);color:#fff}
 .oa .vhero .btn-ghost:hover{border-color:#fff;color:#fff;background:rgba(255,255,255,.08)}
 .oa .vhero .herostats{justify-content:center;margin-top:34px}
@@ -336,7 +338,7 @@ html{scroll-behavior:smooth;scroll-padding-top:84px;scroll-snap-type:y proximity
 .oa .final p{color:var(--mut);font-size:17px;max-width:50ch;margin:0 auto 30px;word-break:keep-all}
 .oa .final .ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 .oa .final .shipnote{margin-top:18px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--mut);display:inline-flex;align-items:center;gap:8px}
-.oa .final .shipnote::before{content:"";width:7px;height:7px;border-radius:50%;background:#0fb890;box-shadow:0 0 8px rgba(15,184,144,.55)}
+.oa .final .shipnote::before{content:"";width:7px;height:7px;border-radius:50%;background:#0fb890;box-shadow:0 0 8px rgba(15,184,144,.55);animation:shipHook 3.4s ease-in-out infinite}
 
 /* contact */
 .oa .ctgrid{display:grid;grid-template-columns:.85fr 1.15fr;gap:52px;margin-top:44px;align-items:start}
@@ -733,7 +735,7 @@ const KO = {
   hero_eyebrow: "Introducing · OpenArm 2.0",
   hero_tag: "피지컬 AI, <em>누구나 손 쉽게!</em>",
   hero_lead: "100% 오픈소스 양팔 로봇. 더 작아진 그리퍼와 손안의 카메라, 여기에 실험 변수를 잡아주는 Cell까지. 부품 수급부터 세팅까지 리버트론이 한 번에 준비해 드립니다.",
-  hero_cta1: "지금 구매하기", hero_cta2: "도입 문의", hero_ship: "지금 구매 시 9월 배송 예정", drag: "드래그 · 360°",
+  hero_cta1: "지금 구매하기", hero_cta2: "도입 문의", hero_ship: "지금 주문 시 9월 배송 — 초기 물량 한정", drag: "드래그 · 360°",
   intro_spec_h: "핵심 사양", intro_explore: "자세히 보기", scrollcue: "SCROLL",
   s_dof: "양팔 기준", s_reach: "도달 거리 (CAD 실측)", s_pay: "정격 · 피크 가반하중", s_ctrl: "CAN-FD 제어", s_open: "오픈소스 CAD·펌웨어",
   k_feat: "Core", h_feat: "OpenArm 2.0을 <em>구매해야 하는 이유</em>",
@@ -824,7 +826,7 @@ const EN: Dict = {
   hero_eyebrow: "Introducing · OpenArm 2.0",
   hero_tag: "Physical AI, <em>made easy for everyone.</em>",
   hero_lead: "A 100% open-source bimanual humanoid arm. Compact gripper, in-hand camera, and a variable-controlled Cell — supplied one-stop from Korea by Libertron.",
-  hero_cta1: "Buy now", hero_cta2: "Get in touch", hero_ship: "Order now — ships in September", drag: "Drag · 360°",
+  hero_cta1: "Buy now", hero_cta2: "Get in touch", hero_ship: "Order now — September delivery, limited first batch", drag: "Drag · 360°",
   intro_spec_h: "Core specifications", intro_explore: "Explore", scrollcue: "SCROLL",
   s_dof: "Per dual arm", s_reach: "Reach (CAD-measured)", s_pay: "Nominal / peak payload", s_ctrl: "CAN-FD control", s_open: "Open-source CAD & firmware",
   k_feat: "Core", h_feat: "Why you should <em>buy OpenArm 2.0</em>",
