@@ -29,7 +29,10 @@ export default function FloatingContactButton() {
   }, []);
 
   const bare = stripLocale(pathname ?? "");
-  if (bare.startsWith("/products")) {
+  // Hide on commerce pages: they have their own CART → order (inquiry) flow, and
+  // a floating button that jumps to the home contact section would both pull the
+  // user off the page and overlap the product-card action buttons.
+  if (bare.startsWith("/products") || bare.startsWith("/store")) {
     return null;
   }
   const loc = pathname?.split("/")[1] === "ko" ? "ko" : "en";
