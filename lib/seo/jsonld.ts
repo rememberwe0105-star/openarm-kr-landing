@@ -139,5 +139,10 @@ export function buildJsonLd(lang: Locale) {
     url: `${SITE_URL}/${lang}`,
     inLanguage: lang === "en" ? "en" : "ko-KR",
   };
-  return [ORG, website, product(lang), VIDEO, faqPage(lang)];
+  // Google's Product rich result requires offers/review/aggregateRating. EN has a
+  // priced offer → include Product. KO hides price (가격 문의), so a Product without
+  // an offer would be flagged invalid — omit it entirely (no product snippet, no
+  // warning) and lean on Organization + FAQPage instead.
+  const base = [ORG, website, VIDEO, faqPage(lang)];
+  return lang === "en" ? [ORG, website, product("en"), VIDEO, faqPage("en")] : base;
 }
