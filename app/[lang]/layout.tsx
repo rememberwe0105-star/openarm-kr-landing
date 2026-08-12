@@ -4,6 +4,7 @@ import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 import FloatingContactButton from "@/components/ui/FloatingContactButton";
 import HtmlLang from "@/components/ui/HtmlLang";
 import { LOCALES, META, SITE_URL, buildAlternates, isLocale } from "@/lib/i18n/locale";
+import { buildJsonLd } from "@/lib/seo/jsonld";
 
 export function generateStaticParams() {
   return LOCALES.map((lang) => ({ lang }));
@@ -44,6 +45,10 @@ export default function LocaleLayout({
   return (
     <LanguageProvider initialLang={lang}>
       <HtmlLang lang={lang} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildJsonLd(lang)) }}
+      />
       {children}
       <FloatingContactButton />
     </LanguageProvider>
