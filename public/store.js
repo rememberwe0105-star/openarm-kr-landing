@@ -50,15 +50,23 @@
     }
     var dt = document.getElementById('dtot'); if (dt) dt.textContent = totals();
   }
-  function openDrawer() { document.getElementById('drawer').classList.add('on'); document.getElementById('ov').classList.add('on'); }
-  function closeDrawer() { document.getElementById('drawer').classList.remove('on'); document.getElementById('ov').classList.remove('on'); }
-  function closeAll() { closeDrawer(); var m = document.getElementById('modal'); if (m) m.classList.remove('on'); var cm = document.getElementById('cammodal'); if (cm) cm.classList.remove('on'); }
+  // Hide the shared floating contact button while any overlay (cart drawer / order
+  // modal / camera modal) is open, so it doesn't overlap the drawer's CTA on mobile.
+  function syncFab() {
+    var fab = document.getElementById('oaFab');
+    if (!fab) return;
+    fab.style.display = document.querySelector('#drawer.on, #modal.on, #cammodal.on') ? 'none' : '';
+  }
+  function openDrawer() { document.getElementById('drawer').classList.add('on'); document.getElementById('ov').classList.add('on'); syncFab(); }
+  function closeDrawer() { document.getElementById('drawer').classList.remove('on'); document.getElementById('ov').classList.remove('on'); syncFab(); }
+  function closeAll() { closeDrawer(); var m = document.getElementById('modal'); if (m) m.classList.remove('on'); var cm = document.getElementById('cammodal'); if (cm) cm.classList.remove('on'); syncFab(); }
   function openModal() {
     if (!cart.length) { alert(T.addFirst); return; }
     var s = document.getElementById('msummary');
     s.innerHTML = cart.map(function (it) { return '<div class="mrow"><span>' + it.name + '</span><span>' + priceLabel(it.price) + '</span></div>'; }).join('')
       + '<div class="mrow mtot"><span>' + T.total + '</span><span>' + totals() + '</span></div>';
     document.getElementById('modal').classList.add('on');
+    syncFab();
   }
   function submitForm(e) {
     e.preventDefault();
@@ -81,8 +89,8 @@
   var CAM_LBL = EN
     ? { d435if: 'D435IF (Chest)', d455f: 'D455F (Chest)', d405: 'D405 ×2 (Arm)', pkg: 'Camera Package' }
     : { d435if: 'D435IF (가슴)', d455f: 'D455F (가슴)', d405: 'D405 ×2 (팔)', pkg: '카메라 패키지' };
-  function openCam() { camSel = { chest: null, arm: false }; syncCam(); var m = document.getElementById('cammodal'); if (m) m.classList.add('on'); }
-  function closeCam() { var m = document.getElementById('cammodal'); if (m) m.classList.remove('on'); }
+  function openCam() { camSel = { chest: null, arm: false }; syncCam(); var m = document.getElementById('cammodal'); if (m) m.classList.add('on'); syncFab(); }
+  function closeCam() { var m = document.getElementById('cammodal'); if (m) m.classList.remove('on'); syncFab(); }
   function camView(id) {
     var img = document.getElementById('cam-main-img'); if (img) img.src = '/images/products/' + id + '_camera.png';
     document.querySelectorAll('.cam-thumb').forEach(function (b) { b.classList.toggle('on', b.getAttribute('data-cam') === id); });

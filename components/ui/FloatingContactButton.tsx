@@ -35,7 +35,8 @@ export default function FloatingContactButton() {
   const loc = pathname?.split("/")[1] === "ko" ? "ko" : "en";
 
   return (
-    <div 
+    <div
+      id="oaFab"
       className={`fixed bottom-8 right-8 z-[60] transition-all duration-500 ease-out transform ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"
       }`}
