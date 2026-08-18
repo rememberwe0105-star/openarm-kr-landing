@@ -34,8 +34,21 @@ const LEGACY: Record<string, string> = {
 
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
+  const country = req.headers.get("x-vercel-ip-country");
 
   if (hasLocalePrefix(pathname)) {
+    // Domestic guard: a Korea-geo visitor must never sit on the global /en pages
+    // (they'd see $ pricing). However they arrived — a shared /en link, a search
+    // result, a stale cookie — bounce /en/* → /ko/* when geo is KR.
+    // One-directional on purpose: /ko is NOT forced to /en for non-KR, so
+    // Googlebot (which crawls from the US) can still reach and index /ko.
+    if (country === "KR" && (pathname === "/en" || pathname.startsWith("/en/"))) {
+      const url = req.nextUrl.clone();
+      url.pathname = "/ko" + pathname.slice(3); // "/en" → "/ko", "/en/x" → "/ko/x"
+      const res = NextResponse.redirect(url, 307);
+      res.headers.set("Cache-Control", "private, no-store");
+      return res;
+    }
     // Already localized — let it through. Each route emits its own canonical +
     // hreflang from its known path (static-generation safe).
     return NextResponse.next();
