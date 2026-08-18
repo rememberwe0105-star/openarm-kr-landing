@@ -1,17 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 import { LOCALES, DEFAULT_LOCALE, type Locale } from "@/lib/i18n/locale";
 
-// Decide the locale for a non-prefixed request:
-//   1) explicit manual choice (cookie set by the language toggle)
-//   2) geo — Vercel edge sets x-vercel-ip-country (KR → Korean)
-//   3) Accept-Language header
-//   4) x-default (English)
+// Decide the locale for a non-prefixed request. Location is the source of truth
+// (it decides the market: Korean ₩/domestic vs global $), so a KNOWN geo always
+// wins over browser language — Korea → Korean, any other country → English.
+//   1) explicit manual choice (cookie; reserved for a future country selector)
+//   2) geo — Vercel edge sets x-vercel-ip-country. Known → KR ? ko : en
+//   3) geo unknown (header absent) → Accept-Language, then x-default (English)
 function pickLocale(req: NextRequest): Locale {
   const cookie = req.cookies.get("openarm-lang")?.value;
   if (cookie === "ko" || cookie === "en") return cookie;
 
   const country = req.headers.get("x-vercel-ip-country");
-  if (country === "KR") return "ko";
+  if (country && country !== "XX") return country === "KR" ? "ko" : "en";
 
   const al = (req.headers.get("accept-language") || "").toLowerCase();
   if (/(^|,)\s*ko\b/.test(al)) return "ko";
@@ -40,19 +41,18 @@ export function middleware(req: NextRequest) {
     return NextResponse.next();
   }
 
-  // No locale prefix → send to the detected locale.
+  // No locale prefix → send to the detected locale. 307 (temporary) so search
+  // engines keep both localized URLs indexable rather than collapsing to one.
+  // The destination is geo-dependent, so the redirect must never be cached by a
+  // shared proxy (that would leak one visitor's locale to another region).
   const locale = pickLocale(req);
   const url = req.nextUrl.clone();
   const legacy = LEGACY[pathname.replace(/\/$/, "")];
-  if (legacy !== undefined) {
-    // Legacy URL → permanent (308) redirect to its localized destination.
-    url.pathname = `/${locale}${legacy}`;
-    return NextResponse.redirect(url, 308);
-  }
-  // 307 (temporary) so search engines keep both localized URLs indexable
-  // rather than collapsing to one.
-  url.pathname = `/${locale}${pathname === "/" ? "" : pathname}`;
-  return NextResponse.redirect(url, 307);
+  url.pathname = `/${locale}${legacy !== undefined ? legacy : pathname === "/" ? "" : pathname}`;
+  const res = NextResponse.redirect(url, 307);
+  res.headers.set("Cache-Control", "private, no-store");
+  res.headers.set("Vary", "Accept-Language");
+  return res;
 }
 
 export const config = {
