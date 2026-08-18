@@ -30,9 +30,9 @@ export const META: Record<
   { title: string; description: string; ogLocale: string; keywords: string[] }
 > = {
   ko: {
-    title: "OpenArm 2.0 | 오픈소스 양팔 로봇 · 피지컬 AI 데브킷 | 리버트론",
+    title: "OpenArm 2.0 오픈암 | 오픈소스 양팔 로봇 · 피지컬 AI 데브킷 | 리버트론",
     description:
-      "OpenArm 2.0 — 100% 오픈소스 양팔 로봇암. 피지컬 AI 연구·교육을 누구나 손쉽게. 리버트론이 한국에서 조립·검수하고, 국내는 배송·설치·시연까지 원스톱으로 지원합니다.",
+      "오픈암(OpenArm) 2.0 — 100% 오픈소스 양팔 로봇암. 피지컬 AI 연구·교육을 누구나 손쉽게. 리버트론이 한국에서 조립·검수하고, 국내는 배송·설치·시연까지 원스톱으로 지원합니다.",
     ogLocale: "ko_KR",
     keywords: [
       "OpenArm", "OpenArm 2.0", "오픈암", "오픈암 2.0", "양팔 로봇", "양팔 로봇암",
