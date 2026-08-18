@@ -10,7 +10,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '', priority: 1.0, freq: 'weekly' },
     { path: '/store', priority: 0.9, freq: 'weekly' },
     { path: '/openarm-1.1', priority: 0.7, freq: 'weekly' },
-    { path: '/products', priority: 0.7, freq: 'weekly' },
     { path: '/resources', priority: 0.5, freq: 'monthly' },
   ];
 

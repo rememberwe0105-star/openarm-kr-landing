@@ -48,7 +48,7 @@ export default function FloatingContactButton() {
         href={`/${loc}#contact`}
         className="flex items-center justify-center w-14 h-14 bg-foreground-main/90 backdrop-blur-md rounded-full shadow-lg border border-border-light/20 hover:scale-110 hover:bg-foreground-main hover:shadow-[0_0_20px_rgba(0,200,255,0.4)] transition-all duration-300 group"
         aria-label="Contact Us"
-        title="문의하기"
+        title={loc === "ko" ? "문의하기" : "Contact us"}
       >
         <MessageSquareText className="w-6 h-6 text-background-main group-hover:text-point transition-colors duration-300" />
       </Link>

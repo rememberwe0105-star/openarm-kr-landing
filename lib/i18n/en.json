@@ -11,7 +11,8 @@
     "built_in_korea": "Assembled in Korea, Shipped Worldwide",
     "subtitle": "100% Open source based Physical AI Humanoid Robot Arm",
     "subtitle_desc": "Reasonable price, Easy and fast purchase",
-    "cta": "Go to Store"
+    "cta": "Go to Store",
+    "seo_h1": "Libertron's exceptional-value, Python-programmable 6-axis robot arm — a top open-source collaborative-robot solution for university labs and industrial automation."
   },
   "showcase": {
     "title": "Discover Detail",
@@ -272,9 +273,9 @@
   "video_section": {
     "title": "OpenArm in Action",
     "now_shipping": "Now Shipping",
-    "coming_soon": "Coming Soon",
+    "coming_soon": "Available now",
     "v1_1_caption": "OpenArm v1.1 — Assembled in Korea, shipped worldwide by Libertron.",
-    "v2_0_teaser_desc": "The next generation is on its way to Korea. Stay tuned.",
+    "v2_0_teaser_desc": "The next-generation OpenArm 2.0 is here — available now.",
     "v2_0_caption": "OpenArm 2.0 — Coming soon to Libertron Devkits."
   },
   "applications": {

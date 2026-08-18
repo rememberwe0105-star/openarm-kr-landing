@@ -545,7 +545,7 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
       <p class="lead">${t.inside_lead}</p>
     </div>
     <div class="seqstage">
-      <canvas class="seq3d" aria-label="OpenArm 2.0 분해도 (드래그로 회전, 스크롤로 분해)"></canvas>
+      <canvas class="seq3d" aria-label="${lang === "en" ? "OpenArm 2.0 exploded view (drag to rotate, scroll to explode)" : "OpenArm 2.0 분해도 (드래그로 회전, 스크롤로 분해)"}"></canvas>
       <div class="seqph">${t.inside_hint}</div>
       <div class="seqprog" aria-hidden="true">
         <span>${t.prog_closed}</span>
@@ -568,12 +568,12 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
   <h2 class="h2">${t.apps_h}</h2>
   <p class="lead">${t.apps_lead}</p>
   <div class="appgrid">
-    <figure class="appcard"><img loading="lazy" src="/images/app_teleoperation.png" alt="OpenArm 활용: ${t.app_teleop}"/><figcaption><b>${t.app_teleop}</b><span>${t.app_teleop_d}</span></figcaption></figure>
-    <figure class="appcard"><img loading="lazy" src="/images/app_rl_imitation.png" alt="OpenArm 활용: ${t.app_rl}"/><figcaption><b>${t.app_rl}</b><span>${t.app_rl_d}</span></figcaption></figure>
-    <figure class="appcard"><img loading="lazy" src="/images/app_robot_manipulation.png" alt="OpenArm 활용: ${t.app_manip}"/><figcaption><b>${t.app_manip}</b><span>${t.app_manip_d}</span></figcaption></figure>
-    <figure class="appcard"><img loading="lazy" src="/images/app_ai_humanoid.png" alt="OpenArm 활용: ${t.app_humanoid}"/><figcaption><b>${t.app_humanoid}</b><span>${t.app_humanoid_d}</span></figcaption></figure>
-    <figure class="appcard"><img loading="lazy" src="/images/app_hri_handshake.png" alt="OpenArm 활용: ${t.app_hri}"/><figcaption><b>${t.app_hri}</b><span>${t.app_hri_d}</span></figcaption></figure>
-    <figure class="appcard"><img loading="lazy" src="/images/app_ai_education.png" alt="OpenArm 활용: ${t.app_edu}"/><figcaption><b>${t.app_edu}</b><span>${t.app_edu_d}</span></figcaption></figure>
+    <figure class="appcard"><img loading="lazy" src="/images/app_teleoperation.png" alt="${lang === "en" ? "OpenArm use case" : "OpenArm 활용"}: ${t.app_teleop}"/><figcaption><b>${t.app_teleop}</b><span>${t.app_teleop_d}</span></figcaption></figure>
+    <figure class="appcard"><img loading="lazy" src="/images/app_rl_imitation.png" alt="${lang === "en" ? "OpenArm use case" : "OpenArm 활용"}: ${t.app_rl}"/><figcaption><b>${t.app_rl}</b><span>${t.app_rl_d}</span></figcaption></figure>
+    <figure class="appcard"><img loading="lazy" src="/images/app_robot_manipulation.png" alt="${lang === "en" ? "OpenArm use case" : "OpenArm 활용"}: ${t.app_manip}"/><figcaption><b>${t.app_manip}</b><span>${t.app_manip_d}</span></figcaption></figure>
+    <figure class="appcard"><img loading="lazy" src="/images/app_ai_humanoid.png" alt="${lang === "en" ? "OpenArm use case" : "OpenArm 활용"}: ${t.app_humanoid}"/><figcaption><b>${t.app_humanoid}</b><span>${t.app_humanoid_d}</span></figcaption></figure>
+    <figure class="appcard"><img loading="lazy" src="/images/app_hri_handshake.png" alt="${lang === "en" ? "OpenArm use case" : "OpenArm 활용"}: ${t.app_hri}"/><figcaption><b>${t.app_hri}</b><span>${t.app_hri_d}</span></figcaption></figure>
+    <figure class="appcard"><img loading="lazy" src="/images/app_ai_education.png" alt="${lang === "en" ? "OpenArm use case" : "OpenArm 활용"}: ${t.app_edu}"/><figcaption><b>${t.app_edu}</b><span>${t.app_edu_d}</span></figcaption></figure>
   </div>
 </div></section>
 

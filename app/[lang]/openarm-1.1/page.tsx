@@ -3,26 +3,21 @@ import { buildAlternates, isLocale } from "@/lib/i18n/locale";
 
 export function generateMetadata({ params }: { params: { lang: string } }): Metadata {
   const lang = isLocale(params.lang) ? params.lang : "en";
+  const ko = lang === "ko";
+  const title = ko ? "OpenArm 1.1 | 리버트론" : "OpenArm 1.1 | Libertron";
+  const description = ko
+    ? "검증된 OpenArm 1.1 양팔 로봇암 상세 페이지 — 리버트론."
+    : "OpenArm 1.1 — the proven bimanual research arm from Libertron.";
   const alternates = buildAlternates(lang, "/openarm-1.1");
-  return lang === "ko"
-    ? {
-        title: "OpenArm 1.1 | 리버트론",
-        description: "검증된 OpenArm 1.1 양팔 로봇암 상세 페이지 — 리버트론.",
-        keywords: [
-          "OpenArm 1.1", "오픈암 1.1", "양팔 로봇암", "오픈소스 로봇암",
-          "연구용 로봇팔", "텔레오퍼레이션", "리버트론",
-        ],
-        alternates,
-      }
-    : {
-        title: "OpenArm 1.1 | Libertron",
-        description: "OpenArm 1.1 — the proven bimanual research arm from Libertron.",
-        keywords: [
-          "OpenArm 1.1", "bimanual robot arm", "open-source robot arm",
-          "research robot arm", "teleoperation", "Libertron",
-        ],
-        alternates,
-      };
+  return {
+    title,
+    description,
+    keywords: ko
+      ? ["OpenArm 1.1", "오픈암 1.1", "양팔 로봇암", "오픈소스 로봇암", "연구용 로봇팔", "텔레오퍼레이션", "리버트론"]
+      : ["OpenArm 1.1", "bimanual robot arm", "open-source robot arm", "research robot arm", "teleoperation", "Libertron"],
+    alternates,
+    openGraph: { title, description, url: alternates.canonical },
+  };
 }
 
 import Navbar from "@/components/ui/Navbar";
