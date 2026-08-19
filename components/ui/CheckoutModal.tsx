@@ -159,11 +159,12 @@ export default function CheckoutModal({ isOpen, onClose, items, onOrderComplete 
                   />
                 </div>
                 <div>
-                  <label htmlFor="organization" className="block text-sm font-bold text-foreground-sub mb-2">{t("checkout.organization_label")}</label>
+                  <label htmlFor="organization" className="block text-sm font-bold text-foreground-sub mb-2">{t("checkout.organization_label")} *</label>
                   <input
                     type="text"
                     id="organization"
                     name="organization"
+                    required
                     value={formData.organization}
                     onChange={handleChange}
                     className="w-full bg-background-sub border border-border-light rounded-xl px-4 py-3 text-foreground-main focus:outline-none focus:border-point focus:ring-1 focus:ring-point transition-all"

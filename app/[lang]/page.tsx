@@ -711,7 +711,7 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
     <form class="ctform" onsubmit="return window.__oaInquiry(event)">
       <div class="frow2">
         <div class="fld"><label>${t.ct_name} *</label><input id="i_name" required placeholder="${t.ct_name_ph}"/></div>
-        <div class="fld"><label>${t.ct_org}</label><input id="i_org" placeholder="${t.ct_org_ph}"/></div>
+        <div class="fld"><label>${t.ct_org} *</label><input id="i_org" required placeholder="${t.ct_org_ph}"/></div>
       </div>
       <div class="frow2">
         <div class="fld"><label>${t.ct_country} *</label><input id="i_country" required placeholder="${t.ct_country_ph}"/></div>
@@ -812,7 +812,7 @@ const KO = {
   k_contact: "Contact", ct_h: "궁금한 점을 <em>문의해 주세요</em>",
   ct_sub: "도입 문의나 견적 상담을 남겨주세요. 담당자가 빠르게 연락드립니다.",
   ct_addr: "서울 영등포구 당산로41길 11 SK V1 Center W동 1111호",
-  ct_name: "이름", ct_name_ph: "홍길동", ct_org: "소속 / 회사", ct_org_ph: "(주)리버트론 / 학교·연구실 (선택)",
+  ct_name: "이름", ct_name_ph: "홍길동", ct_org: "소속 / 회사", ct_org_ph: "(주)리버트론 / 학교·연구실",
   ct_country: "국가 / 지역", ct_country_ph: "예: 대한민국", ct_email: "이메일", ct_phone: "전화번호", ct_msg: "문의 내용", ct_msg_ph: "도입 수량, 일정, 그 밖에 궁금한 점을 적어주세요.",
   ct_privacy: "개인정보 수집 및 이용에 동의합니다 (필수) — 문의·견적 처리에만 사용하며, 처리가 끝나면 곧바로 파기합니다.",
   ct_btn: "문의 보내기", ct_sending: "보내는 중…", ct_done: "문의가 잘 접수되었습니다. 담당자가 곧 연락드리겠습니다. 감사합니다!", ct_err: "전송에 실패했습니다. 잠시 후 다시 시도해주세요.",
@@ -903,7 +903,7 @@ const EN: Dict = {
   k_contact: "Contact", ct_h: "Send us <em>your questions</em>",
   ct_sub: "Leave an inquiry or quote request and our team will get back to you shortly.",
   ct_addr: "Room 1111, SK V1 Center W, 11 Dangsan-ro 41-gil, Yeongdeungpo-gu, Seoul",
-  ct_name: "Name", ct_name_ph: "Jane Doe", ct_org: "Organization / Company", ct_org_ph: "Acme Inc. / Lab (optional)",
+  ct_name: "Name", ct_name_ph: "Jane Doe", ct_org: "Organization / Company", ct_org_ph: "Acme Inc. / Lab",
   ct_country: "Country / Region", ct_country_ph: "e.g., South Korea", ct_email: "Email", ct_phone: "Phone", ct_msg: "Message", ct_msg_ph: "Quantity, timeline, and any questions.",
   ct_privacy: "I agree to the collection and use of personal data (required) — used only to process your inquiry and quote, then deleted once fulfilled.",
   ct_btn: "Submit inquiry", ct_sending: "Sending…", ct_done: "Your inquiry has been received. Our team will be in touch shortly. Thank you!", ct_err: "Submission failed. Please try again in a moment.",

@@ -359,7 +359,7 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
   <form onsubmit="return submitForm(event)">
     <div class="frow">
       <div class="field"><label>${t.f_name} *</label><input id="f_name" required placeholder="${t.ph_name}"/></div>
-      <div class="field"><label>${t.f_org}</label><input id="f_org" placeholder="${t.ph_org}"/></div>
+      <div class="field"><label>${t.f_org} *</label><input id="f_org" required placeholder="${t.ph_org}"/></div>
     </div>
     <div class="frow">
       <div class="field"><label>${t.f_country} *</label><input id="f_country" required placeholder="${t.ph_country}"/></div>
@@ -444,7 +444,7 @@ const KO: Record<string, string> = {
   cam_t: "카메라 패키지 (Intel RealSense)", d_cam: "팔로워에 장착하는 옵션 카메라 시스템입니다. 가슴 1대 + 양팔 각 1대, 최대 3대까지 설치할 수 있습니다.\n가슴 카메라는 D435IF / D455F, 양팔 카메라는 D405 중 용도에 맞춰 선택합니다. 장착 브래킷 포함.",
   cart_h: "주문 카트", total: "합계", cart_note: "최종 견적은 구성·수량에 따라 개별 안내드립니다.", checkout: "주문 신청하기",
   modal_h: "OpenArm 주문 신청", modal_sub: "담으신 구성 그대로 접수됩니다. 담당자가 구성과 견적을 안내해 드릴게요.",
-  f_name: "이름", ph_name: "홍길동", f_org: "소속 / 회사", ph_org: "(주)리버트론 / 학교·연구실 (선택)",
+  f_name: "이름", ph_name: "홍길동", f_org: "소속 / 회사", ph_org: "(주)리버트론 / 학교·연구실",
   f_country: "국가 / 지역", ph_country: "예: 대한민국", f_email: "이메일", f_phone: "전화번호", f_msg: "문의 내용", ph_msg: "도입 수량, 희망 일정, 기타 문의사항을 적어주세요.",
   agree_b: "개인정보 수집 및 이용 동의 (필수)", agree_d: "문의·견적 처리를 위해 개인정보를 수집하며 목적 달성 시 즉시 파기합니다.", submit: "주문 접수하기",
   footer: "연구 · 교육 · 개발용 플랫폼",
@@ -472,7 +472,7 @@ const EN: Record<string, string> = {
   cam_t: "Camera Package (Intel RealSense)", d_cam: "An optional camera system mounted on the follower. One chest + one per arm, up to three total.\nChoose D435IF / D455F for the chest and D405 for the arms. Mounting brackets included.",
   cart_h: "Order cart", total: "Total", cart_note: "Prices exclude shipping and taxes. Final quotes are provided individually by configuration, quantity, and destination.", checkout: "Submit order",
   modal_h: "OpenArm Order Request", modal_sub: "Submitted exactly as configured. Our team will follow up with configuration and a quote.",
-  f_name: "Name", ph_name: "Jane Doe", f_org: "Organization / Company", ph_org: "Acme Inc. / Lab (optional)",
+  f_name: "Name", ph_name: "Jane Doe", f_org: "Organization / Company", ph_org: "Acme Inc. / Lab",
   f_country: "Country / Region", ph_country: "e.g., South Korea", f_email: "Email", f_phone: "Phone", f_msg: "Message", ph_msg: "Quantity, timeline, and any questions.",
   agree_b: "I agree to the collection and use of personal data (required)", agree_d: "used only to process your inquiry and quote, then deleted once fulfilled.", submit: "Submit order",
   footer: "Research · Education · Development platform · Prices exclude shipping & taxes",

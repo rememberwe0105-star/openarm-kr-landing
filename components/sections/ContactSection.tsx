@@ -108,10 +108,11 @@ export default function ContactSection() {
                 />
               </div>
               <div>
-                <label htmlFor="organization" className="block text-sm font-medium text-foreground-sub mb-1">{t<string>("contact.form.organization_label")}</label>
+                <label htmlFor="organization" className="block text-sm font-medium text-foreground-sub mb-1">{t<string>("contact.form.organization_label")} *</label>
                 <input
                   type="text"
                   id="organization"
+                  required
                   value={formData.organization}
                   onChange={(e) => setFormData({...formData, organization: e.target.value})}
                   className="w-full px-4 py-3 rounded-xl border border-border-light bg-background-main focus:outline-none focus:ring-2 focus:ring-point/50 focus:border-point transition-all disabled:opacity-50"
