@@ -8,6 +8,6 @@ echo "════════════════════════�
 echo ""
 read -p "정말 실서비스로 배포할까요? (y/N) " ok
 [ "$ok" = "y" ] || { echo "취소했습니다."; read -p "엔터로 닫기..."; exit 0; }
-npx vercel@latest --prod
+npx vercel@latest --prod --scope pomas-projects-1bd0dd05
 echo ""
 read -p "완료. 엔터로 닫기..."
