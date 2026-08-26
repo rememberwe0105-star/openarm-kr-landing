@@ -91,7 +91,7 @@ export default function HeroSection() {
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center mt-4">
-          <Link href={`/${lang}/products`} className="hero-cta bg-white text-black px-8 py-4 rounded-full text-lg font-bold hover:bg-point hover:text-white transition-all duration-300 text-center shadow-xl">
+          <Link href={`/${lang}/store`} className="hero-cta bg-white text-black px-8 py-4 rounded-full text-lg font-bold hover:bg-point hover:text-white transition-all duration-300 text-center shadow-xl">
             {t("hero.cta")}
           </Link>
         </div>

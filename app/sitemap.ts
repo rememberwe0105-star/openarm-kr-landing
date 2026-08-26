@@ -1,7 +1,10 @@
 import { MetadataRoute } from 'next';
 import { SITE_URL, hreflangLanguages } from '@/lib/i18n/locale';
 
-const LAST_MODIFIED = new Date('2026-08-11');
+// Evaluated at build time, so every deploy publishes an honest lastmod. A frozen
+// literal (it used to be 2026-08-11) tells Google "nothing changed since then",
+// which suppresses re-crawling exactly when we most need it.
+const LAST_MODIFIED = new Date();
 
 // Locale-split site: every page exists at /ko/… and /en/…, cross-linked via
 // hreflang so each version ranks in its market. `/` geo-redirects (middleware).

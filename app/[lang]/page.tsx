@@ -403,8 +403,14 @@ html{scroll-behavior:smooth;scroll-padding-top:84px;scroll-snap-type:y proximity
 .oa .vbframe video{width:100%;height:100%;object-fit:cover;display:block}
 .oa .vbframe::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(5,7,11,.5) 0%,transparent 17%,transparent 80%,rgba(5,7,11,.82) 100%)}
 .oa .vbcap{position:absolute;left:clamp(20px,4vw,52px);bottom:24px;z-index:2;font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--cy-soft);opacity:.9}
-.oa footer{font-family:var(--mono);font-size:12px;color:var(--mut);text-align:center;padding:26px 0 42px;border-top:1px solid var(--line)}
-.oa footer b{color:var(--cy)}`;
+.oa footer{font-family:var(--mono);font-size:12px;color:var(--mut);text-align:center;padding:30px 0 42px;border-top:1px solid var(--line)}
+.oa footer b{color:var(--cy)}
+.oa footer .fnav{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-bottom:18px;letter-spacing:.06em}
+.oa footer .fnav a{color:var(--mut);text-decoration:none;transition:color .22s}
+.oa footer .fnav a:hover{color:var(--cy)}
+.oa .resmore{margin-top:26px;text-align:center}
+.oa .resmore a{font-family:var(--mono);font-size:13px;letter-spacing:.05em;color:var(--cy);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .22s}
+.oa .resmore a:hover{border-bottom-color:var(--cy)}`;
 
 const I = {
   open: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6l-5 6 5 6M16 6l5 6-5 6"/></svg>',
@@ -671,6 +677,7 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
       <span class="reslink">${t.res_dc_b} →</span>
     </a>
   </div>
+  <div class="resmore"><a href="/${lang}/resources">${t.res_all} →</a></div>
 </div></section>
 
 <section class="sec faq" id="faq" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap">
@@ -725,7 +732,14 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
   </div>
 </div></section>
 
-<footer>OPENARM 2.0 · <b>LIBERTRON</b> · ${t.footer}</footer>`;
+<footer>
+  <nav class="fnav" aria-label="${t.foot_nav}">
+    <a href="/${lang}/store">${t.nav_store}</a>
+    <a href="/${lang}/openarm-1.1">OpenArm 1.1</a>
+    <a href="/${lang}/resources">${t.nav_res}</a>
+  </nav>
+  <div class="fcopy">OPENARM 2.0 · <b>LIBERTRON</b> · ${t.footer}</div>
+</footer>`;
 }
 
 type TCard = { q: string; s: string; d: string; cf: string; ct: string };
@@ -798,6 +812,7 @@ const KO = {
   res_gh_t: "GitHub 저장소", res_gh_d: "하드웨어 CAD·펌웨어·제어 코드가 전부 공개되어 있습니다. 받아서 빌드하고, 자유롭게 개조하세요.", res_gh_b: "코드 보기",
   res_doc_t: "공식 문서", res_doc_d: "API 레퍼런스와 셋업 가이드, 튜토리얼까지. (영문)", res_doc_b: "문서 읽기",
   res_dc_t: "Discord 커뮤니티", res_dc_d: "전 세계 개발자들과 실시간으로 묻고 답하며 함께 만들어갑니다.", res_dc_b: "서버 참여",
+  res_all: "자료실 전체 보기", foot_nav: "바로가기",
   faq_k: "FAQ", faq_h: "자주 묻는 질문 <em>FAQ</em>",
   faq_sub: "OpenArm에 대해 가장 많이 들어오는 질문들입니다.",
   faq: [
@@ -889,6 +904,7 @@ const EN: Dict = {
   res_gh_t: "GitHub repository", res_gh_d: "Hardware CAD, firmware, and control code are all public. Clone it, build it, and modify it freely.", res_gh_b: "View code",
   res_doc_t: "Official docs", res_doc_d: "API reference, setup guides, and tutorials. (English)", res_doc_b: "Read docs",
   res_dc_t: "Discord community", res_dc_d: "Ask, answer, and build together with developers around the world in real time.", res_dc_b: "Join server",
+  res_all: "Browse all resources", foot_nav: "Quick links",
   faq_k: "FAQ", faq_h: "Frequently Asked <em>Questions</em>",
   faq_sub: "Here are the most common questions about the OpenArm robotic arm.",
   faq: [

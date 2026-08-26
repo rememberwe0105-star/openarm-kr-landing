@@ -57,8 +57,13 @@ export const META: Record<
 };
 
 // hreflang map for a given locale-agnostic path (used by layout metadata + sitemap).
+// `ko` is declared alongside `ko-KR` on purpose: `ko-KR` only matches a searcher
+// whose language AND region are Korean, so a Korean-language search from an
+// ambiguous region fell through to x-default (English). The bare `ko` widens the
+// match to language-only, which is what "오픈암" searches actually look like.
 export function hreflangLanguages(pathNoLocale: string): Record<string, string> {
   return {
+    ko: `${SITE_URL}/ko${pathNoLocale}`,
     "ko-KR": `${SITE_URL}/ko${pathNoLocale}`,
     en: `${SITE_URL}/en${pathNoLocale}`,
     "x-default": `${SITE_URL}/${DEFAULT_LOCALE}${pathNoLocale}`,

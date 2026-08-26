@@ -30,6 +30,11 @@ function hasLocalePrefix(pathname: string): boolean {
 const LEGACY: Record<string, string> = {
   "/v2": "",
   "/v2/order": "/store",
+  // /products is superseded by /store. It used to be noindex'd, which threw its
+  // search equity away — every query landing on it ("openarm camera", "openarm
+  // leader", "openarm ker", "openarm gripper") is store intent. Redirect instead,
+  // so that equity moves to /store rather than evaporating.
+  "/products": "/store",
 };
 
 export function middleware(req: NextRequest) {
@@ -37,6 +42,16 @@ export function middleware(req: NextRequest) {
   const country = req.headers.get("x-vercel-ip-country");
 
   if (hasLocalePrefix(pathname)) {
+    // /{locale}/products → /{locale}/store, permanently. Unlike the geo redirect
+    // below this destination does not depend on the visitor, so 308 is safe and
+    // is what actually transfers ranking signals to /store.
+    const productsMatch = pathname.match(/^\/(ko|en)\/products\/?$/);
+    if (productsMatch) {
+      const url = req.nextUrl.clone();
+      url.pathname = `/${productsMatch[1]}/store`;
+      return NextResponse.redirect(url, 308);
+    }
+
     // Domestic guard: a Korea-geo visitor must never sit on the global /en pages
     // (they'd see $ pricing). However they arrived — a shared /en link, a search
     // result, a stale cookie — bounce /en/* → /ko/* when geo is KR.
