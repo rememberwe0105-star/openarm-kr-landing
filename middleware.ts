@@ -84,7 +84,21 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  // Run on everything except API routes, Next internals, and static files
-  // (anything with a dot). sitemap.xml / robots.txt are excluded via the dot rule.
-  matcher: ["/((?!api|_next/static|_next/image|.*\\..*).*)"],
+  // Run on everything except API routes, Next internals, generated metadata
+  // routes, and static assets.
+  //
+  // This used to exclude "any path containing a dot", which was wrong in both
+  // directions:
+  //   - it skipped real content whose slug has a dot, so /openarm-1.1 404'd and
+  //     /en/openarm-1.1 slipped past the domestic guard above, and
+  //   - it did NOT skip /opengraph-image, which has no extension at all, so
+  //     every page's og:image got a locale prepended and 404'd (no link
+  //     preview thumbnail anywhere).
+  // So: exclude static assets by extension, and name the extension-less
+  // metadata routes explicitly. Keep this in sync with the metadata files in
+  // app/ (favicon.ico, icon.png, apple-icon.png, opengraph-image.tsx,
+  // manifest.ts, robots.ts, sitemap.ts).
+  matcher: [
+    "/((?!api(?:/|$)|_next(?:/|$)|favicon\\.ico$|icon\\.png$|apple-icon\\.png$|opengraph-image$|twitter-image$|manifest\\.webmanifest$|robots\\.txt$|sitemap\\.xml$|.*\\.(?:webp|png|jpe?g|gif|svg|avif|ico|glb|gltf|bin|css|mjs|js|map|json|html|txt|xml|mp4|webm|mov|woff2|woff|ttf|otf|eot|pdf|zip)$).*)",
+  ],
 };
