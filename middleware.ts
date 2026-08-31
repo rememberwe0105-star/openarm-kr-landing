@@ -42,6 +42,34 @@ export function middleware(req: NextRequest) {
   const country = req.headers.get("x-vercel-ip-country");
 
   if (hasLocalePrefix(pathname)) {
+    // Staff bypass: internal (Korea-based) staff need to reach the global /en
+    // pages — English copy + $ pricing — that the domestic guard below blocks.
+    // Visiting any localized URL with ?staff=<password> drops a persistent
+    // `oa_staff` cookie that exempts this browser from the guard; ?staff=off
+    // clears it. The password is friction, not security (pricing isn't secret) —
+    // it just keeps a domestic consumer from stumbling onto the unlock by URL.
+    // The guard is keyed on `oa_staff` (a NEW cookie), never on `openarm-lang`,
+    // so a stale `openarm-lang=en` from the old language toggle can't re-open the
+    // $ leak — only a deliberate ?staff unlock can.
+    const staff = req.nextUrl.searchParams.get("staff");
+    if (staff !== null) {
+      const url = req.nextUrl.clone();
+      url.searchParams.delete("staff");
+      const res = NextResponse.redirect(url, 307);
+      res.headers.set("Cache-Control", "private, no-store");
+      const secure = process.env.NODE_ENV === "production";
+      if (staff === "libertron5278") {
+        // guard exemption + locale preference (so the bare domain lands on /en too)
+        res.cookies.set("oa_staff", "1", { path: "/", maxAge: 60 * 60 * 24 * 365, sameSite: "lax", secure });
+        res.cookies.set("openarm-lang", "en", { path: "/", maxAge: 60 * 60 * 24 * 365, sameSite: "lax", secure });
+      } else if (staff === "off") {
+        // delete with explicit path so the path="/" cookies above are matched
+        res.cookies.delete({ name: "oa_staff", path: "/" });
+        res.cookies.delete({ name: "openarm-lang", path: "/" });
+      }
+      return res;
+    }
+
     // /{locale}/products → /{locale}/store, permanently. Unlike the geo redirect
     // below this destination does not depend on the visitor, so 308 is safe and
     // is what actually transfers ranking signals to /store.
@@ -57,7 +85,9 @@ export function middleware(req: NextRequest) {
     // result, a stale cookie — bounce /en/* → /ko/* when geo is KR.
     // One-directional on purpose: /ko is NOT forced to /en for non-KR, so
     // Googlebot (which crawls from the US) can still reach and index /ko.
-    if (country === "KR" && (pathname === "/en" || pathname.startsWith("/en/"))) {
+    // Exemption: staff who unlocked via ?staff (oa_staff cookie) pass through.
+    const staffUnlocked = req.cookies.get("oa_staff")?.value === "1";
+    if (country === "KR" && !staffUnlocked && (pathname === "/en" || pathname.startsWith("/en/"))) {
       const url = req.nextUrl.clone();
       url.pathname = "/ko" + pathname.slice(3); // "/en" → "/ko", "/en/x" → "/ko/x"
       const res = NextResponse.redirect(url, 307);
