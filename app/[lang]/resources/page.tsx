@@ -77,32 +77,10 @@ export default function ResourcesPage() {
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {resources.map((resource, i) => (
-            <div 
-              key={i} 
-              className="group bg-background-sub p-10 rounded-[2rem] border border-border-light hover:border-point/50 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 flex flex-col h-full"
-            >
-              <div className="w-16 h-16 bg-background-main rounded-2xl flex items-center justify-center mb-6 shadow-sm">
-                {resource.icon}
-              </div>
-              <h3 className="text-2xl font-bold text-foreground-main mb-4">{t(resource.titleKey)}</h3>
-              <p className="text-foreground-sub font-medium leading-relaxed mb-8 flex-1">
-                {t(resource.descKey)}
-              </p>
-              <a 
-                href={resource.link} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center w-full bg-foreground-main text-background-main px-6 py-4 rounded-xl text-md font-bold hover:bg-point hover:text-white transition-all duration-300"
-              >
-                {t(resource.btnKey)}
-              </a>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-20 md:mt-28 max-w-3xl mx-auto">
+        {/* Unique content first — the 3 external-link cards already appear on the
+            home #resources section, so a visitor arriving from there must not see
+            a rerun. FAQ leads; links are demoted to a compact row below. */}
+        <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-black tracking-tighter text-foreground-main mb-6">{intro.h}</h2>
           <p className="text-foreground-sub text-lg leading-relaxed mb-14">{intro.p}</p>
           <div className="flex flex-col gap-3">
@@ -114,6 +92,30 @@ export default function ResourcesPage() {
                 </summary>
                 <p className="text-foreground-sub leading-relaxed mt-4">{a}</p>
               </details>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-20 md:mt-28 max-w-3xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-black tracking-tighter text-foreground-main mb-8">
+            {lang === "en" ? "External resources" : "외부 리소스"}
+          </h2>
+          <div className="flex flex-col gap-3">
+            {resources.map((resource, i) => (
+              <a
+                key={i}
+                href={resource.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-5 bg-background-sub border border-border-light rounded-2xl px-6 py-5 hover:border-point/50 hover:shadow-md transition-all"
+              >
+                <div className="shrink-0">{resource.icon}</div>
+                <div className="flex-1 min-w-0">
+                  <div className="font-bold text-foreground-main text-lg">{t(resource.titleKey)}</div>
+                  <div className="text-foreground-sub text-sm leading-relaxed">{t(resource.descKey)}</div>
+                </div>
+                <span className="text-point font-bold shrink-0">→</span>
+              </a>
             ))}
           </div>
         </div>
