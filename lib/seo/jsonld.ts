@@ -51,12 +51,14 @@ function product(lang: Locale) {
       ...base,
       description:
         "A 100% open-source 14-DOF bimanual robot arm for physical-AI research, teleoperation, and imitation learning. Assembled and tested in Korea, shipped worldwide.",
+      // Single Offer with `price` (base config, "from $6,000") — NOT AggregateOffer.
+      // Merchant-listing rich results require offers.price; AggregateOffer only has
+      // lowPrice/highPrice, which GSC flags as "price 누락(경로: offers)" (알림 2026-09-01).
+      // Product snippets accept either, so this satisfies both report types.
       offers: {
-        "@type": "AggregateOffer",
+        "@type": "Offer",
         priceCurrency: "USD",
-        lowPrice: "6000",
-        highPrice: "9100",
-        offerCount: "8",
+        price: "6000",
         availability: "https://schema.org/InStock",
         url: `${SITE_URL}/en/store`,
         seller: { "@type": "Organization", name: "Libertron" },
