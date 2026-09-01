@@ -527,13 +527,12 @@ function buildHTML(t: Dict, lang: "ko" | "en") {
 </div></section>
 
 <!-- openarm.dev 히어로 영상 (kv.mp4, 자체 호스팅) — Core와 Hardware 사이,
-     openarm.dev처럼 무한 반복 자동재생 (muted+playsinline은 모바일 자동재생 필수) -->
-<section class="sec" id="motion" style="padding-top:0">
-  <div class="wrap">
-    <video src="/videos/kv.mp4" autoplay muted loop playsinline preload="metadata"
-      aria-label="${lang === "en" ? "OpenArm 2.0 in motion" : "OpenArm 2.0 구동 영상"}"
-      style="display:block;width:100%;border-radius:22px;border:1px solid var(--line);box-shadow:var(--shadow)"></video>
-  </div>
+     openarm.dev처럼 무한 반복 자동재생 (muted+playsinline은 모바일 자동재생 필수).
+     풀블리드: wrap 없이 화면 좌우 끝까지 -->
+<section id="motion">
+  <video src="/videos/kv.mp4" autoplay muted loop playsinline preload="metadata"
+    aria-label="${lang === "en" ? "OpenArm 2.0 in motion" : "OpenArm 2.0 구동 영상"}"
+    style="display:block;width:100%"></video>
 </section>
 
 <section class="sec" id="hardware" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap">
