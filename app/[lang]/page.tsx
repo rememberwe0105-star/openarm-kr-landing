@@ -190,6 +190,8 @@ html{scroll-behavior:smooth;scroll-padding-top:84px;scroll-snap-type:y proximity
 .oa .herostats b{font-family:var(--mono);font-size:clamp(24px,3vw,30px);font-weight:700;letter-spacing:-.02em;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;width:fit-content}
 .oa .herostats span{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
 @media(max-width:820px){.oa .herostats{gap:0}.oa .herostats > div{padding:2px 16px}}
+/* #motion 풀블리드 영상: 초광폭(3.6:1) 소스라 모바일에선 얇은 띠가 됨 → 중앙 크롭으로 키움 */
+@media(max-width:820px){.oa #motion video{height:220px;object-fit:cover}}
 @media(max-width:480px){.oa .herostats > div{padding:2px 12px}.oa .herostats b{font-size:22px}}
 .oa .scrollcue{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);z-index:3;font-family:var(--mono);font-size:11px;color:var(--mut);letter-spacing:.16em;display:flex;flex-direction:column;align-items:center;gap:10px}
 .oa .sc-bar{width:1px;height:38px;background:rgba(10,13,20,.14);position:relative;overflow:hidden}
