@@ -7,6 +7,7 @@ import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 import FloatingContactButton from "@/components/ui/FloatingContactButton";
 import { LOCALES, META, SITE_URL, buildAlternates, isLocale } from "@/lib/i18n/locale";
 import { buildJsonLd } from "@/lib/seo/jsonld";
+import { shipMonthKey } from "@/lib/ship";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const jetBrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains-mono" });
@@ -17,6 +18,11 @@ const jetBrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jet
 // in app/layout.tsx and patched after hydration by a client effect — meaning the
 // HTML that Googlebot and Naver's Yeti actually parse declared the Korean pages as
 // English. That is a prime suspect for /en outranking /ko on Korean queries.
+// 배송 안내 월(lib/ship.ts)이 날짜에 따라 바뀌므로 정적 페이지를 1시간마다 다시 만든다(ISR).
+// ISR은 만료 후 첫 요청에 이전 HTML을 한 번 내보내므로, 화면 문구는 페이지에서
+// latestShipMonth()로 한 번 더 바로잡는다 (lib/ship.ts 상단 설명 참조).
+export const revalidate = 3600;
+
 export function generateStaticParams() {
   return LOCALES.map((lang) => ({ lang }));
 }
@@ -73,7 +79,7 @@ export default function LocaleRootLayout({
       >
         <GoogleTagManager gtmId="GTM-N9TLN2LT" />
         <GoogleAnalytics gaId="G-Y8P93G14MQ" />
-        <LanguageProvider initialLang={lang}>
+        <LanguageProvider initialLang={lang} shipMonth={shipMonthKey()}>
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(buildJsonLd(lang)) }}

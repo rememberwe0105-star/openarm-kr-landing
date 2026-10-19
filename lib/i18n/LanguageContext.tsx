@@ -5,11 +5,13 @@ import { useRouter, usePathname } from "next/navigation";
 import enTranslations from "./en.json";
 import koTranslations from "./ko.json";
 import { stripLocale, type Locale } from "./locale";
+import { SHIP_MIN_MONTH } from "../ship";
 
 type Language = Locale;
 
 interface LanguageContextType {
   lang: Language;
+  shipMonth: string; // 배송 안내 월 "YYYY-MM" — 서버 레이아웃이 계산 (lib/ship.ts)
   toggleLanguage: () => void;
   t: <T extends string | string[] = string>(key: string) => T;
 }
@@ -23,9 +25,11 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export function LanguageProvider({
   children,
   initialLang,
+  shipMonth = SHIP_MIN_MONTH,
 }: {
   children: ReactNode;
   initialLang: Language;
+  shipMonth?: string;
 }) {
   const [lang, setLang] = useState<Language>(initialLang);
   const router = useRouter();
@@ -73,7 +77,7 @@ export function LanguageProvider({
   }, [lang]);
 
   return (
-    <LanguageContext.Provider value={{ lang, toggleLanguage, t }}>
+    <LanguageContext.Provider value={{ lang, shipMonth, toggleLanguage, t }}>
       {children}
     </LanguageContext.Provider>
   );

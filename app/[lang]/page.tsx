@@ -2,6 +2,7 @@
 
 import { memo, useEffect, useState } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { latestShipMonth, shipLine } from "@/lib/ship";
 
 /* ──────────────────────────────────────────────────────────────────────────
    OpenArm 2.0 — Libertron. A dark, immersive, 3D-forward landing centered on
@@ -759,7 +760,7 @@ const KO = {
   hero_eyebrow: "Introducing · OpenArm 2.0",
   hero_tag: "피지컬 AI, <em>누구나 손 쉽게!</em>",
   hero_lead: "100% 오픈소스 양팔 로봇. 더 작아진 그리퍼와 손안의 카메라, 여기에 실험 변수를 잡아주는 Cell까지. 부품 수급부터 세팅까지 리버트론이 한 번에 준비해 드립니다.",
-  hero_cta1: "지금 구매하기", hero_cta2: "도입 문의", hero_ship: "지금 주문 시 11월 중 배송 — 초기 물량 한정", drag: "드래그 · 360°",
+  hero_cta1: "지금 구매하기", hero_cta2: "도입 문의", hero_ship: "", /* 날짜로 자동 계산 — lib/ship.ts */ drag: "드래그 · 360°",
   intro_spec_h: "핵심 사양", intro_explore: "자세히 보기", scrollcue: "SCROLL",
   s_dof: "양팔 기준", s_reach: "도달 거리 (CAD 실측)", s_pay: "정격 · 피크 가반하중", s_ctrl: "CAN-FD 제어", s_open: "오픈소스 CAD·펌웨어",
   k_feat: "Core", h_feat: "OpenArm 2.0을 <em>구매해야 하는 이유</em>",
@@ -851,7 +852,7 @@ const EN: Dict = {
   hero_eyebrow: "Introducing · OpenArm 2.0",
   hero_tag: "Physical AI, <em>made easy for everyone.</em>",
   hero_lead: "A 100% open-source bimanual humanoid arm. Compact gripper, in-hand camera, and a variable-controlled Cell — supplied one-stop from Korea by Libertron.",
-  hero_cta1: "Buy now", hero_cta2: "Get in touch", hero_ship: "Order now — delivery in November, limited first batch", drag: "Drag · 360°",
+  hero_cta1: "Buy now", hero_cta2: "Get in touch", hero_ship: "", /* 날짜로 자동 계산 — lib/ship.ts */ drag: "Drag · 360°",
   intro_spec_h: "Core specifications", intro_explore: "Explore", scrollcue: "SCROLL",
   s_dof: "Per dual arm", s_reach: "Reach (CAD-measured)", s_pay: "Nominal / peak payload", s_ctrl: "CAN-FD control", s_open: "Open-source CAD & firmware",
   k_feat: "Core", h_feat: "Why you should <em>buy OpenArm 2.0</em>",
@@ -937,7 +938,11 @@ const EN: Dict = {
 };
 
 export default function Home() {
-  const { lang } = useLanguage();
+  const { lang, shipMonth } = useLanguage();
+  // 배송월은 마운트 시점 값으로 HTML에 고정한다. 값이 바뀔 때 html 문자열이 달라지면
+  // OaHtml이 innerHTML 전체를 다시 써서 바인딩·3D·입력 중인 폼이 날아간다(아래 OaHtml 주석).
+  // 이후 바뀐 값은 아래 ship effect가 .shipnote 텍스트만 고친다.
+  const [shipMonthAtMount] = useState(shipMonth);
   // After hydration React can silently re-apply the section's innerHTML, replacing every node
   // the effects below have bound to (stale nav toggle, wiped word-fill spans / reveal classes —
   // the "white nav on white background" bug). Watch .oa's direct children and bump an epoch so
@@ -1449,7 +1454,15 @@ export default function Home() {
       if (cleanupScene) cleanupScene();
     };
   }, [lang]);
-  const t = lang === "en" ? EN : KO;
+  // 배송 문구: 서버 값과 브라우저 시계 중 더 늦은 달로 텍스트만 교정 (ISR 첫 요청 지연 보정).
+  // .oa 직계 자식이 아니라서 위 MutationObserver(domEpoch)를 건드리지 않는다.
+  useEffect(() => {
+    const line = shipLine(lang === "en" ? "en" : "ko", latestShipMonth(shipMonth));
+    document.querySelectorAll<HTMLElement>(".oa .shipnote").forEach((el) => {
+      if (el.textContent !== line) el.textContent = line;
+    });
+  }, [lang, shipMonth, domEpoch]);
+  const t = { ...(lang === "en" ? EN : KO), hero_ship: shipLine(lang === "en" ? "en" : "ko", shipMonthAtMount) };
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: CSS }} />
