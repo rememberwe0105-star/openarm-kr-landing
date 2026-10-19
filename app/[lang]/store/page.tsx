@@ -230,7 +230,7 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
       <div class="pcat">// ROBOTS</div>
       <h2>OpenArm 2.0 Bimanual</h2>
       ${priceBlock(P.b20)}
-      <div class="ship hook">${t.ship_oct}</div>
+      <div class="ship hook">${t.ship_eta}</div>
       <div class="pdesc">${t.d_2_0}</div>
       ${kerOpt("ker-b20")}
       ${ker20Btn("OpenArm 2.0 Bimanual", P.b20, "ker-b20")}
@@ -243,7 +243,7 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
       <div class="pcat">// ROBOTS</div>
       <h2>OpenArm 2.0 Full Option</h2>
       ${priceBlock(P.f20)}
-      <div class="ship hook">${t.ship_oct}</div>
+      <div class="ship hook">${t.ship_eta}</div>
       <div class="pdesc">${t.d_full}</div>
       ${kerOpt("ker-f20")}
       ${ker20Btn("OpenArm 2.0 Full Option", P.f20, "ker-f20")}
@@ -256,7 +256,7 @@ function buildHTML(t: Record<string, string>, lang: "ko" | "en") {
       <div class="pcat">// TELEOP</div>
       <h2>OpenArm KER</h2>
       ${priceBlock(P.ker)}
-      <div class="ship hook">${t.ship_oct}</div>
+      <div class="ship hook">${t.ship_eta}</div>
       <div class="pdesc">${t.d_ker}</div>
       ${buyBtn("OpenArm KER", P.ker, "solid")}
     </div>
@@ -434,7 +434,7 @@ const KO: Record<string, string> = {
   drag: "드래그 · 360°", add: "주문 담기", add_inq: "담기 (가격 문의)", inquire: "가격 문의", ker_opt: "KER 리더암 함께 추가",
   cam_select: "옵션 선택", cam_title: "카메라 옵션 선택", cam_chest: "가슴 카메라 (선택)", cam_arm: "팔 카메라 (선택)", cam_specs: "사양 비교", cam_cancel: "취소", cam_add: "선택 항목 담기",
   b_now: "지금 구매 가능", b_oct: "출시 예정", b_soon: "출시 예정", b_11user: "1.1 사용자용", b_stock: "재고 보유", b_acc: "액세서리",
-  ship_2_0: "지금 주문 가능", ship_oct: "지금 주문 시 10월 배송 — 초기 물량 한정", ship_cell: "출시 예정", ship_ker: "출시 예정", ship_inq: "배송 문의",
+  ship_2_0: "지금 주문 가능", ship_eta: "지금 주문 시 11월 중 배송 — 초기 물량 한정", ship_cell: "출시 예정", ship_ker: "출시 예정", ship_inq: "배송 문의",
   cam_opt: "상단 스테레오 카메라(ZED) — 권장 옵션",
   d_2_0: "컴팩트 그리퍼와 인핸드 카메라를 갖춘 차세대 양팔 로봇암입니다.\n연구·교육·개발 현장이 부담 없이 들일 수 있는 피지컬 AI 플랫폼이죠. 7-DOF ×2 · 양방향 힘 피드백.",
   d_cell: "배경, 조명, 카메라, 로봇 위치까지 똑같이 맞춰주는 평가용 셀입니다.\n모델을 공정하게 비교하고 자동으로 평가하는 표준 환경을 만듭니다. Z축 높이 조절 · 침입 차단 안전 센서 · 제로 캘리브레이션 지그.",
@@ -462,7 +462,7 @@ const EN: Record<string, string> = {
   drag: "Drag · 360°", add: "Add to order", add_inq: "Add (inquire)", inquire: "Contact for price", ker_opt: "Add KER leader arm",
   cam_select: "Select options", cam_title: "Select Camera Options", cam_chest: "Chest Camera (optional)", cam_arm: "Arm Cameras (optional)", cam_specs: "Specifications", cam_cancel: "Cancel", cam_add: "Add Selected",
   b_now: "Available now", b_oct: "Coming soon", b_soon: "Coming soon", b_11user: "For 1.1 owners", b_stock: "In stock", b_acc: "Accessory",
-  ship_2_0: "Available to order now", ship_oct: "Order now — October delivery, limited first batch", ship_cell: "Coming soon", ship_ker: "Coming soon", ship_inq: "Shipping on request",
+  ship_2_0: "Available to order now", ship_eta: "Order now — delivery in November, limited first batch", ship_cell: "Coming soon", ship_ker: "Coming soon", ship_inq: "Shipping on request",
   cam_opt: "Top stereo camera (ZED) — recommended option",
   d_2_0: "A next-generation bimanual arm with a compact gripper and in-hand camera.\nA physical-AI platform research, education, and development teams can actually afford. 7-DOF ×2 · bilateral force feedback.",
   d_cell: "An evaluation cell that keeps background, lighting, cameras, and arm position identical every time.\nIt creates a standard environment for fair, automated model comparison. Z-axis lift · reach-in safety stop · zero-position jig.",
